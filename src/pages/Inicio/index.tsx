@@ -14,11 +14,11 @@ import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.
 export default function Inicio() {
   const slideLeft = () => {
     var slider: any = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft - 500;
+    slider.scrollLeft -= 500;
   };
   const slideRight = () => {
     var slider: any = document.getElementById("slider");
-    slider.scrollRight = slider.scrollLeft + 500;
+    slider.scrollLeft += 500;
   };
   const carousel = [
     {
@@ -246,58 +246,6 @@ export default function Inicio() {
             id="slider"
             className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
           >
-            <li className={styles["emdestaque__lista--item"]}>
-              <div
-                className={styles["lista__imagem"]}
-                style={{
-                  backgroundImage: "url('../../assets/img/emdestaque1.png')",
-                }}
-              ></div>
-              <div className={styles["lista__legenda"]}>
-                <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-                <p className={styles["lista__categoria"]}>Móveis</p>
-                <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-                <button className={styles["lista__comprar"]}>Comprar</button>
-              </div>
-            </li>
-            <li className={styles["emdestaque__lista--item"]}>
-              <div
-                className={styles["lista__imagem"]}
-                style={{
-                  backgroundImage: "url('../../assets/img/emdestaque1.png')",
-                }}
-              ></div>
-              <div className={styles["lista__legenda"]}>
-                <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-                <p className={styles["lista__categoria"]}>Móveis</p>
-                <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-                <button className={styles["lista__comprar"]}>Comprar</button>
-              </div>
-            </li>
-            <li className={styles["emdestaque__lista--item"]}>
-              <div
-                className={styles["lista__imagem"]}
-                style={{
-                  backgroundImage: "url('../../assets/img/emdestaque1.png')",
-                }}
-              ></div>
-              <div className={styles["lista__legenda"]}>
-                <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-                <p className={styles["lista__categoria"]}>Móveis</p>
-                <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-                <button className={styles["lista__comprar"]}>Comprar</button>
-              </div>
-            </li>
-          </div>
-          <ArrowNextIosIcon
-            onClick={slideRight}
-            className={styles["arrownext"]}
-          ></ArrowNextIosIcon>
-        </div>
-        <ul className={styles["emdestaque__lista"]}>
           {produtos.map((item, index) => {
             return (
               <li className={styles["emdestaque__lista--item"]}>
@@ -315,6 +263,14 @@ export default function Inicio() {
               </li>
             );
           })}
+          </div>
+          <ArrowNextIosIcon
+            onClick={slideRight}
+            className={styles["arrownext"]}
+          ></ArrowNextIosIcon>
+        </div>
+        <ul className={styles["emdestaque__lista"]}>
+
         </ul>
       </section>
     </>
