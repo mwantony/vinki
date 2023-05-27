@@ -54,17 +54,21 @@
   padding-top: 2rem;
 }
 
+.emdestaque__lista--item:first-child {
+  margin-left: 15vw;
+}
+
 .emdestaque__lista--item {
   border-radius: 20px;
   text-align: left;
-  overflow: hidden;
+  white-space: nowrap;
   box-shadow: 0px 4px 50px $text-shadow;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   border-radius: 20px;
   max-width: 300px;
   width: 60vw;
-  margin: 0 auto 2rem auto;
+  margin: 2.5rem 1rem 2.5rem 1rem;
   height: 290px;
   background-color: $main-color;
   box-shadow: 0px 4px 50px $text-shadow;
@@ -74,6 +78,7 @@
   height: 50%;
   overflow: hidden;
   width: 100%;
+  border-radius: 20px 20px 0 0;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -127,4 +132,23 @@
 
 .alice-carousel__stage-item   {
   text-align: center !important;
+}
+
+.sliding {
+  white-space: nowrap;
+}
+
+.slider__div {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.arrowback {
+  position: absolute;
+}
+
+.arrownext {
+  position: absolute;
+  right: 0;
 }
