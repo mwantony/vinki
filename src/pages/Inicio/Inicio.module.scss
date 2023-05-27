@@ -11,7 +11,7 @@
 .lista--categoria {
   display: flex;
   margin: 0 auto;
-  width: 60vw;
+  width: 100vw;
   justify-content: space-around;
 }
 
@@ -48,6 +48,7 @@
 .emdestaque__lista {
   display: flex;
   width: 75vw;
+  flex-direction: column;
   margin: 0 auto;
   justify-content: space-around;
   padding-top: 2rem;
@@ -55,14 +56,16 @@
 
 .emdestaque__lista--item {
   border-radius: 20px;
+  text-align: left;
   overflow: hidden;
   box-shadow: 0px 4px 50px $text-shadow;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  width: 200px;
-  margin: .2rem;
-  height: 250px;
+  max-width: 300px;
+  width: 60vw;
+  margin: 0 auto 2rem auto;
+  height: 290px;
   background-color: $main-color;
   box-shadow: 0px 4px 50px $text-shadow;
 }
@@ -77,9 +80,28 @@
 }
 
 .lista {
+    &__legenda {
+      width: 80%;
+      padding-top: .5rem;
+      margin: 0 auto;
+    }
     &__subtitulo {
         color: $cinza-escuro;
+        font-size: 1.2rem;
         font-weight: bold;
+        margin: .5rem 0 0 0;
+    }
+    &__categoria {
+      font-size: .9rem;
+    }
+    &__preco {
+      text-decoration: line-through;
+      margin: .5rem 0 0 0;
+      font-size: .9rem;
+    }
+    &__promo {
+      font-weight: bold;
+      font-size: 1.2rem;
     }
     &__comprar {
         background-color: $cinza-escuro;
@@ -87,14 +109,22 @@
         display: block;
         position: relative;
         margin: 0 auto;
-        bottom: -1rem;
+        bottom: -10px;
         border-radius: 10px;
         color: $main-color;
         padding: .5rem;
-        width: 70%;
+        width: 100%;
         transition-duration: 500ms;
         &:hover {
             transform: scale(1.1);
         }
     }
+}
+
+.lista__foto--slicer {
+  text-align: center !important;
+}
+
+.alice-carousel__stage-item   {
+  text-align: center !important;
 }

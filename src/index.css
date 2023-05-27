@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 html {
   width: 100vw;
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -13,7 +16,7 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
@@ -32,6 +35,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+}
+
+li {
+  text-align: center;
 }
 body::-webkit-scrollbar {
   width: 8px;               /* width of the entire scrollbar */

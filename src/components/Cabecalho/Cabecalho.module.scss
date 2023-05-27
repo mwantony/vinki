@@ -8,24 +8,25 @@
     justify-content: space-between;
     &__menu {
         margin-left: 1rem;
-        width: 45px;
+        width: 35px;
         filter: drop-shadow(0px 4px 15px $text-shadow);
     }
     &__logo {
         position: absolute;
-        left: 10vw;
-        width: 20vw;
+        left: 17vw;
+        width: 120px;
         top: .5rem;
         filter: drop-shadow(0px 4px 15px $text-shadow);
     }
     &__search {
+        display: none;
         border: none;
         border-radius: 15px;
         box-shadow: 0px 4px 50px $text-shadow;
         padding: .4rem;
         padding-left: 1.2rem;
         font-family: "Nunito";
-        font-size: 1.2rem;
+        font-size: 1rem;
         width: 25vw;
         &::placeholder {
             opacity: .5;
@@ -33,16 +34,20 @@
     }
     &__account {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         margin-right: 1rem;
-        width: 100px;
+        width: 110px;
     }
+    &__searchicon {
+
+    } 
     &__profile {
         filter: drop-shadow(0px 4px 15px $text-shadow);
-        width: 45px;
+        width: 33px;
     }
     &__cart {
         filter: drop-shadow(0px 4px 15px $text-shadow);
-        width: 45px;
+        width: 33px;
     }
 }
