@@ -17,8 +17,32 @@
         margin-bottom: .4rem;
         font-size: .9rem;
     }
-    &__item::before {
+    &__item--pix::before {
         content: url('../../assets/svg/pix.svg');
+    }
+    &__item--boleto::before {
+        content: url('../../assets/svg/boleto.svg');
+    }
+    &__item--cartao::before {
+        content: url('../../assets/svg/cartao.svg');
+    }
+    &__item--whatsapp::before {
+        content: url('../../assets/svg/whatsapp.svg');
+    }
+    &__item--facebook::before {
+        content: url('../../assets/svg/facebook.svg');
+    }
+    &__item--instagram::before {
+        content: url('../../assets/svg/instagram.svg');
+    }
+    &__item--twitter::before {
+        content: url('../../assets/svg/twitter.svg');
+    }
+    &__item--sac::before {
+        content: url('../../assets/svg/sac.svg');
+    }
+    &__item--email::before {
+        content: url('../../assets/svg/email.svg');
     }
     &__item {
         text-align: left;

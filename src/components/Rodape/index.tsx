@@ -1,5 +1,6 @@
 import styles from './Rodape.module.scss'
 import vinkiFooterMobile from '../../assets/img/vinki-footer-mobile.png'
+import classNames from 'classnames'
 export default function Rodape() {
     return(
         <footer className={styles.rodape}>
@@ -7,25 +8,52 @@ export default function Rodape() {
                 <div className={styles['rodape__dep']}>
                     <h2 className={styles['rodape__subtitulo']}>Formas de pagamento</h2>
                     <ul className={styles['rodape__lista']}>
-                        <li className={styles['rodape__item']}>&nbsp;Pix</li>
-                        <li className={styles['rodape__item']}>&nbsp;Boleto</li>
-                        <li className={styles['rodape__item']}>&nbsp;Cartão de débito/crédito</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--pix']]: true,
+                        })}>&nbsp;Pix</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--boleto']]: true,
+                        })}>&nbsp;Boleto</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--cartao']]: true,
+                        })}>&nbsp;Cartão de débito/crédito</li>
                     </ul>
                 </div>
                 <div className={styles['rodape__dep']}>
                     <h2 className={styles['rodape__subtitulo']}>Mídias socias</h2>
                     <ul className={styles['rodape__lista']}>
-                        <li className={styles['rodape__item']}>&nbsp;WhatsApp</li>
-                        <li className={styles['rodape__item']}>&nbsp;Facebook</li>
-                        <li className={styles['rodape__item']}>&nbsp;Instagram</li>
-                        <li className={styles['rodape__item']}>&nbsp;Twitter</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--whatsapp']]: true,
+                        })}>&nbsp;WhatsApp</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--facebook']]: true,
+                        })}>&nbsp;Facebook</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--instagram']]: true,
+                        })}>&nbsp;Instagram</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--twitter']]: true,
+                        })}>&nbsp;Twitter</li>
                     </ul>
                 </div>
                 <div className={styles['rodape__dep']}>
                     <h2 className={styles['rodape__subtitulo']}>Atendimento</h2>
                     <ul className={styles['rodape__lista']}>
-                        <li className={styles['rodape__item']}>&nbsp;0800 589 356</li>
-                        <li className={styles['rodape__item']}>&nbsp;faleconosco@vinki.com</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--sac']]: true,
+                        })}>&nbsp;0800 589 356</li>
+                        <li className={classNames({
+                            [styles['rodape__item']]: true,
+                            [styles['rodape__item--email']]: true,
+                        })}>&nbsp;faleconosco@vinki.com</li>
                     </ul>
                 </div>
             </div>
