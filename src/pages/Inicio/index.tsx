@@ -167,7 +167,7 @@ export default function Inicio() {
       </section>
       <section className={styles["emdestaque"]}>
         <h2 className={styles["emdestaque__titulo"]}>Produtos em destaque</h2>
-        <div className={styles['slider__div']}>
+        <div className={styles["slider__div"]}>
           <ArrowBackIosIcon
             onClick={slideLeft}
             className={styles["arrowback"]}
@@ -176,23 +176,27 @@ export default function Inicio() {
             id="slider"
             className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
           >
-          {produtos.map((item, index) => {
-            return (
-              <li className={styles["emdestaque__lista--item"]}>
-                <div
-                  className={styles["lista__imagem"]}
-                  style={{ backgroundImage: "url(" + item.foto + ")" }}
-                ></div>
-                <div className={styles["lista__legenda"]}>
-                  <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-                  <p className={styles["lista__categoria"]}>Móveis</p>
-                  <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                  <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-                  <button className={styles["lista__comprar"]}>Comprar</button>
-                </div>
-              </li>
-            );
-          })}
+            {produtos.map((item, index) => {
+              return (
+                <li className={styles["emdestaque__lista--item"]}>
+                  <div
+                    className={styles["lista__imagem"]}
+                    style={{ backgroundImage: "url(" + item.foto + ")" }}
+                  ></div>
+                  <div className={styles["lista__legenda"]}>
+                    <h3 className={styles["lista__subtitulo"]}>
+                      Sofá retrátil
+                    </h3>
+                    <p className={styles["lista__categoria"]}>Móveis</p>
+                    <p className={styles["lista__preco"]}>R$ 2500,00</p>
+                    <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
+                    <button className={styles["lista__comprar"]}>
+                      Comprar
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
           </div>
           <ArrowNextIosIcon
             onClick={slideRight}
@@ -201,10 +205,66 @@ export default function Inicio() {
         </div>
       </section>
       <section className={styles.newsletter}>
-        <h2 className={styles['newsletter__titulo']}>Cadastre-se e receba as melhores ofertas!</h2>
-        <input type="text" name="" placeholder="Seu nome" id="" className={styles['newsletter__nome']}/>
-        <input type="email" name="" placeholder="Email" id="" className={styles['newsletter__email']}/>
-        <button type="submit" className={styles['newsletter__botao']}>Cadastrar</button>
+        <h2 className={styles["newsletter__titulo"]}>
+          Cadastre-se e receba as melhores ofertas!
+        </h2>
+        <input
+          type="text"
+          name=""
+          placeholder="Seu nome"
+          id=""
+          className={styles["newsletter__nome"]}
+        />
+        <input
+          type="email"
+          name=""
+          placeholder="Email"
+          id=""
+          className={styles["newsletter__email"]}
+        />
+        <button type="submit" className={styles["newsletter__botao"]}>
+          Cadastrar
+        </button>
+      </section>
+      <section className={styles.maisvendidos}>
+        <h2 className={styles["emdestaque__titulo"]}>Mais vendidos</h2>
+
+        <div className={styles["slider__div"]}>
+          <ArrowBackIosIcon
+            onClick={slideLeft}
+            className={styles["arrowback"]}
+          ></ArrowBackIosIcon>
+          <div
+            id="slider"
+            className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
+          >
+            {produtos.map((item, index) => {
+              return (
+                <li className={styles["emdestaque__lista--item"]}>
+                  <div
+                    className={styles["lista__imagem"]}
+                    style={{ backgroundImage: "url(" + item.foto + ")" }}
+                  ></div>
+                  <div className={styles["lista__legenda"]}>
+                    <h3 className={styles["lista__subtitulo"]}>
+                      Sofá retrátil
+                    </h3>
+                    <p className={styles["lista__categoria"]}>Móveis</p>
+                    <p className={styles["lista__preco"]}>R$ 2500,00</p>
+                    <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
+                    <button className={styles["lista__comprar"]}>
+                      Comprar
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </div>
+          <ArrowNextIosIcon
+            onClick={slideRight}
+            className={styles["arrownext"]}
+          ></ArrowNextIosIcon>
+        </div>
       </section>
     </>
   );
