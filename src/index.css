@@ -84,5 +84,6 @@ code {
 }
 
 .sliding {
+  background-color: transparent;
   white-space: nowrap;
 }
