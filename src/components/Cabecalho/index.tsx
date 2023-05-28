@@ -6,7 +6,7 @@ import { ReactComponent as Vinki } from "../../assets/svg/vinki.svg";
 import { ReactComponent as Profile } from "../../assets/svg/profile.svg";
 import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
-import {ReactComponent as ProfileMenu} from '../../assets/svg/profile-menu.svg'
+import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import { Link } from "react-router-dom";
 interface Props {
   aparecer: boolean;
@@ -50,10 +50,13 @@ export default function Cabecalho({
   return (
     <header className={styles.cabecalho}>
       <nav className={styles.navegacao}>
-        <MenuItem className={styles["navegacao__menu"]} onClick={() => {
-            console.log('sd')
-        setAparecer(true)
-        }}></MenuItem>
+        <MenuItem
+          className={styles["navegacao__menu"]}
+          onClick={() => {
+            console.log("sd");
+            setAparecer(true);
+          }}
+        ></MenuItem>
         <Vinki className={styles["navegacao__logo"]}></Vinki>
         <input
           type="search"
@@ -69,19 +72,22 @@ export default function Cabecalho({
         </div>
       </nav>
       <div className={styles["lista__div"]}></div>
-      <div onClick={() => setAparecer(false)} className={classNames({
+      <div
+        onClick={() => setAparecer(false)}
+        className={classNames({
           [styles.divisao__menu]: true,
           [styles["divisao__menu--aparecer"]]: aparecer === true ? true : false,
-        })}></div>
+        })}
+      ></div>
       <ul
         className={classNames({
           [styles.menu]: true,
           [styles["menu--aparecer"]]: aparecer === true ? true : false,
         })}
       >
-        <div className={styles['menu__hello']}>
-            <ProfileMenu className={styles['menu__profile']}></ProfileMenu>
-            <h2 className={styles['menu__subtitulo']}>Olá, Faça seu login!</h2>
+        <div className={styles["menu__hello"]}>
+          <ProfileMenu className={styles["menu__profile"]}></ProfileMenu>
+          <h2 className={styles["menu__subtitulo"]}>Olá, Faça seu login!</h2>
         </div>
         <div className={styles["menu__links"]}>
           {menu.map((item, index) => {
@@ -101,7 +107,16 @@ export default function Cabecalho({
             );
           })}
         </div>
-        <div></div>
+        <div className={styles['menu__botoes']}>
+          <button className={classNames({
+            [styles['menu__botao']]: true,
+            [styles['menu__botao--login']]: true,
+          })}>Login</button>
+          <button className={classNames({
+            [styles['menu__botao']]: true,
+            [styles['menu__botao--cadastrar']]: true,
+          })}>Cadastrar</button>
+        </div>
       </ul>
     </header>
   );
