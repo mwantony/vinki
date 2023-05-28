@@ -12,6 +12,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.svg";
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
 import { slideRight, slideLeft } from "../../func/sliders";
+import { Link } from "react-router-dom";
 export default function Inicio() {
   const carousel = [
     {
@@ -191,6 +192,9 @@ export default function Inicio() {
               );
             })}
           </div>
+          <Link to={'/emdestaque'}>
+            <p className={styles['vertodos']}>Ver todos</p>
+          </Link>
           <ArrowNextIosIcon
             onClick={() => slideRight("slider--emdestaque")}
             className={styles["arrownext"]}
@@ -253,6 +257,9 @@ export default function Inicio() {
               );
             })}
           </div>
+          <Link to={'/maisvendidos'}>
+            <p className={styles['vertodos']}>Ver todos</p>
+          </Link>
           <ArrowNextIosIcon
             onClick={() => slideRight("slider--maisvendidos")}
             className={styles["arrownext"]}

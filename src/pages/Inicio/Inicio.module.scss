@@ -205,3 +205,13 @@
     margin: 2rem 0 0 2rem;
   }
 }
+
+.vertodos {
+  position: absolute;
+  right: 1.2rem;
+  transform: translateY(10rem);
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
