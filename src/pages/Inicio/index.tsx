@@ -32,60 +32,7 @@ export default function Inicio() {
     },
   ];
   const handleDragStart = (e: any) => e.preventDefault();
-  const produtosEmDestaque = [
-    <li className={styles["emdestaque__lista--item"]}>
-      <div
-        className={styles["lista__imagem"]}
-        style={{ backgroundImage: "url('../../assets/img/emdestaque1.png')" }}
-      ></div>
-      <caption className="lista__legenda">
-        <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-        <p className={styles["lista__categoria"]}>Móveis</p>
-        <p className={styles["lista__preco"]}>R$ 2500,00</p>
-        <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-        <button className={styles["lista__comprar"]}>Comprar</button>
-      </caption>
-    </li>,
-    <li className={styles["emdestaque__lista--item"]}>
-      <div
-        className={styles["lista__imagem"]}
-        style={{ backgroundImage: "url('../../assets/img/emdestaque1.png')" }}
-      ></div>
-      <caption className="lista__legenda">
-        <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-        <p className={styles["lista__categoria"]}>Móveis</p>
-        <p className={styles["lista__preco"]}>R$ 2500,00</p>
-        <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-        <button className={styles["lista__comprar"]}>Comprar</button>
-      </caption>
-    </li>,
-    <li className={styles["emdestaque__lista--item"]}>
-      <div
-        className={styles["lista__imagem"]}
-        style={{ backgroundImage: "url('../../assets/img/emdestaque1.png')" }}
-      ></div>
-      <caption className="lista__legenda">
-        <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-        <p className={styles["lista__categoria"]}>Móveis</p>
-        <p className={styles["lista__preco"]}>R$ 2500,00</p>
-        <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-        <button className={styles["lista__comprar"]}>Comprar</button>
-      </caption>
-    </li>,
-    <li className={styles["emdestaque__lista--item"]}>
-      <div
-        className={styles["lista__imagem"]}
-        style={{ backgroundImage: "url('../../assets/img/emdestaque1.png')" }}
-      ></div>
-      <caption className="lista__legenda">
-        <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-        <p className={styles["lista__categoria"]}>Móveis</p>
-        <p className={styles["lista__preco"]}>R$ 2500,00</p>
-        <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
-        <button className={styles["lista__comprar"]}>Comprar</button>
-      </caption>
-    </li>,
-  ];
+
   const items = [
     <img
       src={moveis}
@@ -133,32 +80,15 @@ export default function Inicio() {
       items: 1,
     },
   };
-  const categorias = [
-    {
-      link: moveis,
-      label: "Foto do móvel",
-    },
-    {
-      link: eletronicos,
-      label: "Foto do eletrônico",
-    },
-    {
-      link: decoracoes,
-      label: "Foto da decoração",
-    },
-    {
-      link: jardim,
-      label: "Foto do jardim",
-    },
-  ];
+
   const renderPrevButton = () => {
     return (
-      <ArrowBackIosIcon style={{ position: "absolute", left: 0, top: 130 }} />
+      <ArrowBackIosIcon style={{ position: "absolute", left: 10, top: 90 }} />
     );
   };
   const renderNextButton = () => {
     return (
-      <ArrowNextIosIcon style={{ position: "absolute", right: 0, top: 130 }} />
+      <ArrowNextIosIcon style={{ position: "absolute", right: 10, top: 90 }} />
     );
   };
   return (
@@ -269,9 +199,12 @@ export default function Inicio() {
             className={styles["arrownext"]}
           ></ArrowNextIosIcon>
         </div>
-        <ul className={styles["emdestaque__lista"]}>
-
-        </ul>
+      </section>
+      <section className={styles.newsletter}>
+        <h2 className={styles['newsletter__titulo']}>Cadastre-se e receba as melhores ofertas!</h2>
+        <input type="text" name="" placeholder="Seu nome" id="" className={styles['newsletter__nome']}/>
+        <input type="email" name="" placeholder="Email" id="" className={styles['newsletter__email']}/>
+        <button type="submit" className={styles['newsletter__botao']}>Cadastrar</button>
       </section>
     </>
   );

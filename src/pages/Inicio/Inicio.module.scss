@@ -119,6 +119,7 @@
         color: $main-color;
         padding: .5rem;
         width: 100%;
+        box-shadow: 0px 4px 50px $text-shadow;
         transition-duration: 500ms;
         &:hover {
             transform: scale(1.1);
@@ -129,6 +130,7 @@
 .lista__foto--slicer {
   text-align: center !important;
   margin: 0 auto;
+  width: 60%;
 }
 
 .alice-carousel__stage-item   {
@@ -152,4 +154,40 @@
 .arrownext {
   position: absolute;
   right: 0;
+}
+
+.newsletter {
+  background-color: $cinza-escuro;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &__titulo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: $main-color;
+  }
+  &__nome {
+    margin: 1rem .5rem .5rem .5rem;
+    border-radius: 20px;
+    padding: .5rem;
+  }
+  &__email {
+    margin-bottom: 1rem;
+    border-radius: 20px;
+    padding: .5rem;
+  }
+  &__botao {
+    border-radius: 20px;
+    color: $main-color;
+    font-weight: bolder;
+    border: none;
+    background-color: $variant;
+    padding: .8rem;
+    transition-duration: 500ms;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
