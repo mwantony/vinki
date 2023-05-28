@@ -51,3 +51,83 @@
         width: 33px;
     }
 }
+
+.menu {
+    min-height: 100vh;
+    background-color: $cinza-escuro;
+    box-shadow: 0px 4px 50px $text-shadow;
+    top: 0;
+    left: -75vw;
+    color: $main-color;
+    font-size: 1.2rem;
+    visibility: hidden;
+    transition-duration: 500ms;
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    min-width: 75vw;
+    position: absolute;
+    z-index: 10;
+    &__item {
+        margin: 1rem 0 1rem 0;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+    &__item--selecionado {
+        border-left: 10px solid $main-color;
+        border-radius: 10px;
+    }
+    &__links {
+        margin: 0 0 0 10vw;
+        width: 50%;
+        white-space: nowrap;
+    }
+    &__item--inicio::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/incio.svg');
+    }
+    &__item--carrinho::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/carrinho.svg');
+    }
+    &__item--favoritos::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/favoritos.svg');
+    }
+    &__item--emalta::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/emalta.svg');
+    }
+    &__item--ofertas::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/ofertas.svg');
+    }
+    
+}
+.menu--aparecer {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(75vw);
+}
+
+.divisao__menu {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition-duration: 500ms;
+    background-color: $text-shadow;
+    z-index: 6;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.divisao__menu--aparecer {
+    opacity: 1;
+    visibility: visible;
+
+}
