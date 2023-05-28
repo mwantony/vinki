@@ -11,15 +11,8 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.svg";
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
+import { slideRight, slideLeft } from "../../func/sliders";
 export default function Inicio() {
-  const slideLeft = () => {
-    var slider: any = document.getElementById("slider");
-    slider.scrollLeft -= 500;
-  };
-  const slideRight = () => {
-    var slider: any = document.getElementById("slider");
-    slider.scrollLeft += 500;
-  };
   const carousel = [
     {
       link: "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png",
@@ -169,12 +162,12 @@ export default function Inicio() {
         <h2 className={styles["emdestaque__titulo"]}>Produtos em destaque</h2>
         <div className={styles["slider__div"]}>
           <ArrowBackIosIcon
-            onClick={slideLeft}
+            onClick={() => slideLeft("slider--emdestaque")}
             className={styles["arrowback"]}
           ></ArrowBackIosIcon>
           <div
-            id="slider"
-            className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
+            id="slider--emdestaque"
+            className="emdestaque__slider w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
           >
             {produtos.map((item, index) => {
               return (
@@ -199,7 +192,7 @@ export default function Inicio() {
             })}
           </div>
           <ArrowNextIosIcon
-            onClick={slideRight}
+            onClick={() => slideRight("slider--emdestaque")}
             className={styles["arrownext"]}
           ></ArrowNextIosIcon>
         </div>
@@ -227,15 +220,15 @@ export default function Inicio() {
         </button>
       </section>
       <section className={styles.maisvendidos}>
-        <h2 className={styles["emdestaque__titulo"]}>Mais vendidos</h2>
+        <h2 className={styles["maisvendidos__titulo"]}>Mais vendidos</h2>
 
         <div className={styles["slider__div"]}>
           <ArrowBackIosIcon
-            onClick={slideLeft}
+            onClick={() => slideLeft("slider--maisvendidos")}
             className={styles["arrowback"]}
           ></ArrowBackIosIcon>
           <div
-            id="slider"
+            id="slider--maisvendidos"
             className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
           >
             {produtos.map((item, index) => {
@@ -261,7 +254,7 @@ export default function Inicio() {
             })}
           </div>
           <ArrowNextIosIcon
-            onClick={slideRight}
+            onClick={() => slideRight("slider--maisvendidos")}
             className={styles["arrownext"]}
           ></ArrowNextIosIcon>
         </div>

@@ -1,0 +1,39 @@
+@import '../../styles/variables'; 
+
+.rodape {
+    background-color: $variant;
+    color: $main-color;
+    padding: 2rem .5rem 2rem .5rem;
+    box-shadow: 0px 4px 50px $text-shadow;
+    &__informacoes {
+        display: flex;
+    }
+    &__dep {
+        width: 33vw;
+        justify-content: flex-start;
+    }
+    &__subtitulo {
+        font-weight: bolder;
+        margin-bottom: .4rem;
+        font-size: .9rem;
+    }
+    &__item::before {
+        content: url('../../assets/svg/pix.svg');
+    }
+    &__item {
+        text-align: left;
+        display: flex;
+        align-items: start;
+        line-height: 1.2rem;
+        font-size: .7rem;
+    }
+    &__copy {
+        font-size: .6rem;
+        position: relative;
+        bottom: -1.5rem;
+        text-align: center;
+    }
+    &__imagem {
+        margin: 0 auto;
+    }
+}

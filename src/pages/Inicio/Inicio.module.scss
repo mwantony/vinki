@@ -42,7 +42,8 @@
 .emdestaque__titulo {
   font-weight: bold;
   font-size: 1.3rem;
-  margin-left: 12vw;
+  margin: 0 0 0 2rem;
+
 }
 
 .emdestaque__lista {
@@ -57,6 +58,9 @@
 .emdestaque__lista--item:first-child {
   margin-left: 20vw;
 }
+.emdestaque__lista--item:last-child {
+  margin-right: 20vw;
+}
 
 .emdestaque__lista--item {
   border-radius: 20px;
@@ -66,7 +70,7 @@
   display: inline-block;
   flex-direction: column;
   border-radius: 20px;
-  max-width: 300px;
+  max-width: 250px;
   width: 60vw;
   margin: 2.5rem 1rem 2.5rem 1rem;
   height: 290px;
@@ -159,6 +163,7 @@
 .newsletter {
   background-color: $cinza-escuro;
   padding: 2rem;
+  box-shadow: 0px 4px 50px $text-shadow;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -189,5 +194,14 @@
     &:hover {
       transform: scale(1.1);
     }
+  }
+}
+
+.maisvendidos {
+
+  &__titulo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 2rem 0 0 2rem;
   }
 }
