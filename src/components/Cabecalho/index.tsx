@@ -6,6 +6,7 @@ import { ReactComponent as Vinki } from "../../assets/svg/vinki.svg";
 import { ReactComponent as Profile } from "../../assets/svg/profile.svg";
 import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
+import {ReactComponent as ProfileMenu} from '../../assets/svg/profile-menu.svg'
 import { Link } from "react-router-dom";
 interface Props {
   aparecer: boolean;
@@ -78,6 +79,10 @@ export default function Cabecalho({
           [styles["menu--aparecer"]]: aparecer === true ? true : false,
         })}
       >
+        <div className={styles['menu__hello']}>
+            <ProfileMenu className={styles['menu__profile']}></ProfileMenu>
+            <h2 className={styles['menu__subtitulo']}>Olá, Faça seu login!</h2>
+        </div>
         <div className={styles["menu__links"]}>
           {menu.map((item, index) => {
             return (
@@ -96,6 +101,7 @@ export default function Cabecalho({
             );
           })}
         </div>
+        <div></div>
       </ul>
     </header>
   );

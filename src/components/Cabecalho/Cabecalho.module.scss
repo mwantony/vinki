@@ -59,26 +59,26 @@
     top: 0;
     left: -75vw;
     color: $main-color;
-    font-size: 1.2rem;
     visibility: hidden;
     transition-duration: 500ms;
     display: flex;
     opacity: 0;
     flex-direction: column;
-    justify-content: center;
-    font-weight: bold;
+    justify-content: space-between;
     min-width: 75vw;
     position: absolute;
     z-index: 10;
     &__item {
         margin: 1rem 0 1rem 0;
         text-align: left;
+        font-size: 1.1rem;
         display: flex;
         align-items: center;
     }
     &__item--selecionado {
         border-left: 10px solid $main-color;
         border-radius: 10px;
+        font-weight: bold;
     }
     &__links {
         margin: 0 0 0 10vw;
@@ -105,7 +105,15 @@
         margin-left: .5rem;
         content: url('../../assets/svg/ofertas.svg');
     }
-    
+    &__hello {
+        display: flex;
+        align-items: center;
+        padding: .8rem;
+    }
+    &__subtitulo {
+        margin-left: .5rem;
+        font-weight: bold;
+    }
 }
 .menu--aparecer {
     visibility: visible;
