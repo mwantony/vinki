@@ -9,6 +9,7 @@ import React from "react";
 import Slider from "react-slick";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import { Carousel } from "react-bootstrap";
 import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.svg";
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
 import { slideRight, slideLeft } from "../../func/sliders";
@@ -88,66 +89,30 @@ export default function Inicio() {
   return (
     <>
       <section>
-        <div
-          id="carouselExampleAutoplaying"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-indicators">
-            {carousel.map((item, index) => {
-              return (
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to={index}
-                  className="active"
-                  aria-current="true"
-                  aria-label={"Slide" + index}
-                ></button>
-              );
-            })}
-          </div>
+        <Carousel>
+          <Carousel.Item interval={5000}>
+            <img
+              src="https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+              className="d-block w-100"
+              alt={"Foto"}
+            />
+          </Carousel.Item>
+          <Carousel.Item interval={5000}>
+            <img
+              src="https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+              className="d-block w-100"
+              alt={"Foto"}
+            />
+          </Carousel.Item>
+          <Carousel.Item interval={5000}>
+            <img
+              src="https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+              className="d-block w-100"
+              alt={"Foto"}
+            />
+          </Carousel.Item>
+        </Carousel>
 
-          <div className="carousel-inner">
-            {carousel.map((item, index) => {
-              return (
-                <>
-                  <div className="carousel-item active">
-                    <img
-                      src={item.link}
-                      className="d-block w-100"
-                      alt={"Foto" + index}
-                    />
-                  </div>
-                </>
-              );
-            })}
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
 
         <ArrowDown className={styles.arrowdown}></ArrowDown>
         <AliceCarousel
@@ -192,8 +157,8 @@ export default function Inicio() {
               );
             })}
           </div>
-          <Link to={'/emdestaque'}>
-            <p className={styles['vertodos']}>Ver todos</p>
+          <Link to={"/emdestaque"}>
+            <p className={styles["vertodos"]}>Ver todos</p>
           </Link>
           <ArrowNextIosIcon
             onClick={() => slideRight("slider--emdestaque")}
@@ -257,8 +222,8 @@ export default function Inicio() {
               );
             })}
           </div>
-          <Link to={'/maisvendidos'}>
-            <p className={styles['vertodos']}>Ver todos</p>
+          <Link to={"/maisvendidos"}>
+            <p className={styles["vertodos"]}>Ver todos</p>
           </Link>
           <ArrowNextIosIcon
             onClick={() => slideRight("slider--maisvendidos")}
