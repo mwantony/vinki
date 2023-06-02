@@ -65,7 +65,7 @@
     opacity: 0;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 75vw;
+    width: 75vw;
     position: absolute;
     z-index: 10;
     &__item {
@@ -167,4 +167,13 @@
     opacity: 1;
     visibility: visible;
 
+}
+
+@media (min-width: $medium) {
+    .menu {
+        width: 25vw;
+        &__links {
+            margin-left: 5vw;
+        }
+    }
 }

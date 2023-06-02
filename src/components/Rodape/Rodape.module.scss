@@ -12,10 +12,27 @@
         width: 33vw;
         justify-content: flex-start;
     }
+    &__dep--desktop {
+        display: none;
+    }
     &__subtitulo {
         font-weight: bolder;
         margin-bottom: .4rem;
         font-size: .9rem;
+    }
+    
+
+    &__item--moveis::before {
+        content: url('../../assets/svg/moveis.svg');
+    }
+    &__item--eletronicos::before {
+        content: url('../../assets/svg/eletronicos.svg');
+    }
+    &__item--decoracoes::before {
+        content: url('../../assets/svg/decoracoes.svg');
+    }
+    &__item--jardim::before {
+        content: url('../../assets/svg/jardim.svg');
     }
     &__item--pix::before {
         content: url('../../assets/svg/pix.svg');
@@ -59,5 +76,19 @@
     }
     &__imagem {
         margin: 0 auto;
+    }
+}
+
+@media (min-width: $small) {
+    .rodape {
+        &__dep:first-child {
+            margin-left: 15%;
+        }
+        &__dep--desktop {
+            display: block;
+        }
+        &__dep {
+            width: 20vw;
+        }
     }
 }

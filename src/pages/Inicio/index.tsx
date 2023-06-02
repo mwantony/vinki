@@ -15,6 +15,7 @@ import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.
 import { slideRight, slideLeft } from "../../func/sliders";
 import { Link } from "react-router-dom";
 export default function Inicio() {
+  var width = window.innerWidth;
   const carousel = [
     {
       link: "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png",
@@ -92,27 +93,38 @@ export default function Inicio() {
         <Carousel>
           <Carousel.Item interval={5000}>
             <img
-              src="https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+              src={
+                width <= 568
+                  ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+                  : "https://cdn.discordapp.com/attachments/799817839484731397/1111705400463593482/f1.png"
+              }
               className="d-block w-100"
               alt={"Foto"}
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
             <img
-              src="https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+              src={
+                width <= 568
+                  ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+                  : "https://cdn.discordapp.com/attachments/799817839484731397/1111705400463593482/f1.png"
+              }
               className="d-block w-100"
               alt={"Foto"}
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
             <img
-              src="https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+              src={
+                width <= 568
+                  ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+                  : "https://cdn.discordapp.com/attachments/799817839484731397/1111705400463593482/f1.png"
+              }
               className="d-block w-100"
               alt={"Foto"}
             />
           </Carousel.Item>
         </Carousel>
-
 
         <ArrowDown className={styles.arrowdown}></ArrowDown>
         <AliceCarousel
