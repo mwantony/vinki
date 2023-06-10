@@ -1,0 +1,64 @@
+@import '../../styles/variables';
+
+.login {
+    margin: 1rem auto;
+    width: 70vw;
+    max-width: 550px;
+    background-color: $cinza-escuro;
+    box-shadow: 0px 4px 50px $text-shadow;
+    border-radius: 20px;
+    padding: 2.3rem;
+    &__titulo {
+        color: $main-color;
+        text-align: center;
+        font-weight: bolder;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    &__input {
+        width: 90%;
+        max-width: 250px;
+        padding: .5rem;
+        margin: .5rem auto;
+        border-radius: 10px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+    &__botao {
+        background-color: $variant;
+        padding: .7rem;
+        color: $main-color;
+        width: 90%;
+        max-width: 250px;
+        margin: .5rem auto 0 auto;
+        border-radius: 10px;
+        transition-duration: 500ms;
+        font-weight: bolder;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    &__error {
+        margin: 0 auto;
+        font-size: .9rem;
+        width: 90%;
+        max-width: 250px;
+        padding-left: 1rem;
+        color: $vermelho;
+    }
+    &__paragraph {
+        text-align: center;
+        color: $main-color;
+        font-size: .8rem;
+        margin-top: 1rem;
+    }
+    &__link {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+

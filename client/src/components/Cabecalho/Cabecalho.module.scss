@@ -66,7 +66,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 75vw;
-    position: absolute;
+    position: fixed;
     z-index: 10;
     &__item {
         margin: 1rem 0 1rem 0;
@@ -127,6 +127,7 @@
         border-radius: 20px;
         box-shadow: 0px 4px 50px $text-shadow;
         width: 100%;
+        display: block;
         text-align: center;
         font-weight: bold;
         transition-duration: 500ms;
@@ -136,12 +137,15 @@
     }
     &__botao--login {
         background-color: $variant;
-        margin: 1rem;
+        margin: 1rem 1rem 1rem 0rem;
     }
     &__botao--cadastrar {
         background-color: $main-color;
         color: $cinza-escuro;
-        margin: 0 1rem 1rem 1rem;
+        margin: 0 1rem 1rem 0rem;
+    }
+    &__botoes--links {
+        width: 100%;
     }
 }
 .menu--aparecer {
@@ -151,7 +155,7 @@
 }
 
 .divisao__menu {
-    position: absolute;
+    position: fixed;
     visibility: hidden;
     top: 0;
     left: 0;

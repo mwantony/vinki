@@ -92,7 +92,13 @@ export default function Cabecalho({
         <div className={styles["menu__links"]}>
           {menu.map((item, index) => {
             return (
-              <Link to={item.to} onClick={() => setSelecionado(index)}>
+              <Link
+                to={item.to}
+                onClick={() => {
+                  setSelecionado(index);
+                  setAparecer(false);
+                }}
+              >
                 <li
                   className={classNames({
                     [styles["menu__item"]]: true,
@@ -107,15 +113,35 @@ export default function Cabecalho({
             );
           })}
         </div>
-        <div className={styles['menu__botoes']}>
-          <button className={classNames({
-            [styles['menu__botao']]: true,
-            [styles['menu__botao--login']]: true,
-          })}>Login</button>
-          <button className={classNames({
-            [styles['menu__botao']]: true,
-            [styles['menu__botao--cadastrar']]: true,
-          })}>Cadastrar</button>
+        <div className={styles["menu__botoes"]}>
+          <Link
+            onClick={() => setAparecer(false)}
+            className={styles["menu__botoes--links"]}
+            to="/login"
+          >
+            <button
+              className={classNames({
+                [styles["menu__botao"]]: true,
+                [styles["menu__botao--login"]]: true,
+              })}
+            >
+              Login
+            </button>
+          </Link>
+          <Link
+            onClick={() => setAparecer(false)}
+            className={styles["menu__botoes--links"]}
+            to="/cadastrar"
+          >
+            <button
+              className={classNames({
+                [styles["menu__botao"]]: true,
+                [styles["menu__botao--cadastrar"]]: true,
+              })}
+            >
+              Cadastrar
+            </button>
+          </Link>
         </div>
       </ul>
     </header>
