@@ -21,7 +21,7 @@
         max-width: 250px;
         padding: .5rem;
         margin: .5rem auto;
-        border-radius: 10px;
+        border-radius: 20px;
     }
     &__form {
         display: flex;
@@ -34,7 +34,7 @@
         width: 90%;
         max-width: 250px;
         margin: .5rem auto 0 auto;
-        border-radius: 10px;
+        border-radius: 20px;
         transition-duration: 500ms;
         font-weight: bolder;
         &:hover {

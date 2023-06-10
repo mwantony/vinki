@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 import { IMaskInput } from "react-imask";
 import { useState } from "react";
 import classNames from "classnames";
+import InputCpf from "./InputCpf";
 const yup = require("yup");
 export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
@@ -61,13 +62,7 @@ export default function Cadastrar() {
                 ></ErrorMessage>
               </div>
               <div className={styles["cadastrar__info"]}>
-                <IMaskInput
-                  className={styles["cadastrar__input"]}
-                  mask="000.000.000-00"
-                  placeholder="CPF"
-                  type="text"
-                  name="cpf"
-                ></IMaskInput>
+                <Field name="cpf" type="text" component={InputCpf}></Field>
                 <ErrorMessage
                   component="span"
                   name="cpf"

@@ -1,0 +1,107 @@
+@import "../../styles/variables.scss";
+
+.notfound {
+  display: block;
+  width: 100%;
+  margin: 30vh auto;
+  text-align: center;
+  &__oops {
+    color: $cinza-escuro;
+    font-weight: 800;
+    margin: .4rem;
+
+    font-size: 25px;
+    text-shadow: 0px 2px 4px $text-shadow;
+  }
+  &__titulo {
+
+    margin: .4rem;
+    color: $cinza-escuro;
+    font-weight: 800;
+    text-shadow: 0px 2px 4px $text-shadow;
+    font-size: 20px;
+  }
+  &__paragraph {
+    color: $cinza-escuro;
+    font-weight: 400;
+    text-shadow: 0px 2px 4px $text-shadow;
+    margin: .4rem;
+
+    font-size: 14px;
+  }
+
+  &__button {
+    margin: .4rem;
+
+    border: none;
+    color: $main-color;
+    text-shadow: 0px 2px 4px $text-shadow;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 800;
+    background-color: $cinza-escuro;
+    transition-duration: 500ms;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__link {
+    color: $cinza-escuro;
+    text-decoration: none;
+  }
+
+  &__nuvem1,
+  &__nuvem2,
+  &__nuvem3 {
+    position: absolute;
+    filter: drop-shadow(0px 10px 10px $text-shadow);
+  }
+  &__nuvem1 {
+    top: 15%;
+    left: 90%;
+    width: 5%;
+    animation: nuvem1 130s infinite alternate;
+  }
+  &__nuvem2 {
+    top: 25%;
+    left: 50%;
+    width: 30%;
+    animation: nuvem2 90s infinite alternate;
+  }
+  &__nuvem3 {
+    top: 40%;
+    right: -2rem;
+    width: 20%;
+    animation: nuvem3 115s infinite alternate;
+  }
+}
+@keyframes nuvem1 {
+  to {
+    transform: translateX(-95vw);
+  }
+}
+@keyframes nuvem2 {
+  to {
+    transform: translateX(-140vw);
+  }
+}
+@keyframes nuvem3 {
+  to {
+    transform: translateX(-120vw);
+  }
+}
+
+@media (min-width: $large) {
+  .notfound {
+    &__nuvem1 {
+      animation: nuvem1 100s infinite alternate;
+    }
+    &__nuvem2 {
+      animation: nuvem2 100s infinite alternate;
+    }
+    &__nuvem3 {
+      animation: nuvem3 120s infinite alternate;
+    }
+  }
+}
