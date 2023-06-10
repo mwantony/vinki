@@ -1,0 +1,96 @@
+@import '../../styles/variables'; 
+
+.rodape {
+    background-color: $variant;
+    color: $main-color;
+    flex-shrink: 0;
+    padding: 2rem .5rem 2rem .5rem;
+    width: 100vw;
+    box-shadow: 0px 4px 50px $text-shadow;
+    &__informacoes {
+        display: flex;
+    }
+    &__dep {
+        width: 33vw;
+        justify-content: flex-start;
+    }
+    &__dep--desktop {
+        display: none;
+    }
+    &__subtitulo {
+        font-weight: bolder;
+        margin-bottom: .4rem;
+        font-size: .9rem;
+    }
+    
+
+    &__item--moveis::before {
+        content: url('../../assets/svg/moveis.svg');
+    }
+    &__item--eletronicos::before {
+        content: url('../../assets/svg/eletronicos.svg');
+    }
+    &__item--decoracoes::before {
+        content: url('../../assets/svg/decoracoes.svg');
+    }
+    &__item--jardim::before {
+        content: url('../../assets/svg/jardim.svg');
+    }
+    &__item--pix::before {
+        content: url('../../assets/svg/pix.svg');
+    }
+    &__item--boleto::before {
+        content: url('../../assets/svg/boleto.svg');
+    }
+    &__item--cartao::before {
+        content: url('../../assets/svg/cartao.svg');
+    }
+    &__item--whatsapp::before {
+        content: url('../../assets/svg/whatsapp.svg');
+    }
+    &__item--facebook::before {
+        content: url('../../assets/svg/facebook.svg');
+    }
+    &__item--instagram::before {
+        content: url('../../assets/svg/instagram.svg');
+    }
+    &__item--twitter::before {
+        content: url('../../assets/svg/twitter.svg');
+    }
+    &__item--sac::before {
+        content: url('../../assets/svg/sac.svg');
+    }
+    &__item--email::before {
+        content: url('../../assets/svg/email.svg');
+    }
+    &__item {
+        text-align: left;
+        display: flex;
+        align-items: start;
+        line-height: 1.2rem;
+        font-size: .7rem;
+    }
+    &__copy {
+        font-size: .6rem;
+        position: relative;
+        bottom: -1.5rem;
+        text-align: center;
+    }
+    &__imagem {
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: $small) {
+    .rodape {
+        &__dep:first-child {
+            margin-left: 15%;
+        }
+        &__dep--desktop {
+            display: block;
+        }
+        &__dep {
+            width: 20vw;
+        }
+    }
+}

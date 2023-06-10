@@ -1,0 +1,183 @@
+@import "../../styles/variables";
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 80px;
+    justify-content: space-between;
+    &__menu {
+        margin-left: 1rem;
+        width: 35px;
+        filter: drop-shadow(0px 4px 15px $text-shadow);
+    }
+    &__logo {
+        position: absolute;
+        left: 17vw;
+        width: 120px;
+        top: .5rem;
+        filter: drop-shadow(0px 4px 15px $text-shadow);
+    }
+    &__search {
+        display: none;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0px 4px 50px $text-shadow;
+        padding: .4rem;
+        padding-left: 1.2rem;
+        font-family: "Nunito";
+        font-size: 1rem;
+        width: 25vw;
+        &::placeholder {
+            opacity: .5;
+        }
+    }
+    &__account {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 1rem;
+        width: 110px;
+    }
+    &__searchicon {
+
+    } 
+    &__profile {
+        filter: drop-shadow(0px 4px 15px $text-shadow);
+        width: 33px;
+    }
+    &__cart {
+        filter: drop-shadow(0px 4px 15px $text-shadow);
+        width: 33px;
+    }
+}
+
+.menu {
+    min-height: 100vh;
+    background-color: $cinza-escuro;
+    box-shadow: 0px 4px 50px $text-shadow;
+    top: 0;
+    left: -75vw;
+    color: $main-color;
+    visibility: hidden;
+    transition-duration: 500ms;
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 75vw;
+    position: fixed;
+    z-index: 10;
+    &__item {
+        margin: 1rem 0 1rem 0;
+        text-align: left;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+    }
+    &__item--selecionado {
+        border-left: 10px solid $main-color;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+    &__links {
+        margin: 0 0 0 10vw;
+        width: 50%;
+        white-space: nowrap;
+    }
+    &__item--inicio::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/incio.svg');
+    }
+    &__item--carrinho::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/carrinho.svg');
+    }
+    &__item--favoritos::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/favoritos.svg');
+    }
+    &__item--emalta::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/emalta.svg');
+    }
+    &__item--ofertas::before {
+        margin-left: .5rem;
+        content: url('../../assets/svg/ofertas.svg');
+    }
+    &__hello {
+        display: flex;
+        align-items: center;
+        padding: .8rem;
+    }
+    &__subtitulo {
+        margin-left: .5rem;
+        font-weight: bold;
+    }
+    &__botoes {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 80%;
+    }
+    &__botao {
+        padding: 1rem;
+        border-radius: 20px;
+        box-shadow: 0px 4px 50px $text-shadow;
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        transition-duration: 500ms;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    &__botao--login {
+        background-color: $variant;
+        margin: 1rem 1rem 1rem 0rem;
+    }
+    &__botao--cadastrar {
+        background-color: $main-color;
+        color: $cinza-escuro;
+        margin: 0 1rem 1rem 0rem;
+    }
+    &__botoes--links {
+        width: 100%;
+    }
+}
+.menu--aparecer {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(75vw);
+}
+
+.divisao__menu {
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition-duration: 500ms;
+    background-color: $text-shadow;
+    z-index: 6;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.divisao__menu--aparecer {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+@media (min-width: $medium) {
+    .menu {
+        width: 25vw;
+        &__links {
+            margin-left: 5vw;
+        }
+    }
+}
