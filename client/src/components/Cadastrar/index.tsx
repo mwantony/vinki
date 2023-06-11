@@ -10,8 +10,10 @@ import { Link } from "react-router-dom";
 const yup = require("yup");
 export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
+  const [telefone, setTelefone] = useState("");
   const props = {};
   const handleCadastro = async (values: any) => {
+    console.log(telefone);
     Axios.post("http://localhost:3001/register", {
       email: values.email,
       password: values.password,
@@ -20,7 +22,6 @@ export default function Cadastrar() {
     });
   };
 
-  
   const validationCadastrar = yup.object().shape({
     name: yup.string().required("Este campo é obrigatório"),
     date: yup.string().required("Este campo é obrigatório"),
@@ -28,8 +29,6 @@ export default function Cadastrar() {
       .string()
       .email("Email inválido")
       .required("Este campo é obrigatório"),
-    cpf: yup.string().required("Este campo é obrigatório"),
-    tel: yup.string().required("Este campo é obrigatório"),
     password: yup
       .string()
       .min(8, "O nome deve ter no mínimo 8 caracteres")
@@ -46,10 +45,10 @@ export default function Cadastrar() {
         <Formik
           initialValues={{}}
           onSubmit={handleCadastro}
-/*           validationSchema={validationCadastrar}
- */        >
+          validationSchema={validationCadastrar}
+        >
           <Form>
-                        <div className={styles["cadastrar__form"]}>
+            <div className={styles["cadastrar__form"]}>
               <div className={styles["cadastrar__info"]}>
                 <Field
                   name="name"
@@ -87,6 +86,9 @@ export default function Cadastrar() {
                 <InputMask
                   placeholder="Telefone"
                   name="tel"
+                  onChange={(event) => {
+                    setTelefone(event.target.value);
+                  }}
                   className={styles["cadastrar__input"]}
                   {...props}
                   mask={mask}
@@ -155,9 +157,9 @@ export default function Cadastrar() {
                 ></ErrorMessage>
               </div>
             </div>
-            <button className={styles['cadastrar__botao']} type="submit">
-                Concluir
-              </button>    
+            <button className={styles["cadastrar__botao"]} type="submit">
+              Concluir
+            </button>
           </Form>
         </Formik>
       </div>
