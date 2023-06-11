@@ -6,6 +6,7 @@ import { IMaskInput } from "react-imask";
 import { useState } from "react";
 import classNames from "classnames";
 import InputCpf from "./InputCpf";
+import { Link } from "react-router-dom";
 const yup = require("yup");
 export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
@@ -18,6 +19,8 @@ export default function Cadastrar() {
       alert(response.data.msg);
     });
   };
+
+  
   const validationCadastrar = yup.object().shape({
     name: yup.string().required("Este campo é obrigatório"),
     date: yup.string().required("Este campo é obrigatório"),
@@ -42,13 +45,11 @@ export default function Cadastrar() {
         <h2 className={styles["cadastrar__titulo"]}>Cadastro</h2>
         <Formik
           initialValues={{}}
-          onSubmit={(values) => {
-            handleCadastro(values);
-          }}
-          validationSchema={validationCadastrar}
-        >
+          onSubmit={handleCadastro}
+/*           validationSchema={validationCadastrar}
+ */        >
           <Form>
-            <div className={styles["cadastrar__form"]}>
+                        <div className={styles["cadastrar__form"]}>
               <div className={styles["cadastrar__info"]}>
                 <Field
                   name="name"
@@ -154,9 +155,9 @@ export default function Cadastrar() {
                 ></ErrorMessage>
               </div>
             </div>
-            <button className={styles["cadastrar__botao"]} type="submit">
-              Finalizar cadastro
-            </button>
+            <button className={styles['cadastrar__botao']} type="submit">
+                Concluir
+              </button>    
           </Form>
         </Formik>
       </div>
