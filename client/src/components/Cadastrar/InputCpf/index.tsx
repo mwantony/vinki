@@ -7,7 +7,6 @@ export default function InputCpf() {
       mask="000.000.000-00"
       placeholder="CPF"
       type="text"
-      name="cpf"
     ></IMaskInput>
   );
 }

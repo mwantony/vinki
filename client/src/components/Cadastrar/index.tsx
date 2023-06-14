@@ -17,8 +17,8 @@ export default function Cadastrar() {
     Axios.post("http://localhost:3001/register", {
       name: values.name,
       cpf: values.cpf,
-      dataDeNascimento: values.dataDeNascimento,
-      telefone: values.telefone,
+      date: values.dataDeNascimento,
+      tel: values.tel,
       email: values.email,
       password: values.password,
     }).then((response) => {

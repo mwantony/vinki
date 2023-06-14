@@ -20,8 +20,13 @@ app.post("/register", (req, res) => {
   const password = req.body.password;
   const name = req.body.name;
   const cpf = req.body.cpf
+  console.log(cpf)
+  console.log(name)
+  console.log(password)
   const dataDeNascimento = req.body.cpf
-  const telefone = req.body.telefone
+  const tipoDeConta = 'sdasd'
+  console.log(dataDeNascimento)
+  const telefone = req.body.tel
   db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
     if (err) {
       res.send(err);
@@ -29,8 +34,8 @@ app.post("/register", (req, res) => {
     if (result.length == 0) {
       /*       bcrypt.hash(password, saltRounds, (err, hash) => {
        */ db.query(
-        "INSERT INTO usuarios (email, password) VALUE (?,?)",
-        [email, password],
+        "INSERT INTO usuarios (email, password, tipoDeConta, nome, cpf, dataDeNascimento, telefone) VALUES (?,?,?,?,?,?,?)",
+        [email, password, tipoDeConta, name, cpf, dataDeNascimento,telefone /* , name, cpf, dataDeNascimento, telefone */],
         (error, response) => {
           if (error) {
             res.send(error);
