@@ -24,6 +24,7 @@
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
     margin: 1rem auto;
+    max-width: 600px;
   }
 
   &__error {
@@ -33,6 +34,18 @@
     max-width: 250px;
     padding-left: .5rem;
     color: $vermelho;
+  }
+  &__error--span {
+    margin: 0 auto;
+    font-size: 0.8rem;
+    width: 90%;
+    max-width: 250px;
+    padding-left: .5rem;
+    color: $vermelho;
+    display: none;
+  }
+  &__error--aparecer {
+    display: inline-block;
   }
   &__info {
     margin: .2rem;

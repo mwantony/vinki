@@ -12,9 +12,14 @@ export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
   const [telefone, setTelefone] = useState("");
   const [cpf, setCpf] = useState("");
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const [cpfAparecer, setCpfAparecer] = useState(false)
+  const [telAparecer, setTelAparecer] = useState(false)
   const props = {};
   const handleCadastro = async (values: any) => {
-    console.log(telefone);
+    if(!numbers.some(number => telefone.includes(number)) || cpf.length === 0) {
+      values.preventDefault()
+    }
     Axios.post("http://localhost:3001/register", {
       name: values.name,
       cpf: cpf,
@@ -71,17 +76,24 @@ export default function Cadastrar() {
                   className={styles["cadastrar__input"]}
                   mask="000.000.000-00"
                   placeholder="CPF"
+                  onBlur={() => {
+                    if(cpf.length === 0) {
+                      setCpfAparecer(true)
+                    }
+                  }}
                   onChange={(event: any) => {
                     setCpf(event.target.value)
+                    setCpfAparecer(false)
                   }}
                   type="text"
                   name="cpf"
                 ></IMaskInput>
-                <ErrorMessage
-                  component="span"
-                  name="cpf"
-                  className={styles["cadastrar__error"]}
-                ></ErrorMessage>
+                <span
+                  className={classNames({
+                    [styles["cadastrar__error--span"]]: true,
+                    [styles['cadastrar__error--aparecer']]: cpfAparecer === true ? true : false
+                  })}
+                >Este campo é obrigatório</span>
               </div>
               <div className={styles["cadastrar__info"]}>
                 <Field
@@ -102,11 +114,16 @@ export default function Cadastrar() {
                   name="tel"
                   onChange={(event) => {
                     setTelefone(event.target.value);
+                    setTelAparecer(false)
+                    console.log(telefone)
                   }}
                   className={styles["cadastrar__input"]}
                   {...props}
                   mask={mask}
                   onBlur={(e) => {
+                    if(!numbers.some(number => telefone.includes(number))) {
+                      setTelAparecer(true)
+                    }
                     if (e.target.value.replace("_", "").length === 14) {
                       setMask("(99) 99999-9999");
                     }
@@ -117,11 +134,12 @@ export default function Cadastrar() {
                     }
                   }}
                 ></InputMask>
-                <ErrorMessage
-                  component="span"
-                  name="tel"
-                  className={styles["cadastrar__error"]}
-                ></ErrorMessage>
+                <span
+                  className={classNames({
+                    [styles["cadastrar__error--span"]]: true,
+                    [styles['cadastrar__error--aparecer']]: telAparecer === true ? true : false
+                  })}
+                >Este campo é obrigatório</span>
               </div>
               <div
                 className={classNames({
@@ -171,7 +189,14 @@ export default function Cadastrar() {
                 ></ErrorMessage>
               </div>
             </div>
-            <button className={styles["cadastrar__botao"]} type="submit">
+            <button onClick={() => {
+              if(cpf.length === 0) {
+                setCpfAparecer(true)
+              }
+              if(telefone.length === 0) {
+                setTelAparecer(true)
+              }
+            }} className={styles["cadastrar__botao"]} type="submit">
               Concluir
             </button>
           </Form>
