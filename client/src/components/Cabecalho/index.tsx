@@ -8,6 +8,7 @@ import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 interface Props {
   aparecer: boolean;
   setAparecer: React.Dispatch<React.SetStateAction<boolean>>;
