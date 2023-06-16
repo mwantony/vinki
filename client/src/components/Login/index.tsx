@@ -5,20 +5,14 @@ import styles from "./Login.module.scss";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const handleCadastro = async (values: any) => {
-    Axios.post("http://localhost:3001/register", {
-      email: values.email,
-      password: values.password,
-    }).then((response) => {
-      alert(response.data.msg);
-    });
-  };
+
   const handleClick = async (values: any) => {
     Axios.post("http://localhost:3001/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      alert(response.data.msg);
+      const dados = response.data
+      localStorage.setItem('Usuário', JSON.stringify(dados))
     });
 
     /*     return fetch('http://localhost:3001/login', {

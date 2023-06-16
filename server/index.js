@@ -49,11 +49,11 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
   db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
     if (err) {
-      res.send(err);
+      res.send({msg: "Usuário logado"});
     }
     if (result.length > 0) {
       if (password == result[0].password) {
-        res.send({ msg: "Usuário logado" });
+        res.send(result[0]);
       } else {
         res.send({ msg: "Senha incorreta" });
       }
