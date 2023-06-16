@@ -11,14 +11,15 @@ const yup = require("yup");
 export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
   const [telefone, setTelefone] = useState("");
+  const [cpf, setCpf] = useState("");
   const props = {};
   const handleCadastro = async (values: any) => {
     console.log(telefone);
     Axios.post("http://localhost:3001/register", {
       name: values.name,
-      cpf: values.cpf,
-      date: values.dataDeNascimento,
-      tel: values.tel,
+      cpf: cpf,
+      date: values.date,
+      tel: telefone,
       email: values.email,
       password: values.password,
     }).then((response) => {
@@ -66,7 +67,16 @@ export default function Cadastrar() {
                 ></ErrorMessage>
               </div>
               <div className={styles["cadastrar__info"]}>
-                <Field name="cpf" type="text" component={InputCpf}></Field>
+                <IMaskInput
+                  className={styles["cadastrar__input"]}
+                  mask="000.000.000-00"
+                  placeholder="CPF"
+                  onChange={(event: any) => {
+                    setCpf(event.target.value)
+                  }}
+                  type="text"
+                  name="cpf"
+                ></IMaskInput>
                 <ErrorMessage
                   component="span"
                   name="cpf"

@@ -1,5 +1,8 @@
 import { IMaskInput } from "react-imask";
 import styles from "./InputCpf.module.scss";
+
+
+
 export default function InputCpf() {
   return (
     <IMaskInput

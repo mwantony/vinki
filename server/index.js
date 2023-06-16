@@ -17,28 +17,23 @@ app.use(cors());
 
 app.post("/register", (req, res) => {
   const email = req.body.email;
-  const password = req.body.password;
-  const name = req.body.name;
+  const password = req.body.password
+  const nome = req.body.name
+  const tipoDeConta = req.body.tipoDeConta
   const cpf = req.body.cpf
-  console.log(cpf)
-  console.log(name)
-  console.log(password)
-  const dataDeNascimento = req.body.cpf
-  const tipoDeConta = 'sdasd'
-  console.log(dataDeNascimento)
+  const dataDeNascimento = req.body.date
   const telefone = req.body.tel
   db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
     if (err) {
       res.send(err);
     }
     if (result.length == 0) {
-      /*       bcrypt.hash(password, saltRounds, (err, hash) => {
-       */ db.query(
-        "INSERT INTO usuarios (email, password, tipoDeConta, nome, cpf, dataDeNascimento, telefone) VALUES (?,?,?,?,?,?,?)",
-        [email, password, tipoDeConta, name, cpf, dataDeNascimento,telefone /* , name, cpf, dataDeNascimento, telefone */],
+      db.query(
+        "INSERT INTO usuarios (email, password, tipoDeConta, nome, cpf, dataDeNascimento, telefone) VALUE (?,?,?,?,?,?,?)",
+        [email, password, tipoDeConta, nome, cpf, dataDeNascimento, telefone],
         (error, response) => {
-          if (error) {
-            res.send(error);
+          if (err) {
+            res.send(err);
           }
 
           res.send({ msg: "Usuário cadastrado com sucesso" });
@@ -49,7 +44,6 @@ app.post("/register", (req, res) => {
     }
   });
 });
-
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
