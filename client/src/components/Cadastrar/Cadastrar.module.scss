@@ -18,12 +18,26 @@
     margin: 0 auto;
     border-radius: 10px;
   }
+  &__input--cpfdesaparecer {
+    display: none;
+  }
+  &__input--cnpjdesaparecer {
+    display: none;
+  }
+  &__input--cnpjaparecer {
+    display: block;
+  }
 
   &__form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
     margin: 1rem auto;
+    max-width: 600px;
+  }
+  &__formform {
+    display: block;
+    margin: 0 auto;
     max-width: 600px;
   }
 
@@ -67,5 +81,30 @@
     &:hover {
         transform: scale(1.1);
     }
+  }
+  &__inputRadio {
+    appearance: none;
+    padding: .6rem;
+    background-color: $main-color;
+    border-radius: 50%;
+    border: 1px solid $main-color;
+    &:checked {
+      background-image: radial-gradient($cinza-escuro 50%, $main-color 50%);
+    }
+  }
+  &__label {
+    color: $main-color;
+    margin: 0rem 1.5rem;
+  }
+  &__tipodeconta {
+    color: $main-color;
+    font-weight: bold;
+  }
+  &__pp {
+    display: flex;
+    align-items: center;
+  }
+  &__tipos {
+    display: flex;
   }
 }

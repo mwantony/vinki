@@ -13,16 +13,22 @@ export default function Cadastrar() {
   const [telefone, setTelefone] = useState("");
   const [cpf, setCpf] = useState("");
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const [cpfAparecer, setCpfAparecer] = useState(false)
-  const [telAparecer, setTelAparecer] = useState(false)
+  const [cpfAparecer, setCpfAparecer] = useState(false);
+  const [telAparecer, setTelAparecer] = useState(false);
   const props = {};
+  const [cnpj, setCnpj] = useState(false);
+  const [tipo, setTipo] = useState("");
   const handleCadastro = async (values: any) => {
-    if(!numbers.some(number => telefone.includes(number)) || cpf.length === 0) {
-      values.preventDefault()
+    if (
+      !numbers.some((number) => telefone.includes(number)) ||
+      cpf.length === 0
+    ) {
+      values.preventDefault();
     }
     Axios.post("http://localhost:3001/register", {
       name: values.name,
       cpf: cpf,
+      tipoDeConta: tipo,
       date: values.date,
       tel: telefone,
       email: values.email,
@@ -57,13 +63,61 @@ export default function Cadastrar() {
           onSubmit={handleCadastro}
           validationSchema={validationCadastrar}
         >
-          <Form>
+          <Form className={styles['cadastrar__formform']}>
+              <h3 className={styles["cadastrar__tipodeconta"]}>
+                Tipo de conta
+              </h3>
+              <div className={styles['cadastrar__tipos']}>
+                <div className={styles['cadastrar__pp']}>
+                  <input
+                    checked={cnpj === false ? true : false}
+                    className={styles["cadastrar__inputRadio"]}
+                    onClick={() => {
+                      setCnpj(false);
+                      setTipo("pf");
+                    }}
+                    type="radio"
+                    name="tipodeconta"
+                    id="pf"
+                  />
+                  <label
+                    className={styles["cadastrar__label"]}
+                    onClick={() => {
+                      setCnpj(false);
+                    }}
+                    htmlFor="pf"
+                  >
+                    Pessoa física
+                  </label>
+                </div>
+                <div className={styles['cadastrar__pp']}>
+                  <input
+                    className={styles["cadastrar__inputRadio"]}
+                    onClick={() => {
+                      setCnpj(true);
+                      setTipo("pj");
+                    }}
+                    type="radio"
+                    name="tipodeconta"
+                    id="pj"
+                  />
+                  <label
+                    className={styles["cadastrar__label"]}
+                    onClick={() => {
+                      setCnpj(true);
+                    }}
+                    htmlFor="pj"
+                  >
+                    Pessoa jurídica
+                  </label>
+                </div>
+              </div>
             <div className={styles["cadastrar__form"]}>
               <div className={styles["cadastrar__info"]}>
                 <Field
                   name="name"
                   className={styles["cadastrar__input"]}
-                  placeholder="Nome"
+                  placeholder="Nome completo"
                 ></Field>
                 <ErrorMessage
                   component="span"
@@ -73,17 +127,45 @@ export default function Cadastrar() {
               </div>
               <div className={styles["cadastrar__info"]}>
                 <IMaskInput
-                  className={styles["cadastrar__input"]}
+                  className={classNames({
+                    [styles["cadastrar__input"]]: true,
+                    [styles["cadastrar__input--cpf"]]: true,
+                    [styles["cadastrar__input--cpfdesaparecer"]]:
+                      cnpj === true ? true : false,
+                  })}
                   mask="000.000.000-00"
                   placeholder="CPF"
                   onBlur={() => {
-                    if(cpf.length === 0) {
-                      setCpfAparecer(true)
+                    if (cpf.length === 0) {
+                      setCpfAparecer(true);
                     }
                   }}
                   onChange={(event: any) => {
-                    setCpf(event.target.value)
-                    setCpfAparecer(false)
+                    setCpf(event.target.value);
+                    setCpfAparecer(false);
+                  }}
+                  type="text"
+                  name="cpf"
+                ></IMaskInput>
+                <IMaskInput
+                  className={classNames({
+                    [styles["cadastrar__input"]]: true,
+                    [styles["cadastrar__input--cnpj"]]: true,
+                    [styles["cadastrar__input--cnpjaparecer"]]:
+                      cnpj === true ? true : false,
+                    [styles["cadastrar__input--cnpjdesaparecer"]]:
+                      cnpj === false ? true : false,
+                  })}
+                  mask="00.000.000/0001-00"
+                  placeholder="CNPJ"
+                  onBlur={() => {
+                    if (cpf.length === 0) {
+                      setCpfAparecer(true);
+                    }
+                  }}
+                  onChange={(event: any) => {
+                    setCpf(event.target.value);
+                    setCpfAparecer(false);
                   }}
                   type="text"
                   name="cpf"
@@ -91,9 +173,12 @@ export default function Cadastrar() {
                 <span
                   className={classNames({
                     [styles["cadastrar__error--span"]]: true,
-                    [styles['cadastrar__error--aparecer']]: cpfAparecer === true ? true : false
+                    [styles["cadastrar__error--aparecer"]]:
+                      cpfAparecer === true ? true : false,
                   })}
-                >Este campo é obrigatório</span>
+                >
+                  Este campo é obrigatório
+                </span>
               </div>
               <div className={styles["cadastrar__info"]}>
                 <Field
@@ -114,15 +199,15 @@ export default function Cadastrar() {
                   name="tel"
                   onChange={(event) => {
                     setTelefone(event.target.value);
-                    setTelAparecer(false)
-                    console.log(telefone)
+                    setTelAparecer(false);
+                    console.log(telefone);
                   }}
                   className={styles["cadastrar__input"]}
                   {...props}
                   mask={mask}
                   onBlur={(e) => {
-                    if(!numbers.some(number => telefone.includes(number))) {
-                      setTelAparecer(true)
+                    if (!numbers.some((number) => telefone.includes(number))) {
+                      setTelAparecer(true);
                     }
                     if (e.target.value.replace("_", "").length === 14) {
                       setMask("(99) 99999-9999");
@@ -137,9 +222,12 @@ export default function Cadastrar() {
                 <span
                   className={classNames({
                     [styles["cadastrar__error--span"]]: true,
-                    [styles['cadastrar__error--aparecer']]: telAparecer === true ? true : false
+                    [styles["cadastrar__error--aparecer"]]:
+                      telAparecer === true ? true : false,
                   })}
-                >Este campo é obrigatório</span>
+                >
+                  Este campo é obrigatório
+                </span>
               </div>
               <div
                 className={classNames({
@@ -189,14 +277,20 @@ export default function Cadastrar() {
                 ></ErrorMessage>
               </div>
             </div>
-            <button onClick={() => {
-              if(cpf.length === 0) {
-                setCpfAparecer(true)
-              }
-              if(telefone.length === 0) {
-                setTelAparecer(true)
-              }
-            }} className={styles["cadastrar__botao"]} type="submit">
+            <button
+              onClick={() => {
+                if (cpf.length === 0) {
+                  setCpfAparecer(true);
+                }
+                if (telefone.length === 0) {
+                  setTelAparecer(true);
+                }
+              }}
+              className={classNames({
+                [styles["cadastrar__botao"]]: true,
+              })}
+              type="submit"
+            >
               Concluir
             </button>
           </Form>
