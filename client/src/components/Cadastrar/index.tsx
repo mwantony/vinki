@@ -18,10 +18,16 @@ export default function Cadastrar() {
   const props = {};
   const [cnpj, setCnpj] = useState(false);
   const [tipo, setTipo] = useState("");
+  const [isCheckedNovidades, setIsCheckedNovidades] = useState(false);
+  const [isCheckedPoliticas, setIsCheckedPoliticas] = useState(false);
+  const [aparecerErroNovidades, setAparecerErroNovidades] = useState(false);
+  const [aparecerErroPoliticas, setAparecerErroPoliticas] = useState(false);
   const handleCadastro = async (values: any) => {
     if (
       !numbers.some((number) => telefone.includes(number)) ||
-      cpf.length === 0
+      cpf.length === 0 ||
+      isCheckedNovidades === false ||
+      isCheckedPoliticas === false
     ) {
       values.preventDefault();
     }
@@ -36,6 +42,12 @@ export default function Cadastrar() {
     }).then((response) => {
       alert(response.data.msg);
     });
+  };
+  const handleCheckboxChangeNovidades = () => {
+    setIsCheckedNovidades(!isCheckedNovidades);
+  };
+  const handleCheckboxChangePoliticas = () => {
+    setIsCheckedPoliticas(!isCheckedPoliticas);
   };
 
   const validationCadastrar = yup.object().shape({
@@ -63,55 +75,53 @@ export default function Cadastrar() {
           onSubmit={handleCadastro}
           validationSchema={validationCadastrar}
         >
-          <Form className={styles['cadastrar__formform']}>
-              <h3 className={styles["cadastrar__tipodeconta"]}>
-                Tipo de conta
-              </h3>
-              <div className={styles['cadastrar__tipos']}>
-                <div className={styles['cadastrar__pp']}>
-                  <input
-                    checked={cnpj === false ? true : false}
-                    className={styles["cadastrar__inputRadio"]}
-                    onClick={() => {
-                      setCnpj(false);
-                      setTipo("pf");
-                    }}
-                    type="radio"
-                    name="tipodeconta"
-                    id="pf"
-                  />
-                  <label
-                    className={styles["cadastrar__label"]}
-                    onClick={() => {
-                      setCnpj(false);
-                    }}
-                    htmlFor="pf"
-                  >
-                    Pessoa física
-                  </label>
-                </div>
-                <div className={styles['cadastrar__pp']}>
-                  <input
-                    className={styles["cadastrar__inputRadio"]}
-                    onClick={() => {
-                      setCnpj(true);
-                      setTipo("pj");
-                    }}
-                    type="radio"
-                    name="tipodeconta"
-                    id="pj"
-                  />
-                  <label
-                    className={styles["cadastrar__label"]}
-                    onClick={() => {
-                      setCnpj(true);
-                    }}
-                    htmlFor="pj"
-                  >
-                    Pessoa jurídica
-                  </label>
-                </div>
+          <Form className={styles["cadastrar__formform"]}>
+            <h3 className={styles["cadastrar__tipodeconta"]}>Tipo de conta</h3>
+            <div className={styles["cadastrar__tipos"]}>
+              <div className={styles["cadastrar__pp"]}>
+                <input
+                  checked={cnpj === false ? true : false}
+                  className={styles["cadastrar__inputRadio"]}
+                  onClick={() => {
+                    setCnpj(false);
+                    setTipo("pf");
+                  }}
+                  type="radio"
+                  name="tipodeconta"
+                  id="pf"
+                />
+                <label
+                  className={styles["cadastrar__label"]}
+                  onClick={() => {
+                    setCnpj(false);
+                  }}
+                  htmlFor="pf"
+                >
+                  Pessoa física
+                </label>
               </div>
+              <div className={styles["cadastrar__pp"]}>
+                <input
+                  className={styles["cadastrar__inputRadio"]}
+                  onClick={() => {
+                    setCnpj(true);
+                    setTipo("pj");
+                  }}
+                  type="radio"
+                  name="tipodeconta"
+                  id="pj"
+                />
+                <label
+                  className={styles["cadastrar__label"]}
+                  onClick={() => {
+                    setCnpj(true);
+                  }}
+                  htmlFor="pj"
+                >
+                  Pessoa jurídica
+                </label>
+              </div>
+            </div>
             <div className={styles["cadastrar__form"]}>
               <div className={styles["cadastrar__info"]}>
                 <Field
@@ -276,6 +286,66 @@ export default function Cadastrar() {
                   className={styles["cadastrar__error"]}
                 ></ErrorMessage>
               </div>
+              <div className={styles["cadastrar__checkbox"]}>
+                <div className={styles["cadastrar__check"]}>
+                  <input
+                    defaultChecked={isCheckedNovidades}
+                    onChange={() => {
+                      setIsCheckedNovidades(!isCheckedNovidades);
+                      setAparecerErroNovidades(false);
+                    }}
+                    type="checkbox"
+                    name=""
+                    id="novidades"
+                  />
+                  <label
+                    className={styles["cadastrar__check-label"]}
+                    htmlFor="novidades"
+                  >
+                    Quero receber ofertas e novidades por e-mail.
+                  </label>
+                  <span
+                    className={classNames({
+                      [styles["cadastrar__error--span"]]: true,
+                      [styles["cadastrar__error--span-check"]]: true,
+
+                      [styles["cadastrar__error--aparecer"]]:
+                        aparecerErroNovidades === true ? true : false,
+                    })}
+                  >
+                    Por favor, marque o checkbox.
+                  </span>
+                </div>
+                <div className={styles["cadastrar__check"]}>
+                  <input
+                    defaultChecked={isCheckedPoliticas}
+                    onChange={() => {
+                      setIsCheckedPoliticas(!isCheckedPoliticas)
+                      setAparecerErroPoliticas(false);
+                    }}
+                    type="checkbox"
+                    name=""
+                    id="politicas"
+                  />
+                  <label
+                    className={styles["cadastrar__check-label"]}
+                    htmlFor="politicas"
+                  >
+                    Li e estou de acordo com as políticas da empresa e políticas
+                    de privacidade .
+                  </label>
+                  <span
+                    className={classNames({
+                      [styles["cadastrar__error--span"]]: true,
+                      [styles["cadastrar__error--span-check"]]: true,
+                      [styles["cadastrar__error--aparecer"]]:
+                        aparecerErroPoliticas === true ? true : false,
+                    })}
+                  >
+                    Por favor, marque o checkbox.
+                  </span>
+                </div>
+              </div>
             </div>
             <button
               onClick={() => {
@@ -284,6 +354,12 @@ export default function Cadastrar() {
                 }
                 if (telefone.length === 0) {
                   setTelAparecer(true);
+                }
+                if (isCheckedNovidades === false) {
+                  setAparecerErroNovidades(true);
+                }
+                if (isCheckedPoliticas === false) {
+                  setAparecerErroPoliticas(true);
                 }
               }}
               className={classNames({
