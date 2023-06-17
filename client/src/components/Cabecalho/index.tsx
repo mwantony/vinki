@@ -68,7 +68,9 @@ export default function Cabecalho({
         />
         <div className={styles["navegacao__account"]}>
           <SearchIcon className={styles["navegacao__searchicon"]}></SearchIcon>
-          <Profile className={styles["navegacao__profile"]}></Profile>
+          <Link to='conta'>
+            <Profile className={styles["navegacao__profile"]}></Profile>
+          </Link>
           <Cart className={styles["navegacao__cart"]}></Cart>
         </div>
       </nav>
