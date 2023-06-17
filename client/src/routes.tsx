@@ -10,7 +10,15 @@ import MinhaConta from "pages/MinhaConta";
 export default function AppRouter() {
     const [aparecer, setAparecer] = useState(false)
     const [selecionado, setSelecionado] = useState(0)
-    const nome = String(localStorage.getItem('Usuário'))
+    const dadosUsuario = localStorage.getItem('Usuário')
+    const dadosUsuarioParsed = dadosUsuario !== null ? JSON.parse(dadosUsuario) : null;
+    const nome = dadosUsuarioParsed.nome
+    const tipoDeConta = dadosUsuarioParsed.tipoDeConta
+    const emailUser = dadosUsuarioParsed.email
+    const telefoneUser = dadosUsuarioParsed.telefone
+    const dataDeNascimento = dadosUsuarioParsed.dataDeNascimento
+    const cpfUser = dadosUsuarioParsed.cpf
+    const senhaUser = dadosUsuarioParsed.password
     useEffect(() => {
         
     }, [])
@@ -21,7 +29,7 @@ export default function AppRouter() {
                 <Route path="/" element={<Inicio></Inicio>}></Route>
                 <Route path="/login" element={<Login></Login>}></Route>
                 <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
-                <Route path="/conta" element={<MinhaConta nome={nome}></MinhaConta>}></Route>
+                <Route path="/conta" element={<MinhaConta senhaUser={senhaUser} emailUser={emailUser} telefoneUser={telefoneUser} dataDeNascimento={dataDeNascimento} tipoDeConta={tipoDeConta} cpfUser={cpfUser} nome={nome}></MinhaConta>}></Route>
                 <Route path="/*" element={<NotFound setSelecionado={setSelecionado}></NotFound>}></Route>
             </Routes>
             <Rodape></Rodape>

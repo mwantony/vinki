@@ -17,7 +17,7 @@ export default function Cadastrar() {
   const [telAparecer, setTelAparecer] = useState(false);
   const props = {};
   const [cnpj, setCnpj] = useState(false);
-  const [tipo, setTipo] = useState("");
+  const [tipo, setTipo] = useState("pf");
   const [isCheckedNovidades, setIsCheckedNovidades] = useState(false);
   const [isCheckedPoliticas, setIsCheckedPoliticas] = useState(false);
   const [aparecerErroNovidades, setAparecerErroNovidades] = useState(false);
@@ -320,7 +320,7 @@ export default function Cadastrar() {
                   <input
                     defaultChecked={isCheckedPoliticas}
                     onChange={() => {
-                      setIsCheckedPoliticas(!isCheckedPoliticas)
+                      setIsCheckedPoliticas(!isCheckedPoliticas);
                       setAparecerErroPoliticas(false);
                     }}
                     type="checkbox"
