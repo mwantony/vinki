@@ -4,9 +4,11 @@ import styles from "./MinhaConta.module.scss";
 import { IMaskInput } from "react-imask";
 import { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
+import { ReactComponent as Pencil } from "../../assets/svg/pencil.svg";
 
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import Endereco from "interfaces/Endereco";
 interface Props {
   nome: any;
   tipoDeConta: any;
@@ -15,7 +17,7 @@ interface Props {
   telefoneUser: any;
   emailUser: any;
   senhaUser: any;
-
+  enderecoUsuarioParsed: Endereco;
 }
 
 export default function MinhaConta({
@@ -26,14 +28,16 @@ export default function MinhaConta({
   telefoneUser,
   emailUser,
   senhaUser,
+  enderecoUsuarioParsed,
 }: Props) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [cpfAparecer, setCpfAparecer] = useState(false);
   const [telAparecer, setTelAparecer] = useState(false);
   const [nomeInput, setNomeInput] = useState(nome);
   const [email, setEmail] = useState(emailUser);
   const [telefone, setTelefone] = useState(telefoneUser);
+  const validacao = enderecoUsuarioParsed.cep !== "";
   const [senha, setSenha] = useState(senhaUser);
   const [senhaConfirm, setSenhaConfirm] = useState(senhaUser);
 
@@ -44,9 +48,9 @@ export default function MinhaConta({
   const [tipo, setTipo] = useState(tipoDeConta === "pj" ? "pj" : "pf");
   useEffect(() => {
     if (nome === "") {
-      navigate('/login')
+      navigate("/login");
     }
-  }, [navigate, nome])
+  }, [navigate, nome]);
   const [cnpj, setCnpj] = useState(tipoDeConta === "pj" ? true : false);
   return (
     <section className={styles["minhaconta"]}>
@@ -234,6 +238,27 @@ export default function MinhaConta({
       </div>
       <div>
         <h2>Endereço</h2>
+        <Pencil></Pencil>
+        <div>
+          {validacao ? <p>{enderecoUsuarioParsed.logradouro}</p> : ""}
+          {validacao ? (
+            <p>
+              Número {enderecoUsuarioParsed.numero},{" "}
+              {enderecoUsuarioParsed.complemento}
+            </p>
+          ) : (
+            ""
+          )}
+          {validacao ? (
+            <p>
+              CEP {enderecoUsuarioParsed.cep} - {enderecoUsuarioParsed.cidade},{" "}
+              {String(enderecoUsuarioParsed.uf).toUpperCase()}
+            </p>
+          ) : (
+            ""
+          )}
+          {!validacao ? 'Nenhum endereço cadastrado': ''}
+        </div>
       </div>
     </section>
   );

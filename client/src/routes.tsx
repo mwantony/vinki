@@ -42,7 +42,7 @@ export default function AppRouter() {
     dadosUsuario !== null ? JSON.parse(dadosUsuario) : null;
 
   const enderecoUsuario = localStorage.getItem("endereco");
-  const enederecoUsuarioParsed =
+  const enderecoUsuarioParsed =
     enderecoUsuario !== null ? JSON.parse(enderecoUsuario) : null;
   const nome = dadosUsuarioParsed.nome;
   const tipoDeConta = dadosUsuarioParsed.tipoDeConta;
@@ -69,6 +69,7 @@ export default function AppRouter() {
           path="/conta"
           element={
             <MinhaConta
+              enderecoUsuarioParsed={enderecoUsuarioParsed}
               senhaUser={senhaUser}
               emailUser={emailUser}
               telefoneUser={telefoneUser}
