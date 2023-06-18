@@ -17,12 +17,12 @@ app.use(cors());
 
 app.post("/register", (req, res) => {
   const email = req.body.email;
-  const password = req.body.password
-  const nome = req.body.name
-  const tipoDeConta = req.body.tipoDeConta
-  const cpf = req.body.cpf
-  const dataDeNascimento = req.body.date
-  const telefone = req.body.tel
+  const password = req.body.password;
+  const nome = req.body.name;
+  const tipoDeConta = req.body.tipoDeConta;
+  const cpf = req.body.cpf;
+  const dataDeNascimento = req.body.date;
+  const telefone = req.body.tel;
   db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
     if (err) {
       res.send(err);
@@ -49,7 +49,7 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
   db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
     if (err) {
-      res.send({msg: "Usuário logado"});
+      res.send({ msg: "Usuário logado" });
     }
     if (result.length > 0) {
       if (password == result[0].password) {
@@ -71,6 +71,21 @@ app.post("/login", (req, res) => {
       res.send({ msg: "Usuário não registrado!" });
     }
   });
+});
+
+app.post("/endereco", (req, res) => {
+  const usuario = req.body.id;
+  db.query(
+    "SELECT * FROM enderecos WHERE usuarioEndereco = ?",
+    [usuario],
+    (err, result) => {
+      if(err) {
+        res.send(err)
+      } else {
+        res.send(result[0])
+      }
+    }
+  );
 });
 
 app.listen(3001, () => {

@@ -2,18 +2,22 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
 import styles from "./Login.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
-
+  const navigate = useNavigate();
+  const [emailInput, setEmailInput] = useState("");
+  const [senhaInput, setSenhaInput] = useState("");
   const handleClick = async (values: any) => {
     Axios.post("http://localhost:3001/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      const dados = response.data
-      localStorage.setItem('Usuário', JSON.stringify(dados))
+      const dados = response.data;
+      localStorage.setItem("usuario", JSON.stringify(dados));
     });
+
 
     /*     return fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -63,34 +67,44 @@ export default function Login() {
             <div className={styles["login__form"]}>
               <Field
                 name="email"
-                className={styles['login__input']}
+                className={styles["login__input"]}
                 placeholder="Email"
               ></Field>
               <ErrorMessage
                 component="span"
                 name="email"
-                className={styles['login__error']}
+                className={styles["login__error"]}
               ></ErrorMessage>
               <Field
                 name="password"
-                type='password'
-                className={styles['login__input']}
+                type="password"
+                className={styles["login__input"]}
                 placeholder="Senha"
               ></Field>
               <ErrorMessage
                 component="span"
                 name="password"
-                className={styles['login__error']}
+                className={styles["login__error"]}
               ></ErrorMessage>
-              <button className={styles['login__botao']} type="submit">
+              <button
+                className={styles["login__botao"]}
+                onClick={() => {
+                  navigate("/");
+                }}
+                type="submit"
+              >
                 Login
               </button>
-              <p className={styles['login__paragraph']}>Novo na Vinki? <Link to='/cadastrar' className={styles['login__link']}>CADASTRE-SE</Link></p>
+              <p className={styles["login__paragraph"]}>
+                Novo na Vinki?{" "}
+                <Link to="/cadastrar" className={styles["login__link"]}>
+                  CADASTRE-SE
+                </Link>
+              </p>
             </div>
           </Form>
         </Formik>
       </div>
-      
     </>
   );
 }

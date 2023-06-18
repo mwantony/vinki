@@ -2,10 +2,11 @@ import { Field } from "formik";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import styles from "./MinhaConta.module.scss";
 import { IMaskInput } from "react-imask";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
 
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 interface Props {
   nome: any;
   tipoDeConta: any;
@@ -14,6 +15,7 @@ interface Props {
   telefoneUser: any;
   emailUser: any;
   senhaUser: any;
+
 }
 
 export default function MinhaConta({
@@ -25,6 +27,8 @@ export default function MinhaConta({
   emailUser,
   senhaUser,
 }: Props) {
+  const navigate = useNavigate()
+
   const [cpfAparecer, setCpfAparecer] = useState(false);
   const [telAparecer, setTelAparecer] = useState(false);
   const [nomeInput, setNomeInput] = useState(nome);
@@ -38,7 +42,11 @@ export default function MinhaConta({
   const [mask, setMask] = useState("(99) 99999-9999");
 
   const [tipo, setTipo] = useState(tipoDeConta === "pj" ? "pj" : "pf");
-
+  useEffect(() => {
+    if (nome === "") {
+      navigate('/login')
+    }
+  }, [navigate, nome])
   const [cnpj, setCnpj] = useState(tipoDeConta === "pj" ? true : false);
   return (
     <section className={styles["minhaconta"]}>
