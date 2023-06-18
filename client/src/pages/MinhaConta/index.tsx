@@ -13,7 +13,7 @@ interface Props {
   dataDeNascimento: any;
   telefoneUser: any;
   emailUser: any;
-  senhaUser: any
+  senhaUser: any;
 }
 
 export default function MinhaConta({
@@ -23,15 +23,15 @@ export default function MinhaConta({
   dataDeNascimento,
   telefoneUser,
   emailUser,
-  senhaUser
+  senhaUser,
 }: Props) {
   const [cpfAparecer, setCpfAparecer] = useState(false);
   const [telAparecer, setTelAparecer] = useState(false);
   const [nomeInput, setNomeInput] = useState(nome);
   const [email, setEmail] = useState(emailUser);
   const [telefone, setTelefone] = useState(telefoneUser);
-  const [senha, setSenha] = useState(senhaUser)
-  const [senhaConfirm, setSenhaConfirm] = useState(senhaUser)
+  const [senha, setSenha] = useState(senhaUser);
+  const [senhaConfirm, setSenhaConfirm] = useState(senhaUser);
 
   const props = {};
   const [cpf, setCpf] = useState("");
@@ -201,7 +201,7 @@ export default function MinhaConta({
                 className={styles["minhaconta__input"]}
                 defaultValue={senha}
                 onChange={(event) => {
-                    setSenha(event.target.value)
+                  setSenha(event.target.value);
                 }}
                 placeholder="Senha"
               />
@@ -213,12 +213,15 @@ export default function MinhaConta({
                 className={styles["minhaconta__input"]}
                 defaultValue={senha}
                 onChange={(event) => {
-                    setSenhaConfirm(event.target.value)
+                  setSenhaConfirm(event.target.value);
                 }}
                 placeholder="Senha"
               />
             </div>
           </form>
+          <button className={styles["minhaconta__botao"]} type="submit">
+            Salvar
+          </button>
         </div>
       </div>
       <div>
