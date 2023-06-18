@@ -55,7 +55,7 @@ app.post("/login", (req, res) => {
       if (password == result[0].password) {
         res.send(result[0]);
       } else {
-        res.send({
+/*         res.send({
           idusuarios: "",
           nome: "",
           tipoDeConta: "",
@@ -64,11 +64,13 @@ app.post("/login", (req, res) => {
           cpf: "",
           password: "",
           dataDeNascimento: "",
-        });
+        }); */
+        res.send({msg: "Senha Incorreta"})
+
       }
 
     } else {
-      res.send({
+/*       res.send({
         idusuarios: "",
         nome: "",
         tipoDeConta: "",
@@ -77,7 +79,8 @@ app.post("/login", (req, res) => {
         cpf: "",
         password: "",
         dataDeNascimento: "",
-      });
+      }); */
+      res.send({msg: "Senha Incorreta"})
     }
   });
 });

@@ -4,7 +4,7 @@ import Axios from "axios";
 import styles from "./Login.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import Usuario from "interfaces/Usuario";
 export default function Login() {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
@@ -15,11 +15,14 @@ export default function Login() {
       password: values.password,
     }).then((response) => {
       const dados = response.data;
-      console.log(dados.idusuarios)
-      localStorage.setItem("usuario", JSON.stringify(dados));
+      console.log(dados)
+      if(!dados.hasOwnProperty('msg')) {
+        localStorage.setItem("usuario", JSON.stringify(dados))
+      } else {
+        alert(dados.msg)
+      }
       return dados
     }).then((dados) => {
-      console.log(dados)
       Axios.get(`http://localhost:3001/endereco/${dados.idusuarios}`).then((res) => {
         localStorage.setItem('endereco', JSON.stringify(res.data))
       })
