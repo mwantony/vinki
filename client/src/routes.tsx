@@ -55,6 +55,11 @@ const atualiza = async () => {
     .then((result) => {
       console.log("Resposta:", result);
       localStorage.setItem('usuario', JSON.stringify(result))
+      fetch(`http://localhost:3001/endereco/${result.idusuarios}`).then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem('endereco', JSON.stringify(data))
+
+      })
     })
     .catch((error) => {
       console.error("Erro:", error);
