@@ -20,6 +20,7 @@ interface Props {
   enderecoUsuarioParsed: Endereco;
 }
 
+
 export default function MinhaConta({
   nome,
   tipoDeConta,

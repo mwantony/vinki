@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Cadastrar from "./components/Cadastrar";
 import NotFound from "./components/NotFound";
 import MinhaConta from "pages/MinhaConta";
+import Axios from "axios";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -33,6 +34,36 @@ if (!localStorage.getItem("usuario")) {
 }
 if (!localStorage.getItem("endereco")) {
   localStorage.setItem("endereco", JSON.stringify(endereco));
+}
+const usuarioLocal = localStorage.getItem("usuario");
+const usuarioLocalParsed =
+  usuarioLocal !== null ? JSON.parse(usuarioLocal) : null;
+const data = {
+  email: usuarioLocalParsed.email,
+  password: usuarioLocalParsed.password,
+};
+
+const atualiza = async () => {
+  fetch("http://localhost:3001/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log("Resposta:", result);
+      localStorage.setItem('usuario', JSON.stringify(result))
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+      // Trate o erro
+    });
+};
+if (localStorage.usuario) {
+  atualiza();
+  console.log("o");
 }
 export default function AppRouter() {
   const [aparecer, setAparecer] = useState(false);
