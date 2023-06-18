@@ -43,7 +43,7 @@ const data = {
   password: usuarioLocalParsed.password,
 };
 
-const atualiza = async () => {
+export const atualiza = async () => {
   fetch("http://localhost:3001/login", {
     method: "POST",
     headers: {

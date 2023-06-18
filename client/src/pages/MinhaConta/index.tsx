@@ -20,7 +20,6 @@ interface Props {
   enderecoUsuarioParsed: Endereco;
 }
 
-
 export default function MinhaConta({
   nome,
   tipoDeConta,
@@ -237,13 +236,21 @@ export default function MinhaConta({
           </button>
         </div>
       </div>
-      <div>
-        <h2>Endereço</h2>
-        <Pencil></Pencil>
-        <div>
-          {validacao ? <p>{enderecoUsuarioParsed.logradouro}</p> : ""}
+      <div className={styles["endereco"]}>
+        <div className={styles['endereco__principal']}>
+          <h2 className={styles["endereco__titulo"]}>Endereço</h2>
+          <Pencil className={styles["endereco__pencil"]}></Pencil>
+        </div>
+        <div className={styles["endereco__info"]}>
           {validacao ? (
-            <p>
+            <p className={styles["endereco__paragrafo"]}>
+              {enderecoUsuarioParsed.logradouro}
+            </p>
+          ) : (
+            ""
+          )}
+          {validacao ? (
+            <p className={styles["endereco__paragrafo"]}>
               Número {enderecoUsuarioParsed.numero},{" "}
               {enderecoUsuarioParsed.complemento}
             </p>
@@ -251,14 +258,14 @@ export default function MinhaConta({
             ""
           )}
           {validacao ? (
-            <p>
+            <p className={styles["endereco__paragrafo"]}>
               CEP {enderecoUsuarioParsed.cep} - {enderecoUsuarioParsed.cidade},{" "}
               {String(enderecoUsuarioParsed.uf).toUpperCase()}
             </p>
           ) : (
             ""
           )}
-          {!validacao ? 'Nenhum endereço cadastrado': ''}
+          {!validacao ? <p className={styles['endereco__nenhum']}>'Nenhum endereço cadastrado'</p> : ""}
         </div>
       </div>
     </section>
