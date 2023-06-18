@@ -55,7 +55,16 @@ app.post("/login", (req, res) => {
       if (password == result[0].password) {
         res.send(result[0]);
       } else {
-        res.send({ msg: "Senha incorreta" });
+        res.send({
+          idusuarios: "",
+          nome: "",
+          tipoDeConta: "",
+          email: "",
+          telefone: "",
+          cpf: "",
+          password: "",
+          dataDeNascimento: "",
+        });
       }
       /*       bcrypt.compare(password, result[0].password, (error, response) => {
         if (error) {
@@ -80,7 +89,17 @@ app.get("/endereco/:id", (req, res) => {
     [usuario],
     (err, result) => {
       if(err) {
-        res.send(err)
+        res.send({
+          id: "",
+          usuarioEndereco: "",
+          cep: "",
+          complemento: "",
+          logradouro: "",
+          numero: "",
+          cidade: "",
+          uf: "",
+          pontoDeRef: "",
+        })
       } else {
         res.send(result[0])
       }

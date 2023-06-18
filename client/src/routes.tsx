@@ -42,6 +42,8 @@ const data = {
   email: usuarioLocalParsed.email,
   password: usuarioLocalParsed.password,
 };
+const urlAtual = window.location.href;
+console.log(urlAtual);
 
 export const atualiza = async () => {
   fetch("http://localhost:3001/login", {
@@ -54,25 +56,42 @@ export const atualiza = async () => {
     .then((response) => response.json())
     .then((result) => {
       console.log("Resposta:", result);
-      localStorage.setItem('usuario', JSON.stringify(result))
-      fetch(`http://localhost:3001/endereco/${result.idusuarios}`).then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem('endereco', JSON.stringify(data))
-
-      })
+      localStorage.setItem("usuario", JSON.stringify(result));
+      fetch(`http://localhost:3001/endereco/${result.idusuarios}`)
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("endereco", JSON.stringify(data));
+        });
     })
     .catch((error) => {
       console.error("Erro:", error);
       // Trate o erro
     });
 };
-if (localStorage.usuario) {
+if (usuarioLocalParsed.nome !== "") {
   atualiza();
   console.log("o");
 }
+
+const verifica = () => {
+  switch (urlAtual) {
+    case "http://localhost:3000/":
+      return 0;
+    case "http://localhost:3000/carrinho":
+      return 1;
+    case "http://localhost:3000/favoritos":
+      return 2;
+    case "http://localhost:3000/emalta":
+      return 3;
+    case "http://localhost:3000/ofertas":
+      return 4;
+  }
+  return 0 - 1;
+};
+
 export default function AppRouter() {
   const [aparecer, setAparecer] = useState(false);
-  const [selecionado, setSelecionado] = useState(0);
+  const [selecionado, setSelecionado] = useState(verifica);
   const dadosUsuario = localStorage.getItem("usuario");
   const dadosUsuarioParsed =
     dadosUsuario !== null ? JSON.parse(dadosUsuario) : null;
@@ -92,6 +111,9 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Cabecalho
+        endereco={endereco}
+        usuario={usuario}
+        nome={nome}
         selecionado={selecionado}
         setSelecionado={setSelecionado}
         aparecer={aparecer}

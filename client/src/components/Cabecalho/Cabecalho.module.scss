@@ -135,6 +135,19 @@
             transform: scale(1.1);
         }
     }
+    &__botao--desaparecer {
+        display: none !important;
+    }
+    &__botao--sair {
+        display: flex;
+        background-color: $main-color;
+        color: $cinza-escuro;
+        align-items: center;
+        justify-content: center;
+    }
+    &__botao--icon {
+        margin-left: .4rem;
+    }
     &__botao--login {
         background-color: $variant;
         margin: 1rem 1rem 1rem 0rem;

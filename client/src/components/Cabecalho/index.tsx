@@ -7,19 +7,28 @@ import { ReactComponent as Profile } from "../../assets/svg/profile.svg";
 import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
+import { ReactComponent as Sair } from "../../assets/svg/sair.svg";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Usuario from "interfaces/Usuario";
+import Endereco from "interfaces/Endereco";
 interface Props {
   aparecer: boolean;
   setAparecer: React.Dispatch<React.SetStateAction<boolean>>;
   selecionado: number;
   setSelecionado: React.Dispatch<React.SetStateAction<number>>;
+  nome: any;
+  usuario: any
+  endereco: any
 }
 export default function Cabecalho({
   aparecer,
   setAparecer,
   selecionado,
   setSelecionado,
+  endereco,
+  usuario,
+  nome,
 }: Props) {
   const menu = [
     {
@@ -68,7 +77,7 @@ export default function Cabecalho({
         />
         <div className={styles["navegacao__account"]}>
           <SearchIcon className={styles["navegacao__searchicon"]}></SearchIcon>
-          <Link to='conta'>
+          <Link to="conta">
             <Profile className={styles["navegacao__profile"]}></Profile>
           </Link>
           <Cart className={styles["navegacao__cart"]}></Cart>
@@ -90,7 +99,9 @@ export default function Cabecalho({
       >
         <div className={styles["menu__hello"]}>
           <ProfileMenu className={styles["menu__profile"]}></ProfileMenu>
-          <h2 className={styles["menu__subtitulo"]}>Olá, Faça seu login!</h2>
+          <h2 className={styles["menu__subtitulo"]}>
+            Olá, {nome === "" ? "Faça seu login!" : nome}
+          </h2>
         </div>
         <div className={styles["menu__links"]}>
           {menu.map((item, index) => {
@@ -125,6 +136,8 @@ export default function Cabecalho({
             <button
               className={classNames({
                 [styles["menu__botao"]]: true,
+                [styles["menu__botao--desaparecer"]]:
+                  nome !== "" ? true : false,
                 [styles["menu__botao--login"]]: true,
               })}
             >
@@ -139,12 +152,28 @@ export default function Cabecalho({
             <button
               className={classNames({
                 [styles["menu__botao"]]: true,
+                [styles["menu__botao--desaparecer"]]:
+                  nome !== "" ? true : false,
                 [styles["menu__botao--cadastrar"]]: true,
               })}
             >
               Cadastrar
             </button>
           </Link>
+          <button onClick={() => {
+              localStorage.setItem('usuario', JSON.stringify(usuario))
+              localStorage.setItem('endereco', JSON.stringify(endereco))
+            
+            }} 
+            className={classNames({
+              [styles["menu__botao"]]: true,
+              [styles["menu__botao--sair"]]: true,
+              [styles["menu__botao--desaparecer"]]: nome === "" ? true : false,
+            })}
+          >
+            <p>Sair</p>
+            <Sair className={styles["menu__botao--icon"]}></Sair>
+          </button>
         </div>
       </ul>
     </header>
