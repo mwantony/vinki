@@ -73,8 +73,8 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/endereco", (req, res) => {
-  const usuario = req.body.id;
+app.get("/endereco/:id", (req, res) => {
+  const usuario = req.params.id;
   db.query(
     "SELECT * FROM enderecos WHERE usuarioEndereco = ?",
     [usuario],

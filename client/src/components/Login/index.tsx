@@ -15,8 +15,15 @@ export default function Login() {
       password: values.password,
     }).then((response) => {
       const dados = response.data;
+      console.log(dados.idusuarios)
       localStorage.setItem("usuario", JSON.stringify(dados));
-    });
+      return dados
+    }).then((dados) => {
+      console.log(dados)
+      Axios.get(`http://localhost:3001/endereco/${dados.idusuarios}`).then((res) => {
+        localStorage.setItem('endereco', JSON.stringify(res.data))
+      })
+    } )
 
 
     /*     return fetch('http://localhost:3001/login', {
