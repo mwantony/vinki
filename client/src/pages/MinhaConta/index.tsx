@@ -265,7 +265,7 @@ export default function MinhaConta({
           ) : (
             ""
           )}
-          {!validacao ? <p className={styles['endereco__nenhum']}>'Nenhum endereço cadastrado'</p> : ""}
+          {!validacao ? <p className={styles['endereco__nenhum']}>Nenhum endereço cadastrado</p> : ""}
         </div>
       </div>
     </section>

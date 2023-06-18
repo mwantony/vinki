@@ -66,18 +66,18 @@ app.post("/login", (req, res) => {
           dataDeNascimento: "",
         });
       }
-      /*       bcrypt.compare(password, result[0].password, (error, response) => {
-        if (error) {
-          res.send(error);
-        }
-        if (response) {
-          res.send({ msg: "Usuário logado" });
-        } else {
-          res.send({ msg: "Senha incorreta" });
-        }
-      }); */
+
     } else {
-      res.send({ msg: "Usuário não registrado!" });
+      res.send({
+        idusuarios: "",
+        nome: "",
+        tipoDeConta: "",
+        email: "",
+        telefone: "",
+        cpf: "",
+        password: "",
+        dataDeNascimento: "",
+      });
     }
   });
 });
@@ -88,7 +88,7 @@ app.get("/endereco/:id", (req, res) => {
     "SELECT * FROM enderecos WHERE usuarioEndereco = ?",
     [usuario],
     (err, result) => {
-      if(err) {
+      if (err) {
         res.send({
           id: "",
           usuarioEndereco: "",
@@ -99,9 +99,9 @@ app.get("/endereco/:id", (req, res) => {
           cidade: "",
           uf: "",
           pontoDeRef: "",
-        })
+        });
       } else {
-        res.send(result[0])
+        res.send(result[0]);
       }
     }
   );
