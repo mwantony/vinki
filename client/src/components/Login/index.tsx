@@ -9,25 +9,43 @@ export default function Login() {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
+  const endereco = {
+    id: "",
+    usuarioEndereco: "",
+    cep: "",
+    complemento: "",
+    logradouro: "",
+    numero: "",
+    cidade: "",
+    uf: "",
+    pontoDeRef: "",
+  };
   const handleClick = async (values: any) => {
     Axios.post("http://localhost:3001/login", {
       email: values.email,
       password: values.password,
-    }).then((response) => {
-      const dados = response.data;
-      console.log(dados)
-      if(!dados.hasOwnProperty('msg')) {
-        localStorage.setItem("usuario", JSON.stringify(dados))
-      } else {
-        alert(dados.msg)
-      }
-      return dados
-    }).then((dados) => {
-      Axios.get(`http://localhost:3001/endereco/${dados.idusuarios}`).then((res) => {
-        localStorage.setItem('endereco', JSON.stringify(res.data))
+    })
+      .then((response) => {
+        const dados = response.data;
+        console.log(dados);
+        if (!dados.hasOwnProperty("msg")) {
+          localStorage.setItem("usuario", JSON.stringify(dados));
+        } else {
+          alert(dados.msg);
+        }
+        return dados;
       })
-    } )
-
+      .then((dados) => {
+        Axios.get(`http://localhost:3001/endereco/${dados.idusuarios}`).then(
+          (res) => {
+            if (res.data === "") {
+              localStorage.setItem("endereco", JSON.stringify(endereco));
+            } else {
+              localStorage.setItem("endereco", JSON.stringify(res.data));
+            }
+          }
+        );
+      });
 
     /*     return fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -100,8 +118,8 @@ export default function Login() {
                 className={styles["login__botao"]}
                 onClick={() => {
                   navigate("/");
-                  setTimeout(function() {
-                    window.location.reload()
+                  setTimeout(function () {
+                    window.location.reload();
                   }, 1000);
                 }}
                 type="submit"
