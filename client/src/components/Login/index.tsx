@@ -7,6 +7,17 @@ import { useState } from "react";
 import Usuario from "interfaces/Usuario";
 export default function Login() {
   const navigate = useNavigate();
+  const endereco = {
+    id: "",
+    usuarioEndereco: "",
+    cep: "",
+    complemento: "",
+    logradouro: "",
+    numero: "",
+    cidade: "",
+    uf: "",
+    pontoDeRef: "",
+  };
   const [emailInput, setEmailInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
   const handleClick = async (values: any) => {
@@ -24,7 +35,12 @@ export default function Login() {
       return dados
     }).then((dados) => {
       Axios.get(`http://localhost:3001/endereco/${dados.idusuarios}`).then((res) => {
-        localStorage.setItem('endereco', JSON.stringify(res.data))
+        if(res.data !== '') {
+          localStorage.setItem('endereco', JSON.stringify(res.data))
+
+        } else {
+          localStorage.setItem('endereco', JSON.stringify(endereco))          
+        }
       })
     } )
 

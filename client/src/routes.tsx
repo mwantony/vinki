@@ -63,15 +63,16 @@ export const atualiza = async () => {
       localStorage.setItem("usuario", JSON.stringify(result));
       fetch(`http://localhost:3001/endereco/${result.idusuarios}`)
         .then((response) => {
-          return response.json()
+          return response.json();
         })
         .then((data) => {
-          console.log(data, 'wed')
-          if(data === '') {
+          console.log(data, "wed");
+          if (data === "") {
             localStorage.setItem("endereco", JSON.stringify(endereco));
-            return
+            return;
+          } else {
+            localStorage.setItem("endereco", JSON.stringify(data));
           }
-          localStorage.setItem("endereco", JSON.stringify(data));
         });
     })
     .catch((error) => {
@@ -79,7 +80,7 @@ export const atualiza = async () => {
       // Trate o erro
     });
 };
-if (usuarioLocalParsed.nome !== "" || enderecoLocalParsed === '') {
+if (usuarioLocalParsed.nome !== "" || enderecoLocalParsed === "") {
   atualiza();
   console.log("o");
 }
