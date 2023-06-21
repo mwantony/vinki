@@ -124,7 +124,7 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
-        <Route path="/endereco" element={<Endereco></Endereco>}></Route>
+        <Route path="/endereco" element={<Endereco nome={nome}></Endereco>}></Route>
         <Route
           path="/conta"
           element={
