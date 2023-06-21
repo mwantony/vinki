@@ -163,7 +163,7 @@ export default function Cabecalho({
           <button onClick={() => {
               localStorage.setItem('usuario', JSON.stringify(usuario))
               localStorage.setItem('endereco', JSON.stringify(endereco))
-            
+              window.location.reload()
             }} 
             className={classNames({
               [styles["menu__botao"]]: true,
