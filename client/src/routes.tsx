@@ -37,8 +37,11 @@ if (!localStorage.getItem("endereco")) {
   localStorage.setItem("endereco", JSON.stringify(endereco));
 }
 const usuarioLocal = localStorage.getItem("usuario");
+const enderecoLocal = localStorage.getItem("endereco");
 const usuarioLocalParsed =
   usuarioLocal !== null ? JSON.parse(usuarioLocal) : null;
+const enderecoLocalParsed =
+  enderecoLocal !== null ? JSON.parse(enderecoLocal) : null;
 const data = {
   email: usuarioLocalParsed.email,
   password: usuarioLocalParsed.password,
@@ -59,8 +62,15 @@ export const atualiza = async () => {
       console.log("Resposta:", result);
       localStorage.setItem("usuario", JSON.stringify(result));
       fetch(`http://localhost:3001/endereco/${result.idusuarios}`)
-        .then((response) => response.json())
+        .then((response) => {
+          return response.json()
+        })
         .then((data) => {
+          console.log(data, 'wed')
+          if(data === '') {
+            localStorage.setItem("endereco", JSON.stringify(endereco));
+            return
+          }
           localStorage.setItem("endereco", JSON.stringify(data));
         });
     })
@@ -69,7 +79,7 @@ export const atualiza = async () => {
       // Trate o erro
     });
 };
-if (usuarioLocalParsed.nome !== "") {
+if (usuarioLocalParsed.nome !== "" || enderecoLocalParsed === '') {
   atualiza();
   console.log("o");
 }
