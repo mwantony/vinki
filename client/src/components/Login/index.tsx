@@ -100,6 +100,9 @@ export default function Login() {
                 className={styles["login__botao"]}
                 onClick={() => {
                   navigate("/");
+                  setTimeout(function() {
+                    window.location.reload()
+                  }, 1000);
                 }}
                 type="submit"
               >
