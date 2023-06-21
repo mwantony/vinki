@@ -55,7 +55,7 @@ app.post("/login", (req, res) => {
       if (password == result[0].password) {
         res.send(result[0]);
       } else {
-/*         res.send({
+        /*         res.send({
           idusuarios: "",
           nome: "",
           tipoDeConta: "",
@@ -65,12 +65,10 @@ app.post("/login", (req, res) => {
           password: "",
           dataDeNascimento: "",
         }); */
-        res.send({msg: "Senha Incorreta"})
-
+        res.send({ msg: "Senha Incorreta" });
       }
-
     } else {
-/*       res.send({
+      /*       res.send({
         idusuarios: "",
         nome: "",
         tipoDeConta: "",
@@ -80,7 +78,7 @@ app.post("/login", (req, res) => {
         password: "",
         dataDeNascimento: "",
       }); */
-      res.send({msg: "Senha Incorreta"})
+      res.send({ msg: "Senha Incorreta" });
     }
   });
 });
@@ -104,7 +102,22 @@ app.get("/endereco/:id", (req, res) => {
           pontoDeRef: "",
         });
       } else {
-        res.send(result[0]);
+        console.log(result)
+        if (!result[0]) {
+          res.send({
+            id: "",
+            usuarioEndereco: "",
+            cep: "",
+            complemento: "",
+            logradouro: "",
+            numero: "",
+            cidade: "",
+            uf: "",
+            pontoDeRef: "",
+          });
+        } else {
+          res.send(result[0]);
+        }
       }
     }
   );
