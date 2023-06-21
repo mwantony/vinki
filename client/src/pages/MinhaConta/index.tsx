@@ -7,7 +7,7 @@ import InputMask from "react-input-mask";
 import { ReactComponent as Pencil } from "../../assets/svg/pencil.svg";
 
 import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Endereco from "interfaces/Endereco";
 interface Props {
   nome: any;
@@ -239,7 +239,9 @@ export default function MinhaConta({
       <div className={styles["endereco"]}>
         <div className={styles['endereco__principal']}>
           <h2 className={styles["endereco__titulo"]}>Endereço</h2>
-          <Pencil className={styles["endereco__pencil"]}></Pencil>
+          <Link to='/endereco'>
+            <Pencil className={styles["endereco__pencil"]}></Pencil>
+          </Link>
         </div>
         <div className={styles["endereco__info"]}>
           {validacao ? (
@@ -266,6 +268,7 @@ export default function MinhaConta({
             ""
           )}
           {!validacao ? <p className={styles['endereco__nenhum']}>Nenhum endereço cadastrado</p> : ""}
+          {!validacao ? <button className={styles['endereco__adicionar']}>Adicionar</button> : ""}
         </div>
       </div>
     </section>
