@@ -101,12 +101,21 @@ export default function AppRouter() {
   const enderecoUsuarioParsed =
     enderecoUsuario !== null ? JSON.parse(enderecoUsuario) : null;
   const nome = dadosUsuarioParsed.nome;
+  const id = dadosUsuarioParsed.idusuarios;
   const tipoDeConta = dadosUsuarioParsed.tipoDeConta;
   const emailUser = dadosUsuarioParsed.email;
   const telefoneUser = dadosUsuarioParsed.telefone;
   const dataDeNascimento = dadosUsuarioParsed.dataDeNascimento;
   const cpfUser = dadosUsuarioParsed.cpf;
   const senhaUser = dadosUsuarioParsed.password;
+
+  const cep = enderecoUsuarioParsed.cep
+  const complemento = enderecoUsuarioParsed.complemento
+  const logradouro = enderecoUsuarioParsed.logradouro
+  const numero = enderecoUsuarioParsed.numero
+  const cidade = enderecoUsuarioParsed.cidade
+  const uf = enderecoUsuarioParsed.uf
+  const pontoDeRef = enderecoUsuarioParsed.pontoDeRef
 
   useEffect(() => {}, [dadosUsuario]);
   return (
@@ -124,7 +133,7 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
-        <Route path="/endereco" element={<Endereco nome={nome}></Endereco>}></Route>
+        <Route path="/endereco" element={<Endereco id={id} complemento={complemento} logradouro={logradouro} numero={numero} cidade={cidade} uf={uf} pontoDeRef={pontoDeRef} cep={cep} nome={nome}></Endereco>}></Route>
         <Route
           path="/conta"
           element={

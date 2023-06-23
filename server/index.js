@@ -102,7 +102,7 @@ app.get("/endereco/:id", (req, res) => {
           pontoDeRef: "",
         });
       } else {
-        console.log(result)
+        console.log(result);
         if (!result[0]) {
           res.send({
             id: "",
@@ -121,6 +121,29 @@ app.get("/endereco/:id", (req, res) => {
       }
     }
   );
+});
+
+app.post("/endereco", (req, res) => {
+  const usuario = req.body.usuarioEndereco;
+  const cep = req.body.cep
+  const complemento = req.body.complemento
+  const logradouro = req.body.logradouro
+  const numero = req.body.numero
+  const cidade = req.body.cidade
+  const uf = req.body.uf
+  const pontoDeRef = req.body.pontoDeRef
+  console.log(usuario)
+  db.query(
+    'UPDATE enderecos SET cep=?, complemento=?, logradouro=?, numero=?, cidade=?, uf=?, pontoDeRef=? WHERE usuarioEndereco = ?',
+    [cep, complemento, logradouro, numero, cidade, uf, pontoDeRef, usuario],
+    (err, result) => {
+      if(err) {
+        res.send(err)
+      } else {
+        res.send('Feito')
+      }
+    }
+  )
 });
 
 app.listen(3001, () => {
