@@ -54,14 +54,14 @@ export default function Endereco({
   };
   const navigate = useNavigate();
 
-  const validationEndereco = yup.object().shape({
+  const validationEndereco = ''/* yup.object().shape({
     complemento: yup.string().required("Este campo é obrigatório"),
     logradouro: yup.string().required("Este campo é obrigatório"),
     numero: yup.number().required("*"),
     cidade: yup.string().required("*"),
     uf: yup.string().required("*"),
     pontoDeRef: yup.string().required("Este campo é obrigatório"),
-  });
+  }); */
   useEffect(() => {
     if (nome === "") {
       navigate("/login");
