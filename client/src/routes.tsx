@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound";
 import MinhaConta from "pages/MinhaConta";
 import Axios from "axios";
 import Endereco from "components/Endereco";
+import Moveis from "pages/Moveis";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -133,6 +134,7 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
+        <Route path="/moveis" element={<Moveis></Moveis>}></Route>
         <Route path="/endereco" element={<Endereco id={id} complemento={complemento} logradouro={logradouro} numero={numero} cidade={cidade} uf={uf} pontoDeRef={pontoDeRef} cep={cep} nome={nome}></Endereco>}></Route>
         <Route
           path="/conta"

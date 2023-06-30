@@ -152,7 +152,7 @@ app.post('/moveis', (req,res ) => {
     if(err) {
       res.send(err.data)
     } else {
-      res.send(result[0])
+      res.send(result)
     }
   })
 })

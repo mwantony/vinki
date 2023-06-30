@@ -30,13 +30,15 @@ export default function Inicio() {
   const handleDragStart = (e: any) => e.preventDefault();
 
   const items = [
-    <img
-      src={moveis}
-      onDragStart={handleDragStart}
-      role="presentation"
-      alt="Foto Móvel"
-      className={styles["lista__foto--slicer"]}
-    />,
+    <Link to={'/moveis'}>
+      <img
+        src={moveis}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Móvel"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
     <img
       src={eletronicos}
       onDragStart={handleDragStart}
