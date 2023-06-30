@@ -148,7 +148,7 @@ app.post("/endereco", (req, res) => {
 
 app.post('/moveis', (req,res ) => {
   const categoria = req.body.categoria
-  db.query('SELECT * FROM moveis WHERE categoria=?',[categoria], (err, result) => {
+  db.query('SELECT * FROM produtos WHERE categoria=?',[categoria], (err, result) => {
     if(err) {
       res.send(err.data)
     } else {
