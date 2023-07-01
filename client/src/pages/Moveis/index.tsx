@@ -1,48 +1,50 @@
 import Axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Moveis.module.scss";
 import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
-import  useInfiniteScroll  from 'react-infinite-scroll-hook';
-
+import { motion} from 'framer-motion'
 export default function Moveis() {
+  const [opcaoSelecionada, setOpcaoSelecionada] = useState("");
+
+  const handleChange = (event: any) => {
+    setOpcaoSelecionada(event.target.value);
+  };
+  const [quantidade, setQuantidade] = useState(6);
+  const [eh, setEh] = useState(1);
+  const [moveisNum, setMoveisNum] = useState([]);
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
-  const produtosEncontrados = moveisEncontrados.length;
-  const [isLoading, setIsLoading] = useState(false); // Indicates if more elements are being loaded
-  const [quantidade, setQuantidade] = useState(6)
-  const loadMore = useCallback(() => {
-    if (isLoading) return;
-    setIsLoading(true);
+
+  const loadMore = () => {
     Axios.post("http://localhost:3001/moveis", { categoria: "Móveis" }).then(
-      (res) => setMoveisEncontrados(res.data)
+      (res) => {
+        setMoveisNum(res.data);
+        const moveis = res.data.slice(0, quantidade);
+        setMoveisEncontrados(moveis);
+        setQuantidade(quantidade + 6);
+      }
     );
-    moveisEncontrados.slice(0, quantidade)
-    setQuantidade(quantidade + 6)
-    
-    // Simulate an asynchronous request to fetch elements
-    // Replace this with your own logic to fetch elements
-    // In this example, we're just adding incremental numbers
-    setTimeout(() => {
-      setMoveisEncontrados(() => [...moveisEncontrados]);
-      setIsLoading(false);
-    }, 1000);
-  }, [isLoading, moveisEncontrados, quantidade]);
+  };
   useEffect(() => {
-    loadMore()
-  }, [loadMore]);
-  const infiniteRef = useInfiniteScroll({
-    loading: isLoading,
-    hasNextPage: true, // Indicates if there are more elements to load
-    onLoadMore: loadMore,
-    scrollContainer: 'window', // Optional, set this if you have a specific scrollable container
-  });
+    if (eh === 1) {
+      loadMore();
+      setEh(2);
+    }
+  }, []);
+  const produtosEncontrados = moveisNum.length;
+  console.log(moveisEncontrados.length, moveisEncontrados.length);
+  const hasMore = produtosEncontrados !== moveisEncontrados.length;
+
+
   return (
     <>
+      
       <div className={styles["moveis__title"]}>
         <Sofa></Sofa>
         <p>Móveis</p>
+        
       </div>
       <h3 className={styles['moveis__produtos-encontrados']}>{produtosEncontrados} produto(s) encontrados</h3>
-      <section className={styles["moveis"]}>
+      <section  className={styles["moveis"]}>
         {moveisEncontrados
           ? moveisEncontrados.map((produto: any, index: any) => {
               return (
@@ -75,6 +77,7 @@ export default function Moveis() {
               );
             })
           : ""}
+          {hasMore === true ? <button onClick={() => loadMore()}>Ver mais</button> : ''}
       </section>
     </>
   );
