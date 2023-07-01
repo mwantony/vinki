@@ -1,16 +1,40 @@
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./Moveis.module.scss";
 import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
+import  useInfiniteScroll  from 'react-infinite-scroll-hook';
+
 export default function Moveis() {
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
   const produtosEncontrados = moveisEncontrados.length;
-  useEffect(() => {
+  const [isLoading, setIsLoading] = useState(false); // Indicates if more elements are being loaded
+  const [quantidade, setQuantidade] = useState(6)
+  const loadMore = useCallback(() => {
+    if (isLoading) return;
+    setIsLoading(true);
     Axios.post("http://localhost:3001/moveis", { categoria: "Móveis" }).then(
       (res) => setMoveisEncontrados(res.data)
     );
-    console.log(moveisEncontrados);
-  }, []);
+    moveisEncontrados.slice(0, quantidade)
+    setQuantidade(quantidade + 6)
+    
+    // Simulate an asynchronous request to fetch elements
+    // Replace this with your own logic to fetch elements
+    // In this example, we're just adding incremental numbers
+    setTimeout(() => {
+      setMoveisEncontrados(() => [...moveisEncontrados]);
+      setIsLoading(false);
+    }, 1000);
+  }, [isLoading, moveisEncontrados, quantidade]);
+  useEffect(() => {
+    loadMore()
+  }, [loadMore]);
+  const infiniteRef = useInfiniteScroll({
+    loading: isLoading,
+    hasNextPage: true, // Indicates if there are more elements to load
+    onLoadMore: loadMore,
+    scrollContainer: 'window', // Optional, set this if you have a specific scrollable container
+  });
   return (
     <>
       <div className={styles["moveis__title"]}>
