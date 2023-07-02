@@ -116,3 +116,21 @@
           }
       }
   }
+
+  .menu {
+    text-align: center;
+    &__lista {
+      position: absolute;
+      transform: translateX(40vw);
+      background-color: $variant;
+      color: $main-color  ;
+      padding: 1rem;
+    }
+
+    &__item {
+      margin: .2rem;
+    }
+    &__svg {
+      display: inline-block;
+    }
+  }
