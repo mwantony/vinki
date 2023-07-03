@@ -10,6 +10,7 @@ import MinhaConta from "pages/MinhaConta";
 import Axios from "axios";
 import Endereco from "components/Endereco";
 import Moveis from "pages/Moveis";
+import Loading from "components/Loading";
 const usuario = {
   idusuarios: "",
   nome: "",

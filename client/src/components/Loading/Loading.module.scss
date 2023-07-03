@@ -1,0 +1,47 @@
+.loading-overlay {
+    position: relative;
+    margin: 1rem auto;
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.5s;
+
+}
+.loading-overlay-login {
+    position:fixed; 
+    top:50%;
+    left:50%;
+    z-index: 999;
+    transform: translate(-50%, -50%)
+}
+
+.loading-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.loading-logo {
+    width: 100px;
+    height: 100px;
+    background: url('./rotate.png') center/contain no-repeat;
+    position: relative;
+}
+
+.loading-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 105px;
+    height: 105px;
+    border: 4px solid #3c3c3c;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
