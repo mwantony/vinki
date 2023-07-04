@@ -68,8 +68,8 @@ export default function Moveis() {
   if (isVisible === true) {
     setAparecerLoading(true);
     setTimeout(() => {
-      setAparecerLoading(false);
       loadMore();
+      setAparecerLoading(false);
     }, 2000);
     setIsVisible(false);
   }
