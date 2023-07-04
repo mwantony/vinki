@@ -1,0 +1,59 @@
+@import '../../styles/variables';
+
+.produto {
+    &__imagem {
+        margin: 1.5rem auto;
+        display: block;
+        box-shadow: 0px 4px 50px $text-shadow;
+    }
+    &__informacoes {
+        background-color: $cinza-escuro;
+        color: $main-color;
+        box-shadow: 0px 4px 50px $text-shadow;
+        padding: 1.5rem;
+    }
+    &__titulo {
+        font-weight: bolder;
+        font-size: 1.2rem;
+        margin: 1rem;
+    }
+    &__paragrafo {
+        margin: .8rem 1rem;
+    }
+    &__paragrafo--precoAnterior {
+        text-decoration: line-through;
+    }
+    &__paragrafo--precoAnt {
+        margin-top: 1.5rem;
+    }
+    &__paragrafo--preco {
+        font-size: 1.5rem;
+        margin-left: 1rem;
+        font-weight: bolder;
+    }
+    &__botoes {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        margin: 0 auto;
+    }
+    &__botao {
+        background-color: $main-color;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        color: $cinza-escuro;
+        font-weight: bold;
+        padding: .8rem;
+        font-size: 1.2rem;
+        transition: 500ms;
+        justify-content: space-evenly;
+        width: 45%;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    &__content:first-child {
+    }
+
+}

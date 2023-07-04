@@ -11,6 +11,8 @@ import Axios from "axios";
 import Endereco from "components/Endereco";
 import Moveis from "pages/Moveis";
 import Loading from "components/Loading";
+import Carrinho from "pages/Carrinho";
+import PaginaProduto from "pages/PaginaProduto";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -32,6 +34,14 @@ const endereco = {
   uf: "",
   pontoDeRef: "",
 };
+const carrinho = {
+  idprodutos: '',
+  titulo: '',
+  categoria: '',
+  promocao: '',
+  precoAnterior: '',
+  link: ''
+}
 if (!localStorage.getItem("usuario")) {
   localStorage.setItem("usuario", JSON.stringify(usuario));
 }
@@ -135,7 +145,9 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
+        <Route path="/carrinho" element={<Carrinho produtos={carrinho}></Carrinho>}></Route>
         <Route path="/moveis" element={<Moveis></Moveis>}></Route>
+        <Route path="/produto/:idProduto" element={<PaginaProduto setSelecionado={setSelecionado}></PaginaProduto>}></Route>
         <Route path="/endereco" element={<Endereco id={id} complemento={complemento} logradouro={logradouro} numero={numero} cidade={cidade} uf={uf} pontoDeRef={pontoDeRef} cep={cep} nome={nome}></Endereco>}></Route>
         <Route
           path="/conta"

@@ -4,7 +4,7 @@ import { ReactComponent as Logo1 } from "assets/svg/nuvem1.svg";
 import { ReactComponent as Logo2 } from "assets/svg/nuvem2.svg";
 import { ReactComponent as Logo3 } from "assets/svg/nuvem3.svg";
 interface Props {
-  setSelecionado: React.Dispatch<React.SetStateAction<number>>;
+  setSelecionado: any;
 }
 
 export default function NotFound({ setSelecionado }: Props) {

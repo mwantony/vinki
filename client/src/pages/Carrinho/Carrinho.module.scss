@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+.carrinho {
+    &__title {
+        background-color: $cinza-escuro;
+        color: $main-color;
+        display: flex;
+        align-items: center;
+        width: 40vw;
+        padding: 1rem;
+        font-weight: bold;
+        border-radius: 0px 20px 20px 0px;
+      }
+      &__title > p {
+        margin-left: 1rem;
+      }
+}

@@ -80,7 +80,9 @@ export default function Cabecalho({
           <Link to="conta">
             <Profile className={styles["navegacao__profile"]}></Profile>
           </Link>
-          <Cart className={styles["navegacao__cart"]}></Cart>
+          <Link to={'/carrinho'}>
+            <Cart className={styles["navegacao__cart"]}></Cart>
+          </Link>
         </div>
       </nav>
       <div className={styles["lista__div"]}></div>

@@ -125,37 +125,57 @@ app.get("/endereco/:id", (req, res) => {
 
 app.post("/endereco", (req, res) => {
   const usuario = req.body.usuarioEndereco;
-  const cep = req.body.cep
-  const complemento = req.body.complemento
-  const logradouro = req.body.logradouro
-  const numero = req.body.numero
-  const cidade = req.body.cidade
-  const uf = req.body.uf
-  const pontoDeRef = req.body.pontoDeRef
-  console.log(usuario)
+  const cep = req.body.cep;
+  const complemento = req.body.complemento;
+  const logradouro = req.body.logradouro;
+  const numero = req.body.numero;
+  const cidade = req.body.cidade;
+  const uf = req.body.uf;
+  const pontoDeRef = req.body.pontoDeRef;
+  console.log(usuario);
   db.query(
-    'UPDATE enderecos SET cep=?, complemento=?, logradouro=?, numero=?, cidade=?, uf=?, pontoDeRef=? WHERE usuarioEndereco = ?',
+    "UPDATE enderecos SET cep=?, complemento=?, logradouro=?, numero=?, cidade=?, uf=?, pontoDeRef=? WHERE usuarioEndereco = ?",
     [cep, complemento, logradouro, numero, cidade, uf, pontoDeRef, usuario],
     (err, result) => {
-      if(err) {
-        res.send(err)
+      if (err) {
+        res.send(err);
       } else {
-        res.send('Feito')
+        res.send("Feito");
       }
     }
-  )
+  );
 });
 
-app.post('/moveis', (req,res ) => {
-  const categoria = req.body.categoria
-  db.query('SELECT * FROM produtos WHERE categoria=?',[categoria], (err, result) => {
-    if(err) {
-      res.send(err.data)
-    } else {
-      res.send(result)
+app.post("/moveis", (req, res) => {
+  const categoria = req.body.categoria;
+  db.query(
+    "SELECT * FROM produtos WHERE categoria=?",
+    [categoria],
+    (err, result) => {
+      if (err) {
+        res.send(err.data);
+      } else {
+        res.send(result);
+      }
     }
-  })
-})
+  );
+});
+
+app.get("/produto/:idProduto", (req, res) => {
+  const idProduto = req.params.idProduto;
+  db.query(
+    "SELECT * FROM produtos WHERE idprodutos=?",
+    [idProduto],
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result[0])
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("rodando na porta 3001");
 });
