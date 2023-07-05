@@ -34,13 +34,14 @@ const endereco = {
   uf: "",
   pontoDeRef: "",
 };
-const carrinho = {
-  idprodutos: '',
-  titulo: '',
-  categoria: '',
-  promocao: '',
-  precoAnterior: '',
-  link: ''
+const carrinho: any = [];
+
+
+const carrinhoLocal = localStorage.getItem("carrinho");
+const carrinhoLocalParsed =
+  carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null;
+if (!localStorage.getItem("carrinho")) {
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 if (!localStorage.getItem("usuario")) {
   localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -58,6 +59,10 @@ const data = {
 const urlAtual = window.location.href;
 console.log(urlAtual);
 
+export const atualizaCarrinho = () => {
+  localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
+  window.location.reload()
+}
 export const atualiza = async () => {
   fetch("http://localhost:3001/login", {
     method: "POST",
@@ -109,6 +114,9 @@ export default function AppRouter() {
   const dadosUsuarioParsed =
     dadosUsuario !== null ? JSON.parse(dadosUsuario) : null;
 
+
+  const [carrinho1, setCarrinho1] = useState(carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null)
+
   const enderecoUsuario = localStorage.getItem("endereco");
   const enderecoUsuarioParsed =
     enderecoUsuario !== null ? JSON.parse(enderecoUsuario) : null;
@@ -121,13 +129,13 @@ export default function AppRouter() {
   const cpfUser = dadosUsuarioParsed.cpf;
   const senhaUser = dadosUsuarioParsed.password;
 
-  const cep = enderecoUsuarioParsed.cep
-  const complemento = enderecoUsuarioParsed.complemento
-  const logradouro = enderecoUsuarioParsed.logradouro
-  const numero = enderecoUsuarioParsed.numero
-  const cidade = enderecoUsuarioParsed.cidade
-  const uf = enderecoUsuarioParsed.uf
-  const pontoDeRef = enderecoUsuarioParsed.pontoDeRef
+  const cep = enderecoUsuarioParsed.cep;
+  const complemento = enderecoUsuarioParsed.complemento;
+  const logradouro = enderecoUsuarioParsed.logradouro;
+  const numero = enderecoUsuarioParsed.numero;
+  const cidade = enderecoUsuarioParsed.cidade;
+  const uf = enderecoUsuarioParsed.uf;
+  const pontoDeRef = enderecoUsuarioParsed.pontoDeRef;
 
   useEffect(() => {}, [dadosUsuario]);
   return (
@@ -145,10 +153,33 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
-        <Route path="/carrinho" element={<Carrinho produtos={carrinho}></Carrinho>}></Route>
+        <Route
+          path="/carrinho"
+          element={<Carrinho nome={nome} setCarrinho1={setCarrinho1} produtos={carrinho1}></Carrinho>}
+        ></Route>
         <Route path="/moveis" element={<Moveis></Moveis>}></Route>
-        <Route path="/produto/:idProduto" element={<PaginaProduto setSelecionado={setSelecionado}></PaginaProduto>}></Route>
-        <Route path="/endereco" element={<Endereco id={id} complemento={complemento} logradouro={logradouro} numero={numero} cidade={cidade} uf={uf} pontoDeRef={pontoDeRef} cep={cep} nome={nome}></Endereco>}></Route>
+        <Route
+          path="/produto/:idProduto"
+          element={
+            <PaginaProduto nome={nome} carrinhoLocalParsed={carrinhoLocalParsed} setSelecionado={setSelecionado}></PaginaProduto>
+          }
+        ></Route>
+        <Route
+          path="/endereco"
+          element={
+            <Endereco
+              id={id}
+              complemento={complemento}
+              logradouro={logradouro}
+              numero={numero}
+              cidade={cidade}
+              uf={uf}
+              pontoDeRef={pontoDeRef}
+              cep={cep}
+              nome={nome}
+            ></Endereco>
+          }
+        ></Route>
         <Route
           path="/conta"
           element={

@@ -8,7 +8,13 @@ import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as Cesta } from "../../assets/svg/cesta.svg";
 import { ReactComponent as Share } from "../../assets/svg/share.svg";
 import ScrollHorizontal from "components/ScrollHorizontal";
-export default function PaginaProduto({ setSelecionado }: any) {
+import { atualiza, atualizaCarrinho } from "routes";
+import { useNavigate } from "react-router-dom";
+export default function PaginaProduto({
+  setSelecionado,
+  carrinhoLocalParsed,
+  nome
+}: any) {
   const { idProduto } = useParams();
   const [titulo, setTitulo] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -16,7 +22,7 @@ export default function PaginaProduto({ setSelecionado }: any) {
   const [precoAnterior, setPrecoAnterior] = useState("");
   const [link, setLink] = useState("");
   const [set, setSet] = useState(0);
-  const linkParaCompartilhar = String(window.location.href)
+  const linkParaCompartilhar = String(window.location.href);
   const [produtos, setProdutos] = useState([{ foto: "" }]);
   Axios.get(`http://localhost:3001/produto/${idProduto}`).then((res) => {
     const produto = res.data;
@@ -36,6 +42,8 @@ export default function PaginaProduto({ setSelecionado }: any) {
       setSet(1);
     });
   }
+  const navigate = useNavigate()
+
   if (titulo) {
     return (
       <>
@@ -98,6 +106,14 @@ export default function PaginaProduto({ setSelecionado }: any) {
                   [styles["produto__botao"]]: true,
                   [styles["produto__botao--adicionar"]]: true,
                 })}
+                onClick={() => {
+                  if(nome !== '') {
+                    carrinhoLocalParsed.push({ link: linkParaCompartilhar, titulo: titulo, categoria: categoria, promocao: promocao, linkImagem: link });
+                    atualizaCarrinho();
+                  } else {
+                    navigate('/login')
+                  }
+                }}
               >
                 Adicionar
                 <Cart className={styles["produto__content"]}></Cart>

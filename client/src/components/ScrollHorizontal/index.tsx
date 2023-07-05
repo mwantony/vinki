@@ -17,19 +17,21 @@ export default function ScrollHorizontal({ produtos }: any) {
         >
           {produtos.map((item: any, index: any) => {
             return (
-              <li className={styles["emdestaque__lista--item"]}>
+              <Link onClick={() => {
+                setTimeout(() => window.location.reload(), 0)
+              }} to={`/produto/${item.idprodutos}`} className={styles["emdestaque__lista--item"]}>
                 <div
                   className={styles["lista__imagem"]}
                   style={{ backgroundImage: "url(" + item.link + ")" }}
                 ></div>
                 <div className={styles["lista__legenda"]}>
-                  <h3 className={styles["lista__subtitulo"]}>Sofá retrátil</h3>
-                  <p className={styles["lista__categoria"]}>Móveis</p>
-                  <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                  <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
+                  <h3 className={styles["lista__subtitulo"]}>{item.titulo}</h3>
+                  <p className={styles["lista__categoria"]}>{item.categoria}</p>
+                  <p className={styles["lista__preco"]}>R$ {Number(item.precoAnterior).toFixed(2).replace('.', ',')}</p>
+                  <h3 className={styles["lista__promo"]}>R$ {Number(item.promocao).toFixed(2).replace('.', ',')}</h3>
                   <button className={styles["lista__comprar"]}>Comprar</button>
                 </div>
-              </li>
+              </Link>
             );
           })}
         </div>
