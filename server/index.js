@@ -176,6 +176,16 @@ app.get("/produto/:idProduto", (req, res) => {
   );
 });
 
+app.get('/produtosrandom', (req, res) => {
+  db.query('SELECT * FROM produtos ORDER BY RAND() LIMIT 10', (err, result) => {
+    if(err) {
+      res.send(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
+
 app.listen(3001, () => {
   console.log("rodando na porta 3001");
 });

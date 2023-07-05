@@ -55,5 +55,19 @@
     }
     &__content:first-child {
     }
+    &__subtitulo {
+        font-size: 1.2rem;
+        margin: 2rem 1rem 0rem 1.5rem;
+        font-weight: bolder;
+    }
+    &__share {
+        margin-top: 1rem;
+    }
+
+    &__first {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
 
 }

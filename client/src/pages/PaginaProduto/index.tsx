@@ -6,10 +6,7 @@ import NotFound from "components/NotFound";
 import classNames from "classnames";
 import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as Cesta } from "../../assets/svg/cesta.svg";
-import { Link } from "react-router-dom";
-import { slideRight, slideLeft } from "../../func/sliders";
-import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.svg";
-import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
+import { ReactComponent as Share } from "../../assets/svg/share.svg";
 import ScrollHorizontal from "components/ScrollHorizontal";
 export default function PaginaProduto({ setSelecionado }: any) {
   const { idProduto } = useParams();
@@ -18,7 +15,9 @@ export default function PaginaProduto({ setSelecionado }: any) {
   const [promocao, setPromocao] = useState("");
   const [precoAnterior, setPrecoAnterior] = useState("");
   const [link, setLink] = useState("");
-  const [produtos, setProdutos] = useState([{foto:''}])
+  const [set, setSet] = useState(0);
+  const linkParaCompartilhar = String(window.location.href)
+  const [produtos, setProdutos] = useState([{ foto: "" }]);
   Axios.get(`http://localhost:3001/produto/${idProduto}`).then((res) => {
     const produto = res.data;
     if (produto.titulo) {
@@ -31,6 +30,12 @@ export default function PaginaProduto({ setSelecionado }: any) {
       return;
     }
   });
+  if (set === 0) {
+    Axios.get(`http://localhost:3001/produtosrandom`).then((res) => {
+      setProdutos(res.data);
+      setSet(1);
+    });
+  }
   if (titulo) {
     return (
       <>
@@ -42,11 +47,23 @@ export default function PaginaProduto({ setSelecionado }: any) {
           />
           <h2></h2>
           <div className={styles["produto__informacoes"]}>
-            <div>
-              <h3 className={styles["produto__titulo"]}>{titulo}</h3>
-              <p className={styles["produto__paragrafo"]}>
-                Vendido e entregue por Vinki!
-              </p>
+            <div className={styles["produto__first"]}>
+              <div>
+                <h3 className={styles["produto__titulo"]}>{titulo}</h3>
+                <p className={styles["produto__paragrafo"]}>
+                  Vendido e entregue por Vinki!
+                </p>
+              </div>
+              <Share
+                className={styles["produto__share"]}
+                onClick={() =>
+                  navigator.share({
+                    title: "Compre mais barato nas Lojas Vinki!",
+                    text: "Compre mais barato nas Lojas Vinki!",
+                    url: linkParaCompartilhar,
+                  })
+                }
+              ></Share>
             </div>
             <div>
               <p
@@ -96,8 +113,8 @@ export default function PaginaProduto({ setSelecionado }: any) {
               </button>
             </div>
           </div>
-          <h2 className={styles['produto__subtitulo']}>Veja também</h2>
-            <ScrollHorizontal produtos={produtos}></ScrollHorizontal>
+          <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
+          <ScrollHorizontal produtos={produtos}></ScrollHorizontal>
         </section>
       </>
     );
