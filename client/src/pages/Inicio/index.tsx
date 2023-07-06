@@ -5,7 +5,7 @@ import eletronicos from "../../assets/img/eletronicos.png";
 import decoracoes from "../../assets/img/decoracoes.png";
 import jardim from "../../assets/img/jardim.png";
 import produtos from "../../db.json";
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -14,7 +14,24 @@ import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
 import { slideRight, slideLeft } from "../../func/sliders";
 import { Link } from "react-router-dom";
+import Axios  from "axios";
 export default function Inicio() {
+  const [emDestaque, setEmDestaque] = useState([]);
+  const [maisVendidos, setMaisVendidos] = useState([]);
+  const [set, setSet] = useState(0);
+  const [set1, setSet1] = useState(0);
+  if (set === 0) {
+    Axios.get(`http://localhost:3001/produtosrandom`).then((res) => {
+      setEmDestaque(res.data);
+      setSet(1);
+    });
+  }
+  if (set1 === 0) {
+    Axios.get(`http://localhost:3001/produtosrandom`).then((res) => {
+      setMaisVendidos(res.data);
+      setSet1(1);
+    });
+  }
   var width = window.innerWidth;
   const carousel = [
     {
@@ -149,25 +166,25 @@ export default function Inicio() {
             id="slider--emdestaque"
             className="emdestaque__slider w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
           >
-            {produtos.map((item, index) => {
+            {emDestaque.map((item: any, index) => {
               return (
-                <li className={styles["emdestaque__lista--item"]}>
+                <Link to={`/produto/${item.idprodutos}`} className={styles["emdestaque__lista--item"]}>
                   <div
                     className={styles["lista__imagem"]}
-                    style={{ backgroundImage: "url(" + item.foto + ")" }}
+                    style={{ backgroundImage: "url(" + item.link + ")" }}
                   ></div>
                   <div className={styles["lista__legenda"]}>
                     <h3 className={styles["lista__subtitulo"]}>
-                      Sofá retrátil
+                      {item.titulo}
                     </h3>
-                    <p className={styles["lista__categoria"]}>Móveis</p>
-                    <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                    <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
+                    <p className={styles["lista__categoria"]}>{item.categoria}</p>
+                    <p className={styles["lista__preco"]}>R$ {Number(item.precoAnterior).toFixed(2).replace('.', ',')}</p>
+                    <h3 className={styles["lista__promo"]}>R$ {Number(item.promocao).toFixed(2).replace('.', ',')}</h3>
                     <button className={styles["lista__comprar"]}>
                       Comprar
                     </button>
                   </div>
-                </li>
+                </Link>
               );
             })}
           </div>
@@ -214,25 +231,25 @@ export default function Inicio() {
             id="slider--maisvendidos"
             className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
           >
-            {produtos.map((item, index) => {
+            {maisVendidos.map((item: any, index) => {
               return (
-                <li className={styles["emdestaque__lista--item"]}>
+                <Link to={`/produto/${item.idprodutos}`} className={styles["emdestaque__lista--item"]}>
                   <div
                     className={styles["lista__imagem"]}
-                    style={{ backgroundImage: "url(" + item.foto + ")" }}
+                    style={{ backgroundImage: "url(" + item.link + ")" }}
                   ></div>
                   <div className={styles["lista__legenda"]}>
                     <h3 className={styles["lista__subtitulo"]}>
-                      Sofá retrátil
+                      {item.titulo}
                     </h3>
-                    <p className={styles["lista__categoria"]}>Móveis</p>
-                    <p className={styles["lista__preco"]}>R$ 2500,00</p>
-                    <h3 className={styles["lista__promo"]}>R$ 1059,90</h3>
+                    <p className={styles["lista__categoria"]}>{item.categoria}</p>
+                    <p className={styles["lista__preco"]}>R$ {Number(item.precoAnterior).toFixed(2).replace('.', ',')}</p>
+                    <h3 className={styles["lista__promo"]}>R$ {Number(item.promocao).toFixed(2).replace('.', ',')}</h3>
                     <button className={styles["lista__comprar"]}>
                       Comprar
                     </button>
                   </div>
-                </li>
+                </Link>
               );
             })}
           </div>

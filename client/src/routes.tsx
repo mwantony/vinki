@@ -36,7 +36,6 @@ const endereco = {
 };
 const carrinho: any = [];
 
-
 const carrinhoLocal = localStorage.getItem("carrinho");
 const carrinhoLocalParsed =
   carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null;
@@ -61,8 +60,8 @@ console.log(urlAtual);
 
 export const atualizaCarrinho = () => {
   localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
-  window.location.reload()
-}
+  window.location.reload();
+};
 export const atualiza = async () => {
   fetch("http://localhost:3001/login", {
     method: "POST",
@@ -108,6 +107,7 @@ const verifica = () => {
 };
 
 export default function AppRouter() {
+
   const [aparecer, setAparecer] = useState(false);
   const [selecionado, setSelecionado] = useState(verifica);
   const dadosUsuario = localStorage.getItem("usuario");
@@ -115,7 +115,10 @@ export default function AppRouter() {
     dadosUsuario !== null ? JSON.parse(dadosUsuario) : null;
 
 
-  const [carrinho1, setCarrinho1] = useState(carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null)
+
+  const [carrinho1, setCarrinho1] = useState(
+    carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null
+  );
 
   const enderecoUsuario = localStorage.getItem("endereco");
   const enderecoUsuarioParsed =
@@ -155,13 +158,23 @@ export default function AppRouter() {
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
         <Route
           path="/carrinho"
-          element={<Carrinho nome={nome} setCarrinho1={setCarrinho1} produtos={carrinho1}></Carrinho>}
+          element={
+            <Carrinho
+              nome={nome}
+              setCarrinho1={setCarrinho1}
+              produtos={carrinho1}
+            ></Carrinho>
+          }
         ></Route>
         <Route path="/moveis" element={<Moveis></Moveis>}></Route>
         <Route
           path="/produto/:idProduto"
           element={
-            <PaginaProduto nome={nome} carrinhoLocalParsed={carrinhoLocalParsed} setSelecionado={setSelecionado}></PaginaProduto>
+            <PaginaProduto
+              nome={nome}
+              carrinhoLocalParsed={carrinhoLocalParsed}
+              setSelecionado={setSelecionado}
+            ></PaginaProduto>
           }
         ></Route>
         <Route

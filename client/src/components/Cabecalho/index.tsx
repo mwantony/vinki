@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Usuario from "interfaces/Usuario";
 import Endereco from "interfaces/Endereco";
+import { Badge } from "@mui/material";
 interface Props {
   aparecer: boolean;
   setAparecer: React.Dispatch<React.SetStateAction<boolean>>;
@@ -81,7 +82,8 @@ export default function Cabecalho({
             <Profile className={styles["navegacao__profile"]}></Profile>
           </Link>
           <Link to={'/carrinho'}>
-            <Cart className={styles["navegacao__cart"]}></Cart>
+              <Cart className={styles["navegacao__cart"]}></Cart>
+          
           </Link>
         </div>
       </nav>
