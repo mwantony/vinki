@@ -98,7 +98,7 @@ export default function Inicio() {
               src={
                 width <= 568
                   ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
-                  : "https://cdn.discordapp.com/attachments/799817839484731397/1111705400463593482/f1.png"
+                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1126310135048978532/image.png"
               }
               className="d-block w-100"
               alt={"Foto"}
@@ -109,7 +109,7 @@ export default function Inicio() {
               src={
                 width <= 568
                   ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
-                  : "https://cdn.discordapp.com/attachments/799817839484731397/1111705400463593482/f1.png"
+                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1126310135048978532/image.png"
               }
               className="d-block w-100"
               alt={"Foto"}
@@ -120,7 +120,7 @@ export default function Inicio() {
               src={
                 width <= 568
                   ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
-                  : "https://cdn.discordapp.com/attachments/799817839484731397/1111705400463593482/f1.png"
+                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1126310135048978532/image.png"
               }
               className="d-block w-100"
               alt={"Foto"}
