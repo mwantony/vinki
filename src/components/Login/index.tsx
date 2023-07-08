@@ -10,7 +10,7 @@ export default function Login() {
   const [emailInput, setEmailInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
   const handleClick = async (values: any) => {
-    Axios.post("http://localhost:3001/login", {
+    Axios.post(`${process.env.REACT_APP_API_URL}/login`, {
       email: values.email,
       password: values.password,
     }).then((response) => {
@@ -23,7 +23,7 @@ export default function Login() {
       }
       return dados
     }).then((dados) => {
-      Axios.get(`http://localhost:3001/endereco/${dados.idusuarios}`).then((res) => {
+      Axios.get(`${process.env.REACT_APP_API_URL}/endereco/${dados.idusuarios}`).then((res) => {
         localStorage.setItem('endereco', JSON.stringify(res.data))
       })
     } )

@@ -24,7 +24,7 @@ export default function PaginaProduto({
   const [set, setSet] = useState(0);
   const linkParaCompartilhar = String(window.location.href);
   const [produtos, setProdutos] = useState([{ foto: "" }]);
-  Axios.get(`http://localhost:3001/produto/${idProduto}`).then((res) => {
+  Axios.get(`${process.env.REACT_APP_API_URL}/produto/${idProduto}`).then((res) => {
     const produto = res.data;
     if (produto.titulo) {
       setTitulo(produto.titulo);
@@ -37,7 +37,7 @@ export default function PaginaProduto({
     }
   });
   if (set === 0) {
-    Axios.get(`http://localhost:3001/produtosrandom`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setProdutos(res.data);
       setSet(1);
     });

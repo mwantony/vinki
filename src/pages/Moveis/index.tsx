@@ -24,7 +24,7 @@ export default function Moveis() {
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
 
   const loadMore = () => {
-    Axios.post("http://localhost:3001/moveis", { categoria: "Móveis" }).then(
+    Axios.post(`${process.env.REACT_APP_API_URL}/moveis`, { categoria: "Móveis" }).then(
       (res) => {
         setMoveisNum(res.data);
         const moveis = res.data.slice(0, quantidade);

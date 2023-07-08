@@ -41,7 +41,7 @@ export default function Endereco({
     if(cepUser === '') {
       event.preventDefault()
     }
-    Axios.post("http://localhost:3001/endereco", {
+    Axios.post(`${process.env.REACT_APP_API_URL}/endereco`, {
       usuarioEndereco: id,
       cep: cepUser,
       complemento: complementoUser,

@@ -21,13 +21,13 @@ export default function Inicio() {
   const [set, setSet] = useState(0);
   const [set1, setSet1] = useState(0);
   if (set === 0) {
-    Axios.get(`http://localhost:3001/produtosrandom`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setEmDestaque(res.data);
       setSet(1);
     });
   }
   if (set1 === 0) {
-    Axios.get(`http://localhost:3001/produtosrandom`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setMaisVendidos(res.data);
       setSet1(1);
     });

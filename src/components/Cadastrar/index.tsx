@@ -31,7 +31,7 @@ export default function Cadastrar() {
     ) {
       values.preventDefault();
     }
-    Axios.post("http://localhost:3001/register", {
+    Axios.post(`${process.env.REACT_APP_API_URL}/register`, {
       name: values.name,
       cpf: cpf,
       tipoDeConta: tipo,
