@@ -175,7 +175,6 @@ app.get("/produto/:idProduto", (req, res) => {
     }
   );
 });
-
 app.get('/produtosrandom', (req, res) => {
   db.query('SELECT * FROM produtos ORDER BY RAND() LIMIT 10', (err, result) => {
     if(err) {
