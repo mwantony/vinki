@@ -56,7 +56,6 @@ const data = {
   password: usuarioLocalParsed.password,
 };
 const urlAtual = window.location.href;
-console.log(urlAtual);
 
 export const atualizaCarrinho = () => {
   localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
