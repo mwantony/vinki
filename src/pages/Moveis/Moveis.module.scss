@@ -138,14 +138,20 @@
 
 @media (min-width: $medium) {
   .moveis {
-    flex-direction: row;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     flex-wrap: wrap;
+    width: 95vw;
+    margin: 0 auto;
+    gap: 1rem;
     &__lista--item {
-      width: 40%;
+      width: 100%;
+      margin: 0;
     }
   }
 }
 @media (min-width: $large) {
-
+  .moveis {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
