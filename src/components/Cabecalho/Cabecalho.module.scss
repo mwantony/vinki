@@ -2,8 +2,7 @@
 
 
 header {
-
-    min-height: 80px;
+    min-height: 65px;
 }
 .navegacao {
     position: fixed;
@@ -15,7 +14,7 @@ header {
     z-index: 3;
     box-shadow: 0px 4px 50px $text-shadow;
     background-color: $main-color;
-    height: 80px;
+    height: 65px;
     justify-content: space-between;
     &__menu {
         margin-left: 1rem;
@@ -29,7 +28,7 @@ header {
         position: absolute;
         left: 17vw;
         width: 120px;
-        top: .5rem;
+        top: .2rem;
         filter: drop-shadow(0px 4px 15px $text-shadow);
     }
     &__search {
