@@ -138,6 +138,10 @@
       border-radius: 10px 0px 0px 10px;
       height: 350px;
       z-index: 1;
+      transition: 300ms;
+      &:hover {
+        transform: scale(1.03);
+      }
     }
     
     .arrownext {
@@ -147,6 +151,10 @@
       border-radius: 0px 10px 10px 0px;
       height: 350px;
       z-index: 1;
+      transition: 300ms;
+      &:hover {
+        transform: scale(1.03);
+      }
     }
     .emdestaque__lista--item:first-child {
       margin-left: 10vw;

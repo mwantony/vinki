@@ -2,6 +2,7 @@
     position: relative;
     margin: 1rem auto;
     visibility: hidden;
+    display: none;
     transition: visibility 0s, opacity 0.5s;
 
 }
@@ -15,6 +16,7 @@
 
 .loading-overlay.show {
     visibility: visible;
+    display: block;
     opacity: 1;
 }
 

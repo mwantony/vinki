@@ -53,6 +53,9 @@
       margin-top: .5rem;
       margin-right: .5rem;
       width: 50px;
+      &:hover {
+        cursor: pointer;
+      }
     }
 }
 
@@ -117,4 +120,16 @@
   text-align: center !important;
   margin: 0 auto;
   width: 60%;
+}
+
+@media (min-width: $medium) {
+  .carrinho {
+    &__lixeira {
+      transition: 500ms;
+      &:hover {
+        transform: scale(1.1);
+
+      }
+    }
+  }
 }
