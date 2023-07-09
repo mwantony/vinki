@@ -83,7 +83,7 @@ export default function Rodape() {
                 </div>
             </div>
             <div className={styles['rodape__marca']}>
-                <img src={vinkiFooterMobile} alt="" className={styles['rodape__imagem']} />
+                <a href="https://www.vinki.com.br/"><img src={vinkiFooterMobile} alt="" className={styles['rodape__imagem']} /></a>
                 <p className={styles['rodape__copy']}>© Copyright Vinki 2023. Todos os direitos reservados</p>
             </div>
         </footer>

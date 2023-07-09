@@ -5,6 +5,7 @@ import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
+import { Link } from "react-router-dom";
 const itemVariants: Variants = {
   open: {
     opacity: 1,
@@ -169,7 +170,7 @@ export default function Moveis() {
         {moveisEncontrados
           ? moveisEncontrados.map((produto: any, index: any) => {
               return (
-                <li className={styles["moveis__lista--item"]}>
+                <Link to={`/produto/${produto.idprodutos}`} className={styles["moveis__lista--item"]}>
                   <div
                     className={styles["lista__imagem"]}
                     style={{ backgroundImage: `url('${produto.link}')` }}
@@ -194,7 +195,7 @@ export default function Moveis() {
                       Comprar
                     </button>
                   </div>
-                </li>
+                </Link>
               );
             })
           : ""}

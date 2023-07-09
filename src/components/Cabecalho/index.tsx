@@ -68,7 +68,9 @@ export default function Cabecalho({
             setAparecer(true);
           }}
         ></MenuItem>
-        <Vinki className={styles["navegacao__logo"]}></Vinki>
+        <a href="https://www.vinki.com.br">
+          <Vinki className={styles["navegacao__logo"]}></Vinki>
+        </a>
         <input
           type="search"
           name=""

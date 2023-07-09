@@ -15,6 +15,7 @@ import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.
 import { slideRight, slideLeft } from "../../func/sliders";
 import { Link } from "react-router-dom";
 import Axios  from "axios";
+import ScrollHorizontal from "components/ScrollHorizontal";
 export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
   const [maisVendidos, setMaisVendidos] = useState([]);
@@ -77,16 +78,30 @@ export default function Inicio() {
       alt="Foto Jardim"
       className={styles["lista__foto--slicer"]}
     />,
+    <img
+      src={jardim}
+      onDragStart={handleDragStart}
+      role="presentation"
+      alt="Foto Jardim"
+      className={styles["lista__foto--slicer"]}
+    />,
+    <img
+      src={jardim}
+      onDragStart={handleDragStart}
+      role="presentation"
+      alt="Foto Jardim"
+      className={styles["lista__foto--slicer"]}
+    />,
   ];
   const responsive = {
-    2000: {
-      items: 11,
+    1800: {
+      items: 4,
     },
     1200: {
-      items: 5,
+      items: 3,
     },
     800: {
-      items: 3,
+      items: 2,
     },
     500: {
       items: 2,
@@ -98,12 +113,12 @@ export default function Inicio() {
 
   const renderPrevButton = () => {
     return (
-      <ArrowBackIosIcon style={{ position: "absolute", left: 10, top: 90 }} />
+      <ArrowBackIosIcon style={{ position: "absolute", left: 10, top: '50%', transform: 'translateY(-50%)'}} />
     );
   };
   const renderNextButton = () => {
     return (
-      <ArrowNextIosIcon style={{ position: "absolute", right: 10, top: 90 }} />
+      <ArrowNextIosIcon style={{ position: "absolute", right: 10, top: '50%', transform: 'translateY(-50%)'}} />
     );
   };
   return (
@@ -114,7 +129,7 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1127686531671408771/smartwatch-mobile.png"
                   : "https://cdn.discordapp.com/attachments/1109594939840532501/1126310135048978532/image.png"
               }
               className="d-block w-100"
@@ -125,7 +140,7 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
+                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1127686531985977424/xiomi-mobile.png"
                   : "https://cdn.discordapp.com/attachments/1109594939840532501/1126310135048978532/image.png"
               }
               className="d-block w-100"
@@ -157,45 +172,8 @@ export default function Inicio() {
       </section>
       <section className={styles["emdestaque"]}>
         <h2 className={styles["emdestaque__titulo"]}>Produtos em destaque</h2>
-        <div className={styles["slider__div"]}>
-          <ArrowBackIosIcon
-            onClick={() => slideLeft("slider--emdestaque")}
-            className={styles["arrowback"]}
-          ></ArrowBackIosIcon>
-          <div
-            id="slider--emdestaque"
-            className="emdestaque__slider w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
-          >
-            {emDestaque.map((item: any, index) => {
-              return (
-                <Link to={`/produto/${item.idprodutos}`} className={styles["emdestaque__lista--item"]}>
-                  <div
-                    className={styles["lista__imagem"]}
-                    style={{ backgroundImage: "url(" + item.link + ")" }}
-                  ></div>
-                  <div className={styles["lista__legenda"]}>
-                    <h3 className={styles["lista__subtitulo"]}>
-                      {item.titulo}
-                    </h3>
-                    <p className={styles["lista__categoria"]}>{item.categoria}</p>
-                    <p className={styles["lista__preco"]}>R$ {Number(item.precoAnterior).toFixed(2).replace('.', ',')}</p>
-                    <h3 className={styles["lista__promo"]}>R$ {Number(item.promocao).toFixed(2).replace('.', ',')}</h3>
-                    <button className={styles["lista__comprar"]}>
-                      Comprar
-                    </button>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <Link to={"/emdestaque"}>
-            <p className={styles["vertodos"]}>Ver todos</p>
-          </Link>
-          <ArrowNextIosIcon
-            onClick={() => slideRight("slider--emdestaque")}
-            className={styles["arrownext"]}
-          ></ArrowNextIosIcon>
-        </div>
+        <ScrollHorizontal produtos={emDestaque} id={'emdestaque'}></ScrollHorizontal>
+
       </section>
       <section className={styles.newsletter}>
         <h2 className={styles["newsletter__titulo"]}>
@@ -222,45 +200,7 @@ export default function Inicio() {
       <section className={styles.maisvendidos}>
         <h2 className={styles["maisvendidos__titulo"]}>Mais vendidos</h2>
 
-        <div className={styles["slider__div"]}>
-          <ArrowBackIosIcon
-            onClick={() => slideLeft("slider--maisvendidos")}
-            className={styles["arrowback"]}
-          ></ArrowBackIosIcon>
-          <div
-            id="slider--maisvendidos"
-            className="w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
-          >
-            {maisVendidos.map((item: any, index) => {
-              return (
-                <Link to={`/produto/${item.idprodutos}`} className={styles["emdestaque__lista--item"]}>
-                  <div
-                    className={styles["lista__imagem"]}
-                    style={{ backgroundImage: "url(" + item.link + ")" }}
-                  ></div>
-                  <div className={styles["lista__legenda"]}>
-                    <h3 className={styles["lista__subtitulo"]}>
-                      {item.titulo}
-                    </h3>
-                    <p className={styles["lista__categoria"]}>{item.categoria}</p>
-                    <p className={styles["lista__preco"]}>R$ {Number(item.precoAnterior).toFixed(2).replace('.', ',')}</p>
-                    <h3 className={styles["lista__promo"]}>R$ {Number(item.promocao).toFixed(2).replace('.', ',')}</h3>
-                    <button className={styles["lista__comprar"]}>
-                      Comprar
-                    </button>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <Link to={"/maisvendidos"}>
-            <p className={styles["vertodos"]}>Ver todos</p>
-          </Link>
-          <ArrowNextIosIcon
-            onClick={() => slideRight("slider--maisvendidos")}
-            className={styles["arrownext"]}
-          ></ArrowNextIosIcon>
-        </div>
+        <ScrollHorizontal produtos={maisVendidos} id={'maisvendidos'}></ScrollHorizontal>
       </section>
     </>
   );

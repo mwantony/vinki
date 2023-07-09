@@ -169,6 +169,9 @@ input[type="checkbox"] {
     grid-template-columns: 40% 60%;
     grid-template-rows: 2;
     gap: 0.5rem;
+    &__bemvindo {
+      border-radius: 0px 20px 20px 0px;
+    }
   }
 }
 

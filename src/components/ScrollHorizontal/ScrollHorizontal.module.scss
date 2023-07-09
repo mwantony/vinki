@@ -1,5 +1,10 @@
 @import '../../styles/variables';
 
+.emdestaque {
+  &__slider {
+    width: 100vw;
+  }
+}
 .emdestaque__lista {
     display: flex;
     width: 75vw;
@@ -116,4 +121,36 @@
   .arrownext {
     position: absolute;
     right: 0;
+  }
+
+  @media (min-width: $medium) {
+    .emdestaque {
+      &__slider {
+        width: 80vw !important;
+      }
+    }
+    .arrowback {
+      position: absolute;
+      left: 8vw;
+      background-color: $scroll;
+      border-radius: 10px 0px 0px 10px;
+      height: 350px;
+      z-index: 1;
+    }
+    
+    .arrownext {
+      position: absolute;
+      right: 8vw;
+      background-color: $scroll;
+      border-radius: 0px 10px 10px 0px;
+      height: 350px;
+      z-index: 1;
+    }
+    .emdestaque__lista--item:first-child {
+      margin-left: 10vw;
+    }
+    .emdestaque__lista--item:last-child {
+      margin-right: 10vw;
+    }
+    
   }

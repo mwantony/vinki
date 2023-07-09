@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import styles from "./PaginaProduto.module.scss";
 import NotFound from "components/NotFound";
 import classNames from "classnames";
-import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
+import { ReactComponent as Cart } from "../../assets/svg/cartComprar.svg";
 import { ReactComponent as Cesta } from "../../assets/svg/cesta.svg";
 import { ReactComponent as Share } from "../../assets/svg/share.svg";
 import ScrollHorizontal from "components/ScrollHorizontal";
@@ -130,7 +130,7 @@ export default function PaginaProduto({
             </div>
           </div>
           <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
-          <ScrollHorizontal produtos={produtos}></ScrollHorizontal>
+          <ScrollHorizontal produtos={produtos} id={'vejaTambem'}></ScrollHorizontal>
         </section>
       </>
     );

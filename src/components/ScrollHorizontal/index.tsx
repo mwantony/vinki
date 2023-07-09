@@ -3,16 +3,20 @@ import { slideRight, slideLeft } from "../../func/sliders";
 import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.svg";
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
 import styles from "./ScrollHorizontal.module.scss";
-export default function ScrollHorizontal({ produtos }: any) {
+interface Props {
+  produtos: any
+  id: any
+}
+export default function ScrollHorizontal({ produtos, id }: Props) {
   return (
     <>
       <div className={styles["slider__div"]}>
         <ArrowBackIosIcon
-          onClick={() => slideLeft("slider--emdestaque")}
+          onClick={() => slideLeft(id)}
           className={styles["arrowback"]}
         ></ArrowBackIosIcon>
         <div
-          id="slider--emdestaque"
+          id={id}
           className="emdestaque__slider w-full sliding h-full overflow-x-scroll whitespace-nowrap scroll scrollbar-hide scroll-smooth"
         >
           {produtos.map((item: any, index: any) => {
@@ -37,7 +41,7 @@ export default function ScrollHorizontal({ produtos }: any) {
         </div>
 
         <ArrowNextIosIcon
-          onClick={() => slideRight("slider--emdestaque")}
+          onClick={() => slideRight(id)}
           className={styles["arrownext"]}
         ></ArrowNextIosIcon>
       </div>

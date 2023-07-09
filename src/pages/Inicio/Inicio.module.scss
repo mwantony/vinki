@@ -221,3 +221,17 @@
     visibility: hidden;
   }
 }
+
+@media (min-width: $medium) {
+  .emdestaque {
+    &__titulo {
+      margin-left: 8vw;
+    }
+  }
+  .maisvendidos {
+    &__titulo {
+      margin-left: 8vw;
+
+    }
+  }
+}

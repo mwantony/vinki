@@ -21,6 +21,9 @@ header {
         margin-left: 1rem;
         width: 35px;
         filter: drop-shadow(0px 4px 15px $text-shadow);
+        &:hover {
+            cursor: pointer;
+        }
     }
     &__logo {
         position: absolute;
@@ -51,7 +54,9 @@ header {
         width: 110px;
     }
     &__searchicon {
-
+        &:hover {
+            cursor: pointer;
+        }
     } 
     &__profile {
         filter: drop-shadow(0px 4px 15px $text-shadow);
