@@ -48,85 +48,87 @@ export default function PaginaProduto({
     return (
       <>
         <section className={styles["produto"]}>
-          <img
-            src={link}
-            alt="Imagem do produto"
-            className={styles["produto__imagem"]}
-          />
-          <h2></h2>
-          <div className={styles["produto__informacoes"]}>
-            <div className={styles["produto__first"]}>
-              <div>
-                <h3 className={styles["produto__titulo"]}>{titulo}</h3>
-                <p className={styles["produto__paragrafo"]}>
-                  Vendido e entregue por Vinki!
-                </p>
+          <div className={styles['produto__inf']}>
+            <img
+              src={link}
+              alt="Imagem do produto"
+              className={styles["produto__imagem"]}
+            />
+            <h2></h2>
+            <div className={styles["produto__informacoes"]}>
+              <div className={styles["produto__first"]}>
+                <div>
+                  <h3 className={styles["produto__titulo"]}>{titulo}</h3>
+                  <p className={styles["produto__paragrafo"]}>
+                    Vendido e entregue por Vinki!
+                  </p>
+                </div>
+                <Share
+                  className={styles["produto__share"]}
+                  onClick={() =>
+                    navigator.share({
+                      title: "Compre mais barato nas Lojas Vinki!",
+                      text: "Compre mais barato nas Lojas Vinki!",
+                      url: linkParaCompartilhar,
+                    })
+                  }
+                ></Share>
               </div>
-              <Share
-                className={styles["produto__share"]}
-                onClick={() =>
-                  navigator.share({
-                    title: "Compre mais barato nas Lojas Vinki!",
-                    text: "Compre mais barato nas Lojas Vinki!",
-                    url: linkParaCompartilhar,
-                  })
-                }
-              ></Share>
-            </div>
-            <div>
+              <div>
+                <p
+                  className={classNames({
+                    [styles["produto__paragrafo"]]: true,
+                    [styles["produto__paragrafo--precoAnt"]]: true,
+                  })}
+                >
+                  De{" "}
+                  <span className={styles["produto__paragrafo--precoAnterior"]}>
+                    R$ {Number(precoAnterior).toFixed(2).replace(".", ",")}
+                  </span>
+                </p>
+                <p className={styles["produto__paragrafo"]}>Por apenas:</p>
+              </div>
+              <h4 className={styles["produto__paragrafo--preco"]}>
+                R$ {Number(promocao).toFixed(2).replace(".", ",")}
+              </h4>
               <p
                 className={classNames({
                   [styles["produto__paragrafo"]]: true,
-                  [styles["produto__paragrafo--precoAnt"]]: true,
                 })}
               >
-                De{" "}
-                <span className={styles["produto__paragrafo--precoAnterior"]}>
-                  R$ {Number(precoAnterior).toFixed(2).replace(".", ",")}
-                </span>
+                Em até 12x de{" "}
+                {Number(Number(promocao) / 12)
+                  .toFixed(2)
+                  .replace(".", ",")}
               </p>
-              <p className={styles["produto__paragrafo"]}>Por apenas:</p>
-            </div>
-            <h4 className={styles["produto__paragrafo--preco"]}>
-              R$ {Number(promocao).toFixed(2).replace(".", ",")}
-            </h4>
-            <p
-              className={classNames({
-                [styles["produto__paragrafo"]]: true,
-              })}
-            >
-              Em até 12x de{" "}
-              {Number(Number(promocao) / 12)
-                .toFixed(2)
-                .replace(".", ",")}
-            </p>
-            <div className={styles["produto__botoes"]}>
-              <button
-                className={classNames({
-                  [styles["produto__botao"]]: true,
-                  [styles["produto__botao--adicionar"]]: true,
-                })}
-                onClick={() => {
-                  if(nome !== '') {
-                    carrinhoLocalParsed.push({ link: linkParaCompartilhar, titulo: titulo, categoria: categoria, promocao: promocao, linkImagem: link });
-                    atualizaCarrinho();
-                  } else {
-                    navigate('/login')
-                  }
-                }}
-              >
-                Adicionar
-                <Cart className={styles["produto__content"]}></Cart>
-              </button>
-              <button
-                className={classNames({
-                  [styles["produto__botao"]]: true,
-                  [styles["produto__botao--comprar"]]: true,
-                })}
-              >
-                Comprar
-                <Cesta className={styles["produto__content"]}></Cesta>
-              </button>
+              <div className={styles["produto__botoes"]}>
+                <button
+                  className={classNames({
+                    [styles["produto__botao"]]: true,
+                    [styles["produto__botao--adicionar"]]: true,
+                  })}
+                  onClick={() => {
+                    if(nome !== '') {
+                      carrinhoLocalParsed.push({ link: linkParaCompartilhar, titulo: titulo, categoria: categoria, promocao: promocao, linkImagem: link });
+                      atualizaCarrinho();
+                    } else {
+                      navigate('/login')
+                    }
+                  }}
+                >
+                  Adicionar
+                  <Cart className={styles["produto__content"]}></Cart>
+                </button>
+                <button
+                  className={classNames({
+                    [styles["produto__botao"]]: true,
+                    [styles["produto__botao--comprar"]]: true,
+                  })}
+                >
+                  Comprar
+                  <Cesta className={styles["produto__content"]}></Cesta>
+                </button>
+              </div>
             </div>
           </div>
           <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
