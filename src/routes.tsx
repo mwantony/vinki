@@ -13,6 +13,7 @@ import Moveis from "pages/Moveis";
 import Loading from "components/Loading";
 import Carrinho from "pages/Carrinho";
 import PaginaProduto from "pages/PaginaProduto";
+import Search from "pages/Search";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -106,14 +107,11 @@ const verifica = () => {
 };
 
 export default function AppRouter() {
-
   const [aparecer, setAparecer] = useState(false);
   const [selecionado, setSelecionado] = useState(verifica);
   const dadosUsuario = localStorage.getItem("usuario");
   const dadosUsuarioParsed =
     dadosUsuario !== null ? JSON.parse(dadosUsuario) : null;
-
-
 
   const [carrinho1, setCarrinho1] = useState(
     carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null
@@ -207,6 +205,7 @@ export default function AppRouter() {
             ></MinhaConta>
           }
         ></Route>
+        <Route path="/search" element={<Search></Search>}></Route>
         <Route
           path="/*"
           element={<NotFound setSelecionado={setSelecionado}></NotFound>}

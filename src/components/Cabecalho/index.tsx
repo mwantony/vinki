@@ -79,7 +79,9 @@ export default function Cabecalho({
           placeholder="Busque aqui"
         />
         <div className={styles["navegacao__account"]}>
-          <SearchIcon className={styles["navegacao__searchicon"]}></SearchIcon>
+          <Link to={'/search'}>
+            <SearchIcon className={styles["navegacao__searchicon"]}></SearchIcon>
+          </Link>
           <Link to="conta">
             <Profile className={styles["navegacao__profile"]}></Profile>
           </Link>
