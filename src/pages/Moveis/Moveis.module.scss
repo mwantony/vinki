@@ -119,7 +119,9 @@
   text-align: center;
   &__lista {
     position: absolute;
-    transform: translateX(40vw);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
     background-color: $variant;
     color: $main-color;
     padding: 1rem;
