@@ -4,7 +4,7 @@
     visibility: hidden;
     display: none;
     transition: visibility 0s, opacity 0.5s;
-
+    grid-column: span 2;
 }
 .loading-overlay-login {
     position:fixed; 

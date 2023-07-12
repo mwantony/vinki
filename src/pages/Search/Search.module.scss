@@ -1,2 +1,68 @@
 @import 'styles/_variables.scss';
 
+.search {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0 1rem 0;
+    &__input {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 4;
+        margin-top: 1rem;
+        transition: 500ms;
+        padding: .2rem;
+        padding-left: 1rem;
+        width: 25vw;
+        font-size: 1.1rem;
+ 
+        border-radius: 10px;
+        box-shadow: 0px 4px 50px $text-shadow;
+        transform: translateX(-50%);
+    }
+}
+
+.menu {
+    text-align: center;
+    margin-top: 1rem;
+    &__lista {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      background-color: $variant;
+      color: $main-color;
+      padding: 1rem;
+    }
+  
+    &__item {
+      margin: 0.2rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__svg {
+      display: inline-block;
+    }
+  }
+  
+
+@media (min-width: $medium) {
+    .search {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex-wrap: wrap;
+      width: 95vw;
+      margin: 0 auto;
+      gap: 1rem;
+      &__lista--item {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+  @media (min-width: $large) {
+    .search {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
