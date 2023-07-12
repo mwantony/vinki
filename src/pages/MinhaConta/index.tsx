@@ -9,6 +9,8 @@ import { ReactComponent as Pencil } from "../../assets/svg/pencil.svg";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import Endereco from "interfaces/Endereco";
+import  Axios  from "axios";
+import { atualiza } from "routes";
 interface Props {
   nome: any;
   tipoDeConta: any;
@@ -18,6 +20,7 @@ interface Props {
   emailUser: any;
   senhaUser: any;
   enderecoUsuarioParsed: Endereco;
+  id: any
 }
 
 export default function MinhaConta({
@@ -29,6 +32,7 @@ export default function MinhaConta({
   emailUser,
   senhaUser,
   enderecoUsuarioParsed,
+  id
 }: Props) {
   const navigate = useNavigate();
 
@@ -40,12 +44,25 @@ export default function MinhaConta({
   const validacao = enderecoUsuarioParsed.cep !== "";
   const [senha, setSenha] = useState(senhaUser);
   const [senhaConfirm, setSenhaConfirm] = useState(senhaUser);
+  const [dataDeNascimentoInput, setDataDeNascimentoInput] = useState(dataDeNascimento)
 
   const props = {};
-  const [cpf, setCpf] = useState("");
+  const [cpf, setCpf] = useState(cpfUser);
   const [mask, setMask] = useState("(99) 99999-9999");
 
   const [tipo, setTipo] = useState(tipoDeConta === "pj" ? "pj" : "pf");
+  const handleEverything = () => {
+    Axios.post(`${process.env.REACT_APP_API_URL}/users/${id}`, {
+      password: senha,
+      tipoDeConta: tipo,
+      nome: nomeInput,
+      cpf: cpf,
+      dataDeNascimento: dataDeNascimentoInput,
+      telefone: telefone,
+    }).then((response) => {
+      alert(response.data.msg);
+    });
+  }
   useEffect(() => {
     if (nome === "") {
       navigate("/login");
@@ -170,13 +187,15 @@ export default function MinhaConta({
               className={styles["minhaconta__input"]}
               placeholder="Data de nascimento"
               defaultValue={dataDeNascimento}
+              onChange={(event: any) => {
+                setDataDeNascimentoInput(event?.target.value)
+              }}
             />
             <InputMask
               placeholder="Telefone"
               name="tel"
               onChange={(event) => {
                 setTelefone(event.target.value);
-                console.log(telefone);
               }}
               className={styles["minhaconta__input"]}
               {...props}
@@ -201,6 +220,7 @@ export default function MinhaConta({
               })}
               placeholder="Email"
               type="email"
+              disabled={true}
               defaultValue={email}
               onChange={(event) => {
                 setEmail(event.target.value);
@@ -231,7 +251,10 @@ export default function MinhaConta({
               />
             </div>
           </form>
-          <button className={styles["minhaconta__botao"]} type="submit">
+          <button className={styles["minhaconta__botao"]} onClick={() => {
+            handleEverything()
+            atualiza()
+          }} >
             Salvar
           </button>
         </div>

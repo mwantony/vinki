@@ -221,6 +221,7 @@ export default function AppRouter() {
           path="/conta"
           element={
             <MinhaConta
+            id={id}
               enderecoUsuarioParsed={enderecoUsuarioParsed}
               senhaUser={senhaUser}
               emailUser={emailUser}
