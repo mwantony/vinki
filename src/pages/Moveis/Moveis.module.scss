@@ -54,6 +54,7 @@
   width: calc(100% - 2rem);
   margin: 0.5rem 1rem 0.5rem 1rem;
   height: 125px;
+  overflow: hidden;
   background-color: $main-color;
   box-shadow: 0px 4px 50px $text-shadow;
 }
@@ -72,12 +73,14 @@
   &__legenda {
     width: 80%;
     padding-top: 0.5rem;
+    overflow: hidden;
     margin: 0 auto;
   }
   &__subtitulo {
     color: $cinza-escuro;
     font-size: 1.1rem;
     font-weight: bold;
+    overflow: hidden;
     margin: 0.5rem 0 0 0;
     margin-left: 0.5rem;
   }
@@ -144,7 +147,7 @@
     grid-template-columns: 1fr 1fr;
     flex-wrap: wrap;
     width: 95vw;
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
     gap: 1rem;
     &__lista--item {
       width: 100%;

@@ -1,19 +1,19 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import styles from './Search.module.scss'
+import styles from "./Search.module.scss";
 import { Link } from "react-router-dom";
 import Cartao from "components/Cartao";
 import { motion } from "framer-motion";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 interface Props {
-  setFilteredData: any
-  input: any
-  setInput: any
-  produtos: any
-  filteredData: any
-  produtosRandom: any
+  setFilteredData: any;
+  input: any;
+  setInput: any;
+  produtos: any;
+  filteredData: any;
+  produtosRandom: any;
 }
 export default function Search({
   setFilteredData,
@@ -21,15 +21,15 @@ export default function Search({
   setInput,
   produtos,
   filteredData,
-  produtosRandom
+  produtosRandom,
 }: Props) {
-/*   const [agr, setAgr] = useState(0);
- */  /* const [input, setInput] = useState(""); */
-/*   const [produtos, setProdutos] = useState([]);
- */  const [selecionado, setSelecionado] = useState("Ordenar");
-/*   const [produtosRandom, setProdutosRandom] = useState([]);
- */  const [isOpen, setIsOpen] = useState(false);
-  const [parent, enableAnimations] = useAutoAnimate()
+  /*   const [agr, setAgr] = useState(0);
+   */ /* const [input, setInput] = useState(""); */
+  /*   const [produtos, setProdutos] = useState([]);
+   */ const [selecionado, setSelecionado] = useState("Ordenar");
+  /*   const [produtosRandom, setProdutosRandom] = useState([]);
+   */ const [isOpen, setIsOpen] = useState(false);
+  const [parent, enableAnimations] = useAutoAnimate();
 
   const itemVariants = {
     open: {
@@ -39,7 +39,7 @@ export default function Search({
     },
     closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
   };
-/*   const [filteredData, setFilteredData] = useState(produtos.filter((item: any) =>
+  /*   const [filteredData, setFilteredData] = useState(produtos.filter((item: any) =>
     item.titulo.toLowerCase().includes(input.toLowerCase())
   ))
   useEffect(() => {
@@ -58,9 +58,16 @@ export default function Search({
         });
     }
   }, [agr]); */
+  const verifica = (produtos: any) => {
+    if (produtos.length === 0) {
+      return <p className={styles['search__para']}>Nada encontrado...</p>
+    } else {
+      return filteredData.map((item: any) => <Cartao item={item}></Cartao>)
+    }
+  }
   return (
     <>
-{/*         <input
+      {/*         <input
           type="text"
           name=""
           id=""
@@ -73,7 +80,7 @@ export default function Search({
             ))
           }}
         /> */}
-        <motion.nav
+      <motion.nav
         initial={false}
         animate={isOpen ? "open" : "closed"}
         className={styles["menu"]}
@@ -141,26 +148,19 @@ export default function Search({
             variants={itemVariants}
             onClick={() => {
               setSelecionado("Menor preço");
-              ordenarDecrescente(filteredData)
+              ordenarDecrescente(filteredData);
             }}
           >
             Menor preço
           </motion.li>
-
         </motion.ul>
       </motion.nav>
-      <section className={styles['search']} ref={parent}>
+      <section className={styles["search"]} ref={parent}>
         {input !== ""
-          ? filteredData.map((item: any) => {
-              return (
-                <Cartao item={item}></Cartao>
-                )
-            })
+          ? verifica(filteredData)
           : produtosRandom.map((item: any) => {
-            return(
-              <Cartao item={item}></Cartao>
-            )
-          })}
+              return <Cartao item={item}></Cartao>;
+            })}
       </section>
     </>
   );

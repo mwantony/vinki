@@ -72,29 +72,26 @@
 .lista {
   &__legenda {
     width: 80%;
-    padding-top: 0.5rem;
+    padding: .5rem;
     overflow: hidden;
     margin: 0 auto;
   }
   &__subtitulo {
     color: $cinza-escuro;
     font-size: 1.1rem;
+    overflow: hidden;
     font-weight: bold;
     margin: 0.5rem 0 0 0;
-    margin-left: 0.5rem;
   }
   &__categoria {
-    margin-left: 0.5rem;
     font-size: 0.8rem;
   }
   &__preco {
     text-decoration: line-through;
     margin: 0.5rem 0 0 0;
     font-size: 0.8rem;
-    margin-left: 0.5rem;
   }
   &__promo {
-    margin-left: 0.5rem;
     font-weight: bold;
     font-size: 1.1rem;
   }

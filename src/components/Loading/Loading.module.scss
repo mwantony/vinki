@@ -1,10 +1,11 @@
+
+@import 'styles/_variables.scss';
 .loading-overlay {
     position: relative;
     margin: 1rem auto;
     visibility: hidden;
     display: none;
     transition: visibility 0s, opacity 0.5s;
-    grid-column: span 2;
 }
 .loading-overlay-login {
     position:fixed; 
@@ -45,5 +46,15 @@
     }
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+@media (min-width: $medium) {
+    .loading-overlay {
+        grid-column: span 2;
+    }
+}
+@media (min-width: $large) {
+    .loading-overlay {
+        grid-column: span 3;
     }
 }
