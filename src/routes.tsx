@@ -136,11 +136,35 @@ export default function AppRouter() {
   const cidade = enderecoUsuarioParsed.cidade;
   const uf = enderecoUsuarioParsed.uf;
   const pontoDeRef = enderecoUsuarioParsed.pontoDeRef;
-
-  useEffect(() => {}, [dadosUsuario]);
+  const [agr, setAgr] = useState(0);
+  const [produtosRandom, setProdutosRandom] = useState([]);
+  const [produtos, setProdutos] = useState([]);
+  const [input, setInput] = useState("");
+  const [filteredData, setFilteredData] = useState(
+    produtos.filter((item: any) =>
+      item.titulo.toLowerCase().includes(input.toLowerCase())
+    )
+  );
+  useEffect(() => {
+    if (agr === 0) {
+      Axios.get(`${process.env.REACT_APP_API_URL}/produtos`)
+        .then((res: any) => {
+          setProdutos(res.data);
+          setAgr(1);
+        })
+        .then(() => {
+          Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then(
+            (res) => {
+              setProdutosRandom(res.data);
+            }
+          );
+        });
+    }
+  }, [agr, dadosUsuario]);
   return (
     <BrowserRouter>
       <Cabecalho
+
         endereco={endereco}
         usuario={usuario}
         nome={nome}

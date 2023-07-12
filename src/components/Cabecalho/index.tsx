@@ -8,8 +8,8 @@ import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import { ReactComponent as Sair } from "../../assets/svg/sair.svg";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Usuario from "interfaces/Usuario";
 import Endereco from "interfaces/Endereco";
 import { Badge } from "@mui/material";
@@ -21,6 +21,7 @@ interface Props {
   nome: any;
   usuario: any
   endereco: any
+
 }
 export default function Cabecalho({
   aparecer,
@@ -30,6 +31,7 @@ export default function Cabecalho({
   endereco,
   usuario,
   nome,
+
 }: Props) {
   const menu = [
     {
@@ -58,6 +60,10 @@ export default function Cabecalho({
       classe: "ofertas",
     },
   ];
+  const navigate = useNavigate()
+  const [localURL, setLocalURL] = useState(window.location.href)
+  const [inputAparecer, setInputAparecer] = useState(localURL !== process.env.REACT_APP_LOCAL)
+  console.log(localURL)
   return (
     <header className={styles.cabecalho}>
       <nav className={styles.navegacao}>
@@ -72,11 +78,17 @@ export default function Cabecalho({
           <Vinki className={styles["navegacao__logo"]}></Vinki>
         </a>
         <input
-          type="search"
+          type="text"
           name=""
           id=""
-          className={styles["navegacao__search"]}
-          placeholder="Busque aqui"
+          className={classNames({
+            [styles['search__input']]: true,
+            [styles['search__input--aparecer']]: window.location.href !== process.env.REACT_APP_LOCAL,
+          })}
+          onClick={() => {
+            navigate('/search')
+          }}
+          placeholder="Busque aqui..."
         />
         <div className={styles["navegacao__account"]}>
           <Link to={'/search'}>
