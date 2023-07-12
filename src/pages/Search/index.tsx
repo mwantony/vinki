@@ -7,13 +7,28 @@ import { motion } from "framer-motion";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-export default function Search() {
-  const [agr, setAgr] = useState(0);
-  const [input, setInput] = useState("");
-  const [produtos, setProdutos] = useState([]);
-  const [selecionado, setSelecionado] = useState("Ordenar");
-  const [produtosRandom, setProdutosRandom] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+interface Props {
+  setFilteredData: any
+  input: any
+  setInput: any
+  produtos: any
+  filteredData: any
+  produtosRandom: any
+}
+export default function Search({
+  setFilteredData,
+  input,
+  setInput,
+  produtos,
+  filteredData,
+  produtosRandom
+}: Props) {
+/*   const [agr, setAgr] = useState(0);
+ */  /* const [input, setInput] = useState(""); */
+/*   const [produtos, setProdutos] = useState([]);
+ */  const [selecionado, setSelecionado] = useState("Ordenar");
+/*   const [produtosRandom, setProdutosRandom] = useState([]);
+ */  const [isOpen, setIsOpen] = useState(false);
   const [parent, enableAnimations] = useAutoAnimate()
 
   const itemVariants = {
@@ -24,7 +39,7 @@ export default function Search() {
     },
     closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
   };
-  const [filteredData, setFilteredData] = useState(produtos.filter((item: any) =>
+/*   const [filteredData, setFilteredData] = useState(produtos.filter((item: any) =>
     item.titulo.toLowerCase().includes(input.toLowerCase())
   ))
   useEffect(() => {
@@ -42,10 +57,10 @@ export default function Search() {
           );
         });
     }
-  }, [agr]);
+  }, [agr]); */
   return (
     <>
-        <input
+{/*         <input
           type="text"
           name=""
           id=""
@@ -57,7 +72,7 @@ export default function Search() {
               item.titulo.toLowerCase().includes(input.toLowerCase())
             ))
           }}
-        />
+        /> */}
         <motion.nav
         initial={false}
         animate={isOpen ? "open" : "closed"}

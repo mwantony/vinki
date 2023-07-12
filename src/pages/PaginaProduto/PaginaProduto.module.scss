@@ -9,6 +9,9 @@
   &__informacoes {
     background-color: $cinza-escuro;
     color: $main-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0px 4px 50px $text-shadow;
     padding: 1.5rem;
   }
@@ -82,7 +85,6 @@
     &__informacoes {
         width: 40vw;
         border-radius: 0px 0px 0px 20px;
-        max-height: 325px;
     }
     &__subtitulo {
         margin-left: 8vw;

@@ -9,7 +9,7 @@ import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import { ReactComponent as Sair } from "../../assets/svg/sair.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Usuario from "interfaces/Usuario";
 import Endereco from "interfaces/Endereco";
 import { Badge } from "@mui/material";
@@ -21,6 +21,10 @@ interface Props {
   nome: any;
   usuario: any
   endereco: any
+  setFilteredData: any
+  input: any
+  setInput: any
+  produtos: any
 
 }
 export default function Cabecalho({
@@ -31,6 +35,10 @@ export default function Cabecalho({
   endereco,
   usuario,
   nome,
+  setFilteredData,
+  input,
+  setInput,
+  produtos,
 
 }: Props) {
   const menu = [
@@ -60,10 +68,22 @@ export default function Cabecalho({
       classe: "ofertas",
     },
   ];
+  const [larguraTela, setLarguraTela] = useState(window.innerWidth);
+  useEffect(() => {
+  
+    const isInputFocused = () => {
+      return document.activeElement === inputRef.current;
+    };
+    console.log('Input em foco:', isInputFocused());
+  }, [])
   const navigate = useNavigate()
-  const [localURL, setLocalURL] = useState(window.location.href)
-  const [inputAparecer, setInputAparecer] = useState(localURL !== process.env.REACT_APP_LOCAL)
-  console.log(localURL)
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+  const [aparecerInput, setAparecerInput] = useState(false)
   return (
     <header className={styles.cabecalho}>
       <nav className={styles.navegacao}>
@@ -75,23 +95,56 @@ export default function Cabecalho({
           }}
         ></MenuItem>
         <a href="https://www.vinki.com.br">
-          <Vinki className={styles["navegacao__logo"]}></Vinki>
+          <Vinki className={classNames({
+            [styles["navegacao__logo"]]: true,
+            [styles["navegacao__logo--desaparecer"]]: aparecerInput,
+          })}></Vinki>
         </a>
         <input
           type="text"
           name=""
+          ref={inputRef}
           id=""
-          className={classNames({
-            [styles['search__input']]: true,
-            [styles['search__input--aparecer']]: window.location.href !== process.env.REACT_APP_LOCAL,
-          })}
           onClick={() => {
             navigate('/search')
           }}
+          className={classNames({
+            [styles['search__input']]: true,
+            [styles['search__input--aparecer']]: aparecerInput,
+          })}
+          onBlur={() => {
+            setAparecerInput(false)
+          }}
           placeholder="Busque aqui..."
+          onChange={(event: any) => {
+            setInput(event.target.value);
+            setFilteredData(produtos.filter((item: any) =>
+              item.titulo.toLowerCase().includes(input.toLowerCase())
+            ))
+          }}
         />
+          <input
+          type="text"
+          name=""
+          placeholder="Busque aqui..."
+          id=""
+          onClick={() => {
+            navigate('/search')
+          }}
+          className={classNames({
+            [styles['search__input--desktop']]: true,
+          })}
+          onChange={(event: any) => {
+            setInput(event.target.value);
+            setFilteredData(produtos.filter((item: any) =>
+              item.titulo.toLowerCase().includes(input.toLowerCase())
+            ))
+          }}></input>
         <div className={styles["navegacao__account"]}>
-          <Link to={'/search'}>
+          <Link to={'/search'} onClick={() => {
+            handleClick()
+            setAparecerInput(true)
+          }}>
             <SearchIcon className={styles["navegacao__searchicon"]}></SearchIcon>
           </Link>
           <Link to="conta">

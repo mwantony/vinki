@@ -164,7 +164,10 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Cabecalho
-
+        input={input}
+        setInput={setInput}
+        produtos={produtos}
+        setFilteredData={setFilteredData}
         endereco={endereco}
         usuario={usuario}
         nome={nome}
@@ -229,7 +232,7 @@ export default function AppRouter() {
             ></MinhaConta>
           }
         ></Route>
-        <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/search" element={<Search filteredData={filteredData} input={input} produtos={produtos} produtosRandom={produtosRandom} setFilteredData={setFilteredData} setInput={setInput}></Search>}></Route>
         <Route
           path="/*"
           element={<NotFound setSelecionado={setSelecionado}></NotFound>}
