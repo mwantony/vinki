@@ -79,14 +79,16 @@
       &__comprar {
           background-color: $cinza-escuro;
           border: none;
-          display: block;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
           position: relative;
           margin: 0 auto;
           bottom: -10px;
           border-radius: 10px;
           color: $main-color;
-          padding: .5rem;
-          width: 100%;
+          padding: .5rem 1.5rem;
+          width: 90%;
           box-shadow: 0px 4px 50px $text-shadow;
           transition-duration: 500ms;
           &:hover {

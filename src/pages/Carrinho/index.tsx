@@ -34,6 +34,18 @@ export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
           <CarrinhoSvg></CarrinhoSvg>
           <p>Meu carrinho</p>
         </div>
+        <div className={styles['carrinho__botoeslista']}>
+          <button className={classNames({
+            [styles['carrinho__botaolista']]: true,
+            [styles['carrinho__botaolista--continuar']]: true
+          })} onClick={() => {
+            navigate('/')
+          }}>Continuar comprando</button>
+          <button className={classNames({
+            [styles['carrinho__botaolista']]: true,
+            [styles['carrinho__botaolista--pagamento']]: true
+          })}>Ir para o pagamento</button>
+        </div>
         <ul ref={parent} className={styles["carrinho__lista"]}>
           {produtos.length !== 0 ? (
             produtos.map((produto: any, index: any) => {

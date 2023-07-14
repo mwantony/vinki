@@ -4,7 +4,7 @@ import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
 import styles from "./ScrollHorizontal.module.scss";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
+import {ReactComponent as CestaBranca} from 'assets/svg/cesta-branca.svg'
 interface Props {
   produtos: any;
   id: any;
@@ -46,7 +46,7 @@ export default function ScrollHorizontal({ produtos, id }: Props) {
                   <h3 className={styles["lista__promo"]}>
                     R$ {Number(item.promocao).toFixed(2).replace(".", ",")}
                   </h3>
-                  <button className={styles["lista__comprar"]}>Comprar</button>
+                  <button className={styles["lista__comprar"]}><p>Comprar</p><CestaBranca></CestaBranca></button>
                 </div>
               </Link>
             );

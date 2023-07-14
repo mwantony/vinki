@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
-  nome
+  nome,
 }: any) {
   const { idProduto } = useParams();
   const [titulo, setTitulo] = useState("");
@@ -24,31 +24,33 @@ export default function PaginaProduto({
   const [set, setSet] = useState(0);
   const linkParaCompartilhar = String(window.location.href);
   const [produtos, setProdutos] = useState([{ foto: "" }]);
-  Axios.get(`${process.env.REACT_APP_API_URL}/produto/${idProduto}`).then((res) => {
-    const produto = res.data;
-    if (produto.titulo) {
-      setTitulo(produto.titulo);
-      setCategoria(produto.categoria);
-      setPromocao(produto.promocao);
-      setPrecoAnterior(produto.precoAnterior);
-      setLink(produto.link);
-    } else {
-      return;
+  Axios.get(`${process.env.REACT_APP_API_URL}/produto/${idProduto}`).then(
+    (res) => {
+      const produto = res.data;
+      if (produto.titulo) {
+        setTitulo(produto.titulo);
+        setCategoria(produto.categoria);
+        setPromocao(produto.promocao);
+        setPrecoAnterior(produto.precoAnterior);
+        setLink(produto.link);
+      } else {
+        return;
+      }
     }
-  });
+  );
   if (set === 0) {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setProdutos(res.data);
       setSet(1);
     });
   }
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   if (titulo) {
     return (
       <>
         <section className={styles["produto"]}>
-          <div className={styles['produto__inf']}>
+          <div className={styles["produto__inf"]}>
             <img
               src={link}
               alt="Imagem do produto"
@@ -83,7 +85,9 @@ export default function PaginaProduto({
                     })}
                   >
                     De{" "}
-                    <span className={styles["produto__paragrafo--precoAnterior"]}>
+                    <span
+                      className={styles["produto__paragrafo--precoAnterior"]}
+                    >
                       R$ {Number(precoAnterior).toFixed(2).replace(".", ",")}
                     </span>
                   </p>
@@ -110,11 +114,17 @@ export default function PaginaProduto({
                     [styles["produto__botao--adicionar"]]: true,
                   })}
                   onClick={() => {
-                    if(nome !== '') {
-                      carrinhoLocalParsed.push({ link: linkParaCompartilhar, titulo: titulo, categoria: categoria, promocao: promocao, linkImagem: link });
+                    if (nome !== "") {
+                      carrinhoLocalParsed.push({
+                        link: linkParaCompartilhar,
+                        titulo: titulo,
+                        categoria: categoria,
+                        promocao: promocao,
+                        linkImagem: link,
+                      });
                       atualizaCarrinho();
                     } else {
-                      navigate('/login')
+                      navigate("/login");
                     }
                   }}
                 >
@@ -126,6 +136,21 @@ export default function PaginaProduto({
                     [styles["produto__botao"]]: true,
                     [styles["produto__botao--comprar"]]: true,
                   })}
+                  onClick={() => {
+                    if (nome !== "") {
+                      carrinhoLocalParsed.push({
+                        link: linkParaCompartilhar,
+                        titulo: titulo,
+                        categoria: categoria,
+                        promocao: promocao,
+                        linkImagem: link,
+                      });
+                      navigate("/carrinho");
+                      atualizaCarrinho();
+                    } else {
+                      navigate("/login");
+                    }
+                  }}
                 >
                   Comprar
                   <Cesta className={styles["produto__content"]}></Cesta>
@@ -134,7 +159,10 @@ export default function PaginaProduto({
             </div>
           </div>
           <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
-          <ScrollHorizontal produtos={produtos} id={'vejaTambem'}></ScrollHorizontal>
+          <ScrollHorizontal
+            produtos={produtos}
+            id={"vejaTambem"}
+          ></ScrollHorizontal>
         </section>
       </>
     );
