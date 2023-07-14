@@ -6,6 +6,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/style": "^0.8.0",
     "@formkit/auto-animate": "^0.7.0",
+    "@mercadopago/sdk-react": "^0.0.12",
     "@mui/material": "^5.13.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

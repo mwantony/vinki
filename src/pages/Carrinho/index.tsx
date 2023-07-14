@@ -6,6 +6,8 @@ import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+initMercadoPago('YOUR_PUBLIC_KEY');
 
 interface Props {
   produtos: any;
