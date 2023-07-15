@@ -38,7 +38,7 @@ const endereco = {
 const carrinho: any = [];
 
 const carrinhoLocal = localStorage.getItem("carrinho");
-const carrinhoLocalParsed =
+let carrinhoLocalParsed =
   carrinhoLocal !== null ? JSON.parse(carrinhoLocal) : null;
 if (!localStorage.getItem("carrinho")) {
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
@@ -63,15 +63,14 @@ export const atualizaCarrinho = () => {
   window.location.reload();
 };
 
-/* const atu = async () => {
-
+const prdo: any = []
+const atu = async () => {
   await carrinhoLocalParsed.map((item: any, index: any) =>
     Axios.get(
       `${process.env.REACT_APP_API_URL}/produto/${item.idprodutos}`
     ).then((res: any) => {
-      carrinhoLocalParsed.splice(index, 1)
-      carrinhoLocalParsed.push({
-        link: `https://vinki.vercel.app/produto/${item.produtos}`,
+      prdo.push({
+        link: `https://vinki.vercel.app/produto/${item.idprodutos}`,
         titulo: res.data.titulo,
         categoria: res.data.categoria,
         promocao: res.data.promocao,
@@ -80,11 +79,13 @@ export const atualizaCarrinho = () => {
       })
     })
   );
-  
-
-  localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
-  console.log(carrinhoLocalParsed)
-}; */
+  const prdo1 = prdo
+  setTimeout(() => {
+    console.log(prdo)
+    localStorage.setItem("carrinho", JSON.stringify(prdo));
+  },2000)
+/*   localStorage.setItem("carrinho", JSON.stringify(prdo));
+ */};
 
 export const atualiza = async () => {
   fetch(`${process.env.REACT_APP_API_URL}/login`, {
@@ -111,8 +112,8 @@ export const atualiza = async () => {
 };
 if (usuarioLocalParsed.nome !== "") {
   atualiza();
-/*     atu()
- */   console.log("o");
+    atu()
+   console.log("o");
 }
 
 const verifica = () => {
