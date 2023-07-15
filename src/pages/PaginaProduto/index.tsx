@@ -18,6 +18,7 @@ export default function PaginaProduto({
   const { idProduto } = useParams();
   const [titulo, setTitulo] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [id, setId] = useState('')
   const [promocao, setPromocao] = useState("");
   const [precoAnterior, setPrecoAnterior] = useState("");
   const [link, setLink] = useState("");
@@ -33,6 +34,7 @@ export default function PaginaProduto({
         setPromocao(produto.promocao);
         setPrecoAnterior(produto.precoAnterior);
         setLink(produto.link);
+        setId(produto.idprodutos)
       } else {
         return;
       }
@@ -121,6 +123,7 @@ export default function PaginaProduto({
                         categoria: categoria,
                         promocao: promocao,
                         linkImagem: link,
+                        idprodutos: id
                       });
                       atualizaCarrinho();
                     } else {
@@ -144,6 +147,7 @@ export default function PaginaProduto({
                         categoria: categoria,
                         promocao: promocao,
                         linkImagem: link,
+                        idprodutos: id
                       });
                       navigate("/carrinho");
                       atualizaCarrinho();

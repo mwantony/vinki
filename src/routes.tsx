@@ -61,8 +61,30 @@ const urlAtual = window.location.href;
 export const atualizaCarrinho = () => {
   localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
   window.location.reload();
-
 };
+
+/* const atu = async () => {
+
+  await carrinhoLocalParsed.map((item: any, index: any) =>
+    Axios.get(
+      `${process.env.REACT_APP_API_URL}/produto/${item.idprodutos}`
+    ).then((res: any) => {
+      carrinhoLocalParsed.splice(index, 1)
+      carrinhoLocalParsed.push({
+        link: `https://vinki.vercel.app/produto/${item.produtos}`,
+        titulo: res.data.titulo,
+        categoria: res.data.categoria,
+        promocao: res.data.promocao,
+        linkImagem: res.data.link,
+        idprodutos: res.data.idprodutos
+      })
+    })
+  );
+  
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
+  console.log(carrinhoLocalParsed)
+}; */
 
 export const atualiza = async () => {
   fetch(`${process.env.REACT_APP_API_URL}/login`, {
@@ -89,7 +111,8 @@ export const atualiza = async () => {
 };
 if (usuarioLocalParsed.nome !== "") {
   atualiza();
-  console.log("o");
+/*     atu()
+ */   console.log("o");
 }
 
 const verifica = () => {
@@ -223,7 +246,7 @@ export default function AppRouter() {
           path="/conta"
           element={
             <MinhaConta
-            id={id}
+              id={id}
               enderecoUsuarioParsed={enderecoUsuarioParsed}
               senhaUser={senhaUser}
               emailUser={emailUser}
@@ -235,7 +258,19 @@ export default function AppRouter() {
             ></MinhaConta>
           }
         ></Route>
-        <Route path="/search" element={<Search filteredData={filteredData} input={input} produtos={produtos} produtosRandom={produtosRandom} setFilteredData={setFilteredData} setInput={setInput}></Search>}></Route>
+        <Route
+          path="/search"
+          element={
+            <Search
+              filteredData={filteredData}
+              input={input}
+              produtos={produtos}
+              produtosRandom={produtosRandom}
+              setFilteredData={setFilteredData}
+              setInput={setInput}
+            ></Search>
+          }
+        ></Route>
         <Route
           path="/*"
           element={<NotFound setSelecionado={setSelecionado}></NotFound>}
