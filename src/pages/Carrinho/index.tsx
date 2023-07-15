@@ -4,31 +4,59 @@ import { ReactComponent as SadFace } from "../../assets/svg/sadface.svg";
 import { ReactComponent as Trash } from "../../assets/svg/trash.svg";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-initMercadoPago('YOUR_PUBLIC_KEY');
-
+import { useEffect, useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import Axios from "axios";
+initMercadoPago("YOUR_PUBLIC_KEY");
+Axios.defaults.headers.common["Authorization"] =
+  "Bearer APP_USR-5257004078028291-071317-32f7663e901c0dfc178122e42e6d8a3a-1184731359";
 interface Props {
   produtos: any;
-  nome: any
+  nome: any;
   setCarrinho1: any;
 }
 export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
   console.log(produtos);
-  const [parent, enableAnimations] = useAutoAnimate()
+  const [parent, enableAnimations] = useAutoAnimate();
 
   const removerItem = (link: any, ind: any) => {
     const novoArray = produtos.filter((item: any, index: any) => index !== ind);
     setCarrinho1(novoArray);
     localStorage.setItem("carrinho", JSON.stringify(novoArray));
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [items, setItems] = produtos.map((item: any) => {
+    return item.titulo;
+  });
+  let itemsValor = 0;
+  produtos.map((item: any) => {
+    return (itemsValor = itemsValor += Number(item.promocao));
+  });
+  const [redirecionar, setRedirecionar] = useState("");
+  const [pode, setPode] = useState(true);
+
   useEffect(() => {
+
     if (nome === "") {
       navigate("/login");
     }
-  }, [navigate, nome]);
+    if (pode) {
+      Axios.post("https://api.mercadopago.com/checkout/preferences", {
+        items: [
+          {
+            title: items,
+            quantity: itemsValor,
+            currency_id: "BRL",
+            unit_price: 1,
+          },
+        ],
+      }).then((resposta: any) => {
+        setRedirecionar(resposta.data.init_point)
+      });
+      setPode(false);
+    }
+  }, [items, itemsValor, navigate, nome, pode]);
   return (
     <>
       <section className={styles["carrinho"]}>
@@ -36,17 +64,28 @@ export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
           <CarrinhoSvg></CarrinhoSvg>
           <p>Meu carrinho</p>
         </div>
-        <div className={styles['carrinho__botoeslista']}>
-          <button className={classNames({
-            [styles['carrinho__botaolista']]: true,
-            [styles['carrinho__botaolista--continuar']]: true
-          })} onClick={() => {
-            navigate('/')
-          }}>Continuar comprando</button>
-          <button className={classNames({
-            [styles['carrinho__botaolista']]: true,
-            [styles['carrinho__botaolista--pagamento']]: true
-          })}>Ir para o pagamento</button>
+        <div className={styles["carrinho__botoeslista"]}>
+          <button
+            className={classNames({
+              [styles["carrinho__botaolista"]]: true,
+              [styles["carrinho__botaolista--continuar"]]: true,
+            })}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Continuar comprando
+          </button>
+          <a href={redirecionar} target="_blank" rel="noreferrer">
+            <button
+              className={classNames({
+                [styles["carrinho__botaolista"]]: true,
+                [styles["carrinho__botaolista--pagamento"]]: true,
+              })}
+            >
+              Ir para o pagamento
+            </button>
+          </a>
         </div>
         <ul ref={parent} className={styles["carrinho__lista"]}>
           {produtos.length !== 0 ? (
@@ -64,7 +103,10 @@ export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
                     }}
                   ></div>
                   <div className={styles["lista__legenda"]}>
-                    <a href={produto.link} className={styles["lista__subtitulo"]}>
+                    <a
+                      href={produto.link}
+                      className={styles["lista__subtitulo"]}
+                    >
                       {produto.titulo}
                     </a>
                     <p className={styles["lista__categoria"]}>
