@@ -61,7 +61,9 @@ const urlAtual = window.location.href;
 export const atualizaCarrinho = () => {
   localStorage.setItem("carrinho", JSON.stringify(carrinhoLocalParsed));
   window.location.reload();
+
 };
+
 export const atualiza = async () => {
   fetch(`${process.env.REACT_APP_API_URL}/login`, {
     method: "POST",

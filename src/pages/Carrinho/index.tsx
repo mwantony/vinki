@@ -26,6 +26,9 @@ export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
     localStorage.setItem("carrinho", JSON.stringify(novoArray));
   };
   const navigate = useNavigate();
+  const [redirecionar, setRedirecionar] = useState("");
+  const [pode, setPode] = useState(true);
+
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
   });
@@ -33,15 +36,13 @@ export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
   produtos.map((item: any) => {
     return (itemsValor = itemsValor += Number(item.promocao));
   });
-  const [redirecionar, setRedirecionar] = useState("");
-  const [pode, setPode] = useState(true);
-
   useEffect(() => {
 
     if (nome === "") {
       navigate("/login");
     }
     if (pode) {
+      if(produtos.length !== 0) {
       Axios.post("https://api.mercadopago.com/checkout/preferences", {
         items: [
           {
@@ -54,6 +55,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
       }).then((resposta: any) => {
         setRedirecionar(resposta.data.init_point)
       });
+    }
       setPode(false);
     }
   }, [items, itemsValor, navigate, nome, pode]);
