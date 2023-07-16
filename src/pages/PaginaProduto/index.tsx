@@ -14,6 +14,7 @@ export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
   nome,
+
 }: any) {
   const { idProduto } = useParams();
   const [titulo, setTitulo] = useState("");

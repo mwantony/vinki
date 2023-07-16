@@ -57,6 +57,9 @@ header {
     background-color: $main-color;
     height: 65px;
     justify-content: space-between;
+    &__badge {
+        color: $cinza-escuro;
+    }
     &__menu {
         margin-left: 1rem;
         width: 35px;

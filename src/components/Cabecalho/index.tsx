@@ -25,6 +25,8 @@ interface Props {
   input: any
   setInput: any
   produtos: any
+  produtosCarrinho: any
+  carrinhoItems: any
 
 }
 export default function Cabecalho({
@@ -39,6 +41,8 @@ export default function Cabecalho({
   input,
   setInput,
   produtos,
+  produtosCarrinho,
+  carrinhoItems
 
 }: Props) {
   const menu = [
@@ -151,8 +155,9 @@ export default function Cabecalho({
             <Profile className={styles["navegacao__profile"]}></Profile>
           </Link>
           <Link to={'/carrinho'}>
-              <Cart className={styles["navegacao__cart"]}></Cart>
-          
+          <Badge badgeContent={carrinhoItems} color="primary">
+              <Cart className={styles["navegacao__cart"]} ></Cart>
+          </Badge>    
           </Link>
         </div>
       </nav>

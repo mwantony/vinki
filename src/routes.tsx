@@ -133,6 +133,7 @@ const verifica = () => {
 };
 
 export default function AppRouter() {
+  const [carrinhoItem, setCarrinhoitems] = useState(carrinhoLocalParsed.length)
   const [aparecer, setAparecer] = useState(false);
   const [selecionado, setSelecionado] = useState(verifica);
   const dadosUsuario = localStorage.getItem("usuario");
@@ -190,6 +191,8 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Cabecalho
+      carrinhoItems={carrinhoItem}
+        produtosCarrinho={carrinhoLocalParsed}
         input={input}
         setInput={setInput}
         produtos={produtos}
@@ -210,6 +213,8 @@ export default function AppRouter() {
           path="/carrinho"
           element={
             <Carrinho
+            carrinhoItems={carrinhoItem}
+            setCarrinhoItems={setCarrinhoitems}
               nome={nome}
               setCarrinho1={setCarrinho1}
               produtos={carrinho1}

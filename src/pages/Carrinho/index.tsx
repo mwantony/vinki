@@ -15,14 +15,20 @@ interface Props {
   produtos: any;
   nome: any;
   setCarrinho1: any;
+  setCarrinhoItems: any
+  carrinhoItems: any
 }
-export default function Carrinho({ produtos, setCarrinho1, nome }: Props) {
+export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItems, carrinhoItems }: Props) {
   console.log(produtos);
   const [parent, enableAnimations] = useAutoAnimate();
 
   const removerItem = (link: any, ind: any) => {
     const novoArray = produtos.filter((item: any, index: any) => index !== ind);
     setCarrinho1(novoArray);
+    setCarrinhoItems(carrinhoItems - 1)
+    setTimeout(() => {
+
+    },1000)
     localStorage.setItem("carrinho", JSON.stringify(novoArray));
   };
   const navigate = useNavigate();
