@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import Axios from "axios";
+import FinalizarCompra from "pages/FinalizarCompra";
 initMercadoPago("YOUR_PUBLIC_KEY");
 Axios.defaults.headers.common["Authorization"] =
   "Bearer APP_USR-5257004078028291-071317-32f7663e901c0dfc178122e42e6d8a3a-1184731359";
@@ -64,7 +65,8 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
     }
       setPode(false);
     }
-  }, [items, itemsValor, navigate, nome, pode]);
+  }, [items, itemsValor, navigate, nome, pode, produtos.length]);
+  const [finalizar, setFinalizar] = useState(false)
   return (
     <>
       <section className={styles["carrinho"]}>
@@ -84,16 +86,17 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           >
             Continuar comprando
           </button>
-          <a href={redirecionar} target="_blank" rel="noreferrer">
-            <button
+         <button
               className={classNames({
                 [styles["carrinho__botaolista"]]: true,
                 [styles["carrinho__botaolista--pagamento"]]: true,
               })}
+              onClick={() => {
+                setFinalizar(true)
+              }}
             >
               Ir para o pagamento
             </button>
-          </a>
         </div>
         <ul ref={parent} className={styles["carrinho__lista"]}>
           {produtos.length !== 0 ? (
@@ -141,6 +144,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           )}
         </ul>
       </section>
+      <FinalizarCompra redirecionar={redirecionar} total={itemsValor} produtos={produtos} finalizar={finalizar} setFinalizar={setFinalizar}></FinalizarCompra>
     </>
   );
 }

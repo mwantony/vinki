@@ -14,6 +14,7 @@ import Loading from "components/Loading";
 import Carrinho from "pages/Carrinho";
 import PaginaProduto from "pages/PaginaProduto";
 import Search from "pages/Search";
+import FinalizarCompra from "pages/FinalizarCompra";
 const usuario = {
   idusuarios: "",
   nome: "",
