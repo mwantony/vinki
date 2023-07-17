@@ -21,14 +21,17 @@
     width: 100vw;
     transition: 500ms;
     opacity: 0;
+    max-width: 600px;
+    box-shadow: 0px 4px 50px $text-shadow;
     visibility: hidden;
     position: fixed;
     background-color: $cinza-escuro;
     color: $main-color;
-    transform: translateY(50%);
+    transform: translate(-50%, 50%);
     z-index: 4;
     margin: 0 auto;
     top: 50%;
+    left: 50%;
     padding: 2rem;
     &__title {
        font-size: 1.2rem;
@@ -55,6 +58,7 @@
     }
     &__sub {
         font-size: 1.2rem;
+        font-weight: bold;
     }
     &__porcentagem {
         background-color: $variant;
@@ -83,5 +87,13 @@
 .finalizarcompra--aparecer {
     visibility: visible;
     opacity: 1;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
+}
+
+@media (min-width: $medium) {
+    .finalizarcompra {
+        border-radius: 20px;
+        width: 60vw;
+        margin: 0 auto;
+    }
 }
