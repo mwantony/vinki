@@ -18,8 +18,9 @@ interface Props {
   setCarrinho1: any;
   setCarrinhoItems: any
   carrinhoItems: any
+  id: any
 }
-export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItems, carrinhoItems }: Props) {
+export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItems, carrinhoItems, id }: Props) {
   console.log(produtos);
   const [parent, enableAnimations] = useAutoAnimate();
 
@@ -144,7 +145,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           )}
         </ul>
       </section>
-      <FinalizarCompra redirecionar={redirecionar} total={itemsValor} produtos={produtos} finalizar={finalizar} setFinalizar={setFinalizar}></FinalizarCompra>
+      <FinalizarCompra redirecionar={redirecionar} id={id} total={itemsValor} produtos={produtos} finalizar={finalizar} setFinalizar={setFinalizar}></FinalizarCompra>
     </>
   );
 }

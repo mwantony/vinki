@@ -214,6 +214,7 @@ export default function AppRouter() {
           path="/carrinho"
           element={
             <Carrinho
+            id={id}
             carrinhoItems={carrinhoItem}
             setCarrinhoItems={setCarrinhoitems}
               nome={nome}

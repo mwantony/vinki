@@ -1,12 +1,15 @@
 import classNames from "classnames";
 import styles from "./FinalizarCompra.module.scss";
 import { ReactComponent as RightArrow } from "assets/svg/rightarrow.svg";
+import Axios from "axios";
+import { useEffect } from "react";
 interface Props {
   finalizar: boolean;
   setFinalizar: any;
   produtos: any;
   total: any;
   redirecionar: any;
+  id: any
 }
 export default function FinalizarCompra({
   finalizar,
@@ -14,7 +17,24 @@ export default function FinalizarCompra({
   produtos,
   total,
   redirecionar,
+  id
 }: Props) {
+    let titleprodutos = ''
+    const handleFinalizar = () => {
+        Axios.post(`${process.env.REACT_APP_API_URL}/pedidos`, {
+            usuariopedido: id,
+            produtos: titleprodutos,
+            status: 'true',
+            cancelarpedido: 'false'
+        }).then(res => {
+            alert(res.data)
+        })
+    }
+    produtos.map((produto: any, index: any) => {
+        titleprodutos = `${titleprodutos}${index === 0 ? "" : ","} ${produto.idprodutos}`
+    })
+    useEffect(() => {
+    })
   return (
     <>
       <section
@@ -42,7 +62,9 @@ export default function FinalizarCompra({
         </div>
         <div >
           <p className={styles['finalizarcompra__porcentagem']}>Economize 5% com pix ou boleto</p>
-          <a href={redirecionar} target="_blank" rel="noreferrer" >
+          <a href={redirecionar} target="_blank" rel="noreferrer" onClick={() => {
+            handleFinalizar()
+          }}>
             <button className={styles['finalizarcompra__finalizar']}>
               <p className={styles['finalizarcompra__botao']}>Finalizar compra</p>
               <RightArrow className={styles['finalizarcompra__rightarrow']}></RightArrow>
