@@ -292,6 +292,9 @@ export default function MinhaConta({
           )}
           {!validacao ? <p className={styles['endereco__nenhum']}>Nenhum endereço cadastrado</p> : ""}
         </div>
+        <button onClick={() => {
+          navigate('/pedidos')
+        }} className={styles['minhaconta__pedidos']}>Meus pedidos</button>
       </div>
     </section>
   );

@@ -67,7 +67,7 @@ export default function FinalizarCompra({
           }}>
             <button className={styles['finalizarcompra__finalizar']}>
               <p className={styles['finalizarcompra__botao']}>Finalizar compra</p>
-              <RightArrow className={styles['finalizarcompra__rightarrow']}></RightArrow>
+              <RightArrow className={styles['finalizarcompra__rightarrow'] }></RightArrow>
             </button>
           </a>
         </div>
