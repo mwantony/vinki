@@ -15,6 +15,7 @@ import Carrinho from "pages/Carrinho";
 import PaginaProduto from "pages/PaginaProduto";
 import Search from "pages/Search";
 import FinalizarCompra from "pages/FinalizarCompra";
+import Pedidos from "pages/Pedido";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -210,6 +211,7 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
+        <Route path="/pedidos" element={<Pedidos></Pedidos>}></Route>
         <Route
           path="/carrinho"
           element={
