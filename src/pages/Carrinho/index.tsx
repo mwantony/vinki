@@ -61,6 +61,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           },
         ],
       }).then((resposta: any) => {
+        console.log(resposta.data)
         setRedirecionar(resposta.data.init_point)
       });
     }
