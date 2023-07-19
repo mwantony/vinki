@@ -25,7 +25,8 @@ export default function FinalizarCompra({
             usuariopedido: id,
             produtos: titleprodutos,
             status: 'true',
-            cancelarpedido: 'false'
+            cancelarpedido: 'false',
+            data: String(new Date())
         }).then(res => {
             alert(res.data)
         })

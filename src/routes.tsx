@@ -15,7 +15,7 @@ import Carrinho from "pages/Carrinho";
 import PaginaProduto from "pages/PaginaProduto";
 import Search from "pages/Search";
 import FinalizarCompra from "pages/FinalizarCompra";
-import Pedidos from "pages/Pedido";
+import Pedidos from "pages/Pedidos";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -72,7 +72,7 @@ const atu = async () => {
       `${process.env.REACT_APP_API_URL}/produto/${item.idprodutos}`
     ).then((res: any) => {
       prdo.push({
-        link: `https://vinki.vercel.app/produto/${item.idprodutos}`,
+        link: `${process.env.REACT_APP_WEB_URL}/produto/${item.idprodutos}`,
         titulo: res.data.titulo,
         categoria: res.data.categoria,
         promocao: res.data.promocao,
@@ -211,7 +211,7 @@ export default function AppRouter() {
         <Route path="/" element={<Inicio></Inicio>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
-        <Route path="/pedidos" element={<Pedidos></Pedidos>}></Route>
+        <Route path="/pedidos" element={<Pedidos id={id}></Pedidos>}></Route>
         <Route
           path="/carrinho"
           element={
