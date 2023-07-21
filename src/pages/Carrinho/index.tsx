@@ -29,9 +29,9 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
     setCarrinho1(novoArray);
     setCarrinhoItems(carrinhoItems - 1)
     setTimeout(() => {
-
     },1000)
     localStorage.setItem("carrinho", JSON.stringify(novoArray));
+    window.location.reload()
   };
   const navigate = useNavigate();
   const [redirecionar, setRedirecionar] = useState("");
@@ -93,7 +93,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           >
             Continuar comprando
           </button>
-         <button
+{produtos.length !== 0  ? <button
               className={classNames({
                 [styles["carrinho__botaolista"]]: true,
                 [styles["carrinho__botaolista--pagamento"]]: true,
@@ -103,7 +103,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
               }}
             >
               Ir para o pagamento
-            </button>
+            </button> : ''}
         </div>
         <ul ref={parent} className={styles["carrinho__lista"]}>
           {produtos.length !== 0 ? (

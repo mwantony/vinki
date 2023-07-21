@@ -57,6 +57,9 @@ header {
     background-color: $main-color;
     height: 65px;
     justify-content: space-between;
+    &__inputsearch--desktop {
+        display: none;
+    }
     &__badge {
         color: $cinza-escuro;
     }
@@ -260,6 +263,10 @@ header {
                 transform: scale(1.1);
             }
         }
+        &__inputsearch--desktop {
+            display: block;
+            z-index: 4;
+        }
         &__searchicon {
             display: none;
         } 
@@ -285,6 +292,7 @@ header {
         &__input {
             display: none;
         }
+    
         &__input--desktop {
             display: block;
         }

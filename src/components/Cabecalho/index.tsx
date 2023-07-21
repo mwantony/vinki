@@ -8,6 +8,7 @@ import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import { ReactComponent as Sair } from "../../assets/svg/sair.svg";
+import { ReactComponent as InputSearch } from "../../assets/svg/inputsearch.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Usuario from "interfaces/Usuario";

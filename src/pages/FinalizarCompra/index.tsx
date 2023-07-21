@@ -26,7 +26,7 @@ export default function FinalizarCompra({
         Axios.post(`${process.env.REACT_APP_API_URL}/pedidos`, {
             usuariopedido: id,
             produtos: titleprodutos,
-            status: 'true',
+            status: 'Pendente',
             cancelarpedido: 'false',
             data: String(new Date()),
             idreferencia: idReferencia

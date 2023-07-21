@@ -10,6 +10,7 @@ import { ReactComponent as Share } from "../../assets/svg/share.svg";
 import ScrollHorizontal from "components/ScrollHorizontal";
 import { atualiza, atualizaCarrinho } from "routes";
 import { useNavigate } from "react-router-dom";
+import Loading from "components/Loading";
 export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
@@ -48,7 +49,7 @@ export default function PaginaProduto({
     });
   }
   const navigate = useNavigate();
-
+  const [aparecerLoading, setAparecerLoading] = useState(true)
   if (titulo) {
     return (
       <>
@@ -172,5 +173,5 @@ export default function PaginaProduto({
       </>
     );
   }
-  return <NotFound setSelecionado={setSelecionado}></NotFound>;
+  return aparecerLoading === true ? <Loading aparecerLoading={aparecerLoading} setAparecerLoading={setAparecerLoading} ehLogin={false}></Loading> : <NotFound setSelecionado={setSelecionado}></NotFound>
 }

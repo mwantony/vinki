@@ -4,6 +4,8 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import moment from "moment";
 import { ReactComponent as PedidoCancelado } from "assets/svg/pedidocancelado.svg";
 import { ReactComponent as PedidoConcluido } from "assets/svg/pedido-concluido.svg";
+import { ReactComponent as PedidoPendente } from "assets/svg/pedido-pendente.svg";
+import { ReactComponent as MeuPedidos } from "assets/svg/meupedidos.svg";
 import styles from "./Pedidos.module.scss";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
@@ -36,11 +38,15 @@ export default function Pedidos({ id }: Props) {
   return (
     <>
       <section className={styles["pedidos"]}>
+      <div className={styles["pedidos__title"]}>
+        <MeuPedidos></MeuPedidos>
+          <p>Meus pedidos</p>
+        </div>
         <ul ref={parent} className={styles["pedidos__lista"]}>
           {pedidos.length !== 0 ? (
             pedidos.map((pedido: any) => {
               const produtoSeparados: any = pedido.produtos.split(",");
-              console.log(produtoSeparados)
+              console.log(produtoSeparados);
               return (
                 <li className={styles["pedidos__item"]}>
                   <div
@@ -49,10 +55,20 @@ export default function Pedidos({ id }: Props) {
                       [styles["pedidos__coluna--first"]]: true,
                     })}
                   >
-                    {pedido.cancelarpedido === "true" ? (
+                    {pedido.status === "Cancelado" ? (
                       <PedidoCancelado></PedidoCancelado>
                     ) : (
+                      ""
+                    )}
+                    {pedido.status === "Aprovado" ? (
                       <PedidoConcluido></PedidoConcluido>
+                    ) : (
+                      ""
+                    )}
+                    {pedido.status === "Pendente" ? (
+                      <PedidoPendente></PedidoPendente>
+                    ) : (
+                      ""
                     )}
                   </div>
                   <div className={styles["pedidos__coluna"]}>
@@ -66,17 +82,24 @@ export default function Pedidos({ id }: Props) {
                       >
                         {produtoSeparados.map((produto: any, index: any) => (
                           <a
-                            className={styles['pedidos__produto--link']}
-                            href={`${process.env.REACT_APP_WEB_URL}/produto/${Number(produto)}`}
+                            className={styles["pedidos__produto--link"]}
+                            href={`${
+                              process.env.REACT_APP_WEB_URL
+                            }/produto/${Number(produto)}`}
                           >
-                            {produto}{index === produtoSeparados.length - 1 ? '': ','}
+                            {produto}
+                            {index === produtoSeparados.length - 1 ? "" : ","}
                           </a>
                         ))}
                       </p>
                     </div>
-                    <button className={styles["pedidos__botao"]}>
-                      Cancelar
-                    </button>
+                    {pedido.status !== "Cancelado" ? (
+                      <button className={styles["pedidos__botao"]}>
+                        Cancelar
+                      </button>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className={styles["pedidos__coluna"]}>
                     <div>
@@ -84,24 +107,29 @@ export default function Pedidos({ id }: Props) {
                       <p
                         className={classNames({
                           [styles["pedidos__paragrafo"]]: true,
+                          [styles["pedidos__paragrafo--pendente"]]:
+                            pedido.status === "Pendente" ? true : false,
                           [styles["pedidos__paragrafo--vermelho"]]:
-                            pedido.cancelarpedido === "true" ? true : false,
+                            pedido.status === "Cancelado" ? true : false,
                           [styles["pedidos__paragrafo--verde"]]:
-                            pedido.cancelarpedido === "false" ? true : false,
+                            pedido.status === "Aprovado" ? true : false,
                         })}
                       >
-                        {pedido.cancelarpedido === "true"
-                          ? "Cancelado"
-                          : "Aprovado"}
+                        {pedido.status}
                       </p>
                     </div>
-                    <p className={styles["pedidos__paragrafo"]}>Feito em {moment(pedido.data).format("DD/MM/YYYY")}</p>
+                    <p className={styles["pedidos__paragrafo"]}>
+                      Feito em {moment(pedido.data).format("DD/MM/YYYY")}
+                    </p>
                   </div>
                 </li>
               );
             })
           ) : (
-            <p className={styles["pedidos__paragrafo"]}>
+            <p className={classNames({
+              [styles["pedidos__paragrafo"]]: true,
+              [styles["pedidos__paragrafo--naotem"]]: true,
+            })}>
               Não há registros de nenhum pedido...
             </p>
           )}
