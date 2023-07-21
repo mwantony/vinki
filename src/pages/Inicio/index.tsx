@@ -129,7 +129,7 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1127686531671408771/smartwatch-mobile.png"
+                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1131692732008628234/Banner_Meio_Mobile.jpg"
                   : "https://cdn.discordapp.com/attachments/1109594939840532501/1130672887976701993/bannerzinho.png"
               }
               className="d-block w-100"

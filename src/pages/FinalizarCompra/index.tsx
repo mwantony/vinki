@@ -10,6 +10,7 @@ interface Props {
   total: any;
   redirecionar: any;
   id: any
+  idReferencia: any
 }
 export default function FinalizarCompra({
   finalizar,
@@ -17,7 +18,8 @@ export default function FinalizarCompra({
   produtos,
   total,
   redirecionar,
-  id
+  id,
+  idReferencia
 }: Props) {
     let titleprodutos = ''
     const handleFinalizar = () => {
@@ -26,7 +28,8 @@ export default function FinalizarCompra({
             produtos: titleprodutos,
             status: 'true',
             cancelarpedido: 'false',
-            data: String(new Date())
+            data: String(new Date()),
+            idreferencia: idReferencia
         }).then(res => {
             alert(res.data)
         })

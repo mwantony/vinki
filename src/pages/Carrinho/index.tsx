@@ -36,7 +36,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
   const navigate = useNavigate();
   const [redirecionar, setRedirecionar] = useState("");
   const [pode, setPode] = useState(true);
-
+  const [idReferencia, setIdReferencia] = useState("")
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
   });
@@ -58,11 +58,16 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
             quantity: itemsValor,
             currency_id: "BRL",
             unit_price: 1,
+            id: "12345678"
           },
         ],
+        payer: {
+          email: "againplayi7@gmail.com"
+        }
       }).then((resposta: any) => {
         console.log(resposta.data)
         setRedirecionar(resposta.data.init_point)
+        setIdReferencia(resposta.data.id)
       });
     }
       setPode(false);
@@ -146,7 +151,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           )}
         </ul>
       </section>
-      <FinalizarCompra redirecionar={redirecionar} id={id} total={itemsValor} produtos={produtos} finalizar={finalizar} setFinalizar={setFinalizar}></FinalizarCompra>
+      <FinalizarCompra idReferencia={idReferencia} redirecionar={redirecionar} id={id} total={itemsValor} produtos={produtos} finalizar={finalizar} setFinalizar={setFinalizar}></FinalizarCompra>
     </>
   );
 }

@@ -53,7 +53,7 @@
     justify-content: space-evenly;
     width: 45%;
     &:hover {
-      transform: scale(1.1);
+      opacity: .7;
     }
   }
   &__content:first-child {
@@ -64,7 +64,11 @@
     font-weight: bolder;
   }
   &__share {
-    margin-top: 1rem;
+    position: absolute;
+    right: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__first {
@@ -76,6 +80,13 @@
 
 @media (min-width: $small-medium) {
   .produto {
+    &__share{
+      transition: 500ms;
+      &:hover {
+        transform: scale(1.1);
+
+      }
+    }
     &__inf {
       display: flex;
     }
