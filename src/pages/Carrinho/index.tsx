@@ -54,7 +54,7 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
       Axios.post("https://api.mercadopago.com/checkout/preferences", {
         items: [
           {
-            title: items,
+            title: idReferencia,
             quantity: itemsValor,
             currency_id: "BRL",
             unit_price: 1,

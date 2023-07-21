@@ -31,7 +31,10 @@ export default function FinalizarCompra({
             data: String(new Date()),
             idreferencia: idReferencia
         }).then(res => {
-            alert(res.data)
+            setTimeout(() => {
+              localStorage.setItem('carrinho', JSON.stringify([]))
+              window.location.reload()
+            },1000)
         })
     }
     produtos.map((produto: any, index: any) => {
@@ -68,6 +71,7 @@ export default function FinalizarCompra({
           <p className={styles['finalizarcompra__porcentagem']}>Economize 5% com pix ou boleto</p>
           <a href={redirecionar} target="_blank" rel="noreferrer" onClick={() => {
             handleFinalizar()
+            setFinalizar(false)
           }}>
             <button className={styles['finalizarcompra__finalizar']}>
               <p className={styles['finalizarcompra__botao']}>Finalizar compra</p>
