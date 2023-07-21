@@ -94,7 +94,11 @@ export default function Pedidos({ id }: Props) {
                       </p>
                     </div>
                     {pedido.status !== "Cancelado" ? (
-                      <button className={styles["pedidos__botao"]}>
+                      <button className={styles["pedidos__botao"]} onClick={() => {
+                        Axios.put(`${process.env.REACT_APP_API_URL}/pedidos/${pedido.idpedidos}`).then((res: any) => {
+                          alert(res.data.msg)
+                        })
+                      }}>
                         Cancelar
                       </button>
                     ) : (

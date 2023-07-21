@@ -84,3 +84,14 @@
         margin: 0 auto;
     }
 }
+
+@media (min-width: $medium) {
+    .pedidos {
+        &__botao {
+            transition: 500ms; 
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+}
