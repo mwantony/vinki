@@ -84,6 +84,29 @@
         margin: 0 auto;
     }
 }
+.menu {
+    text-align: center;
+    &__lista {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      background-color: $variant;
+      color: $main-color;
+      padding: 1rem;
+    }
+  
+    &__item {
+      margin: 0.2rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__svg {
+      display: inline-block;
+    }
+  }
+  
 
 @media (min-width: $medium) {
     .pedidos {

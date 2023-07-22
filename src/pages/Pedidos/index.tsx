@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import moment from "moment";
 import { ReactComponent as PedidoCancelado } from "assets/svg/pedidocancelado.svg";
@@ -7,14 +7,30 @@ import { ReactComponent as PedidoConcluido } from "assets/svg/pedido-concluido.s
 import { ReactComponent as PedidoPendente } from "assets/svg/pedido-pendente.svg";
 import { ReactComponent as MeuPedidos } from "assets/svg/meupedidos.svg";
 import styles from "./Pedidos.module.scss";
+import { motion, Variants } from "framer-motion";
+import {ordenarAprovados, ordenarCancelados, ordenarPendentes} from 'func/ordenar'
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 interface Props {
   id: any;
 }
-
+const itemVariants: Variants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 24 },
+  },
+  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+};
 export default function Pedidos({ id }: Props) {
   const [pedidos, setPedidos] = useState([]);
+  const [pedidosNum, setPedidosNum] = useState([]);
+  const isElementVisible = (element: any) => {
+    const { top, bottom } = element.getBoundingClientRect();
+    const { innerHeight } = window;
+    return top < innerHeight && bottom >= 0;
+  };
+  const elementRef = useRef(null);
   const [pode, setPode] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
@@ -34,6 +50,9 @@ export default function Pedidos({ id }: Props) {
     }
   }, [id, navigate, pedidos, pode]);
   const [parent, enableAnimations] = useAutoAnimate();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selecionado, setSelecionado] = useState("Ordenar");
 
   return (
     <>
@@ -42,6 +61,105 @@ export default function Pedidos({ id }: Props) {
         <MeuPedidos></MeuPedidos>
           <p>Meus pedidos</p>
         </div>
+        <motion.nav
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        className={styles["menu"]}
+      >
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={() => setIsOpen(!isOpen)}
+          className={styles["menu__botao"]}
+        >
+          {selecionado}
+          <motion.div
+            variants={{
+              open: { rotate: 180 },
+              closed: { rotate: 0 },
+            }}
+            transition={{ duration: 0.2 }}
+            style={{ originY: 0.55 }}
+          >
+            <svg
+              className={styles["menu__svg"]}
+              width="15"
+              height="15"
+              viewBox="0 0 20 20"
+            >
+              <path d="M0 7 L 20 7 L 10 16" />
+            </svg>
+          </motion.div>
+        </motion.button>
+        <motion.ul
+          className={styles["menu__lista"]}
+          variants={{
+            open: {
+              clipPath: "inset(0% 0% 0% 0% round 10px)",
+              transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.7,
+                delayChildren: 0.3,
+                staggerChildren: 0.05,
+              },
+            },
+            closed: {
+              clipPath: "inset(10% 50% 90% 50% round 10px)",
+              transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3,
+              },
+            },
+          }}
+          style={{ pointerEvents: isOpen ? "auto" : "none" }}
+        >
+          <motion.li
+            className={styles["menu__item"]}
+            variants={itemVariants}
+            onClick={() => {
+              setSelecionado("Aprovados");
+              ordenarAprovados(pedidos, setPedidos)
+            }}
+          >
+            Aprovados
+          </motion.li>
+          <motion.li
+            className={styles["menu__item"]}
+            variants={itemVariants}
+            onClick={() => {
+              setSelecionado("Cancelados");
+              ordenarCancelados(pedidos, setPedidos)
+            }}
+          >
+            Cancelados
+          </motion.li>
+          <motion.li
+            className={styles["menu__item"]}
+            variants={itemVariants}
+            onClick={() => {
+              setSelecionado("Pendentes");
+              ordenarPendentes(pedidos, setPedidos)
+            }}
+          >
+            Pendentes
+          </motion.li>
+          <motion.li
+            className={styles["menu__item"]}
+            variants={itemVariants}
+ 
+          >
+            Mais recentes
+          </motion.li>
+          <motion.li
+            className={styles["menu__item"]}
+            variants={itemVariants}
+ 
+          >
+            Mais antigos
+          </motion.li>
+        </motion.ul>
+      </motion.nav>
         <ul ref={parent} className={styles["pedidos__lista"]}>
           {pedidos.length !== 0 ? (
             pedidos.map((pedido: any) => {
