@@ -8,7 +8,7 @@ import { ReactComponent as PedidoPendente } from "assets/svg/pedido-pendente.svg
 import { ReactComponent as MeuPedidos } from "assets/svg/meupedidos.svg";
 import styles from "./Pedidos.module.scss";
 import { motion, Variants } from "framer-motion";
-import {ordenarAprovados, ordenarCancelados, ordenarPendentes} from 'func/ordenar'
+import {ordenarAprovados, ordenarCancelados, ordenarMaisAntigo, ordenarMaisRecente, ordenarPendentes} from 'func/ordenar'
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 interface Props {
@@ -42,6 +42,7 @@ export default function Pedidos({ id }: Props) {
         Axios.get(`${process.env.REACT_APP_API_URL}/pedidos/${id}`).then(
           (res: any) => {
             setPedidos(res.data);
+            setPedidosNum(res.data)
             setPode(2);
             console.log(pedidos);
           }
@@ -119,7 +120,8 @@ export default function Pedidos({ id }: Props) {
             variants={itemVariants}
             onClick={() => {
               setSelecionado("Aprovados");
-              ordenarAprovados(pedidos, setPedidos)
+              setPedidosNum([...pedidos])
+              ordenarAprovados(pedidos, setPedidosNum)
             }}
           >
             Aprovados
@@ -129,7 +131,8 @@ export default function Pedidos({ id }: Props) {
             variants={itemVariants}
             onClick={() => {
               setSelecionado("Cancelados");
-              ordenarCancelados(pedidos, setPedidos)
+              setPedidosNum([...pedidos])
+              ordenarCancelados(pedidos, setPedidosNum)
             }}
           >
             Cancelados
@@ -139,7 +142,8 @@ export default function Pedidos({ id }: Props) {
             variants={itemVariants}
             onClick={() => {
               setSelecionado("Pendentes");
-              ordenarPendentes(pedidos, setPedidos)
+              setPedidosNum([...pedidos])
+              ordenarPendentes(pedidos, setPedidosNum)
             }}
           >
             Pendentes
@@ -147,6 +151,11 @@ export default function Pedidos({ id }: Props) {
           <motion.li
             className={styles["menu__item"]}
             variants={itemVariants}
+            onClick={() => {
+              setSelecionado("Mais recentes");
+              setPedidosNum([...pedidos])
+              ordenarMaisRecente(pedidos, setPedidosNum)
+            }}
  
           >
             Mais recentes
@@ -154,17 +163,20 @@ export default function Pedidos({ id }: Props) {
           <motion.li
             className={styles["menu__item"]}
             variants={itemVariants}
- 
+            onClick={() => {
+              setSelecionado("Mais antigos");
+              setPedidosNum([...pedidos])
+              ordenarMaisAntigo(pedidos, setPedidosNum)
+            }}
           >
             Mais antigos
           </motion.li>
         </motion.ul>
       </motion.nav>
         <ul ref={parent} className={styles["pedidos__lista"]}>
-          {pedidos.length !== 0 ? (
-            pedidos.map((pedido: any) => {
+          {pedidosNum.length !== 0 ? (
+            pedidosNum.map((pedido: any) => {
               const produtoSeparados: any = pedido.produtos.split(",");
-              console.log(produtoSeparados);
               return (
                 <li className={styles["pedidos__item"]}>
                   <div

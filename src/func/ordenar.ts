@@ -1,3 +1,4 @@
+const moment = require('moment')
 export function ordenarCrescente(lista: any) {
   function compararPorPreco(a: any, b: any) {
     return b.promocao - a.promocao;
@@ -24,4 +25,14 @@ export function ordenarCancelados(lista: any, setPedidos: any) {
   return setPedidos(
     lista.filter((objeto: any) => objeto.status === "Cancelado")
   );
+}
+export function ordenarMaisRecente(lista: any, setPedidos: any) {
+  return setPedidos(lista.sort((a: any, b: any) => {
+    return new Date(a.data).getTime() - new Date(b.data).getTime() 
+  }))
+}
+export function ordenarMaisAntigo(lista: any, setPedidos: any) {
+  return setPedidos(lista.sort((a: any, b: any) => {
+    return new Date(b.data).getTime() - new Date(a.data).getTime() 
+  }))
 }
