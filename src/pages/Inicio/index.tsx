@@ -6,6 +6,9 @@ import decoracoes from "../../assets/img/decoracoes.png";
 import jardim from "../../assets/img/jardim.png";
 import produtos from "../../db.json";
 import React, { useState } from "react";
+import Plyr from 'plyr';
+import 'plyr/dist/plyr.css';
+
 import Slider from "react-slick";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -16,6 +19,7 @@ import { slideRight, slideLeft } from "../../func/sliders";
 import { Link } from "react-router-dom";
 import Axios  from "axios";
 import ScrollHorizontal from "components/ScrollHorizontal";
+import VideoPlayer from "components/VideoInstitucional";
 export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
   const [maisVendidos, setMaisVendidos] = useState([]);
@@ -121,6 +125,7 @@ export default function Inicio() {
       <ArrowNextIosIcon style={{ position: "absolute", right: 10, top: '50%', transform: 'translateY(-50%)'}} />
     );
   };
+  
   return (
     <>
       <section>
@@ -201,6 +206,9 @@ export default function Inicio() {
         <h2 className={styles["maisvendidos__titulo"]}>Mais vendidos</h2>
 
         <ScrollHorizontal produtos={maisVendidos} id={'maisvendidos'}></ScrollHorizontal>
+      </section>
+      <section className={styles['videoinstitucional']}>
+            <VideoPlayer></VideoPlayer>
       </section>
     </>
   );
