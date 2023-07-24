@@ -24,7 +24,7 @@ const VideoPlayer = () => {
     <div className={styles['video-player']}>
       <video id="player" playsInline controls>
         <source
-          src="https://cdn.discordapp.com/attachments/1109594939840532501/1130878431039598602/Vink.mp4"
+          src="https://cdn.discordapp.com/attachments/1109594939840532501/1133113805136732160/Explicacao_Envio.mp4"
           type="video/mp4"
         />
       </video>
