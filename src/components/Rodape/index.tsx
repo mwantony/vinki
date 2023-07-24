@@ -58,10 +58,12 @@ export default function Rodape() {
                             [styles['rodape__item']]: true,
                             [styles['rodape__item--facebook']]: true,
                         })}>&nbsp;Facebook</li>
-                        <li className={classNames({
-                            [styles['rodape__item']]: true,
-                            [styles['rodape__item--instagram']]: true,
-                        })}>&nbsp;Instagram</li>
+                        <a href="https://www.instagram.com/vinkibrasil/" target='_blank' rel="noreferrer">
+                            <li className={classNames({
+                                [styles['rodape__item']]: true,
+                                [styles['rodape__item--instagram']]: true,
+                            })}>&nbsp;Instagram</li>
+                        </a>
                         <li className={classNames({
                             [styles['rodape__item']]: true,
                             [styles['rodape__item--twitter']]: true,
@@ -79,7 +81,7 @@ export default function Rodape() {
                             <li className={classNames({
                                 [styles['rodape__item']]: true,
                                 [styles['rodape__item--email']]: true,
-                            })}>&nbsp;atendimento@vinki.com</li>
+                            })}>&nbsp;atendimento@vinki.com.br</li>
                         </a>
                     </ul>
                 </div>
