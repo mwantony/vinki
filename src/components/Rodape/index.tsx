@@ -75,10 +75,12 @@ export default function Rodape() {
                             [styles['rodape__item']]: true,
                             [styles['rodape__item--sac']]: true,
                         })}>&nbsp;0800 589 356</li>
-                        <li className={classNames({
-                            [styles['rodape__item']]: true,
-                            [styles['rodape__item--email']]: true,
-                        })}>&nbsp;faleconosco@vinki.com</li>
+                        <a href="mailto:atendimento@vinki.com.br">
+                            <li className={classNames({
+                                [styles['rodape__item']]: true,
+                                [styles['rodape__item--email']]: true,
+                            })}>&nbsp;atendimento@vinki.com</li>
+                        </a>
                     </ul>
                 </div>
             </div>
