@@ -70,7 +70,28 @@
       cursor: pointer;
     }
   }
-
+  &__input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0 auto;
+    width: 60%;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 0px 0px 50px $text-shadow;
+  }
+  &__button {
+    width: 40%;
+    transition: 500ms;
+    background-color: $cinza-escuro;
+    color: $main-color;
+    border-radius: 0px 10px 10px 0px;
+    &:disabled {
+      opacity: .8;
+    }
+  }
+  &__calcular--div {
+    padding: 1.5rem;
+    display: flex;
+  }
   &__first {
     display: flex;
     align-items: flex-start;
@@ -99,6 +120,12 @@
     }
     &__subtitulo {
         margin-left: 8vw;
+    }
+    &__button {
+      transition: 500ms;
+      &:hover {
+        opacity: .8;
+      }
     }
   }
 }

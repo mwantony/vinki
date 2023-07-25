@@ -1,0 +1,37 @@
+@import 'styles/_variables.scss';
+
+.calcularfrete {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+    background-color: $main-color;
+    transform: translate(-50%, 80vw);
+    visibility: hidden;
+    opacity: 0;
+    transition: 500ms;
+}
+
+.calcularfrete--aparecer {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+.calcularfrete--div {
+    position: fixed;
+    z-index: 3;
+    min-height: 100vh;
+    min-width: 100vw;
+    top: 50%;
+    background-color: $text-shadow;
+    left: 50%;
+    transition: 500ms;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+}
+
+.calcularfrete--div--aparecer {
+    opacity: 1;
+    visibility: visible;
+}
