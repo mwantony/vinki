@@ -181,11 +181,12 @@ export default function PaginaProduto({
                   className={styles["produto__input"]}
                   type="text"
                   onChange={(event: any) => {
-                    setTimeout(() => {
-
+                    if(event.target.value.length === 9) {
                       setCepInput(event.target.value)
-                    },2000)
-                    console.log(cepInput)
+
+                    } else {
+                      setCepInput('')
+                    }
                   }}
                   name="cep"
                 ></IMaskInput>

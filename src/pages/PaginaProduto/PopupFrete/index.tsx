@@ -24,6 +24,7 @@ export default function PopupFrete({
 }: Props) {
   const [agr, setAgr] = useState(0);
   const [cidade, setCidade] = useState("")
+  fetch(`${process.env.REACT_APP_API_URL}/buscarcidade/${cep}`).then((dados: any) => dados.json()).then((data: any) => setCidade(data.localidade))
   const [precoFrete, setPrecoFrete] = useState('')
   const apiUrl =
     "https://sandbox.melhorenvio.com.br/api/v2/me/shipment/calculate";
@@ -62,6 +63,7 @@ export default function PopupFrete({
     },
     services: "1",
   };
+
   fetch(apiUrl, {
     method: "POST",
     headers: {
@@ -123,7 +125,7 @@ export default function PopupFrete({
       >
         <div className={styles['calcularfrete__fretes']}>
           <CaminhaoFrete></CaminhaoFrete>
-          Fretes disponíveis para {cidade}
+          <p className={styles['calcularfrete__cidades']}>Fretes disponíveis para {cidade}</p>
           <Close className={styles['calcularfrete__close']} onClick={() => setAbrirFrete(false)}></Close>
         </div>
         <div className={styles['calcularfrete__opcoes']}>
