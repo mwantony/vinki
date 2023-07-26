@@ -22,50 +22,68 @@ export default function PopupFrete({
 }: Props) {
   const [agr, setAgr] = useState(0);
   const [cidade, setCidade] = useState("");
-      const apiUrl = 'https://sandbox.melhorenvio.com.br/v1/shipment/calculate';
-    const accessToken = `eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjU5NTJhNjAyNTYxNmM5NmM0ODUxM2QxODJlYTU0ZTFmNTM0NTI5ZTI2MWNlYjQzZWUyMmI1YmY2MjQwZmRmNzU1ZGM1YTE0YTg0ZjQ2OWNmIn0.eyJhdWQiOiIxIiwianRpIjoiNTk1MmE2MDI1NjE2Yzk2YzQ4NTEzZDE4MmVhNTRlMWY1MzQ1MjllMjYxY2ViNDNlZTIyYjViZjYyNDBmZGY3NTVkYzVhMTRhODRmNDY5Y2YiLCJpYXQiOjE2OTAzMTI1NDIsIm5iZiI6MTY5MDMxMjU0MiwiZXhwIjoxNzIxOTM0OTQyLCJzdWIiOiJlOGViYWE4ZS0zMTFkLTQ0YmEtOTE2Mi0zMWNkZmJmZTJhYTciLCJzY29wZXMiOlsiY2FydC1yZWFkIiwiY2FydC13cml0ZSIsImNvbXBhbmllcy1yZWFkIiwiY29tcGFuaWVzLXdyaXRlIiwiY291cG9ucy1yZWFkIiwiY291cG9ucy13cml0ZSIsIm5vdGlmaWNhdGlvbnMtcmVhZCIsIm9yZGVycy1yZWFkIiwicHJvZHVjdHMtcmVhZCIsInByb2R1Y3RzLWRlc3Ryb3kiLCJwcm9kdWN0cy13cml0ZSIsInB1cmNoYXNlcy1yZWFkIiwic2hpcHBpbmctY2FsY3VsYXRlIiwic2hpcHBpbmctY2FuY2VsIiwic2hpcHBpbmctY2hlY2tvdXQiLCJzaGlwcGluZy1jb21wYW5pZXMiLCJzaGlwcGluZy1nZW5lcmF0ZSIsInNoaXBwaW5nLXByZXZpZXciLCJzaGlwcGluZy1wcmludCIsInNoaXBwaW5nLXNoYXJlIiwic2hpcHBpbmctdHJhY2tpbmciLCJlY29tbWVyY2Utc2hpcHBpbmciLCJ0cmFuc2FjdGlvbnMtcmVhZCIsInVzZXJzLXJlYWQiLCJ1c2Vycy13cml0ZSIsIndlYmhvb2tzLXJlYWQiLCJ3ZWJob29rcy13cml0ZSIsIndlYmhvb2tzLXVwZGF0ZSIsIndlYmhvb2tzLWRlbGV0ZSIsInRkZWFsZXItd2ViaG9vayJdfQ.x7Nq8LF7e1gQxDTYoNka0uHysnoifxFaXMZ3n_unow1r6D02Aqs9rqpk6YjmM9Zs_DTfAAo4tk0CctWViq0YNCIYcEhsi-zoBTy-c_7oNr0eCf03u56bGupBT-WLSvm8iddMzI_9U_2NybLn3VgT12tzMc-RbyL12KRnGLyl0mNE8HhaNtj4D-BzSWwvibwMXkUKXyezHO9KQOFFfOKJT7PhtW2_SLZbeRlIXx4m03hjfRvewkWUrXLJnibnfmUOKmx6PgnYcPd9r0yb0UqhgBLIWqo2wutjKaRVsCPSka68Ga6P1oBZ-Vr4QIR2UBgGRwVmDxHUVFwOr8vo_7pZp6zkwarTJQYvj6qyPSe24cPra533vlpY9vQe5RgY2XqTPCJahJD449pTQRQ7HQfJcGRDfAKxS_Uh8f-4lxSmGRDVlyBo8aw9_nYalpBWSmPoHIzgypHvetfg_RUfDhH6xFZoHx5SFi4UeSCEVcHDx0ZiDYXp7Ur2yeja46Ao62xfjflplThRkNF8JVH5rQ2mulAvXm22YCX-wfjT2wsCanyQSSnd42eKgFgPsrUotSQq0Rh_JN3XHnHVbb1E1Rnka7l7GFwSb1Omv6dD5hVpFTs5u3NHgEQw49rJPXzrP0NE8jWIyUw_6KEytaAZJLPE1V277DLn4kGOaynNiruo8zo`; // Replace with your actual access token
-    const data = {
-      from: '85810000',
-      to: '89835000', 
-      height: 10, 
-      width: 15, 
-      length: 20, 
-      weight: 2000, 
-      products_value: 5000, 
-    };
+  const apiUrl =
+    "https://sandbox.melhorenvio.com.br/api/v2/me/shipment/calculate";
+  const accessToken = `eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ0NGQwNzg5YmFlNDg1NzFjOTM0Mjg5OTY1ZjdhODZkZDQ4ZWRiMDQxNTlkZWVlN2Q2NTU0ZTgyNWEwNmY3MzI5NzNhN2I0ZTBjNWZjYzE4In0.eyJhdWQiOiI5NTYiLCJqdGkiOiI0NDRkMDc4OWJhZTQ4NTcxYzkzNDI4OTk2NWY3YTg2ZGQ0OGVkYjA0MTU5ZGVlZTdkNjU1NGU4MjVhMDZmNzMyOTczYTdiNGUwYzVmY2MxOCIsImlhdCI6MTY5MDMyMjk3MSwibmJmIjoxNjkwMzIyOTcxLCJleHAiOjE3MjE5NDUzNzEsInN1YiI6ImYzOTdlMWEzLWZmOWQtNDgwOC1hZTE2LTVlYWNlZGYxOWU5MyIsInNjb3BlcyI6WyJjYXJ0LXJlYWQiLCJjYXJ0LXdyaXRlIiwiY29tcGFuaWVzLXJlYWQiLCJjb21wYW5pZXMtd3JpdGUiLCJjb3Vwb25zLXJlYWQiLCJjb3Vwb25zLXdyaXRlIiwibm90aWZpY2F0aW9ucy1yZWFkIiwib3JkZXJzLXJlYWQiLCJwcm9kdWN0cy1yZWFkIiwicHJvZHVjdHMtZGVzdHJveSIsInByb2R1Y3RzLXdyaXRlIiwicHVyY2hhc2VzLXJlYWQiLCJzaGlwcGluZy1jYWxjdWxhdGUiLCJzaGlwcGluZy1jYW5jZWwiLCJzaGlwcGluZy1jaGVja291dCIsInNoaXBwaW5nLWNvbXBhbmllcyIsInNoaXBwaW5nLWdlbmVyYXRlIiwic2hpcHBpbmctcHJldmlldyIsInNoaXBwaW5nLXByaW50Iiwic2hpcHBpbmctc2hhcmUiLCJzaGlwcGluZy10cmFja2luZyIsImVjb21tZXJjZS1zaGlwcGluZyIsInRyYW5zYWN0aW9ucy1yZWFkIiwidXNlcnMtcmVhZCIsInVzZXJzLXdyaXRlIiwid2ViaG9va3MtcmVhZCIsIndlYmhvb2tzLXdyaXRlIl19.afKFwKr2xjQyc-O-LzbBoorA8wwZJlqEyCiXU69fDQIQR7NIrUdC34RhBibNbavZMTjYfRlkkxhnJt6Zf3Inm0GZfNAYCRo152i2-nMcwA52NSg9x_CiF3T2kE-KPeNMzxPXS3Znm9h_k3fWqsaFFAtA-JZsh4DjgDk_W6D96DZe60EkbpMq8fkAfEDEIGurbN-TyCXSZ7eau5Ob2W9OB_pK_TR3rNa2T1uLeIeT8gPxHlg93OdrMBNX_u8P7paqzZygMJwgnF5X14_OrJDuTa-UhgseBh3qfkQ3fwetAiQ18QtPFu5ygWqZcHnfvL8Jn0cTK0YX_XOcDr4XiTsxuPdniRDUckhJk9TH6Fybxx3GvYZ35ReeT4jqDw9i8fc8OapHopbmduY9Nvhod4C5vJ_9yv0RcsnMg8ViDrzTobcYCS_qSLl4LDfGkOC38NiY_lOdj-9mSKNq1bl1IrwlFDQZjR-86ggVMXyxZq0tUXaH4FDstAQdsldD8yIaaZUzQ2t2lgTn_bYQ1OR2vYrJ661CRJB4RDFBotQi9mGnVSVn50AWksEV782egc0xR-TsjJU8yzv8ByZSel6nFdVQPDxLBGgvGL_1SniDpVuNIcKahufZbSHpMd3M-JUWMht8sfoQEiioz4LG7j-5n6M051rDPfOsKPWgFlquAAf-TzM`; // Replace with your actual access token
   const verFornecedor = () => {
     switch (fornecedor) {
       case "protear":
-        return "85802-970";
+        return "85816-050"; 
+      case "voltaire":
+        return "89930-000"
+      default:
+          return "";
     }
   };
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+  const data = {
+    from: {
+      postal_code: verFornecedor(), // bota esses cep
+    },
+    to: {
+      postal_code: cep,
+    },
+    products: [
+      {
+        id: "x",
+        width: 15, 
+        height: 10, 
+        length: 15, 
+        weight: 0.5,
+        quantity: 1,
+      },
+    ],
+    options: {
+      receipt: false,
+      own_hand: false,
+    },
+    services: "1,2,18",
+  };
+  fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
     })
-    .then(response => {
-        if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.json();
+    .then((data) => {
+      console.log(data);
     })
-    .then(data => {
-        console.log(data)
-
-    })
-    .catch(error => {
-        console.log(error);
+    .catch((error) => {
+      console.log(error);
     });
-    
+
   const [resultado, setResultado] = useState("");
-  const url = `https://api.melhorenvio.com.br/v1/shipping/quote?from=${verFornecedor}&to=${cep}&weight=${peso}&declared_value=${valorProduto}&api_key=${'apiKey'}`;
+  const url = `https://api.melhorenvio.com.br/v1/shipping/quote?from=${verFornecedor}&to=${cep}&weight=${peso}&declared_value=${valorProduto}&api_key=${"apiKey"}`;
 
   useEffect(() => {
-/*     if (agr === 0) {
+    /*     if (agr === 0) {
       axios
         .get(url)
         .then((response: any) => {
@@ -81,7 +99,7 @@ export default function PopupFrete({
     }
     setAgr(1); */
   }, [agr, url]);
-  console.log(resultado)
+  console.log(resultado);
   return (
     <>
       <div
