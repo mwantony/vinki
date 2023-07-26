@@ -6,6 +6,7 @@
     flex-shrink: 0;
     padding: 2rem .5rem 2rem .5rem;
     width: 100vw;
+    overflow: hidden;
     box-shadow: 0px 4px 50px $text-shadow;
     &__informacoes {
         display: flex;
@@ -22,6 +23,7 @@
         margin-bottom: .4rem;
         font-size: .9rem;
     }
+
     
 
     &__item--moveis::before {
