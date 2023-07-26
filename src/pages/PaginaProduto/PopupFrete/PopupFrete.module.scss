@@ -8,8 +8,34 @@
     background-color: $main-color;
     transform: translate(-50%, 80vw);
     visibility: hidden;
+    width: 70vw;
+    max-width: 600px;
     opacity: 0;
     transition: 500ms;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0px 4px 50px $text-shadow;
+    &__fretes {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        justify-content: space-between;
+    }
+    &__opcoes {
+        margin-top: 1rem;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__opcoes strong {
+        color: $verde--forte;
+        font-weight: bold;
+    }
+    &__close {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .calcularfrete--aparecer {

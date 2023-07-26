@@ -181,7 +181,10 @@ export default function PaginaProduto({
                   className={styles["produto__input"]}
                   type="text"
                   onChange={(event: any) => {
-                    setCepInput(event.target.value)
+                    setTimeout(() => {
+
+                      setCepInput(event.target.value)
+                    },2000)
                     console.log(cepInput)
                   }}
                   name="cep"
