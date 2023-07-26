@@ -56,7 +56,7 @@ export default function PopupFrete({
       receipt: false,
       own_hand: false,
     },
-    services: "1,2,18",
+    services: "1",
   };
   fetch(apiUrl, {
     method: "POST",
