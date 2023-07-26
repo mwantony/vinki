@@ -58,7 +58,7 @@ export default function PaginaProduto({
     });
   }
   const navigate = useNavigate();
-  const [abriFrete, setAbrirFrete] = useState(true)
+  const [abriFrete, setAbrirFrete] = useState(false)
   const [aparecerLoading, setAparecerLoading] = useState(true);
   if (titulo) {
     return (
@@ -70,7 +70,6 @@ export default function PaginaProduto({
               alt="Imagem do produto"
               className={styles["produto__imagem"]}
             />
-            <h2></h2>
             <div >
               <div className={styles["produto__informacoes"]}>
                 <div>
