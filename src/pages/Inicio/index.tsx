@@ -23,8 +23,10 @@ import VideoPlayer from "components/VideoInstitucional";
 export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
   const [maisVendidos, setMaisVendidos] = useState([]);
+  const [emalta, setEmAlta] = useState([])
   const [set, setSet] = useState(0);
   const [set1, setSet1] = useState(0);
+  const [set2, setSet2] = useState(0);
   if (set === 0) {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setEmDestaque(res.data);
@@ -35,6 +37,12 @@ export default function Inicio() {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setMaisVendidos(res.data);
       setSet1(1);
+    });
+  }
+  if (set2 === 0) {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
+      setEmAlta(res.data);
+      setSet2(1);
     });
   }
   var width = window.innerWidth;
@@ -209,6 +217,10 @@ export default function Inicio() {
       </section>
       <section className={styles['videoinstitucional']}>
             <VideoPlayer></VideoPlayer>
+      </section>
+      <section className={styles.emalta}>
+        <h2 className={styles["maisvendidos__titulo"]}>Em alta</h2>
+        <ScrollHorizontal produtos={emalta} id={'emalta'}></ScrollHorizontal>
       </section>
     </>
   );

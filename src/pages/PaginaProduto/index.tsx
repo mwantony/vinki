@@ -7,12 +7,15 @@ import classNames from "classnames";
 import { ReactComponent as Cart } from "../../assets/svg/cartComprar.svg";
 import { ReactComponent as Cesta } from "../../assets/svg/cesta.svg";
 import { ReactComponent as Share } from "../../assets/svg/share.svg";
+import { ReactComponent as RightArrow } from "../../assets/svg/fichatecnica.svg";
 import ScrollHorizontal from "components/ScrollHorizontal";
 import { atualiza, atualizaCarrinho } from "routes";
 import { useNavigate } from "react-router-dom";
 import Loading from "components/Loading";
+import { Collapse, Button } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 import PopupFrete from "./PopupFrete";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
@@ -28,12 +31,21 @@ export default function PaginaProduto({
   const [set, setSet] = useState(0);
   const linkParaCompartilhar = String(window.location.href);
   const [produtos, setProdutos] = useState([{ foto: "" }]);
-  const [cepInput, setCepInput] = useState('')
-  const [peso, setPeso] = useState('')
-  const [fornecedor, setFornecedor] = useState('')
+  const [cepInput, setCepInput] = useState("");
+  const [peso, setPeso] = useState("");
+  const [height, setHeight] = useState('')
+  const [length, setLength] = useState('')
+  const [width, setWidth] = useState('')
+  const [descricao, setDescricao] = useState('')
+  const [fornecedor, setFornecedor] = useState("");
+  const [garantia, setGarantia] = useState("");
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
   const valida = (valor: any) => {
-    return valor.length === 9 ? false : true
-  }
+    return valor.length === 9 ? false : true;
+  };
   Axios.get(`${process.env.REACT_APP_API_URL}/produto/${idProduto}`).then(
     (res) => {
       const produto = res.data;
@@ -44,8 +56,13 @@ export default function PaginaProduto({
         setPrecoAnterior(produto.precoAnterior);
         setLink(produto.link);
         setId(produto.idprodutos);
-        setPeso(produto.peso)
-        setFornecedor(produto.fornecedor)
+        setPeso(produto.peso);
+        setFornecedor(produto.fornecedor);
+        setHeight(produto.height)
+        setLength(produto.length)
+        setWidth(produto.width)
+        setDescricao(produto.descricao)
+        setGarantia(produto.garantia)
       } else {
         return;
       }
@@ -58,7 +75,7 @@ export default function PaginaProduto({
     });
   }
   const navigate = useNavigate();
-  const [abriFrete, setAbrirFrete] = useState(false)
+  const [abriFrete, setAbrirFrete] = useState(false);
   const [aparecerLoading, setAparecerLoading] = useState(true);
   if (titulo) {
     return (
@@ -70,7 +87,7 @@ export default function PaginaProduto({
               alt="Imagem do produto"
               className={styles["produto__imagem"]}
             />
-            <div >
+            <div>
               <div className={styles["produto__informacoes"]}>
                 <div>
                   <div className={styles["produto__first"]}>
@@ -173,27 +190,77 @@ export default function PaginaProduto({
                   </button>
                 </div>
               </div>
-              <div className={styles['produto__calcular--div']}>
+              <div className={styles["produto__calcular--div"]}>
                 <IMaskInput
                   mask="00000-000"
                   placeholder="Insira o CEP"
                   className={styles["produto__input"]}
                   type="text"
                   onChange={(event: any) => {
-                    if(event.target.value.length === 9) {
-                      setCepInput(event.target.value)
-
+                    if (event.target.value.length === 9) {
+                      setCepInput(event.target.value);
                     } else {
-                      setCepInput('')
+                      setCepInput("");
                     }
                   }}
                   name="cep"
                 ></IMaskInput>
-                <button onClick={() => setAbrirFrete(true)} disabled={valida(cepInput)} className={styles['produto__button']}>Calcular</button>
+                <button
+                  onClick={() => setAbrirFrete(true)}
+                  disabled={valida(cepInput)}
+                  className={styles["produto__button"]}
+                >
+                  Calcular
+                </button>
               </div>
-              <PopupFrete valorProduto={Number(promocao)} fornecedor={fornecedor} abrirFrete={abriFrete} cep={cepInput} peso={peso} setAbrirFrete={setAbrirFrete}></PopupFrete>
+              <PopupFrete
+                valorProduto={Number(promocao)}
+                fornecedor={fornecedor}
+                abrirFrete={abriFrete}
+                cep={cepInput}
+                peso={peso}
+                setAbrirFrete={setAbrirFrete}
+              ></PopupFrete>
             </div>
           </div>
+            <div>
+              <Button className={classNames({
+                [styles['produto__botaocollapse']]: true,
+                [styles['produto__botaocollapse--ativo']]: isCollapsed,
+              })}  onClick={toggleCollapse} variant="primary">
+                <p>Ficha técnica</p>
+                <KeyboardArrowDownIcon className={classNames({
+                  [styles['produto__fichatecnica']]: true,
+                  [styles['produto__fichatecnica--ativo']]: isCollapsed,
+                })} ></KeyboardArrowDownIcon>
+              </Button>
+              <Collapse className={styles['produto__collapse']} in={isCollapsed}>
+                <div className={styles['produto__collapse--conteudo']}>
+                  <div className={styles['produto__collapse--div']}>
+                    <h2>Nome:</h2>
+                    <p>{titulo}</p>
+                  </div>
+                  <div className={styles['produto__collapse--div']}>
+                    <h2>Descrição:</h2>
+                    <p>{descricao}</p>
+                  </div>
+                  <div className={styles['produto__collapse--div']}>
+                    <h2>Dimensões:</h2>
+                    <p>Largura: {width}cm</p>
+                    <p>Altura: {height}cm</p>
+                    <p>Comprimento: {length}cm</p>
+                  </div>
+                  <div className={styles['produto__collapse--div']}>
+                    <h2>Peso:</h2>
+                    <p>{peso}g</p>
+                  </div>
+                  <div className={styles['produto__collapse--div']}>
+                    <h2>Garantia:</h2>
+                    <p>{garantia} meses</p>
+                  </div>
+                </div>
+              </Collapse>
+            </div>
           <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
           <ScrollHorizontal
             produtos={produtos}

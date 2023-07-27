@@ -56,6 +56,7 @@ export default function PopupFrete({
         length: 15,
         weight: 0.5,
         quantity: 1,
+        products_value: 5000
       },
     ],
     options: {
