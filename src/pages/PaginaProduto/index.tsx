@@ -214,6 +214,11 @@ export default function PaginaProduto({
                 </button>
               </div>
               <PopupFrete
+              height={height}
+              length={length}
+              promocao={promocao}
+              width={width}
+              
                 valorProduto={Number(promocao)}
                 fornecedor={fornecedor}
                 abrirFrete={abriFrete}
@@ -227,7 +232,7 @@ export default function PaginaProduto({
               <Button className={classNames({
                 [styles['produto__botaocollapse']]: true,
                 [styles['produto__botaocollapse--ativo']]: isCollapsed,
-              })}  onClick={toggleCollapse} variant="primary">
+              })}  onClick={toggleCollapse} variant="#3c3c3c">
                 <p>Ficha técnica</p>
                 <KeyboardArrowDownIcon className={classNames({
                   [styles['produto__fichatecnica']]: true,
@@ -252,7 +257,7 @@ export default function PaginaProduto({
                   </div>
                   <div className={styles['produto__collapse--div']}>
                     <h2>Peso:</h2>
-                    <p>{peso}g</p>
+                    <p>{peso}kg</p>
                   </div>
                   <div className={styles['produto__collapse--div']}>
                     <h2>Garantia:</h2>

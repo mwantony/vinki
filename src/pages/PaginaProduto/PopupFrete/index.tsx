@@ -12,6 +12,10 @@ interface Props {
   cep: any;
   fornecedor: any;
   valorProduto: any;
+  height: any
+  width: any
+  length: any
+  promocao: any
 }
 
 export default function PopupFrete({
@@ -21,6 +25,10 @@ export default function PopupFrete({
   cep,
   fornecedor,
   valorProduto,
+  height,
+  width,
+  promocao,
+  length
 }: Props) {
   const [agr, setAgr] = useState(0);
   const [cidade, setCidade] = useState("")
@@ -51,12 +59,12 @@ export default function PopupFrete({
     products: [
       {
         id: "x",
-        width: 15,
-        height: 10,
-        length: 15,
-        weight: 0.5,
+        width: Number(width),
+        height: Number(height),
+        length: Number(length),
+        weight: Number(peso),
         quantity: 1,
-        products_value: 5000
+        products_value: Number(promocao).toFixed(2)
       },
     ],
     options: {
