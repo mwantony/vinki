@@ -65,7 +65,7 @@ export const atualizaCarrinho = () => {
   window.location.reload();
 };
 
-const prdo: any = []
+const prdo: any = [];
 const atu = async () => {
   await carrinhoLocalParsed.map((item: any, index: any) =>
     Axios.get(
@@ -77,17 +77,18 @@ const atu = async () => {
         categoria: res.data.categoria,
         promocao: res.data.promocao,
         linkImagem: res.data.link,
-        idprodutos: res.data.idprodutos
-      })
+        idprodutos: res.data.idprodutos,
+      });
     })
   );
-  const prdo1 = prdo
+  const prdo1 = prdo;
   setTimeout(() => {
-    console.log(prdo)
+    console.log(prdo);
     localStorage.setItem("carrinho", JSON.stringify(prdo));
-  },2000)
-/*   localStorage.setItem("carrinho", JSON.stringify(prdo));
- */};
+  }, 2000);
+  /*   localStorage.setItem("carrinho", JSON.stringify(prdo));
+   */
+};
 
 export const atualiza = async () => {
   fetch(`${process.env.REACT_APP_API_URL}/login`, {
@@ -114,8 +115,8 @@ export const atualiza = async () => {
 };
 if (usuarioLocalParsed.nome !== "") {
   atualiza();
-    atu()
-   console.log("o");
+  atu();
+  console.log("o");
 }
 
 const verifica = () => {
@@ -135,7 +136,7 @@ const verifica = () => {
 };
 
 export default function AppRouter() {
-  const [carrinhoItem, setCarrinhoitems] = useState(carrinhoLocalParsed.length)
+  const [carrinhoItem, setCarrinhoitems] = useState(carrinhoLocalParsed.length);
   const [aparecer, setAparecer] = useState(false);
   const [selecionado, setSelecionado] = useState(verifica);
   const dadosUsuario = localStorage.getItem("usuario");
@@ -193,7 +194,7 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Cabecalho
-      carrinhoItems={carrinhoItem}
+        carrinhoItems={carrinhoItem}
         produtosCarrinho={carrinhoLocalParsed}
         input={input}
         setInput={setInput}
@@ -216,9 +217,10 @@ export default function AppRouter() {
           path="/carrinho"
           element={
             <Carrinho
-            id={id}
-            carrinhoItems={carrinhoItem}
-            setCarrinhoItems={setCarrinhoitems}
+              cep={cep}
+              id={id}
+              carrinhoItems={carrinhoItem}
+              setCarrinhoItems={setCarrinhoitems}
               nome={nome}
               setCarrinho1={setCarrinho1}
               produtos={carrinho1}

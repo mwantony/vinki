@@ -54,14 +54,7 @@ export default function Endereco({
   };
   const navigate = useNavigate();
 
-  const validationEndereco = ''/* yup.object().shape({
-    complemento: yup.string().required("Este campo é obrigatório"),
-    logradouro: yup.string().required("Este campo é obrigatório"),
-    numero: yup.number().required("*"),
-    cidade: yup.string().required("*"),
-    uf: yup.string().required("*"),
-    pontoDeRef: yup.string().required("Este campo é obrigatório"),
-  }); */
+  const validationEndereco =  ''
   useEffect(() => {
     if (nome === "") {
       navigate("/login");
@@ -211,7 +204,7 @@ export default function Endereco({
                   setPontoDeRefUser(event.target.value);
                 }}
                 className={styles["endereco__input"]}
-                placeholder="Ponto de referência"
+                placeholder="Bairro"
               ></Field>
               <ErrorMessage
                 component="span"

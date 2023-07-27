@@ -16,27 +16,35 @@ interface Props {
   produtos: any;
   nome: any;
   setCarrinho1: any;
-  setCarrinhoItems: any
-  carrinhoItems: any
-  id: any
+  setCarrinhoItems: any;
+  carrinhoItems: any;
+  id: any;
+  cep: any;
 }
-export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItems, carrinhoItems, id }: Props) {
+export default function Carrinho({
+  produtos,
+  setCarrinho1,
+  nome,
+  setCarrinhoItems,
+  carrinhoItems,
+  id,
+  cep,
+}: Props) {
   console.log(produtos);
   const [parent, enableAnimations] = useAutoAnimate();
 
   const removerItem = (link: any, ind: any) => {
     const novoArray = produtos.filter((item: any, index: any) => index !== ind);
     setCarrinho1(novoArray);
-    setCarrinhoItems(carrinhoItems - 1)
-    setTimeout(() => {
-    },1000)
+    setCarrinhoItems(carrinhoItems - 1);
+    setTimeout(() => {}, 1000);
     localStorage.setItem("carrinho", JSON.stringify(novoArray));
-    window.location.reload()
+    window.location.reload();
   };
   const navigate = useNavigate();
   const [redirecionar, setRedirecionar] = useState("");
   const [pode, setPode] = useState(true);
-  const [idReferencia, setIdReferencia] = useState("")
+  const [idReferencia, setIdReferencia] = useState("");
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
   });
@@ -45,35 +53,34 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
     return (itemsValor = itemsValor += Number(item.promocao));
   });
   useEffect(() => {
-
     if (nome === "") {
       navigate("/login");
     }
     if (pode) {
-      if(produtos.length !== 0) {
-      Axios.post("https://api.mercadopago.com/checkout/preferences", {
-        items: [
-          {
-            title: idReferencia,
-            quantity: itemsValor,
-            currency_id: "BRL",
-            unit_price: 1,
-            id: "12345678"
+      if (produtos.length !== 0) {
+        Axios.post("https://api.mercadopago.com/checkout/preferences", {
+          items: [
+            {
+              title: idReferencia,
+              quantity: itemsValor,
+              currency_id: "BRL",
+              unit_price: 1,
+              id: "12345678",
+            },
+          ],
+          payer: {
+            email: "againplayi7@gmail.com",
           },
-        ],
-        payer: {
-          email: "againplayi7@gmail.com"
-        }
-      }).then((resposta: any) => {
-        console.log(resposta.data)
-        setRedirecionar(resposta.data.init_point)
-        setIdReferencia(resposta.data.id)
-      });
-    }
+        }).then((resposta: any) => {
+          console.log(resposta.data);
+          setRedirecionar(resposta.data.init_point);
+          setIdReferencia(resposta.data.id);
+        });
+      }
       setPode(false);
     }
   }, [items, itemsValor, navigate, nome, pode, produtos.length]);
-  const [finalizar, setFinalizar] = useState(false)
+  const [finalizar, setFinalizar] = useState(false);
   return (
     <>
       <section className={styles["carrinho"]}>
@@ -93,17 +100,36 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           >
             Continuar comprando
           </button>
-{produtos.length !== 0  ? <button
+          {cep === "" ? (
+            <button
               className={classNames({
                 [styles["carrinho__botaolista"]]: true,
                 [styles["carrinho__botaolista--pagamento"]]: true,
               })}
               onClick={() => {
-                setFinalizar(true)
+                navigate("/endereco");
+              }}
+            >
+              Endereço
+            </button>
+          ) : (
+            ""
+          )}
+          {produtos.length !== 0 && cep !== "" ? (
+            <button
+              className={classNames({
+                [styles["carrinho__botaolista"]]: true,
+                [styles["carrinho__botaolista--pagamento"]]: true,
+              })}
+              onClick={() => {
+                setFinalizar(true);
               }}
             >
               Ir para o pagamento
-            </button> : ''}
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <ul ref={parent} className={styles["carrinho__lista"]}>
           {produtos.length !== 0 ? (
@@ -151,7 +177,15 @@ export default function Carrinho({ produtos, setCarrinho1, nome, setCarrinhoItem
           )}
         </ul>
       </section>
-      <FinalizarCompra idReferencia={idReferencia} redirecionar={redirecionar} id={id} total={itemsValor} produtos={produtos} finalizar={finalizar} setFinalizar={setFinalizar}></FinalizarCompra>
+      <FinalizarCompra
+        idReferencia={idReferencia}
+        redirecionar={redirecionar}
+        id={id}
+        total={itemsValor}
+        produtos={produtos}
+        finalizar={finalizar}
+        setFinalizar={setFinalizar}
+      ></FinalizarCompra>
     </>
   );
 }
