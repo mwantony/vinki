@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Endereco from "interfaces/Endereco";
 import  Axios  from "axios";
 import { atualiza } from "routes";
+import Notificacao from "components/Notificacao";
 interface Props {
   nome: any;
   tipoDeConta: any;
@@ -45,8 +46,8 @@ export default function MinhaConta({
   const [senha, setSenha] = useState(senhaUser);
   const [senhaConfirm, setSenhaConfirm] = useState(senhaUser);
   const [dataDeNascimentoInput, setDataDeNascimentoInput] = useState(dataDeNascimento)
-
-  const props = {};
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false)
+  const props = {}; 
   const [cpf, setCpf] = useState(cpfUser);
   const [mask, setMask] = useState("(99) 99999-9999");
 
@@ -296,6 +297,7 @@ export default function MinhaConta({
           navigate('/pedidos')
         }} className={styles['minhaconta__pedidos']}>Meus pedidos</button>
       </div>
+      <Notificacao  msg={'Atualizado com sucesso'} mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao}></Notificacao>
     </section>
   );
 }
