@@ -153,8 +153,8 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1127686531985977424/xiomi-mobile.png"
-                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1126310135048978532/image.png"
+                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1134558868551254038/Banner-2---Mobile.png"
+                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1134546416103075882/Banner_2_Inicio.png"
               }
               className="d-block w-100"
               alt={"Foto"}
