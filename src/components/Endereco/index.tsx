@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { atualiza } from "routes";
+import Notificacao from "components/Notificacao";
 const yup = require("yup");
 
 interface Props {
@@ -37,8 +38,11 @@ export default function Endereco({
   const [cidadeUser, setCidadeUser] = useState(cidade);
   const [ufUser, setUfUser] = useState(uf);
   const [pontoDeRefUser, setPontoDeRefUser] = useState(pontoDeRef);
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false)
   const handleEndereco = (event: any) => {
-    if(cepUser === '') {
+    if(cepUser === '' || complementoUser === '' || logradouroUser ==='' || numeroUser === '' || cidadeUser === "" ||
+    ufUser === "" || pontoDeRef === '') {
+      setMostrarNotificacao(true)
       event.preventDefault()
     }
     Axios.post(`${process.env.REACT_APP_API_URL}/endereco`, {
@@ -227,6 +231,7 @@ export default function Endereco({
           </button>
         </Form>
       </Formik>
+      <Notificacao setMostrarNotificacao={setMostrarNotificacao} mostrarNotificacao={mostrarNotificacao} msg={"Há dados faltando!"}></Notificacao>
     </section>
   );
 }

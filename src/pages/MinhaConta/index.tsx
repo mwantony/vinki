@@ -248,7 +248,7 @@ export default function MinhaConta({
                 onChange={(event) => {
                   setSenhaConfirm(event.target.value);
                 }}
-                placeholder="Senha"
+                placeholder="Confirme sua senha"
               />
             </div>
           </form>

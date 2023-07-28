@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import styles from "./Notificacao.module.scss";
 import { useEffect, useState } from "react";
+import {ReactComponent as Close} from 'assets/svg/close.svg'
 interface Props {
   msg: any;
   mostrarNotificacao: any;
@@ -45,6 +46,9 @@ export default function Notificacao({
       <div className={styles['notificacao__progress-bar']}>
         <div className={styles['notificacao__progress']} style={{ width: `${progress}%` }}></div>
       </div>
+      <Close onClick={() => {
+        setMostrarNotificacao(false)
+      }} className={styles['notificacao__close']}></Close>
     </div>
     </>
   );
