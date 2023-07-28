@@ -16,20 +16,24 @@ export default function Notificacao({
 
   // Simulando um processo assíncrono com o useEffect
   useEffect(() => {
-    const interval = setInterval(() => {
-        setProgress(prevProgress => {
-          if (prevProgress >= 100) {
-            clearInterval(interval);
-            setMostrarNotificacao(false)
-            return 100;
-          }
-          return prevProgress + 0.1; // 100 / 40 = 2.5, ou seja, aumenta 2.5% a cada 1ms
-        });
-      }, 1);
-
-    // Limpe o intervalo quando o componente for desmontado
-    return () => clearInterval(interval);
-  }, []);
+    let interval: any;
+    if(mostrarNotificacao) {
+      interval = setInterval(() => {
+          setProgress(prevProgress => {
+            if (prevProgress >= 100) {
+              clearInterval(interval);
+              setMostrarNotificacao(false)
+              return 0;
+            }
+            return prevProgress + 0.1; // 100 / 40 = 2.5, ou seja, aumenta 2.5% a cada 1ms
+          });
+        }, 1);
+  
+      // Limpe o intervalo quando o componente for desmontado
+      return () => clearInterval(interval);
+      
+    }
+  }, [mostrarNotificacao, setMostrarNotificacao]);
 
   return (
     <>

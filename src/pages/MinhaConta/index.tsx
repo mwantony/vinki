@@ -61,7 +61,7 @@ export default function MinhaConta({
       dataDeNascimento: dataDeNascimentoInput,
       telefone: telefone,
     }).then((response) => {
-      alert(response.data.msg);
+      return
     });
   }
   useEffect(() => {
@@ -255,6 +255,7 @@ export default function MinhaConta({
           <button className={styles["minhaconta__botao"]} onClick={() => {
             handleEverything()
             atualiza()
+            setMostrarNotificacao(true)
           }} >
             Salvar
           </button>

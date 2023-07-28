@@ -70,7 +70,13 @@
     font-weight: bold;
     transition: 500ms;
     border: 1px solid $text-shadow;
-
+    &:hover {
+      box-shadow: 0px 4px 50px $text-shadow;
+      border: 1px solid $text-shadow;
+      box-shadow: 0px 4px 50px $text-shadow;
+      background-color: $main-color;
+      color: $cinza-escuro;
+    }
   }
   &__botaocollapse--ativo {
     border-radius: 15px 15px 0px 0px;

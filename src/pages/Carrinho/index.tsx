@@ -9,6 +9,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import Axios from "axios";
 import FinalizarCompra from "pages/FinalizarCompra";
+import Notificacao from "components/Notificacao";
 initMercadoPago("YOUR_PUBLIC_KEY");
 Axios.defaults.headers.common["Authorization"] =
   "Bearer APP_USR-5257004078028291-071317-32f7663e901c0dfc178122e42e6d8a3a-1184731359";
@@ -44,6 +45,7 @@ export default function Carrinho({
   const navigate = useNavigate();
   const [redirecionar, setRedirecionar] = useState("");
   const [pode, setPode] = useState(true);
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false)
   const [idReferencia, setIdReferencia] = useState("");
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
@@ -178,6 +180,7 @@ export default function Carrinho({
         </ul>
       </section>
       <FinalizarCompra
+      setMostrarNotificacao={setMostrarNotificacao}
         idReferencia={idReferencia}
         redirecionar={redirecionar}
         id={id}
@@ -186,6 +189,7 @@ export default function Carrinho({
         finalizar={finalizar}
         setFinalizar={setFinalizar}
       ></FinalizarCompra>
+      <Notificacao mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao} msg={'Pedido efetuado'}></Notificacao>
     </>
   );
 }

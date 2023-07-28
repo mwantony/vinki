@@ -11,6 +11,7 @@ interface Props {
   redirecionar: any;
   id: any
   idReferencia: any
+  setMostrarNotificacao: any
 }
 export default function FinalizarCompra({
   finalizar,
@@ -19,7 +20,8 @@ export default function FinalizarCompra({
   total,
   redirecionar,
   id,
-  idReferencia
+  idReferencia,
+  setMostrarNotificacao
 }: Props) {
     let titleprodutos = ''
     const handleFinalizar = () => {
@@ -72,6 +74,7 @@ export default function FinalizarCompra({
           <a href={redirecionar} target="_blank" rel="noreferrer" onClick={() => {
             handleFinalizar()
             setFinalizar(false)
+            setMostrarNotificacao(true)
           }}>
             <button className={styles['finalizarcompra__finalizar']}>
               <p className={styles['finalizarcompra__botao']}>Finalizar compra</p>

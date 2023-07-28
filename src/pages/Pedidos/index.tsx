@@ -11,6 +11,7 @@ import { motion, Variants } from "framer-motion";
 import {ordenarAprovados, ordenarCancelados, ordenarMaisAntigo, ordenarMaisRecente, ordenarPendentes} from 'func/ordenar'
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import Notificacao from "components/Notificacao";
 interface Props {
   id: any;
 }
@@ -22,7 +23,9 @@ const itemVariants: Variants = {
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
+
 export default function Pedidos({ id }: Props) {
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false)
   const [pedidos, setPedidos] = useState([]);
   const [pedidosNum, setPedidosNum] = useState([]);
   const isElementVisible = (element: any) => {
@@ -225,8 +228,9 @@ export default function Pedidos({ id }: Props) {
                     </div>
                     {pedido.status !== "Cancelado" ? (
                       <button className={styles["pedidos__botao"]} onClick={() => {
+                        setMostrarNotificacao(true)
                         Axios.put(`${process.env.REACT_APP_API_URL}/pedidos/${pedido.idpedidos}`).then((res: any) => {
-                          alert(res.data.msg)
+                          return
                         })
                       }}>
                         Cancelar
@@ -269,6 +273,7 @@ export default function Pedidos({ id }: Props) {
           )}
         </ul>
       </section>
+      <Notificacao mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao} msg={'Pedido cancelado'}></Notificacao>
     </>
   );
 }
