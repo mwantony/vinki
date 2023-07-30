@@ -16,6 +16,7 @@ export default function Notificacao({
     const [progress, setProgress] = useState(0);
 
   // Simulando um processo assíncrono com o useEffect
+  
   useEffect(() => {
     let interval: any;
     if(mostrarNotificacao) {
