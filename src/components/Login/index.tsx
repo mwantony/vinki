@@ -5,10 +5,12 @@ import styles from "./Login.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Usuario from "interfaces/Usuario";
+import Notificacao from "components/Notificacao";
 export default function Login() {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
   const handleClick = async (values: any) => {
     Axios.post(`${process.env.REACT_APP_API_URL}/login`, {
       email: values.email,
@@ -18,8 +20,12 @@ export default function Login() {
       console.log(dados)
       if(!dados.hasOwnProperty('msg')) {
         localStorage.setItem("usuario", JSON.stringify(dados))
+        navigate("/");
+        setTimeout(function() {
+          window.location.reload()
+        }, 1000);
       } else {
-        alert(dados.msg)
+        setMostrarNotificacao(true)
       }
       return dados
     }).then((dados) => {
@@ -98,12 +104,6 @@ export default function Login() {
               ></ErrorMessage>
               <button
                 className={styles["login__botao"]}
-                onClick={() => {
-                  navigate("/");
-                  setTimeout(function() {
-                    window.location.reload()
-                  }, 1000);
-                }}
                 type="submit"
               >
                 Login
@@ -117,6 +117,7 @@ export default function Login() {
             </div>
           </Form>
         </Formik>
+        <Notificacao mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao} msg={"Email ou senha inválidos"}></Notificacao>
       </div>
     </>
   );
