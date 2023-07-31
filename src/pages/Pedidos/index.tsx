@@ -218,7 +218,7 @@ export default function Pedidos({ id }: Props) {
                             className={styles["pedidos__produto--link"]}
                             href={`${
                               process.env.REACT_APP_WEB_URL
-                            }/produto/${Number(produto)}`}
+                            }/produto/${String(produto).replace(' ', '')}`}
                           >
                             {produto}
                             {index === produtoSeparados.length - 1 ? "" : ","}
