@@ -15,6 +15,10 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { Carousel } from "react-bootstrap";
 import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/prevbutton.svg";
 import { ReactComponent as ArrowNextIosIcon } from "../../assets/svg/nextbutton.svg";
+import {ReactComponent as WhatsappIcon} from '../../assets/svg/whatsapplogo.svg'
+import {ReactComponent as InstagramIcon} from '../../assets/svg/instagramlogo.svg'
+import {ReactComponent as FacebookIcon} from '../../assets/svg/facebooklogo.svg'
+import {ReactComponent as ThreadsIcon} from '../../assets/svg/threadslogo.svg'
 import { slideRight, slideLeft } from "../../func/sliders";
 import { Link } from "react-router-dom";
 import Axios  from "axios";
@@ -24,9 +28,11 @@ export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
   const [maisVendidos, setMaisVendidos] = useState([]);
   const [emalta, setEmAlta] = useState([])
+  const [produtosRecomendados, setProdutosRecomendados] = useState([])
   const [set, setSet] = useState(0);
   const [set1, setSet1] = useState(0);
   const [set2, setSet2] = useState(0);
+  const [set3, setSet3] = useState(0);
   if (set === 0) {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setEmDestaque(res.data);
@@ -43,6 +49,12 @@ export default function Inicio() {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setEmAlta(res.data);
       setSet2(1);
+    });
+  }
+  if (set3 === 0) {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
+      setProdutosRecomendados(res.data);
+      setSet3(1);
     });
   }
   var width = window.innerWidth;
@@ -221,6 +233,25 @@ export default function Inicio() {
       <section className={styles.emalta}>
         <h2 className={styles["maisvendidos__titulo"]}>Em alta</h2>
         <ScrollHorizontal produtos={emalta} id={'emalta'}></ScrollHorizontal>
+      </section>
+      <section className={styles.saibaquemsomos}>
+        <div className={styles['saibaquemsomos__div--imagem']}>
+          <img src="https://cdn.discordapp.com/attachments/1067833193329344542/1135368879116402759/sobrenos.png" alt="Foto da Vinki" />
+        </div>
+        <div className={styles['saibaquemsomos__info']}>
+          <h2 className={styles['saibaquemsomos__titulo']}>Saiba quem somos</h2>
+          <p className={styles['saibaquemsomos__paragrafo']}>Fundada em 2023, a Vinki contém um extenso catálogo de produtos de alta qualidade. A empresa oferece uma experiência de compra descomplicada, garantindo a satisfação total dos clientes. Além disso, a Vinki destaca-se por seu compromisso com o cliente. Com uma uma equipe dedicada, a Vinki continua a prosperar como uma loja online de referência, tornando-se a escolha ideal para todos aqueles que buscam uma nova e incrível maneira de comprar online.</p>
+          <div className={styles['saibaquemsomos__icons']}>
+              <FacebookIcon></FacebookIcon>
+              <InstagramIcon></InstagramIcon>
+              <WhatsappIcon></WhatsappIcon>
+              <ThreadsIcon></ThreadsIcon>
+          </div>
+        </div>
+      </section>
+      <section className={styles.produtosrecomendados}>
+        <h2 className={styles["maisvendidos__titulo"]}>Produtos recomendados</h2>
+        <ScrollHorizontal produtos={produtosRecomendados} id={'produtosRecomendados'}></ScrollHorizontal>
       </section>
     </>
   );

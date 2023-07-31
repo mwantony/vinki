@@ -279,3 +279,115 @@
     background-image: url('https://cdn.discordapp.com/attachments/1109594939840532501/1134519471176941659/banner---meio-png.png');
   }
 }
+
+.saibaquemsomos {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  &__div--imagem {
+    width: 80%;
+    margin: 0 auto;
+    min-height: 280px;
+    display: block;
+    text-align: center;
+    position: relative;
+  }
+  &__div--imagem > img {
+    width: 100%;
+    display: block;
+    position: absolute;
+    margin: 0 auto;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+  }
+  &__info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__info > p {
+    text-align: justify;
+    text-indent: 3rem;
+  }
+  &__titulo {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  &__icons {
+    align-self: flex-end;
+    justify-content: flex-end;
+    display: flex;
+    width: 150px;
+    align-items: center;
+    margin-top: 1rem;
+    
+  }
+  &__icons > svg {
+    transition: 500ms;
+    &:hover {
+      opacity: .7;
+      cursor: pointer;
+    }
+  }
+}
+
+
+@media(min-width: $medium) {
+  .saibaquemsomos {
+    display: flex;
+    padding: 2rem;
+    flex-direction: row;
+    &__div--imagem {
+      width: 40%;
+      min-height: 350px;
+      display: block;
+      text-align: center;
+      position: relative;
+    }
+    &__div--imagem > img {
+      width: 70%;
+      display: block;
+      position: absolute;
+      margin: 0 auto;
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%);
+    }
+    &__info {
+      display: flex;
+      width: 50%;
+      flex-direction: column;
+      justify-content: center;
+    }
+    &__info > p {
+      text-align: justify;
+      text-indent: 3rem;
+    }
+    &__titulo {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    &__icons {
+      align-self: flex-end;
+      justify-content: flex-end;
+      display: flex;
+      width: 150px;
+      align-items: center;
+      margin-top: 1rem;
+      
+    }
+    &__icons > svg {
+      transition: 500ms;
+      &:hover {
+        opacity: .7;
+        cursor: pointer;
+      }
+    }
+  }
+}
