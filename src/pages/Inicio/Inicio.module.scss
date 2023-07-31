@@ -289,7 +289,7 @@
   &__div--imagem {
     width: 80%;
     margin: 0 auto;
-    min-height: 280px;
+    min-height: 65vw;
     display: block;
     text-align: center;
     position: relative;
@@ -342,6 +342,7 @@
     display: flex;
     padding: 2rem;
     flex-direction: row;
+    width: 95vw;
     &__div--imagem {
       width: 40%;
       min-height: 350px;
