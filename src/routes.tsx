@@ -9,13 +9,13 @@ import NotFound from "./components/NotFound";
 import MinhaConta from "pages/MinhaConta";
 import Axios from "axios";
 import Endereco from "components/Endereco";
-import Moveis from "pages/Moveis";
 import Loading from "components/Loading";
 import Carrinho from "pages/Carrinho";
 import PaginaProduto from "pages/PaginaProduto";
 import Search from "pages/Search";
 import FinalizarCompra from "pages/FinalizarCompra";
 import Pedidos from "pages/Pedidos";
+import Categorias from "pages/Categorias";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -227,7 +227,7 @@ export default function AppRouter() {
             ></Carrinho>
           }
         ></Route>
-        <Route path="/moveis" element={<Moveis></Moveis>}></Route>
+        <Route path="/categorias/:categoria" element={<Categorias></Categorias>}></Route>
         <Route
           path="/produto/:idProduto"
           element={

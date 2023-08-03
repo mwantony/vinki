@@ -4,8 +4,16 @@
   &__imagem {
     margin: 1.5rem auto;
     display: block;
+    max-height: 267px;
+    max-width: 100%;
+    height: auto;
     box-shadow: 0px 4px 50px $text-shadow;
   }
+  &__im {
+    width: 100%;
+
+  }
+ 
   &__informacoes {
     background-color: $cinza-escuro;
     color: $main-color;
@@ -192,5 +200,15 @@
         color: $cinza-escuro;
       }
     }
+  }
+}
+
+@media (min-width: $medium) {
+  .produto {
+    &__im1 {
+     
+      min-height: 350px;
+    }
+
   }
 }

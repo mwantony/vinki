@@ -15,7 +15,9 @@ import Loading from "components/Loading";
 import { Collapse, Button } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 import PopupFrete from "./PopupFrete";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Carousel } from "react-bootstrap";
+
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
@@ -28,15 +30,19 @@ export default function PaginaProduto({
   const [promocao, setPromocao] = useState("");
   const [precoAnterior, setPrecoAnterior] = useState("");
   const [link, setLink] = useState("");
+  const [link2, setLink2] = useState("");
+  const [link3, setLink3] = useState("");
+  const [link4, setLink4] = useState("");
+  const [link5, setLink5] = useState("");
   const [set, setSet] = useState(0);
   const linkParaCompartilhar = String(window.location.href);
   const [produtos, setProdutos] = useState([{ foto: "" }]);
   const [cepInput, setCepInput] = useState("");
   const [peso, setPeso] = useState("");
-  const [height, setHeight] = useState('')
-  const [length, setLength] = useState('')
-  const [width, setWidth] = useState('')
-  const [descricao, setDescricao] = useState('')
+  const [height, setHeight] = useState("");
+  const [length, setLength] = useState("");
+  const [width, setWidth] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [fornecedor, setFornecedor] = useState("");
   const [garantia, setGarantia] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -55,14 +61,18 @@ export default function PaginaProduto({
         setPromocao(produto.promocao);
         setPrecoAnterior(produto.precoAnterior);
         setLink(produto.link);
+        setLink2(produto.link2)
+        setLink3(produto.link3)
+        setLink4(produto.link4)
+        setLink5(produto.link5)
         setId(produto.idprodutos);
         setPeso(produto.peso);
         setFornecedor(produto.fornecedor);
-        setHeight(produto.height)
-        setLength(produto.length)
-        setWidth(produto.width)
-        setDescricao(produto.descricao)
-        setGarantia(produto.garantia)
+        setHeight(produto.height);
+        setLength(produto.length);
+        setWidth(produto.width);
+        setDescricao(produto.descricao);
+        setGarantia(produto.garantia);
       } else {
         return;
       }
@@ -82,11 +92,25 @@ export default function PaginaProduto({
       <>
         <section className={styles["produto"]}>
           <div className={styles["produto__inf"]}>
-            <img
-              src={link}
-              alt="Imagem do produto"
-              className={styles["produto__imagem"]}
-            />
+            <div className={styles['produto__im']}>
+              <Carousel indicators={false} data-bs-theme="dark">
+                <Carousel.Item className={styles['produto__im1']}>
+                  <img className={styles['produto__imagem']} src={link} alt={"Foto"} />
+                </Carousel.Item>
+                <Carousel.Item className={styles['produto__im1']}>
+                  <img className={styles['produto__imagem']} src={link2} alt={"Foto"} />
+                </Carousel.Item>
+                <Carousel.Item className={styles['produto__im1']}>
+                  <img className={styles['produto__imagem']} src={link3} alt={"Foto"} />
+                </Carousel.Item>
+                <Carousel.Item className={styles['produto__im1']}>
+                  <img className={styles['produto__imagem']} src={link4} alt={"Foto"} />
+                </Carousel.Item>
+                <Carousel.Item className={styles['produto__im1']}>
+                  <img className={styles['produto__imagem']} src={link5} alt={"Foto"} />
+                </Carousel.Item>
+              </Carousel>
+            </div>
             <div>
               <div className={styles["produto__informacoes"]}>
                 <div>
@@ -214,11 +238,10 @@ export default function PaginaProduto({
                 </button>
               </div>
               <PopupFrete
-              height={height}
-              length={length}
-              promocao={promocao}
-              width={width}
-              
+                height={height}
+                length={length}
+                promocao={promocao}
+                width={width}
                 valorProduto={Number(promocao)}
                 fornecedor={fornecedor}
                 abrirFrete={abriFrete}
@@ -228,44 +251,50 @@ export default function PaginaProduto({
               ></PopupFrete>
             </div>
           </div>
-            <div>
-              <Button className={classNames({
-                [styles['produto__botaocollapse']]: true,
-                [styles['produto__botaocollapse--ativo']]: isCollapsed,
-              })}  onClick={toggleCollapse} variant="#3c3c3c">
-                <p>Ficha técnica</p>
-                <KeyboardArrowDownIcon className={classNames({
-                  [styles['produto__fichatecnica']]: true,
-                  [styles['produto__fichatecnica--ativo']]: isCollapsed,
-                })} ></KeyboardArrowDownIcon>
-              </Button>
-              <Collapse className={styles['produto__collapse']} in={isCollapsed}>
-                <div className={styles['produto__collapse--conteudo']}>
-                  <div className={styles['produto__collapse--div']}>
-                    <h2>Nome:</h2>
-                    <p>{titulo}</p>
-                  </div>
-                  <div className={styles['produto__collapse--div']}>
-                    <h2>Descrição:</h2>
-                    <p>{descricao}</p>
-                  </div>
-                  <div className={styles['produto__collapse--div']}>
-                    <h2>Dimensões:</h2>
-                    <p>Largura: {width}cm</p>
-                    <p>Altura: {height}cm</p>
-                    <p>Comprimento: {length}cm</p>
-                  </div>
-                  <div className={styles['produto__collapse--div']}>
-                    <h2>Peso:</h2>
-                    <p>{peso}kg</p>
-                  </div>
-                  <div className={styles['produto__collapse--div']}>
-                    <h2>Garantia:</h2>
-                    <p>{garantia} meses</p>
-                  </div>
+          <div>
+            <Button
+              className={classNames({
+                [styles["produto__botaocollapse"]]: true,
+                [styles["produto__botaocollapse--ativo"]]: isCollapsed,
+              })}
+              onClick={toggleCollapse}
+              variant="#3c3c3c"
+            >
+              <p>Ficha técnica</p>
+              <KeyboardArrowDownIcon
+                className={classNames({
+                  [styles["produto__fichatecnica"]]: true,
+                  [styles["produto__fichatecnica--ativo"]]: isCollapsed,
+                })}
+              ></KeyboardArrowDownIcon>
+            </Button>
+            <Collapse className={styles["produto__collapse"]} in={isCollapsed}>
+              <div className={styles["produto__collapse--conteudo"]}>
+                <div className={styles["produto__collapse--div"]}>
+                  <h2>Nome:</h2>
+                  <p>{titulo}</p>
                 </div>
-              </Collapse>
-            </div>
+                <div className={styles["produto__collapse--div"]}>
+                  <h2>Descrição:</h2>
+                  <p>{descricao}</p>
+                </div>
+                <div className={styles["produto__collapse--div"]}>
+                  <h2>Dimensões:</h2>
+                  <p>Largura: {width}cm</p>
+                  <p>Altura: {height}cm</p>
+                  <p>Comprimento: {length}cm</p>
+                </div>
+                <div className={styles["produto__collapse--div"]}>
+                  <h2>Peso:</h2>
+                  <p>{peso}kg</p>
+                </div>
+                <div className={styles["produto__collapse--div"]}>
+                  <h2>Garantia:</h2>
+                  <p>{garantia} meses</p>
+                </div>
+              </div>
+            </Collapse>
+          </div>
           <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
           <ScrollHorizontal
             produtos={produtos}

@@ -1,11 +1,11 @@
 import Axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./Moveis.module.scss";
+import styles from "./Categorias.module.scss";
 import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const itemVariants: Variants = {
   open: {
     opacity: 1,
@@ -14,7 +14,22 @@ const itemVariants: Variants = {
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
-export default function Moveis() {
+let categoria: string
+let location = window.location.href
+switch(location) {
+  case `${process.env.REACT_APP_WEB_URL}/categorias/moveis`:
+    categoria = 'Móveis'  
+    break
+  case `${process.env.REACT_APP_WEB_URL}/categorias/eletronicos`:
+    categoria = 'Eletrônicos'
+    break
+  case `${process.env.REACT_APP_WEB_URL}/categorias/estofados`:
+    categoria = 'Estofados'
+    break
+
+}
+
+export default function Categorias() {
   const [ehLogin, setEhLogin] = useState(false)
   const [aparecerLoading, setAparecerLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +38,12 @@ export default function Moveis() {
   const [eh, setEh] = useState(1);
   const [moveisNum, setMoveisNum] = useState([]);
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
-
+  const ids = useParams()
+  const cat = ids.categoria
+  console.log(cat)
+  
   const loadMore = () => {
-    Axios.post(`${process.env.REACT_APP_API_URL}/moveis`, { categoria: "Móveis" }).then(
+    Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, { categoria: categoria}).then(
       (res) => {
         setMoveisNum(res.data);
         const moveis = res.data.slice(0, quantidade);
@@ -77,8 +95,8 @@ export default function Moveis() {
   return (
     <>
       <div className={styles["moveis__title"]}>
-        <Sofa></Sofa>
-        <p>Móveis</p>
+        {categoria === "Móveis" ? <Sofa></Sofa>: ""}
+        <p>{categoria}</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>
         {produtosEncontrados} produto(s) encontrados

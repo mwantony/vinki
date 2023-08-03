@@ -72,7 +72,7 @@ export default function Inicio() {
   const handleDragStart = (e: any) => e.preventDefault();
 
   const items = [
-    <Link to={'/moveis'}>
+    <Link to={'/categorias/moveis'}>
       <img
         src={moveis}
         onDragStart={handleDragStart}
