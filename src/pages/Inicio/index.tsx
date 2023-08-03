@@ -81,13 +81,14 @@ export default function Inicio() {
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
+    <Link to={'/categorias/eletronicos'}>
     <img
       src={eletronicos}
       onDragStart={handleDragStart}
       role="presentation"
       alt="Foto Eletrônico"
       className={styles["lista__foto--slicer"]}
-    />,
+    /></Link>,
     <img
       src={decoracoes}
       onDragStart={handleDragStart}

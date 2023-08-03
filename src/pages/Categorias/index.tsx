@@ -6,6 +6,7 @@ import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
 import { Link, useParams } from "react-router-dom";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 const itemVariants: Variants = {
   open: {
     opacity: 1,
@@ -16,18 +17,7 @@ const itemVariants: Variants = {
 };
 let categoria: string
 let location = window.location.href
-switch(location) {
-  case `${process.env.REACT_APP_WEB_URL}/categorias/moveis`:
-    categoria = 'Móveis'  
-    break
-  case `${process.env.REACT_APP_WEB_URL}/categorias/eletronicos`:
-    categoria = 'Eletrônicos'
-    break
-  case `${process.env.REACT_APP_WEB_URL}/categorias/estofados`:
-    categoria = 'Estofados'
-    break
 
-}
 
 export default function Categorias() {
   const [ehLogin, setEhLogin] = useState(false)
@@ -36,12 +26,14 @@ export default function Categorias() {
   const [selecionado, setSelecionado] = useState("Ordenar");
   const [quantidade, setQuantidade] = useState(6);
   const [eh, setEh] = useState(1);
+  const [parent, enableAnimations] = useAutoAnimate();
+
   const [moveisNum, setMoveisNum] = useState([]);
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
   const ids = useParams()
   const cat = ids.categoria
   console.log(cat)
-  
+
   const loadMore = () => {
     Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, { categoria: categoria}).then(
       (res) => {
@@ -64,11 +56,27 @@ export default function Categorias() {
   };
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [use, setUse] = useState(window.location.href)
+  console.log(location)
   useEffect(() => {
+    switch(use) {
+      case `${process.env.REACT_APP_WEB_URL}/categorias/moveis`:
+        categoria = 'Móveis'  
+        break
+      case `${process.env.REACT_APP_WEB_URL}/categorias/eletronicos`:
+        categoria = 'Eletrônicos'
+        break
+      case `${process.env.REACT_APP_WEB_URL}/categorias/estofados`:
+        categoria = 'Estofados'
+        break
+    
+    }
+
     if (eh === 1) {
       loadMore();
       setEh(2);
     }
+    
     const handleScroll = () => {
       const element = elementRef.current;
       if (element) {
@@ -184,7 +192,7 @@ export default function Categorias() {
         </motion.ul>
       </motion.nav>
 
-      <section className={styles["moveis"]}>
+      <section className={styles["moveis"]} ref={parent}>
         {moveisEncontrados
           ? moveisEncontrados.map((produto: any, index: any) => {
               return (

@@ -58,8 +58,8 @@ export default function Cabecalho({
       classe: "carrinho",
     },
     {
-      titulo: "Favoritos",
-      to: "favoritos",
+      titulo: "Pedidos",
+      to: "pedidos",
       classe: "favoritos",
     },
     {
