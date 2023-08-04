@@ -45,18 +45,78 @@ export default function Carrinho({
   const navigate = useNavigate();
   const [redirecionar, setRedirecionar] = useState("");
   const [pode, setPode] = useState(true);
-  const [mostrarNotificacao, setMostrarNotificacao] = useState(false)
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
   const [idReferencia, setIdReferencia] = useState("");
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
   });
   let itemsValor = 0;
-  let dimensoes = 0
+  let height = 0;
+  let width = 0;
+  let length = 0;
+  let peso = 0;
+  let fornecedor = "";
+  const accessToken = `eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NTYiLCJqdGkiOiIzNGQ3ZmJkZjdiOGQ2MjU2ZDU2YzIxODhmOGYwODEzMTM1YmY4ZDYyMWE4NzNlYmRlMWFhNjg2MDk0ZDU5NDYyODJiNDViNTk5ZGJjODYzOCIsImlhdCI6MTY5MDQyNTk1Ny4wODE2NTcsIm5iZiI6MTY5MDQyNTk1Ny4wODE2NiwiZXhwIjoxNzIyMDQ4MzU3LjA2ODQxNCwic3ViIjoiOTliZTRiNjItNWZmYy00Y2FhLTk5NGQtYTc1YWViOTVlYzM3Iiwic2NvcGVzIjpbImNhcnQtcmVhZCIsImNhcnQtd3JpdGUiLCJjb21wYW5pZXMtcmVhZCIsImNvbXBhbmllcy13cml0ZSIsImNvdXBvbnMtcmVhZCIsImNvdXBvbnMtd3JpdGUiLCJub3RpZmljYXRpb25zLXJlYWQiLCJvcmRlcnMtcmVhZCIsInByb2R1Y3RzLXJlYWQiLCJwcm9kdWN0cy1kZXN0cm95IiwicHJvZHVjdHMtd3JpdGUiLCJwdXJjaGFzZXMtcmVhZCIsInNoaXBwaW5nLWNhbGN1bGF0ZSIsInNoaXBwaW5nLWNhbmNlbCIsInNoaXBwaW5nLWNoZWNrb3V0Iiwic2hpcHBpbmctY29tcGFuaWVzIiwic2hpcHBpbmctZ2VuZXJhdGUiLCJzaGlwcGluZy1wcmV2aWV3Iiwic2hpcHBpbmctcHJpbnQiLCJzaGlwcGluZy1zaGFyZSIsInNoaXBwaW5nLXRyYWNraW5nIiwiZWNvbW1lcmNlLXNoaXBwaW5nIiwidHJhbnNhY3Rpb25zLXJlYWQiLCJ1c2Vycy1yZWFkIiwidXNlcnMtd3JpdGUiLCJ3ZWJob29rcy1yZWFkIiwid2ViaG9va3Mtd3JpdGUiLCJ3ZWJob29rcy11cGRhdGUiLCJ3ZWJob29rcy1kZWxldGUiLCJ0ZGVhbGVyLXdlYmhvb2siXX0.it0wbEAPHa3wezpRsuWX4W4ejebDzsSIxSf0iGKwZvAR36Q5oETV-3luongKWf-_3wWuqbOxFLMmZrdIBXmb0vh-KrbLEN09EWwIiDgU0RNFEG3a4CjCnbBVoTVi-fftXcwVXXxO3xLCz3H-HxZQ2xQSA-q-WAtk0tyX7o-Rf1wPhAY23xyoOoECkHBXnQr_JCCvfq5jIPIo3j_32TXbYA2aT1Rbj7aoenmn161YMN168G49cHTN88x6B1riOk7cTXboEXKkCNGmLDXLfysQr1wtW3aEyx-4RSiEewnFD7WXlk4zvSulFxDyUs4re12XlH2TKjhWF1cji4KBB9lcKLlNtiw9BwQj61NXZAOWYDsd2YmsufZRd8bvdVS54xe7EOYbhQZNZPu4vfgYpMnxVAuOoBdAyFaWtSP1UqeBmUPOvXtldx--jgounJ4-4a9bvSlONkoODXcl77hnxC1YeCe2Hi9UbB9LVlHH8XRNBNgUeqt88C7ESHA7uD2J5uM4h3tO0Buh9eEDVOlqqiMb3VBGY4NKGm0Tv_5Dt0bF_ryDM9lLBr1uDMsclMq3HjCZYu1H8s15iSzGCDQxNGxBuvrZAxCA8P2H6jdMbxUCFyW2aYjdImpw8XeaIx9WZDTx3LiO6Z84b9s6y1bAno0eMY03TLfYonZ6UwCTz7XryO4`; // Replace with your actual access token
+  let fornecedores: any = []
+  const verFornecedor = () => {
+    switch (fornecedor) {
+      case "protear":
+        return "85816-050";
+      case "voltaire":
+        return "89930-000";
+      default:
+        return "85816-050";
+    }
+  };
   produtos.map((item: any) => {
-    dimensoes = dimensoes + (Number(item.length) * Number(item.height) * Number(item.width))
-    console.log(item.promocao)
+    width = width + Number(item.width);
+    height = height + Number(item.height);
+    length = length + Number(item.length);
+    peso = peso + Number(item.peso);
+    fornecedor = item.fornecedor;
+    fornecedores = [...fornecedores, item.fornecedor]
     return (itemsValor = itemsValor += Number(item.promocao));
   });
+  const data = {
+    from: {
+      postal_code: verFornecedor(), // bota esses cep
+    },
+    to: {
+      postal_code: cep,
+    },
+    products: [
+      {
+        id: "x",
+        width: Number(width),
+        height: Number(height),
+        length: Number(length),
+        weight: Number(peso),
+        quantity: 1,
+        products_value: Number(itemsValor).toFixed(2),
+      },
+    ],
+    options: {
+      receipt: false,
+      own_hand: false,
+    },
+    services: "1",
+  };
+  const apiUrl =
+    "https://sandbox.melhorenvio.com.br/api/v2/me/shipment/calculate";
+  fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  }).then((data) => {
+    console.log(data.price);})
   useEffect(() => {
     if (nome === "") {
       navigate("/login");
@@ -84,7 +144,7 @@ export default function Carrinho({
       }
       setPode(false);
     }
-  }, [items, itemsValor, navigate, nome, pode, produtos.length]);
+  }, [idReferencia, items, itemsValor, navigate, nome, pode, produtos.length]);
   const [finalizar, setFinalizar] = useState(false);
   return (
     <>
@@ -183,7 +243,7 @@ export default function Carrinho({
         </ul>
       </section>
       <FinalizarCompra
-      setMostrarNotificacao={setMostrarNotificacao}
+        setMostrarNotificacao={setMostrarNotificacao}
         idReferencia={idReferencia}
         redirecionar={redirecionar}
         id={id}
@@ -192,7 +252,11 @@ export default function Carrinho({
         finalizar={finalizar}
         setFinalizar={setFinalizar}
       ></FinalizarCompra>
-      <Notificacao mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao} msg={'Pedido efetuado'}></Notificacao>
+      <Notificacao
+        mostrarNotificacao={mostrarNotificacao}
+        setMostrarNotificacao={setMostrarNotificacao}
+        msg={"Pedido efetuado"}
+      ></Notificacao>
     </>
   );
 }

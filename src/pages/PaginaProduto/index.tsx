@@ -177,6 +177,9 @@ export default function PaginaProduto({
                           promocao: promocao,
                           linkImagem: link,
                           idprodutos: id,
+                          height: height,
+                          width: width,
+                          length: length
                         });
                         atualizaCarrinho();
                       } else {
@@ -201,6 +204,9 @@ export default function PaginaProduto({
                           promocao: promocao,
                           linkImagem: link,
                           idprodutos: id,
+                          height: height,
+                          width: width,
+                          length: length
                         });
                         navigate("/carrinho");
                         atualizaCarrinho();

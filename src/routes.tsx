@@ -79,6 +79,9 @@ const atu = async () => {
         promocao: res.data.promocao,
         linkImagem: res.data.link,
         idprodutos: res.data.idprodutos,
+        height: res.data.height,
+        width: res.data.width,
+        length: res.data.length
       });
     })
   );
