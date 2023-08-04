@@ -51,7 +51,10 @@ export default function Carrinho({
     return item.titulo;
   });
   let itemsValor = 0;
+  let dimensoes = 0
   produtos.map((item: any) => {
+    dimensoes = dimensoes + (Number(item.length) * Number(item.height) * Number(item.width))
+    console.log(item.promocao)
     return (itemsValor = itemsValor += Number(item.promocao));
   });
   useEffect(() => {
