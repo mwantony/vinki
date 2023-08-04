@@ -1,11 +1,12 @@
 import Axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./Categorias.module.scss";
+import styles from "./EmAlta.module.scss";
 import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
 import { Link, useParams } from "react-router-dom";
+import {ReactComponent as Fire} from 'assets/svg/emalta.svg' 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 const itemVariants: Variants = {
   open: {
@@ -19,7 +20,7 @@ let categoria: string
 let location = window.location.href
 
 
-export default function Categorias() {
+export default function EmAlta() {
   const [ehLogin, setEhLogin] = useState(false)
   const [aparecerLoading, setAparecerLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -103,8 +104,8 @@ export default function Categorias() {
   return (
     <>
       <div className={styles["moveis__title"]}>
-        {categoria === "Móveis" ? <Sofa></Sofa>: ""}
-        <p>{categoria}</p>
+        <Fire></Fire>
+        <p>Em Alta</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>
         {produtosEncontrados} produto(s) encontrados
