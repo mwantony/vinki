@@ -12,6 +12,7 @@ import Axios from "axios";
 import FinalizarCompra from "pages/FinalizarCompra";
 import Notificacao from "components/Notificacao";
 import { isTemplateSpan } from "typescript";
+import Loading from "components/Loading";
 initMercadoPago("YOUR_PUBLIC_KEY");
 Axios.defaults.headers.common["Authorization"] =
   "Bearer APP_USR-5257004078028291-071317-32f7663e901c0dfc178122e42e6d8a3a-1184731359";
@@ -49,6 +50,7 @@ export default function Carrinho({
   const [pode, setPode] = useState(true);
   const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
   const [idReferencia, setIdReferencia] = useState("");
+  const [aparecerLoading, setAparecerLoading] = useState(true)
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
   });
@@ -129,144 +131,154 @@ export default function Carrinho({
     if (nome === "") {
       navigate("/login");
     }
-    if (pode) {
-      if (produtos.length !== 0) {
-        Axios.post("https://api.mercadopago.com/checkout/preferences", {
-          items: [
-            {
-              title: idReferencia,
-              quantity: itemsValor,
-              currency_id: "BRL",
-              unit_price: 1,
-              id: "12345678",
+    setTimeout(() => {
+
+      if (pode) {
+        if (produtos.length !== 0) {
+          Axios.post("https://api.mercadopago.com/checkout/preferences", {
+            items: [
+              {
+                title: idReferencia,
+                quantity: itemsValor + Number(freteValor),
+                currency_id: "BRL",
+                unit_price: 1,
+                id: "12345678",
+              },
+            ],
+            payer: {
+              email: "againplayi7@gmail.com",
             },
-          ],
-          payer: {
-            email: "againplayi7@gmail.com",
-          },
-        }).then((resposta: any) => {
-          console.log(resposta.data);
-          setRedirecionar(resposta.data.init_point);
-          setIdReferencia(resposta.data.id);
-        });
+          }).then((resposta: any) => {
+            console.log(freteValor);
+            setRedirecionar(resposta.data.init_point);
+            setIdReferencia(resposta.data.id);
+          });
+        }
+        setPode(false);
       }
-      setPode(false);
-    }
-  }, [idReferencia, items, itemsValor, navigate, nome, pode, produtos.length]);
+    }, 2000)
+  }, [freteValor, idReferencia, items, itemsValor, navigate, nome, pode, produtos.length]);
   const [finalizar, setFinalizar] = useState(false);
-  return (
-    <>
-      <section className={styles["carrinho"]}>
-        <div className={styles["carrinho__title"]}>
-          <CarrinhoSvg></CarrinhoSvg>
-          <p>Meu carrinho</p>
-        </div>
-        <div className={styles["carrinho__botoeslista"]}>
-          <button
-            className={classNames({
-              [styles["carrinho__botaolista"]]: true,
-              [styles["carrinho__botaolista--continuar"]]: true,
-            })}
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            Continuar comprando
-          </button>
-          {cep === "" ? (
+  
+  if(!aparecerLoading) {
+    return (
+      <>
+        <section className={styles["carrinho"]}>
+          <div className={styles["carrinho__title"]}>
+            <CarrinhoSvg></CarrinhoSvg>
+            <p>Meu carrinho</p>
+          </div>
+          <div className={styles["carrinho__botoeslista"]}>
             <button
               className={classNames({
                 [styles["carrinho__botaolista"]]: true,
-                [styles["carrinho__botaolista--pagamento"]]: true,
+                [styles["carrinho__botaolista--continuar"]]: true,
               })}
               onClick={() => {
-                navigate("/endereco");
+                navigate("/");
               }}
             >
-              Endereço
+              Continuar comprando
             </button>
-          ) : (
-            ""
-          )}
-          {produtos.length !== 0 && cep !== "" ? (
-            <button
-              className={classNames({
-                [styles["carrinho__botaolista"]]: true,
-                [styles["carrinho__botaolista--pagamento"]]: true,
-              })}
-              onClick={() => {
-                setFinalizar(true);
-              }}
-            >
-              Ir para o pagamento
-            </button>
-          ) : (
-            ""
-          )}
-        </div>
-        <ul ref={parent} className={styles["carrinho__lista"]}>
-          {produtos.length !== 0 ? (
-            produtos.map((produto: any, index: any) => {
-              return (
-                <div
-                  className={classNames({
-                    [styles["carrinho__lista--item"]]: true,
-                  })}
-                >
+            {cep === "" ? (
+              <button
+                className={classNames({
+                  [styles["carrinho__botaolista"]]: true,
+                  [styles["carrinho__botaolista--pagamento"]]: true,
+                })}
+                onClick={() => {
+                  navigate("/endereco");
+                }}
+              >
+                Endereço
+              </button>
+            ) : (
+              ""
+            )}
+            {produtos.length !== 0 && cep !== "" ? (
+              <button
+                className={classNames({
+                  [styles["carrinho__botaolista"]]: true,
+                  [styles["carrinho__botaolista--pagamento"]]: true,
+                })}
+                onClick={() => {
+                  setFinalizar(true);
+                }}
+              >
+                Ir para o pagamento
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+          <ul ref={parent} className={styles["carrinho__lista"]}>
+            {produtos.length !== 0 ? (
+              produtos.map((produto: any, index: any) => {
+                return (
                   <div
-                    className={styles["lista__imagem"]}
-                    style={{
-                      backgroundImage: "url(" + produto.linkImagem + ")",
-                    }}
-                  ></div>
-                  <div className={styles["lista__legenda"]}>
-                    <a
-                      href={produto.link}
-                      className={styles["lista__subtitulo"]}
-                    >
-                      {produto.titulo}
-                    </a>
-                    <p className={styles["lista__categoria"]}>
-                      {produto.categoria}
-                    </p>
-                    <h3 className={styles["lista__promo"]}>
-                      R$ {Number(produto.promocao).toFixed(2).replace(".", ",")}
-                    </h3>
+                    className={classNames({
+                      [styles["carrinho__lista--item"]]: true,
+                    })}
+                  >
+                    <div
+                      className={styles["lista__imagem"]}
+                      style={{
+                        backgroundImage: "url(" + produto.linkImagem + ")",
+                      }}
+                    ></div>
+                    <div className={styles["lista__legenda"]}>
+                      <a
+                        href={produto.link}
+                        className={styles["lista__subtitulo"]}
+                      >
+                        {produto.titulo}
+                      </a>
+                      <p className={styles["lista__categoria"]}>
+                        {produto.categoria}
+                      </p>
+                      <h3 className={styles["lista__promo"]}>
+                        R$ {Number(produto.promocao).toFixed(2).replace(".", ",")}
+                      </h3>
+                    </div>
+                    <Trash
+                      onClick={() => {
+                        removerItem(produto.link, index);
+                      }}
+                      className={styles["carrinho__lixeira"]}
+                    ></Trash>
                   </div>
-                  <Trash
-                    onClick={() => {
-                      removerItem(produto.link, index);
-                    }}
-                    className={styles["carrinho__lixeira"]}
-                  ></Trash>
-                </div>
-              );
-            })
-          ) : (
-            <div className={styles["carrinho__div"]}>
-              <p className={styles["carrinho__vazio"]}>Carrinho vazio...</p>
-              <SadFace className={styles["carrinho__sadface"]}></SadFace>
-            </div>
-          )}
-        </ul>
-      </section>
-      <FinalizarCompra
-        setMostrarNotificacao={setMostrarNotificacao}
-        idReferencia={idReferencia}
-        frete={freteValor}
-        setFrete={setFreteValor}
-        redirecionar={redirecionar}
-        id={id}
-        total={itemsValor}
-        produtos={produtos}
-        finalizar={finalizar}
-        setFinalizar={setFinalizar}
-      ></FinalizarCompra>
-      <Notificacao
-        mostrarNotificacao={mostrarNotificacao}
-        setMostrarNotificacao={setMostrarNotificacao}
-        msg={"Pedido efetuado"}
-      ></Notificacao>
-    </>
-  );
+                );
+              })
+            ) : (
+              <div className={styles["carrinho__div"]}>
+                <p className={styles["carrinho__vazio"]}>Carrinho vazio...</p>
+                <SadFace className={styles["carrinho__sadface"]}></SadFace>
+              </div>
+            )}
+          </ul>
+        </section>
+        <FinalizarCompra
+          setMostrarNotificacao={setMostrarNotificacao}
+          idReferencia={idReferencia}
+          frete={freteValor}
+          setFrete={setFreteValor}
+          redirecionar={redirecionar}
+          id={id}
+          total={itemsValor}
+          produtos={produtos}
+          finalizar={finalizar}
+          setFinalizar={setFinalizar}
+        ></FinalizarCompra>
+        <Notificacao
+          mostrarNotificacao={mostrarNotificacao}
+          setMostrarNotificacao={setMostrarNotificacao}
+          msg={"Pedido efetuado"}
+        ></Notificacao>
+      </>
+    );
+
+  } else {
+    return <Loading aparecerLoading={aparecerLoading} ehLogin={false} setAparecerLoading={setAparecerLoading}></Loading>
+
+  }
 }
