@@ -179,7 +179,8 @@ export default function PaginaProduto({
                           idprodutos: id,
                           height: height,
                           width: width,
-                          length: length
+                          length: length,
+                          fornecedor: fornecedor
                         });
                         atualizaCarrinho();
                       } else {
@@ -206,7 +207,8 @@ export default function PaginaProduto({
                           idprodutos: id,
                           height: height,
                           width: width,
-                          length: length
+                          length: length,
+                          fornecedor: fornecedor
                         });
                         navigate("/carrinho");
                         atualizaCarrinho();

@@ -81,7 +81,8 @@ const atu = async () => {
         idprodutos: res.data.idprodutos,
         height: res.data.height,
         width: res.data.width,
-        length: res.data.length
+        length: res.data.length,
+        fornecedor: res.data.fornecedor
       });
     })
   );
