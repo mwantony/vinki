@@ -97,18 +97,22 @@ export default function PaginaProduto({
                 <Carousel.Item className={styles['produto__im1']}>
                   <img className={styles['produto__imagem']} src={link} alt={"Foto"} />
                 </Carousel.Item>
+                {link2 ? 
                 <Carousel.Item className={styles['produto__im1']}>
                   <img className={styles['produto__imagem']} src={link2} alt={"Foto"} />
-                </Carousel.Item>
+                </Carousel.Item> : ''}
+                {link3 ? 
                 <Carousel.Item className={styles['produto__im1']}>
                   <img className={styles['produto__imagem']} src={link3} alt={"Foto"} />
-                </Carousel.Item>
+                </Carousel.Item> : ''}
+                {link4 ? 
                 <Carousel.Item className={styles['produto__im1']}>
                   <img className={styles['produto__imagem']} src={link4} alt={"Foto"} />
-                </Carousel.Item>
+                </Carousel.Item> : ''}
+                {link5 ? 
                 <Carousel.Item className={styles['produto__im1']}>
                   <img className={styles['produto__imagem']} src={link5} alt={"Foto"} />
-                </Carousel.Item>
+                </Carousel.Item> : ''}
               </Carousel>
             </div>
             <div>
