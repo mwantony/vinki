@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "./FinalizarCompra.module.scss";
 import { ReactComponent as RightArrow } from "assets/svg/rightarrow.svg";
 import Axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 interface Props {
   finalizar: boolean;
   setFinalizar: any;
@@ -12,6 +12,8 @@ interface Props {
   id: any
   idReferencia: any
   setMostrarNotificacao: any
+  frete: any
+  setFrete: any
 }
 export default function FinalizarCompra({
   finalizar,
@@ -21,9 +23,12 @@ export default function FinalizarCompra({
   redirecionar,
   id,
   idReferencia,
-  setMostrarNotificacao
+  setMostrarNotificacao,
+  frete,
+  setFrete
 }: Props) {
     let titleprodutos = ''
+    total += frete
     const handleFinalizar = () => {
         Axios.post(`${process.env.REACT_APP_API_URL}/pedidos`, {
             usuariopedido: id,
