@@ -146,7 +146,7 @@ export default function Carrinho({
               },
             ],
             payer: {
-              email: "againplayi7@gmail.com",
+              email: "pagamentos@vinki.com.br",
             },
           }).then((resposta: any) => {
             console.log(freteValor);
