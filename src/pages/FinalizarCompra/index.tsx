@@ -2,6 +2,7 @@ import classNames from "classnames";
 import styles from "./FinalizarCompra.module.scss";
 import { ReactComponent as RightArrow } from "assets/svg/rightarrow.svg";
 import Axios from "axios";
+import {ReactComponent as Cadeado} from 'assets/svg/cadeado.svg'
 import { useEffect, useState } from "react";
 interface Props {
   finalizar: boolean;
@@ -75,7 +76,9 @@ export default function FinalizarCompra({
           <p className={styles['finalizarcompra__sub']}>R$ {Number(total).toFixed(2).replace(".", ",")}</p>
         </div>
         <div >
-          <p className={styles['finalizarcompra__porcentagem']}>Economize 5% com pix ou boleto</p>
+          <div className={styles['finalizarcompra__porcentagem']}>COMPRA SEGURA
+          <Cadeado></Cadeado></div>
+          
           <a href={redirecionar} target="_blank" rel="noreferrer" onClick={() => {
             handleFinalizar()
             setFinalizar(false)
