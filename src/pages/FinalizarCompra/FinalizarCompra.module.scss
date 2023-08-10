@@ -1,120 +1,116 @@
-@import 'styles/_variables.scss';
+@import "styles/_variables.scss";
 
 .finalizarcompra--div {
-    background-color: $text-shadow;
-    min-width: 100vw;
-    position: fixed;
-    z-index: 3;
-    transition: 500ms;
-    opacity: 0;
-    visibility: hidden;
-    min-height: 100vh;
+  background-color: $text-shadow;
+  min-width: 100vw;
+  position: fixed;
+  z-index: 3;
+  transition: 500ms;
+  opacity: 0;
+  visibility: hidden;
+  min-height: 100vh;
 }
 
 .finalizarcompra--div--aparecer {
-    visibility: visible;
-    opacity: 1;
-    
+  visibility: visible;
+  opacity: 1;
 }
 
 .finalizarcompra {
-    width: 100vw;
-    transition: 500ms;
-    opacity: 0;
-    max-width: 600px;
-    box-shadow: 0px 4px 50px $text-shadow;
-    visibility: hidden;
-    position: fixed;
-    background-color: $cinza-escuro;
+  width: 100vw;
+  transition: 500ms;
+  opacity: 0;
+  max-width: 600px;
+  box-shadow: 0px 4px 50px $text-shadow;
+  visibility: hidden;
+  position: fixed;
+  background-color: $cinza-escuro;
+  color: $main-color;
+  transform: translate(-50%, 50%);
+  z-index: 4;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  padding: 2rem;
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     color: $main-color;
-    transform: translate(-50%, 50%);
-    z-index: 4;
+    font-weight: bold;
+  }
+  &__link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__link > li {
+    text-align: justify;
+  }
+  &__economizar {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__emate {
+    color: $main-color-fraca;
+  }
+  &__sub {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  &__porcentagem {
+    background-color: $variant;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 50px $text-shadow;
+  }
+  &__finalizar {
+    display: flex;
+    width: 50%;
     margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    padding: 2rem;
-    &__title {
-       font-size: 1.2rem;
-       margin-bottom: .5rem;
-        color: $main-color;
-        font-weight: bold;
-    }
-    &__link {
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-    &__link > li {
-        text-align: justify;
-    }
-    &__economizar {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        display: flex;
-        justify-content: space-between;
-    }
-    &__emate {
-        color: $main-color-fraca;
-    }
-    &__sub {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-    &__porcentagem {
-        background-color: $variant;
-        text-align: center;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0px 4px 50px $text-shadow;
-    }
-    &__finalizar {
-        display: flex;
-        width: 50%;
-        margin: 0 auto;
-        margin-top: 1rem;
-        align-items: center;
-        justify-content: space-evenly;
-
-    }
-    &__produtos {
-        list-style: disc;
-        padding-left: 1rem;
-        line-height: 1.2rem;
-    }
-    &__rightarrow {
-        animation: right 2s infinite;
-    }
-
-
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  &__produtos {
+    list-style: disc;
+    padding-left: 1rem;
+    line-height: 1.2rem;
+  }
+  &__rightarrow {
+    animation: right 2s infinite;
+  }
 }
 
 .finalizarcompra--aparecer {
-    visibility: visible;
-    opacity: 1;
-    transform: translate(-50%, -50%);
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
 
 @media (min-width: $medium) {
-    .finalizarcompra {
-        border-radius: 20px;
-        width: 60vw;
-        margin: 0 auto;
-    }
+  .finalizarcompra {
+    border-radius: 20px;
+    width: 60vw;
+    margin: 0 auto;
+  }
 }
 
 @keyframes right {
-    0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translateX(3vw);
-      }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(3vw);
+  }
 }
