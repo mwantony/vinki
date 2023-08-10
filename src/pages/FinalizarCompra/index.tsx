@@ -78,7 +78,6 @@ export default function FinalizarCompra({
         <div >
           <div className={styles['finalizarcompra__porcentagem']}>COMPRA SEGURA
           <Cadeado></Cadeado></div>
-          
           <a href={redirecionar} target="_blank" rel="noreferrer" onClick={() => {
             handleFinalizar()
             setFinalizar(false)
