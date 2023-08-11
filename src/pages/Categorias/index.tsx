@@ -2,6 +2,8 @@ import Axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Categorias.module.scss";
 import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
+import { ReactComponent as Ortopedia } from "../../assets/svg/ortopedia.svg";
+import { ReactComponent as Calcado } from "../../assets/svg/calcados.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
@@ -69,6 +71,12 @@ export default function Categorias() {
       case `${process.env.REACT_APP_WEB_URL}/categorias/estofados`:
         categoria = 'Estofados'
         break
+      case `${process.env.REACT_APP_WEB_URL}/categorias/calcados`:
+        categoria = 'Calçados'
+        break
+      case `${process.env.REACT_APP_WEB_URL}/categorias/ortopedia`:
+        categoria = 'Ortopedia'
+        break
     
     }
 
@@ -104,6 +112,8 @@ export default function Categorias() {
     <>
       <div className={styles["moveis__title"]}>
         {categoria === "Móveis" ? <Sofa></Sofa>: ""}
+        {categoria === "Calçados" ? <Calcado></Calcado>: ""}
+        {categoria === "Ortopedia" ? <Ortopedia></Ortopedia>: ""}
         <p>{categoria}</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>

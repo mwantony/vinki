@@ -3,6 +3,8 @@ import styles from "./Inicio.module.scss";
 import moveis from "../../assets/img/moveis.png";
 import eletronicos from "../../assets/img/eletronicos.png";
 import decoracoes from "../../assets/img/decoracoes.png";
+import calcados from "../../assets/img/calcados.png";
+import ortopedia from "../../assets/img/ortopedia.png";
 import jardim from "../../assets/img/jardim.png";
 import produtos from "../../db.json";
 import React, { useState } from "react";
@@ -81,42 +83,23 @@ export default function Inicio() {
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
-    <Link to={'/categorias/eletronicos'}>
+    <Link to={'/categorias/calcados'}>
     <img
-      src={eletronicos}
+      src={calcados}
       onDragStart={handleDragStart}
       role="presentation"
-      alt="Foto Eletrônico"
+      alt="Foto Calçados"
       className={styles["lista__foto--slicer"]}
     /></Link>,
+    <Link to={'/categorias/ortopedia'}>
     <img
-      src={decoracoes}
+      src={ortopedia}
       onDragStart={handleDragStart}
       role="presentation"
-      alt="Foto Decoração"
+      alt="Foto Ortopedia"
       className={styles["lista__foto--slicer"]}
-    />,
-    <img
-      src={jardim}
-      onDragStart={handleDragStart}
-      role="presentation"
-      alt="Foto Jardim"
-      className={styles["lista__foto--slicer"]}
-    />,
-    <img
-      src={jardim}
-      onDragStart={handleDragStart}
-      role="presentation"
-      alt="Foto Jardim"
-      className={styles["lista__foto--slicer"]}
-    />,
-    <img
-      src={jardim}
-      onDragStart={handleDragStart}
-      role="presentation"
-      alt="Foto Jardim"
-      className={styles["lista__foto--slicer"]}
-    />,
+    /></Link>,
+ 
   ];
   const responsive = {
     1800: {

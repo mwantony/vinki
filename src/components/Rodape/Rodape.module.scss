@@ -24,10 +24,19 @@
         font-size: .9rem;
     }
 
+    &__item--ortopedia {
+        margin-top: 2.5px;
+    }
     
 
     &__item--moveis::before {
         content: url('../../assets/svg/moveis.svg');
+    }
+    &__item--calcados::before {
+        content: url('../../assets/svg/calcados.svg');
+    }
+    &__item--ortopedia::before {
+        content: url('../../assets/svg/ortopedia.svg');
     }
     &__item--eletronicos::before {
         content: url('../../assets/svg/eletronicos.svg');

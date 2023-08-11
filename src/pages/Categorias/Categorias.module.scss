@@ -1,6 +1,7 @@
 @import "../../styles/variables";
 
 .moveis {
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   &__produtos-encontrados {
