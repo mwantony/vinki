@@ -285,7 +285,7 @@
   flex-direction: column;
   padding-left: 2rem;
   padding-right: 2rem;
-
+  
   &__div--imagem {
     width: 80%;
     margin: 0 auto;
@@ -322,13 +322,17 @@
     align-self: flex-end;
     justify-content: flex-end;
     display: flex;
-    width: 150px;
+    width: 120px;
     align-items: center;
     margin-top: 1rem;
     
   }
-  &__icons > svg {
+  &__icons > a {
     transition: 500ms;
+    transform: scale(0.8);
+    margin-left: -.3rem;
+    
+   
     &:hover {
       opacity: .7;
       cursor: pointer;
