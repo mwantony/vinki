@@ -169,7 +169,7 @@ export default function Inicio() {
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139975388345417759/Design_sem_nome_19.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139985045306753064/Design_sem_nome_20.png"
                     : "https://cdn.discordapp.com/attachments/1067833193329344542/1139973585050542190/Inserir_um_titulo_2.png"
                 }
                 className="d-block w-100"
