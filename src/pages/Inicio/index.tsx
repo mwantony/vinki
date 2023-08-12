@@ -181,7 +181,7 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1139621847101607987/Sem-Titulo-1.png"
+                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1139997314665168946/Banner-Frete-Mobile.png"
                   : "https://cdn.discordapp.com/attachments/1109594939840532501/1139597854936141916/Banner-2-Inicio-Recuperado.png"
               }
               className="d-block w-100"
