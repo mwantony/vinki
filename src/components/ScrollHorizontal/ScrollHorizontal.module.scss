@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .emdestaque {
   &__slider {
@@ -6,171 +6,164 @@
   }
 }
 .emdestaque__lista {
-    display: flex;
-    width: 75vw;
-    flex-direction: column;
+  display: flex;
+  width: 75vw;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+
+.emdestaque__lista--item:first-child {
+  margin-left: 20vw;
+}
+.emdestaque__lista--item:last-child {
+  margin-right: 20vw;
+}
+
+.emdestaque__lista--item {
+  border-radius: 20px;
+  text-align: left;
+  white-space: nowrap;
+  box-shadow: 0px 4px 50px $text-shadow;
+  display: inline-block;
+  flex-direction: column;
+  border-radius: 20px;
+  max-width: 250px;
+  width: 60vw;
+  margin: 2.5rem 1rem 2.5rem 1rem;
+  height: 290px;
+  background-color: $main-color;
+  box-shadow: 0px 4px 50px $text-shadow;
+}
+
+.lista__imagem {
+  height: 50%;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.lista {
+  &__legenda {
+    width: 80%;
+    padding-top: 0.5rem;
     margin: 0 auto;
-    justify-content: space-around;
-    padding-top: 2rem;
   }
-  
-  .emdestaque__lista--item:first-child {
-    margin-left: 20vw;
-  }
-  .emdestaque__lista--item:last-child {
-    margin-right: 20vw;
-  }
-  
-  .emdestaque__lista--item {
-    border-radius: 20px;
-    text-align: left;
-    white-space: nowrap;
-    box-shadow: 0px 4px 50px $text-shadow;
-    display: inline-block;
-    flex-direction: column;
-    border-radius: 20px;
-    max-width: 250px;
-    width: 60vw;
-    margin: 2.5rem 1rem 2.5rem 1rem;
-    height: 290px;
-    background-color: $main-color;
-    box-shadow: 0px 4px 50px $text-shadow;
-  }
-
-  .emdestaque__link--item {
-
-  }
-  
-  .lista__imagem {
-    height: 50%;
+  &__subtitulo {
+    color: $cinza-escuro;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0 0 0;
     overflow: hidden;
-    width: 100%;
-    border-radius: 20px 20px 0 0;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
   }
-  
-  .lista {
-      &__legenda {
-        width: 80%;
-        padding-top: .5rem;
-        margin: 0 auto;
-      }
-      &__subtitulo {
-          color: $cinza-escuro;
-          font-size: 1.2rem;
-          font-weight: bold;
-          margin: .5rem 0 0 0;
-          overflow: hidden;
-      }
-      &__categoria {
-        font-size: .9rem;
-      }
-      &__preco {
-        text-decoration: line-through;
-        margin: .5rem 0 0 0;
-        font-size: .9rem;
-      }
-      &__promo {
-        font-weight: bold;
-        font-size: 1.2rem;
-      }
-      &__comprar {
-          background-color: $cinza-escuro;
-          border: none;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          position: relative;
-          margin: 0 auto;
-          bottom: -10px;
-          border-radius: 10px;
-          color: $main-color;
-          padding: .5rem 1.5rem;
-          width: 100%;
-          box-shadow: 0px 4px 50px $text-shadow;
-          transition-duration: 500ms;
- 
-      }
+  &__categoria {
+    font-size: 0.9rem;
   }
-  
-  .lista__foto--slicer {
-    text-align: center !important;
-    margin: 0 auto;
-    width: 60%;
+  &__preco {
+    text-decoration: line-through;
+    margin: 0.5rem 0 0 0;
+    font-size: 0.9rem;
   }
-  
-  .alice-carousel__stage-item   {
-    text-align: center !important;
+  &__promo {
+    font-weight: bold;
+    font-size: 1.2rem;
   }
-  
-  .sliding {
-    white-space: nowrap;
-  }
-  
-  .slider__div {
+  &__comprar {
+    background-color: $cinza-escuro;
+    border: none;
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: transparent;
+    position: relative;
+    margin: 0 auto;
+    bottom: -10px;
+    border-radius: 10px;
+    color: $main-color;
+    padding: 0.5rem 1.5rem;
+    width: 100%;
+    box-shadow: 0px 4px 50px $text-shadow;
+    transition-duration: 500ms;
   }
-  
+}
+
+.lista__foto--slicer {
+  text-align: center !important;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.alice-carousel__stage-item {
+  text-align: center !important;
+}
+
+.sliding {
+  white-space: nowrap;
+}
+
+.slider__div {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.arrowback {
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.arrownext {
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+}
+
+@media (min-width: $medium) {
+  .emdestaque {
+    &__slider {
+      width: 80vw !important;
+    }
+  }
+  .lista {
+    &__comprar {
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
   .arrowback {
     position: absolute;
-    cursor: pointer;
-    z-index: 2;
+    left: 8vw;
+    background-color: $scroll;
+    border-radius: 10px 0px 0px 10px;
+    height: 350px;
+    z-index: 1;
+    transition: 300ms;
+    &:hover {
+      transform: scale(1.03);
+    }
   }
-  
+
   .arrownext {
     position: absolute;
-    cursor: pointer;
-    right: 0;
+    right: 8vw;
+    background-color: $scroll;
+    border-radius: 0px 10px 10px 0px;
+    height: 350px;
+    z-index: 1;
+    transition: 300ms;
+    &:hover {
+      transform: scale(1.03);
+    }
   }
-
-  @media (min-width: $medium) {
-    .emdestaque {
-      &__slider {
-        width: 80vw !important;
-      }
-
-    }
-    .lista{
-      &__comprar {
-        &:hover {
-          transform: scale(1.05);
-      }
-      }
-    }
-    .arrowback {
-      position: absolute;
-      left: 8vw;
-      background-color: $scroll;
-      border-radius: 10px 0px 0px 10px;
-      height: 350px;
-      z-index: 1;
-      transition: 300ms;
-      &:hover {
-        transform: scale(1.03);
-      }
-    }
-    
-    .arrownext {
-      position: absolute;
-      right: 8vw;
-      background-color: $scroll;
-      border-radius: 0px 10px 10px 0px;
-      height: 350px;
-      z-index: 1;
-      transition: 300ms;
-      &:hover {
-        transform: scale(1.03);
-      }
-    }
-    .emdestaque__lista--item:first-child {
-      margin-left: 10vw;
-    }
-    .emdestaque__lista--item:last-child {
-      margin-right: 10vw;
-    }
-    
+  .emdestaque__lista--item:first-child {
+    margin-left: 10vw;
   }
+  .emdestaque__lista--item:last-child {
+    margin-right: 10vw;
+  }
+}
