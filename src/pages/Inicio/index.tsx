@@ -161,6 +161,23 @@ export default function Inicio() {
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
+          <a
+              href="https://wa.me/5549991042777"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={
+                  width <= 568
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139975388345417759/Design_sem_nome_19.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139973585050542190/Inserir_um_titulo_2.png"
+                }
+                className="d-block w-100"
+                alt={"Foto"}
+              />
+            </a>
+          </Carousel.Item>
+          <Carousel.Item interval={5000}>
             <img
               src={
                 width <= 568
@@ -170,23 +187,6 @@ export default function Inicio() {
               className="d-block w-100"
               alt={"Foto"}
             />
-          </Carousel.Item>
-          <Carousel.Item interval={5000}>
-          <a
-              href="https://wa.me/5549991042777"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src={
-                  width <= 568
-                    ? "https://cdn.discordapp.com/attachments/799817839484731397/1112064051233689650/f1-mobile.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139973585050542190/Inserir_um_titulo_2.png"
-                }
-                className="d-block w-100"
-                alt={"Foto"}
-              />
-            </a>
           </Carousel.Item>
         </Carousel>
 
