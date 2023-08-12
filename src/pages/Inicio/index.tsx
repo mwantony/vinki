@@ -193,7 +193,7 @@ export default function Inicio() {
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1109594939840532501/1139621847101607987/Sem-Titulo-1.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139990962844733610/Design_sem_nome_21.png"
                     : "https://cdn.discordapp.com/attachments/1067833193329344542/1139989913375359048/Ofertas_Imperdiveis_confira_nossos_produtos.png"
                 }
                 className="d-block w-100"
