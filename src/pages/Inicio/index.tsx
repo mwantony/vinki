@@ -194,7 +194,7 @@ export default function Inicio() {
                 src={
                   width <= 568
                     ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139990962844733610/Design_sem_nome_21.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139989913375359048/Ofertas_Imperdiveis_confira_nossos_produtos.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139997662368772157/Ofertas_Imperdiveis_confira_nossos_produtos_1.png"
                 }
                 className="d-block w-100"
                 alt={"Foto"}
