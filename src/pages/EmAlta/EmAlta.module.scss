@@ -2,6 +2,7 @@
 
 .moveis {
   display: flex;
+  min-height: 40vh;
   flex-direction: column;
   &__produtos-encontrados {
     margin: 1rem;

@@ -188,6 +188,19 @@ export default function Inicio() {
               alt={"Foto"}
             />
           </Carousel.Item>
+          <Carousel.Item interval={5000}>
+            <Link to={'/emalta'}>
+              <img
+                src={
+                  width <= 568
+                    ? "https://cdn.discordapp.com/attachments/1109594939840532501/1139621847101607987/Sem-Titulo-1.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139989913375359048/Ofertas_Imperdiveis_confira_nossos_produtos.png"
+                }
+                className="d-block w-100"
+                alt={"Foto"}
+              />
+            </Link>
+          </Carousel.Item>
         </Carousel>
 
         <ArrowDown className={styles.arrowdown}></ArrowDown>
