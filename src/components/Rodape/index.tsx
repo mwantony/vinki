@@ -104,7 +104,7 @@ export default function Rodape() {
               </li>
             </a>
             <a
-              href="https://www.instagram.com/vinkibrasil/"
+              href="https://www.instagram.com/lojasvinki/"
               target="_blank"
               rel="noreferrer"
             >
