@@ -182,7 +182,7 @@ export default function Inicio() {
               src={
                 width <= 568
                   ? "https://cdn.discordapp.com/attachments/1109594939840532501/1139997314665168946/Banner-Frete-Mobile.png"
-                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1139597854936141916/Banner-2-Inicio-Recuperado.png"
+                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1140014673568202873/Banner_Frete_Desk.png"
               }
               className="d-block w-100"
               alt={"Foto"}
