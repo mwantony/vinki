@@ -169,8 +169,8 @@ export default function Inicio() {
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139985045306753064/Design_sem_nome_20.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139973585050542190/Inserir_um_titulo_2.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139992407388192859/anuncie_seu_produto_na_vinki.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139992678776451113/Inserir_um_titulo_3.png"
                 }
                 className="d-block w-100"
                 alt={"Foto"}
