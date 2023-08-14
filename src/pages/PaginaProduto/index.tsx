@@ -184,7 +184,8 @@ export default function PaginaProduto({
                           height: height,
                           width: width,
                           length: length,
-                          fornecedor: fornecedor
+                          fornecedor: fornecedor,
+                          peso: peso
                         });
                         atualizaCarrinho();
                       } else {
@@ -212,7 +213,8 @@ export default function PaginaProduto({
                           height: height,
                           width: width,
                           length: length,
-                          fornecedor: fornecedor
+                          fornecedor: fornecedor,
+                          peso: peso
                         });
                         navigate("/carrinho");
                         atualizaCarrinho();

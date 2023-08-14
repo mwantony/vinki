@@ -82,7 +82,8 @@ const atu = async () => {
         height: res.data.height,
         width: res.data.width,
         length: res.data.length,
-        fornecedor: res.data.fornecedor
+        fornecedor: res.data.fornecedor,
+        peso: res.data.peso
       });
     })
   );
