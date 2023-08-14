@@ -40,8 +40,9 @@ export default function Endereco({
   const [pontoDeRefUser, setPontoDeRefUser] = useState(pontoDeRef);
   const [mostrarNotificacao, setMostrarNotificacao] = useState(false)
   const handleEndereco = (event: any) => {
+ 
     if(cepUser === '' || complementoUser === '' || logradouroUser ==='' || numeroUser === '' || cidadeUser === "" ||
-    ufUser === "" || pontoDeRef === '') {
+    ufUser === "" || pontoDeRefUser === '') {
       setMostrarNotificacao(true)
       event.preventDefault()
     }
