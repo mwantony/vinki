@@ -148,9 +148,7 @@ export default function Carrinho({
                 id: "12345678",
               },
             ],
-            payer: {
-              email: "pagamentos@vinki.com.br",
-            },
+        
           }).then((resposta: any) => {
             console.log(freteValor);
             setRedirecionar(resposta.data.init_point);
