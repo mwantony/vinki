@@ -40,6 +40,15 @@ export default function Rodape() {
             >
               &nbsp;Ortopedia
             </li></a>
+            <a href="/categorias/livros">
+            <li
+              className={classNames({
+                [styles["rodape__item"]]: true,
+                [styles["rodape__item--livros"]]: true,
+              })}
+            >
+              &nbsp;Livros
+            </li></a>
       
           </ul>
         </div>

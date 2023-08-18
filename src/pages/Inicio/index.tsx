@@ -5,6 +5,7 @@ import eletronicos from "../../assets/img/eletronicos.png";
 import decoracoes from "../../assets/img/decoracoes.png";
 import calcados from "../../assets/img/calcados.png";
 import ortopedia from "../../assets/img/ortopedia.png";
+import livros from "../../assets/img/livros.png";
 import jardim from "../../assets/img/jardim.png";
 import produtos from "../../db.json";
 import React, { useState } from "react";
@@ -98,6 +99,15 @@ export default function Inicio() {
         onDragStart={handleDragStart}
         role="presentation"
         alt="Foto Ortopedia"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
+    <Link to={"/categorias/livros"}>
+      <img
+        src={livros}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Livros"
         className={styles["lista__foto--slicer"]}
       />
     </Link>,

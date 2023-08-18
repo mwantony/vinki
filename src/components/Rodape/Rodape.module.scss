@@ -29,6 +29,9 @@
     }
     
 
+    &__item--livros::before {
+        content: url('../../assets/svg/livros.svg');
+    }
     &__item--moveis::before {
         content: url('../../assets/svg/moveis.svg');
     }
