@@ -5,7 +5,7 @@ import { ReactComponent as Trash } from "../../assets/svg/trash.svg";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { v4 as uuidv4 } from 'uuid';
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import Axios from "axios";
@@ -49,7 +49,7 @@ export default function Carrinho({
   const [redirecionar, setRedirecionar] = useState("");
   const [pode, setPode] = useState(true);
   const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
-  const [idReferencia, setIdReferencia] = useState("");
+  const [idReferencia, setIdReferencia] = useState(uuidv4());
   const [aparecerLoading, setAparecerLoading] = useState(true)
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
@@ -150,9 +150,7 @@ export default function Carrinho({
             ],
         
           }).then((resposta: any) => {
-            console.log(freteValor);
             setRedirecionar(resposta.data.init_point);
-            setIdReferencia(resposta.data.id);
           });
         }
         setPode(false);
