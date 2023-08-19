@@ -60,3 +60,14 @@
       }
     
 }
+
+@media (min-width: $medium) {
+    .trocas {
+      &__title {
+        width: 40vw;
+      }
+      &__info {
+        width: 90vw;
+      }
+    }
+  }

@@ -58,6 +58,11 @@
 }
 @media (min-width: $medium) {
   .politicas {
-
+    &__title {
+      width: 40vw;
+    }
+    &__info {
+      width: 90vw;
+    }
   }
 }
