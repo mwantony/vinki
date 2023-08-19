@@ -8,7 +8,7 @@
         color: $main-color;
         display: flex;
         align-items: center;
-        width: 40vw;
+        width: 70vw;
         padding: 1rem;
         font-weight: bold;
         border-radius: 0px 0px 20px 0px;
@@ -18,7 +18,7 @@
       }
       &__info {
         display: flex;
-        width: 90vw;
+        width: 95vw;
         margin: 0 auto;
         flex-direction: column;
       }
@@ -55,4 +55,9 @@
         color: $cinza-escuro;
       }
     
+}
+@media (min-width: $medium) {
+  .politicas {
+
+  }
 }
