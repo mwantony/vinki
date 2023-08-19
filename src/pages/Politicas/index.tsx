@@ -167,7 +167,7 @@ export default function Politicas() {
           TENHA ALGUMA DÚVIDA OU PREOCUPAÇÃO SOBRE OS TERMOS APRESENTADOS, POR
           FAVOR, ENTRE EM CONTATO CONOSCO PARA ESCLARECIMENTOS ADICIONAIS.
         </span>
-        <p className={styles["politicas__paragrafo--att"]}>Att, Lojas Vinki</p>
+        <p className={styles["politicas__paragrafo--att"]}>Att, Lojas Vinki.</p>
       </div>
     </section>
   );
