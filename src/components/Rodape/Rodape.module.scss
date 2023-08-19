@@ -80,6 +80,9 @@
     &__item--politicas::before {
         content: url('../../assets/svg/politicas.svg');
     }
+    &__item--trocas::before {
+        content: url('../../assets/svg/trocas.svg');
+    }
     &__item {
         text-align: left;
         display: flex;
