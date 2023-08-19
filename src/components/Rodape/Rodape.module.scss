@@ -77,12 +77,19 @@
     &__item--email::before {
         content: url('../../assets/svg/email.svg');
     }
+    &__item--politicas::before {
+        content: url('../../assets/svg/politicas.svg');
+    }
     &__item {
         text-align: left;
         display: flex;
         align-items: start;
         line-height: 1.2rem;
         font-size: .7rem;
+        transition: 500ms;
+        &:hover {
+            opacity: .8;
+        }
     }
     &__copy {
         font-size: .6rem;

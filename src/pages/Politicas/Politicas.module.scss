@@ -1,0 +1,58 @@
+@import 'styles/_variables.scss';
+
+.politicas {
+    min-height: 60vh;
+    
+    &__title {
+        background-color: $cinza-escuro;
+        color: $main-color;
+        display: flex;
+        align-items: center;
+        width: 40vw;
+        padding: 1rem;
+        font-weight: bold;
+        border-radius: 0px 0px 20px 0px;
+      }
+      &__title > p {
+        margin-left: 1rem;
+      }
+      &__info {
+        display: flex;
+        width: 90vw;
+        margin: 0 auto;
+        flex-direction: column;
+      }
+      &__titulo {
+        color: $cinza-escuro;
+        text-align: center;
+        font-weight: bold;
+        margin: 1rem;
+      }
+      &__data {
+        text-align: right;
+        font-size: .8rem;
+        margin-right: 1rem;
+      }
+      &__span {
+        margin: 1rem;
+        font-size: .8rem;
+        font-weight: bold;
+        text-align: justify;
+        color: $cinza-escuro;
+      }
+      &__subtitulo {
+        font-weight: bold;
+        margin: 1rem;
+      }
+      &__paragrafo, &__paragrafo--att {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        text-align: justify;
+      }
+      &__paragrafo--att {
+        margin-bottom: 1rem;
+        font-weight: bold;
+        color: $cinza-escuro;
+      }
+    
+}

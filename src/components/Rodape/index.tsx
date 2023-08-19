@@ -143,7 +143,7 @@ export default function Rodape() {
           </ul>
         </div>
         <div className={styles["rodape__dep"]}>
-          <h2 className={styles["rodape__subtitulo"]}>Atendimento</h2>
+          <h2 className={styles["rodape__subtitulo"]}>Institucional</h2>
           <ul className={styles["rodape__lista"]}>
             <a
               href="https://wa.me/5549991042777"
@@ -167,6 +167,16 @@ export default function Rodape() {
                 })}
               >
                 &nbsp;atendimento@vinki.com.br
+              </li>
+            </a>
+            <a href="/politicas">
+              <li
+                className={classNames({
+                  [styles["rodape__item"]]: true,
+                  [styles["rodape__item--politicas"]]: true,
+                })}
+              >
+                &nbsp;Políticas de privacidade
               </li>
             </a>
           </ul>
