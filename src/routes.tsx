@@ -19,6 +19,7 @@ import Categorias from "pages/Categorias";
 import EmAlta from "pages/EmAlta";
 import Politicas from "pages/Politicas";
 import Trocas from "pages/Trocas";
+import Ofertas from "pages/Ofertas";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -223,6 +224,7 @@ export default function AppRouter() {
         <Route path="/politicas" element={<Politicas></Politicas>}></Route>
         <Route path="/trocas" element={<Trocas></Trocas>}></Route>
         <Route path="/emalta" element={<EmAlta></EmAlta>}></Route>
+        <Route path="/ofertas" element={<Ofertas></Ofertas>}></Route>
         <Route path="/pedidos" element={<Pedidos id={id}></Pedidos>}></Route>
         <Route
           path="/carrinho"
