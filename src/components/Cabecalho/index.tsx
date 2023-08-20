@@ -6,6 +6,7 @@ import { ReactComponent as Vinki } from "../../assets/svg/vinki.svg";
 import { ReactComponent as Profile } from "../../assets/svg/profile.svg";
 import { ReactComponent as Cart } from "../../assets/svg/cart.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
+import { ReactComponent as Lupa } from "../../assets/svg/lupa.svg";
 import { ReactComponent as ProfileMenu } from "../../assets/svg/profile-menu.svg";
 import { ReactComponent as Sair } from "../../assets/svg/sair.svg";
 import { ReactComponent as InputSearch } from "../../assets/svg/inputsearch.svg";
@@ -128,23 +129,26 @@ export default function Cabecalho({
             ))
           }}
         />
-          <input
-          type="text"
-          name=""
-          placeholder="Busque aqui..."
-          id=""
-          onClick={() => {
-            navigate('/search')
-          }}
-          className={classNames({
-            [styles['search__input--desktop']]: true,
-          })}
-          onChange={(event: any) => {
-            setInput(event.target.value);
-            setFilteredData(produtos.filter((item: any) =>
-              item.titulo.toLowerCase().includes(input.toLowerCase())
-            ))
-          }}></input>
+          <div className={styles['search__div--input']}>
+            <input
+            type="text"
+            name=""
+            placeholder="Busque aqui..."
+            id=""
+            onClick={() => {
+              navigate('/search')
+            }}
+            className={classNames({
+              [styles['search__input--desktop']]: true,
+            })}
+            onChange={(event: any) => {
+              setInput(event.target.value);
+              setFilteredData(produtos.filter((item: any) =>
+                item.titulo.toLowerCase().includes(input.toLowerCase())
+              ))
+            }}></input>
+            <div onClick={() => navigate('/search')} className={styles['search__lupa']}><Lupa></Lupa></div>
+          </div>
         <div className={styles["navegacao__account"]}>
           <Link to={'/search'} onClick={() => {
             handleClick()

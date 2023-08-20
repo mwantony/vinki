@@ -23,22 +23,42 @@ header {
         box-shadow: 0px 4px 50px $text-shadow;
         transform: translateX(15vw);
     }
-    &__input--desktop {
+    &__div--input {
         position: fixed;
         top: 0;
         left: 50%;
-        z-index: 4;
         margin-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        transform: translateX(-50%);
+
+    }
+    &__lupa {
+        background-color: $cinza-escuro;
+        border-radius: 0px 10px 10px 0px;
+        max-height: 32px;
+        width: 55px;
+        display: none;
+        box-shadow: 0px 4px 50px $text-shadow;
+
+        justify-content: center;
+    }
+    &__lupa > svg {
+        transform: scale(0.7);
+    }
+    &__input--desktop {
+        z-index: 4;
         display: none;
         transition: 300ms;
         padding: .2rem;
+        max-height: 32px;
         padding-left: 1rem;
         width: 26vw;
         font-size: 1.1rem;
-        border-radius: 10px;
+        border-radius: 10px 0px 0px 10px;
         box-shadow: 0px 4px 50px $text-shadow;
-        transform: translateX(-50%);
     }
+
     &__input--aparecer {
         opacity: 1;
         transform: translateX(-70%);
@@ -274,12 +294,12 @@ header {
             width: 90px;
         }
     }
-
+    
     .menu {
         width: 25vw;
         &__links {
             margin-left: 5vw;
-
+            
         }
         &__item {
             transition: 500ms;
@@ -292,9 +312,17 @@ header {
         &__input {
             display: none;
         }
-    
+        
         &__input--desktop {
             display: block;
+        }
+        &__lupa {
+            display: flex;
+            transition: 500ms;
+            &:hover {
+                cursor: pointer;
+                opacity: .8;
+            }
         }
     }
 }
