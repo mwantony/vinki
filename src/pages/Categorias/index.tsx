@@ -157,6 +157,8 @@ export default function Categorias() {
                 selecionada === 0 ? true : false,
             })}
             onClick={() => {
+              loadMore()
+              
               setSelecionada(0);
               setGenero('Romance')
               ordenarCategoria(
@@ -175,6 +177,8 @@ export default function Categorias() {
                 selecionada === 1 ? true : false,
             })}
             onClick={() => {
+              loadMore()
+              
               setSelecionada(1);
               setGenero('Ficção')
 
@@ -194,6 +198,8 @@ export default function Categorias() {
                 selecionada === 2 ? true : false,
             })}
             onClick={() => {
+              loadMore()
+              
               setSelecionada(2);
               setGenero('Ação')
 
@@ -213,6 +219,8 @@ export default function Categorias() {
                 selecionada === 3 ? true : false,
             })}
             onClick={() => {
+              loadMore()
+              
               setSelecionada(3);
               setGenero('Suspense')
 
@@ -232,6 +240,8 @@ export default function Categorias() {
                 selecionada === 4 ? true : false,
             })}
             onClick={() => {
+              loadMore()
+              
               setGenero('LGBTQ+')
 
               setSelecionada(4);
