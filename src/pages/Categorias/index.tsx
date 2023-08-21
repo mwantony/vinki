@@ -139,7 +139,11 @@ export default function Categorias() {
     }, 2000);
     setIsVisible(false);
   }
-
+  const [podeRomance, setPodeRomance] = useState(true)
+  const [podeFiccao, setPodeFiccao] = useState(true)
+  const [podeAcao, setPodeAcao] = useState(true)
+  const [podeSuspense, setPodeSuspense] = useState(true)
+  const [podeLGBT, setPodeLGBT] = useState(true)
 
   return (
     <>
@@ -164,11 +168,16 @@ export default function Categorias() {
             ref={elementRef2}
             onClick={() => {
               loadMore()
-              /* setTimeout(() => {
-                if(elementRef2.current) {
-                  elementRef2.current.click();
+              setTimeout(() => {
+                setPodeRomance(true)
+                if(podeRomance) {
+                  if(elementRef2.current) {
+                    elementRef2.current.click();
+                    setPodeRomance(false)
+                  }
                 }
-              },500) */
+             
+              },0)
               setSelecionada(0);
               setGenero('Romance')
               ordenarCategoria(
@@ -189,11 +198,17 @@ export default function Categorias() {
             ref={elementRef3}
             onClick={() => {
               loadMore()
-              /* setTimeout(() => {
-                if(elementRef3.current) {
-                  elementRef3.current.click();
+              setTimeout(() => {
+                setPodeFiccao(true)
+                if(podeFiccao) {
+                  if(elementRef3.current) {
+                    elementRef3.current.click();
+                    setPodeFiccao(false)
+                  }
                 }
-              },500) */
+             
+              },0)
+          
               setSelecionada(1);
               setGenero('Ficção')
 
@@ -215,11 +230,16 @@ export default function Categorias() {
             ref={elementRef4}
             onClick={() => {
               loadMore()
-              /* setTimeout(() => {
-                if(elementRef4.current) {
-                  elementRef4.current.click();
+              setTimeout(() => {
+                setPodeAcao(true)
+                if(podeAcao) {
+                  if(elementRef4.current) {
+                    elementRef4.current.click();
+                    setPodeAcao(false)
+                  }
                 }
-              },500) */
+             
+              },0)
               setSelecionada(2);
               setGenero('Ação')
 
@@ -241,11 +261,16 @@ export default function Categorias() {
             ref={elementRef5}
             onClick={() => {
               loadMore()
-              /* setTimeout(() => {
-                if(elementRef5.current) {
-                  elementRef5.current.click();
+              setTimeout(() => {
+                setPodeSuspense(true)
+                if(podeSuspense) {
+                  if(elementRef5.current) {
+                    elementRef5.current.click();
+                    setPodeSuspense(false)
+                  }
                 }
-              },500) */
+             
+              },0)
               setSelecionada(3);
               setGenero('Suspense')
 
@@ -267,11 +292,16 @@ export default function Categorias() {
             ref={elementRef6}
             onClick={() => {
               loadMore()
-              /* setTimeout(() => {
-                if(elementRef6.current) {
-                  elementRef6.current.click();
+              setTimeout(() => {
+                setPodeLGBT(true)
+                if(podeLGBT) {
+                  if(elementRef6.current) {
+                    elementRef6.current.click();
+                    setPodeLGBT(false)
+                  }
                 }
-              },500) */
+             
+              },0)
               setGenero('LGBTQ+')
 
               setSelecionada(4);
