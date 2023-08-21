@@ -6,6 +6,7 @@
   flex-direction: column;
   &__produtos-encontrados {
     margin: 1rem;
+    z-index: 2 ;
   }
   &__title {
     background-color: $cinza-escuro;
