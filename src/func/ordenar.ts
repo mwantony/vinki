@@ -1,4 +1,4 @@
-const moment = require('moment')
+const moment = require("moment");
 export function ordenarCrescente(lista: any) {
   function compararPorPreco(a: any, b: any) {
     return b.promocao - a.promocao;
@@ -27,12 +27,20 @@ export function ordenarCancelados(lista: any, setPedidos: any) {
   );
 }
 export function ordenarMaisRecente(lista: any, setPedidos: any) {
-  return setPedidos(lista.sort((a: any, b: any) => {
-    return new Date(a.data).getTime() - new Date(b.data).getTime() 
-  }))
+  return setPedidos(
+    lista.sort((a: any, b: any) => {
+      return new Date(a.data).getTime() - new Date(b.data).getTime();
+    })
+  );
 }
 export function ordenarMaisAntigo(lista: any, setPedidos: any) {
-  return setPedidos(lista.sort((a: any, b: any) => {
-    return new Date(b.data).getTime() - new Date(a.data).getTime() 
-  }))
+  return setPedidos(
+    lista.sort((a: any, b: any) => {
+      return new Date(b.data).getTime() - new Date(a.data).getTime();
+    })
+  );
+}
+export function ordenarCategoria(lista: any, setLista: any, genero: any) {
+  return setLista(lista.filter((book: any) => book.genero === genero));
+
 }

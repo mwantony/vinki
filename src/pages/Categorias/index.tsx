@@ -7,9 +7,14 @@ import { ReactComponent as Calcado } from "../../assets/svg/calcados.svg";
 import { ReactComponent as Livro } from "../../assets/svg/livros.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
-import { ordenarCrescente, ordenarDecrescente } from "func/ordenar";
+import {
+  ordenarCategoria,
+  ordenarCrescente,
+  ordenarDecrescente,
+} from "func/ordenar";
 import { Link, useParams } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import classNames from "classnames";
 const itemVariants: Variants = {
   open: {
     opacity: 1,
@@ -18,12 +23,11 @@ const itemVariants: Variants = {
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
-let categoria: string
-let location = window.location.href
-
+let categoria: string;
+let location = window.location.href;
 
 export default function Categorias() {
-  const [ehLogin, setEhLogin] = useState(false)
+  const [ehLogin, setEhLogin] = useState(false);
   const [aparecerLoading, setAparecerLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selecionado, setSelecionado] = useState("Ordenar");
@@ -33,24 +37,25 @@ export default function Categorias() {
 
   const [moveisNum, setMoveisNum] = useState([]);
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
-  const ids = useParams()
-  const cat = ids.categoria
-  console.log(cat)
+  const ids = useParams();
+  const cat = ids.categoria;
+  const [selecionada, setSelecionada] = useState(-1);
+  console.log(cat);
 
   const loadMore = () => {
-    Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, { categoria: categoria}).then(
-      (res) => {
-        setMoveisNum(res.data);
-        const moveis = res.data.slice(0, quantidade);
-        if(selecionado === 'Maior preço') {
-          ordenarCrescente(moveis)
-        } else if(selecionado === "Menor preço") {
-          ordenarDecrescente(moveis)
-        }
-        setMoveisEncontrados(moveis);
-        setQuantidade(quantidade + 6);
+    Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, {
+      categoria: categoria,
+    }).then((res) => {
+      setMoveisNum(res.data);
+      const moveis = res.data.slice(0, quantidade);
+      if (selecionado === "Maior preço") {
+        ordenarCrescente(moveis);
+      } else if (selecionado === "Menor preço") {
+        ordenarDecrescente(moveis);
       }
-    );
+      setMoveisEncontrados(moveis);
+      setQuantidade(quantidade + 6);
+    });
   };
   const isElementVisible = (element: any) => {
     const { top, bottom } = element.getBoundingClientRect();
@@ -59,36 +64,35 @@ export default function Categorias() {
   };
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [use, setUse] = useState(window.location.href)
-  console.log(location)
+  const [use, setUse] = useState(window.location.href);
+  console.log(location);
   useEffect(() => {
-    switch(use) {
+    switch (use) {
       case `${process.env.REACT_APP_WEB_URL}/categorias/moveis`:
-        categoria = 'Móveis'  
-        break
+        categoria = "Móveis";
+        break;
       case `${process.env.REACT_APP_WEB_URL}/categorias/eletronicos`:
-        categoria = 'Eletrônicos'
-        break
+        categoria = "Eletrônicos";
+        break;
       case `${process.env.REACT_APP_WEB_URL}/categorias/estofados`:
-        categoria = 'Estofados'
-        break
+        categoria = "Estofados";
+        break;
       case `${process.env.REACT_APP_WEB_URL}/categorias/calcados`:
-        categoria = 'Calçados'
-        break
+        categoria = "Calçados";
+        break;
       case `${process.env.REACT_APP_WEB_URL}/categorias/ortopedia`:
-        categoria = 'Ortopedia'
-        break
+        categoria = "Ortopedia";
+        break;
       case `${process.env.REACT_APP_WEB_URL}/categorias/livros`:
-        categoria = 'Livros'
-        break
-    
+        categoria = "Livros";
+        break;
     }
 
     if (eh === 1) {
       loadMore();
       setEh(2);
     }
-    
+
     const handleScroll = () => {
       const element = elementRef.current;
       if (element) {
@@ -112,18 +116,111 @@ export default function Categorias() {
     }, 2000);
     setIsVisible(false);
   }
+
+
   return (
     <>
       <div className={styles["moveis__title"]}>
-        {categoria === "Móveis" ? <Sofa></Sofa>: ""}
-        {categoria === "Calçados" ? <Calcado></Calcado>: ""}
-        {categoria === "Ortopedia" ? <Ortopedia></Ortopedia>: ""}
-        {categoria === "Livros" ? <Livro></Livro>: ""}
+        {categoria === "Móveis" ? <Sofa></Sofa> : ""}
+        {categoria === "Calçados" ? <Calcado></Calcado> : ""}
+        {categoria === "Ortopedia" ? <Ortopedia></Ortopedia> : ""}
+        {categoria === "Livros" ? <Livro></Livro> : ""}
         <p>{categoria}</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>
         {produtosEncontrados} produto(s) encontrados
       </h3>
+      {categoria === "Livros" ? (
+        <ul className="w-full sliding cate h-full overflow-x-scroll flex whitespace-nowrap scroll scrollbar-hide scroll-smooth">
+          <li
+            className={classNames({
+              [styles["livros__categorias--categoria"]]: true,
+              [styles["livros__categorias--categoria--selecionada"]]:
+                selecionada === 0 ? true : false,
+            })}
+            onClick={() => {
+              setSelecionada(0);
+              ordenarCategoria(
+                moveisNum,
+                setMoveisEncontrados,
+                "Romance"
+              );
+            }}
+          >
+            Romance
+          </li>
+          <li
+            className={classNames({
+              [styles["livros__categorias--categoria"]]: true,
+              [styles["livros__categorias--categoria--selecionada"]]:
+                selecionada === 1 ? true : false,
+            })}
+            onClick={() => {
+              setSelecionada(1);
+              ordenarCategoria(
+                moveisNum,
+                setMoveisEncontrados,
+                "Ficção"
+              );
+            }}
+          >
+            Ficção
+          </li>
+          <li
+            className={classNames({
+              [styles["livros__categorias--categoria"]]: true,
+              [styles["livros__categorias--categoria--selecionada"]]:
+                selecionada === 2 ? true : false,
+            })}
+            onClick={() => {
+              setSelecionada(2);
+              ordenarCategoria(
+                moveisNum,
+                setMoveisEncontrados,
+                "Ação"
+              );
+            }}
+          >
+            Ação
+          </li>
+          <li
+            className={classNames({
+              [styles["livros__categorias--categoria"]]: true,
+              [styles["livros__categorias--categoria--selecionada"]]:
+                selecionada === 3 ? true : false,
+            })}
+            onClick={() => {
+              setSelecionada(3);
+              ordenarCategoria(
+                moveisNum,
+                setMoveisEncontrados,
+                "Suspense"
+              );
+            }}
+          >
+            Suspense
+          </li>
+          <li
+            className={classNames({
+              [styles["livros__categorias--categoria"]]: true,
+              [styles["livros__categorias--categoria--selecionada"]]:
+                selecionada === 4 ? true : false,
+            })}
+            onClick={() => {
+              setSelecionada(4);
+              ordenarCategoria(
+                moveisNum,
+                setMoveisEncontrados,
+                "LGBTQ+"
+              );
+            }}
+          >
+            LGBTQ+
+          </li>
+        </ul>
+      ) : (
+        ""
+      )}
       <motion.nav
         initial={false}
         animate={isOpen ? "open" : "closed"}
@@ -192,12 +289,11 @@ export default function Categorias() {
             variants={itemVariants}
             onClick={() => {
               setSelecionado("Menor preço");
-              ordenarDecrescente(moveisEncontrados)
+              ordenarDecrescente(moveisEncontrados);
             }}
           >
             Menor preço
           </motion.li>
-
         </motion.ul>
       </motion.nav>
 
@@ -205,7 +301,10 @@ export default function Categorias() {
         {moveisEncontrados
           ? moveisEncontrados.map((produto: any, index: any) => {
               return (
-                <Link to={`/produto/${produto.idprodutos}`} className={styles["moveis__lista--item"]}>
+                <Link
+                  to={`/produto/${produto.idprodutos}`}
+                  className={styles["moveis__lista--item"]}
+                >
                   <div
                     className={styles["lista__imagem"]}
                     style={{ backgroundImage: `url('${produto.link}')` }}
@@ -235,7 +334,11 @@ export default function Categorias() {
             })
           : ""}
         {hasMore === true ? (
-          <button onClick={() => loadMore()} ref={elementRef}></button>
+          <button
+            onClick={() => loadMore()}
+            ref={elementRef}
+            className={styles["lista__load"]}
+          ></button>
         ) : (
           ""
         )}

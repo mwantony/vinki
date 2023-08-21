@@ -183,6 +183,13 @@ code {
   color: #ff7878;
 }
 
+.cate {
+  margin-top: -2rem;
+  padding: 2rem;
+  overflow-y: unset;
+  margin-bottom: -.5rem;
+}
+
 @media (min-width: 768px) {
   .alice-carousel {
     width: 75% !important;
