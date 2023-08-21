@@ -81,6 +81,11 @@ export default function Categorias() {
     return top < innerHeight && bottom >= 0;
   };
   const elementRef = useRef(null);
+  const elementRef2 = useRef<HTMLLIElement>(null);
+  const elementRef3 = useRef<HTMLLIElement>(null);
+  const elementRef4 = useRef<HTMLLIElement>(null);
+  const elementRef5 = useRef<HTMLLIElement>(null);
+  const elementRef6 = useRef<HTMLLIElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [use, setUse] = useState(window.location.href);
   console.log(location);
@@ -156,9 +161,14 @@ export default function Categorias() {
               [styles["livros__categorias--categoria--selecionada"]]:
                 selecionada === 0 ? true : false,
             })}
+            ref={elementRef2}
             onClick={() => {
               loadMore()
-              
+              /* setTimeout(() => {
+                if(elementRef2.current) {
+                  elementRef2.current.click();
+                }
+              },500) */
               setSelecionada(0);
               setGenero('Romance')
               ordenarCategoria(
@@ -176,9 +186,14 @@ export default function Categorias() {
               [styles["livros__categorias--categoria--selecionada"]]:
                 selecionada === 1 ? true : false,
             })}
+            ref={elementRef3}
             onClick={() => {
               loadMore()
-              
+              /* setTimeout(() => {
+                if(elementRef3.current) {
+                  elementRef3.current.click();
+                }
+              },500) */
               setSelecionada(1);
               setGenero('Ficção')
 
@@ -197,9 +212,14 @@ export default function Categorias() {
               [styles["livros__categorias--categoria--selecionada"]]:
                 selecionada === 2 ? true : false,
             })}
+            ref={elementRef4}
             onClick={() => {
               loadMore()
-              
+              /* setTimeout(() => {
+                if(elementRef4.current) {
+                  elementRef4.current.click();
+                }
+              },500) */
               setSelecionada(2);
               setGenero('Ação')
 
@@ -218,9 +238,14 @@ export default function Categorias() {
               [styles["livros__categorias--categoria--selecionada"]]:
                 selecionada === 3 ? true : false,
             })}
+            ref={elementRef5}
             onClick={() => {
               loadMore()
-              
+              /* setTimeout(() => {
+                if(elementRef5.current) {
+                  elementRef5.current.click();
+                }
+              },500) */
               setSelecionada(3);
               setGenero('Suspense')
 
@@ -239,9 +264,14 @@ export default function Categorias() {
               [styles["livros__categorias--categoria--selecionada"]]:
                 selecionada === 4 ? true : false,
             })}
+            ref={elementRef6}
             onClick={() => {
               loadMore()
-              
+              /* setTimeout(() => {
+                if(elementRef6.current) {
+                  elementRef6.current.click();
+                }
+              },500) */
               setGenero('LGBTQ+')
 
               setSelecionada(4);
