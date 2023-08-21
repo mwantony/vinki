@@ -41,21 +41,39 @@ export default function Categorias() {
   const cat = ids.categoria;
   const [selecionada, setSelecionada] = useState(-1);
   console.log(cat);
-
+  const [genero, setGenero] = useState('')
   const loadMore = () => {
-    Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, {
-      categoria: categoria,
-    }).then((res) => {
-      setMoveisNum(res.data);
-      const moveis = res.data.slice(0, quantidade);
-      if (selecionado === "Maior preço") {
-        ordenarCrescente(moveis);
-      } else if (selecionado === "Menor preço") {
-        ordenarDecrescente(moveis);
-      }
-      setMoveisEncontrados(moveis);
-      setQuantidade(quantidade + 6);
-    });
+    if(categoria !== "Livros") {
+      Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, {
+        categoria: categoria,
+      }).then((res) => {
+        setMoveisNum(res.data);
+        const moveis = res.data.slice(0, quantidade);
+        if (selecionado === "Maior preço") {
+          ordenarCrescente(moveis);
+        } else if (selecionado === "Menor preço") {
+          ordenarDecrescente(moveis);
+        }
+        setMoveisEncontrados(moveis);
+        setQuantidade(quantidade + 6);
+      });
+
+    } else if(categoria === "Livros") {
+      Axios.post(`${process.env.REACT_APP_API_URL}/categorias/genero`, {
+        genero: genero,
+        categoria: categoria
+      }).then((res) => {
+        setMoveisNum(res.data);
+        const moveis = res.data.slice(0, quantidade);
+        if (selecionado === "Maior preço") {
+          ordenarCrescente(moveis);
+        } else if (selecionado === "Menor preço") {
+          ordenarDecrescente(moveis);
+        }
+        setMoveisEncontrados(moveis);
+        setQuantidade(quantidade + 6);
+      });
+    }
   };
   const isElementVisible = (element: any) => {
     const { top, bottom } = element.getBoundingClientRect();
@@ -140,6 +158,7 @@ export default function Categorias() {
             })}
             onClick={() => {
               setSelecionada(0);
+              setGenero('Romance')
               ordenarCategoria(
                 moveisNum,
                 setMoveisEncontrados,
@@ -157,6 +176,8 @@ export default function Categorias() {
             })}
             onClick={() => {
               setSelecionada(1);
+              setGenero('Ficção')
+
               ordenarCategoria(
                 moveisNum,
                 setMoveisEncontrados,
@@ -174,6 +195,8 @@ export default function Categorias() {
             })}
             onClick={() => {
               setSelecionada(2);
+              setGenero('Ação')
+
               ordenarCategoria(
                 moveisNum,
                 setMoveisEncontrados,
@@ -191,6 +214,8 @@ export default function Categorias() {
             })}
             onClick={() => {
               setSelecionada(3);
+              setGenero('Suspense')
+
               ordenarCategoria(
                 moveisNum,
                 setMoveisEncontrados,
@@ -207,6 +232,8 @@ export default function Categorias() {
                 selecionada === 4 ? true : false,
             })}
             onClick={() => {
+              setGenero('LGBTQ+')
+
               setSelecionada(4);
               ordenarCategoria(
                 moveisNum,
