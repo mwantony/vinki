@@ -75,6 +75,24 @@ export default function Inicio() {
   const handleDragStart = (e: any) => e.preventDefault();
 
   const items = [
+    <Link to={"/categorias/livros"}>
+      <img
+        src={livros}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Livros"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
+    <Link to={"/categorias/eletronicos"}>
+      <img
+        src={eletronicos}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Eletrônicos"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
     <Link to={"/categorias/moveis"}>
       <img
         src={moveis}
@@ -90,24 +108,6 @@ export default function Inicio() {
         onDragStart={handleDragStart}
         role="presentation"
         alt="Foto Calçados"
-        className={styles["lista__foto--slicer"]}
-      />
-    </Link>,
-    <Link to={"/categorias/eletronicos"}>
-      <img
-        src={eletronicos}
-        onDragStart={handleDragStart}
-        role="presentation"
-        alt="Foto Eletrônicos"
-        className={styles["lista__foto--slicer"]}
-      />
-    </Link>,
-    <Link to={"/categorias/livros"}>
-      <img
-        src={livros}
-        onDragStart={handleDragStart}
-        role="presentation"
-        alt="Foto Livros"
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
