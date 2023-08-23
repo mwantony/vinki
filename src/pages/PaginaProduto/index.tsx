@@ -300,7 +300,7 @@ export default function PaginaProduto({
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Peso:</h2>
-                  <p>{peso}g</p>
+                  <p>{String(peso).replace('0.', '')}g</p>
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Garantia:</h2>
