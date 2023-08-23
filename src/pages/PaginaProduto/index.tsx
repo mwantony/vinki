@@ -294,9 +294,9 @@ export default function PaginaProduto({
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Dimensões:</h2>
-                  <p>Largura: {width}cm</p>
-                  <p>Altura: {height}cm</p>
-                  <p>Comprimento: {length}cm</p>
+                  <p>Largura: {Number(width).toFixed(2).replace('.', ',')}cm</p>
+                  <p>Altura: {Number(height).toFixed(2).replace('.', ',')}cm</p>
+                  <p>Comprimento: {Number(length).toFixed(2).replace('.', ',')}cm</p>
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Peso:</h2>
