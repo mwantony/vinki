@@ -94,12 +94,10 @@ export default function PopupFrete({
 
     })
     .catch((error) => {
-      console.log(error);
     });
 
   const [resultado, setResultado] = useState("");
 
-  console.log(resultado);
   return (
     <>
       <div

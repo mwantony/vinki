@@ -53,7 +53,6 @@ export default function Pedidos({ id }: Props) {
             setPedidos(res.data);
             setPedidosNum(res.data);
             setPode(2);
-            console.log(pedidos);
           }
         );
       }

@@ -34,7 +34,6 @@ export default function Carrinho({
   id,
   cep,
 }: Props) {
-  console.log(produtos);
   const [parent, enableAnimations] = useAutoAnimate();
 
   const removerItem = (link: any, ind: any) => {
@@ -76,7 +75,6 @@ export default function Carrinho({
         return "85816-050";
     }
   };
-  console.log(produtos)
   produtos.map((item: any) => {
     width = width + Number(item.width);
     height = height + Number(item.height);
@@ -85,7 +83,6 @@ export default function Carrinho({
     fornecedor = item.fornecedor;
     fornecedores = [...fornecedores, item.fornecedor]
     itensUnicos = new Set(fornecedores)
-    console.log(itensUnicos)
     return (itemsValor = itemsValor += Number(item.promocao));
   });
   const data = {
@@ -127,7 +124,6 @@ export default function Carrinho({
     }
     return response.json();
   }).then((data) => {
-    console.log(data.price);
     setFreteValor(Number(data.price) * itensUnicos.size)
   })
   useEffect(() => {

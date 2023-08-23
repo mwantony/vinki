@@ -33,7 +33,6 @@ export default function EmAlta() {
   const [moveisEncontrados, setMoveisEncontrados]: any = useState([]);
   const ids = useParams()
   const cat = ids.categoria
-  console.log(cat)
 
   const loadMore = () => {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtos`).then(
@@ -58,7 +57,6 @@ export default function EmAlta() {
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [use, setUse] = useState(window.location.href)
-  console.log(location)
   useEffect(() => {
     switch(use) {
       case `${process.env.REACT_APP_WEB_URL}/categorias/moveis`:
@@ -90,7 +88,6 @@ export default function EmAlta() {
     };
   }, []);
   const produtosEncontrados = moveisNum.length;
-  console.log(moveisEncontrados.length, moveisEncontrados.length);
   const hasMore = produtosEncontrados !== moveisEncontrados.length;
 
   if (isVisible === true) {

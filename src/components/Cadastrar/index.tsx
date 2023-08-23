@@ -210,7 +210,6 @@ export default function Cadastrar() {
                   onChange={(event) => {
                     setTelefone(event.target.value);
                     setTelAparecer(false);
-                    console.log(telefone);
                   }}
                   className={styles["cadastrar__input"]}
                   {...props}

@@ -80,7 +80,6 @@ export default function Cabecalho({
     const isInputFocused = () => {
       return document.activeElement === inputRef.current;
     };
-    console.log('Input em foco:', isInputFocused());
   }, [])
   const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -96,7 +95,6 @@ export default function Cabecalho({
         <MenuItem
           className={styles["navegacao__menu"]}
           onClick={() => {
-            console.log("sd");
             setAparecer(true);
           }}
         ></MenuItem>

@@ -41,7 +41,6 @@ export default function Categorias() {
   const ids = useParams();
   const cat = ids.categoria;
   const [selecionada, setSelecionada] = useState(-1);
-  console.log(cat);
   const [genero, setGenero] = useState('')
   const loadMore = () => {
     if(categoria !== "Livros") {
@@ -89,7 +88,6 @@ export default function Categorias() {
   const elementRef6 = useRef<HTMLLIElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [use, setUse] = useState(window.location.href);
-  console.log(location);
   useEffect(() => {
     switch (use) {
       case `${process.env.REACT_APP_WEB_URL}/categorias/moveis`:
@@ -129,7 +127,6 @@ export default function Categorias() {
     };
   }, []);
   const produtosEncontrados = moveisNum.length;
-  console.log(moveisEncontrados.length, moveisEncontrados.length);
   const hasMore = produtosEncontrados !== moveisEncontrados.length;
 
   if (isVisible === true) {

@@ -93,7 +93,6 @@ const atu = async () => {
   );
   const prdo1 = prdo;
   setTimeout(() => {
-    console.log(prdo);
     localStorage.setItem("carrinho", JSON.stringify(prdo));
   }, 2000);
   /*   localStorage.setItem("carrinho", JSON.stringify(prdo));
@@ -110,7 +109,6 @@ export const atualiza = async () => {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log("Resposta:", result);
       localStorage.setItem("usuario", JSON.stringify(result));
       fetch(`${process.env.REACT_APP_API_URL}/endereco/${result.idusuarios}`)
         .then((response) => response.json())
@@ -126,7 +124,6 @@ export const atualiza = async () => {
 if (usuarioLocalParsed.nome !== "") {
   atualiza();
   atu();
-  console.log("o");
 }
 
 const verifica = () => {

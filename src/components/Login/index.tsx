@@ -17,7 +17,6 @@ export default function Login() {
       password: values.password,
     }).then((response) => {
       const dados = response.data;
-      console.log(dados)
       if(!dados.hasOwnProperty('msg')) {
         localStorage.setItem("usuario", JSON.stringify(dados))
         navigate("/");
@@ -43,7 +42,6 @@ export default function Login() {
       },
       body: values})
     .then(res => {
-      console.log(res)
     }) */
   };
   const validationLogin = yup.object().shape({
