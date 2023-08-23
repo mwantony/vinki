@@ -126,7 +126,7 @@ export default function PopupFrete({
         </div>
         <div className={styles['calcularfrete__opcoes']}>
           <p>
-           {verFornecedor() !== cep ? `R$ ${precoFrete.replace('.', ',')}` : <strong>FRETE GRÁTIS</strong>} - <strong>PAC</strong> - de {freteRange} dias úteis
+           {verFornecedor() !== cep ? `R$ ${precoFrete.replace('.', ',')}` : <strong>FRETE GRÁTIS</strong>} - <strong>PAC</strong> - {verFornecedor() !== cep ? `de ${freteRange} dias úteis` : "de 1 à 2 dias úteis"}
           </p>
           <Check></Check>
         </div>
