@@ -5,6 +5,7 @@ import { ReactComponent as Sofa } from "../../assets/svg/sofa.svg";
 import { ReactComponent as Ortopedia } from "../../assets/svg/ortopedia.svg";
 import { ReactComponent as Calcado } from "../../assets/svg/calcados.svg";
 import { ReactComponent as Livro } from "../../assets/svg/livros.svg";
+import { ReactComponent as Eletronico } from "../../assets/svg/eletronicos.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import {
@@ -152,6 +153,7 @@ export default function Categorias() {
         {categoria === "Calçados" ? <Calcado></Calcado> : ""}
         {categoria === "Ortopedia" ? <Ortopedia></Ortopedia> : ""}
         {categoria === "Livros" ? <Livro></Livro> : ""}
+        {categoria === "Eletrônicos" ? <Eletronico></Eletronico> : ""}
         <p>{categoria}</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>
