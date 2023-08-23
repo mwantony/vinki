@@ -69,7 +69,7 @@ export default function Carrinho({
         return "85816-050";
       case "voltaire":
         return "89930-000";
-      case "shopmix":
+      case "dallcell":
         return "89930-000";
       default:
         return "85816-050";
