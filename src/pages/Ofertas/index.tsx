@@ -36,7 +36,7 @@ export default function EmAlta() {
   console.log(cat)
 
   const loadMore = () => {
-    Axios.post(`${process.env.REACT_APP_API_URL}/categorias`, { categoria: categoria}).then(
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtos`).then(
       (res) => {
         setMoveisNum(res.data);
         const moveis = res.data.slice(0, quantidade);

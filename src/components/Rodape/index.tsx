@@ -179,6 +179,16 @@ export default function Rodape() {
                 &nbsp;Políticas de privacidade
               </li>
             </a>
+            <a href="/termos">
+              <li
+                className={classNames({
+                  [styles["rodape__item"]]: true,
+                  [styles["rodape__item--termos"]]: true,
+                })}
+              >
+                &nbsp;Termos de serviço
+              </li>
+            </a>
             <a href="/trocas">
               <li
                 className={classNames({

@@ -17,9 +17,10 @@ import FinalizarCompra from "pages/FinalizarCompra";
 import Pedidos from "pages/Pedidos";
 import Categorias from "pages/Categorias";
 import EmAlta from "pages/EmAlta";
-import Politicas from "pages/Politicas";
+import Termos from "pages/Termos";
 import Trocas from "pages/Trocas";
 import Ofertas from "pages/Ofertas";
+import Politicas from "pages/Politicas";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -222,6 +223,7 @@ export default function AppRouter() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/cadastrar" element={<Cadastrar></Cadastrar>}></Route>
         <Route path="/politicas" element={<Politicas></Politicas>}></Route>
+        <Route path="/termos" element={<Termos></Termos>}></Route>
         <Route path="/trocas" element={<Trocas></Trocas>}></Route>
         <Route path="/emalta" element={<EmAlta></EmAlta>}></Route>
         <Route path="/ofertas" element={<Ofertas></Ofertas>}></Route>

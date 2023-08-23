@@ -78,6 +78,9 @@
         content: url('../../assets/svg/email.svg');
     }
     &__item--politicas::before {
+        content: url('../../assets/svg/politicass.svg');
+    }
+    &__item--termos::before {
         content: url('../../assets/svg/politicas.svg');
     }
     &__item--trocas::before {
