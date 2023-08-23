@@ -75,28 +75,30 @@ export default function PopupFrete({
     },
     services: "1",
   };
+  if(verFornecedor() !== cep) {
 
-  fetch(apiUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    .then((data) => {
-      setPrecoFrete(data.price);
-      setFreteRange(`${data.delivery_range.min} à ${data.delivery_range.max}`)
-
-    })
-    .catch((error) => {
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPrecoFrete(data.price);
+        setFreteRange(`${data.delivery_range.min} à ${data.delivery_range.max}`)
+  
+      })
+      .catch((error) => {
+      });
+  }
 
   const [resultado, setResultado] = useState("");
 
@@ -124,7 +126,7 @@ export default function PopupFrete({
         </div>
         <div className={styles['calcularfrete__opcoes']}>
           <p>
-            R$ {precoFrete.replace('.', ',')} - <strong>PAC</strong> - de {freteRange} dias úteis
+           {verFornecedor() !== cep ? `R$ ${precoFrete.replace('.', ',')}` : <strong>FRETE GRÁTIS</strong>} - <strong>PAC</strong> - de {freteRange} dias úteis
           </p>
           <Check></Check>
         </div>

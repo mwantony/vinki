@@ -111,21 +111,24 @@ export default function Carrinho({
   };
   const apiUrl =
     "https://sandbox.melhorenvio.com.br/api/v2/me/shipment/calculate";
-  fetch(apiUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  }).then((data) => {
-    setFreteValor(Number(data.price) * itensUnicos.size)
-  })
+  if(verFornecedor() !== cep) {
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    }).then((data) => {
+      setFreteValor(Number(data.price) * itensUnicos.size)
+    })
+  }
   useEffect(() => {
     if (nome === "") {
       navigate("/login");
