@@ -191,8 +191,8 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1139997314665168946/Banner-Frete-Mobile.png"
-                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1140014673568202873/Banner_Frete_Desk.png"
+                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1143975588995022878/frete-brasil.png"
+                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1143976394708242512/frete-brasil-desktop.png"
               }
               className="d-block w-100"
               alt={"Foto"}
