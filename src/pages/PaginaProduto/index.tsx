@@ -160,7 +160,7 @@ export default function PaginaProduto({
                       [styles["produto__paragrafo"]]: true,
                     })}
                   >
-                    Em até 12x de{" "}
+                    Em até 12x de{" "} R$&nbsp;
                     {Number(Number(promocao) / 12)
                       .toFixed(2)
                       .replace(".", ",")}
@@ -300,7 +300,7 @@ export default function PaginaProduto({
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Peso:</h2>
-                  <p>{peso}kg</p>
+                  <p>{peso}g</p>
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Garantia:</h2>
