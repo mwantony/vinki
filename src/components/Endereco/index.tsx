@@ -65,6 +65,7 @@ export default function Endereco({
       navigate("/login");
     }
   }, [navigate, nome]);
+  const [foi, setFoi] = useState(0)
   return (
     <section className={styles["endereco"]}>
       <h2 className={styles["endereco__titulo"]}>ENDEREÇO</h2>
@@ -84,7 +85,10 @@ export default function Endereco({
                 placeholder="CEP"
                 type="text"
                 onClick={(event:any) => {
-                  event.target.value = ''
+                  if(foi===0) {
+                    event.target.value = ''
+                    setFoi(1)
+                  }
                 }}
                 onChange={(event: any) => {
                   setCepUser(event.target.value);
