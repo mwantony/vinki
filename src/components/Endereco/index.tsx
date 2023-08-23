@@ -83,6 +83,9 @@ export default function Endereco({
                 mask="00000-000"
                 placeholder="CEP"
                 type="text"
+                onClick={(event:any) => {
+                  event.target.value = ''
+                }}
                 onChange={(event: any) => {
                   setCepUser(event.target.value);
                 }}
