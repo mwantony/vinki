@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
 import styles from './VideoInstitucional.module.scss'
-import institucional from 'assets/vid/institucional.mp4'
 const VideoPlayer = () => {
   const playerRef = useRef<Plyr | null>(null);
 
@@ -24,7 +23,7 @@ const VideoPlayer = () => {
     <div className={styles['video-player']}>
       <video id="player" playsInline controls>
         <source
-          src={institucional}
+          src={'https://cdn.discordapp.com/attachments/1067833193329344542/1144069861543260301/insti.mp4'}
           type="video/mp4"
         />
       </video>
