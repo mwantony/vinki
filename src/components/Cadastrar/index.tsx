@@ -6,7 +6,8 @@ import { IMaskInput } from "react-imask";
 import { useState } from "react";
 import classNames from "classnames";
 import InputCpf from "./InputCpf";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Notificacao from "components/Notificacao";
 const yup = require("yup");
 export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
@@ -20,8 +21,10 @@ export default function Cadastrar() {
   const [tipo, setTipo] = useState("pf");
   const [isCheckedNovidades, setIsCheckedNovidades] = useState(false);
   const [isCheckedPoliticas, setIsCheckedPoliticas] = useState(false);
+  const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
   const [aparecerErroNovidades, setAparecerErroNovidades] = useState(false);
   const [aparecerErroPoliticas, setAparecerErroPoliticas] = useState(false);
+  const navigate = useNavigate()
   const handleCadastro = async (values: any) => {
     if (
       !numbers.some((number) => telefone.includes(number)) ||
@@ -40,7 +43,10 @@ export default function Cadastrar() {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      alert(response.data.msg);
+      setMostrarNotificacao(true)
+      setTimeout(() => {
+        navigate('/login')
+      }, 1500)
     });
   };
   const handleCheckboxChangeNovidades = () => {
@@ -371,6 +377,7 @@ export default function Cadastrar() {
           </Form>
         </Formik>
       </div>
+      <Notificacao mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao} msg={'Usuário cadastrado com sucesso'}></Notificacao>
     </>
   );
 }
