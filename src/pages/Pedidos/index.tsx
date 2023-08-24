@@ -5,6 +5,7 @@ import moment from "moment";
 import { ReactComponent as PedidoCancelado } from "assets/svg/pedidocancelado.svg";
 import { ReactComponent as PedidoConcluido } from "assets/svg/pedido-concluido.svg";
 import { ReactComponent as PedidoPendente } from "assets/svg/pedido-pendente.svg";
+import { ReactComponent as PedidoTransporte } from "assets/svg/pedido-transporte.svg";
 import { ReactComponent as MeuPedidos } from "assets/svg/meupedidos.svg";
 import styles from "./Pedidos.module.scss";
 import { motion, Variants } from "framer-motion";
@@ -185,183 +186,236 @@ export default function Pedidos({ id }: Props) {
             pedidosNum.map((pedido: any, index: any) => {
               const produtoSeparados: any = pedido.produtos.split(",");
               return (
-                <>{pedidosNum[index].etiqueta ?
-                  <a href={`https://www.linkcorreios.com.br/?id=${pedidosNum[index].etiqueta}`} target="_blank" rel="noreferrer">
-                  <li className={styles["pedidos__item"]}>
-                    <div
-                      className={classNames({
-                        [styles["pedidos__coluna"]]: true,
-                        [styles["pedidos__coluna--first"]]: true,
-                      })}
+                <>
+                  {pedidosNum[index].etiqueta ? (
+                    <a
+                      href={`https://www.linkcorreios.com.br/?id=${pedidosNum[index].etiqueta}`}
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      {pedido.status === "Cancelado" ? (
-                        <PedidoCancelado></PedidoCancelado>
-                      ) : (
-                        ""
-                      )}
-                      {pedido.status === "Aprovado" ? (
-                        <PedidoConcluido></PedidoConcluido>
-                      ) : (
-                        ""
-                      )}
-                      {pedido.status === "Pendente" ? (
-                        <PedidoPendente></PedidoPendente>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className={styles["pedidos__coluna"]}>
-                      <div>
-                        <h2 className={styles["pedidos__subtitulo"]}>
-                          Produtos
-                        </h2>
-                        <p
+                      <li className={styles["pedidos__item"]}>
+                        <div
                           className={classNames({
-                            [styles["pedidos__paragrafo"]]: true,
-                            [styles["pedidos__paragrafo--produto"]]: true,
+                            [styles["pedidos__coluna"]]: true,
+                            [styles["pedidos__coluna--first"]]: true,
                           })}
                         >
-                          {produtoSeparados.map((produto: any, index: any) => (
-                            <a
-                              className={styles["pedidos__produto--link"]}
-                              href={`${
-                                process.env.REACT_APP_WEB_URL
-                              }/produto/${String(produto).replace(" ", "")}`}
+                          {pedido.status === "Cancelado" ? (
+                            <PedidoCancelado></PedidoCancelado>
+                          ) : (
+                            ""
+                          )}
+                          {pedido.status === "Aprovado" ? (
+                            <PedidoConcluido></PedidoConcluido>
+                          ) : (
+                            ""
+                          )}
+                          {pedido.status === "Entregue" ? (
+                            <PedidoConcluido></PedidoConcluido>
+                          ) : (
+                            ""
+                          )}
+                          {pedido.status === "Em transporte" ? (
+                            <PedidoTransporte></PedidoTransporte>
+                          ) : (
+                            ""
+                          )}
+                          {pedido.status === "Pendente" ? (
+                            <PedidoPendente></PedidoPendente>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div className={styles["pedidos__coluna"]}>
+                          <div>
+                            <h2 className={styles["pedidos__subtitulo"]}>
+                              Produtos
+                            </h2>
+                            <p
+                              className={classNames({
+                                [styles["pedidos__paragrafo"]]: true,
+                                [styles["pedidos__paragrafo--produto"]]: true,
+                              })}
                             >
-                              {produto}
-                              {index === produtoSeparados.length - 1 ? "" : ","}
-                            </a>
-                          ))}
-                        </p>
-                      </div>
-                      {pedido.status !== "Cancelado" ? (
-                        <button
-                          className={styles["pedidos__botao"]}
-                          onClick={() => {
-                            setMostrarNotificacao(true);
-                            Axios.put(
-                              `${process.env.REACT_APP_API_URL}/pedidos/${pedido.idpedidos}`
-                            ).then((res: any) => {
-                              return;
-                            });
-                          }}
-                        >
-                          Cancelar
-                        </button>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className={styles["pedidos__coluna"]}>
-                      <div>
-                        <h3 className={styles["pedidos__subtitulo"]}>Status</h3>
-                        <p
-                          className={classNames({
-                            [styles["pedidos__paragrafo"]]: true,
-                            [styles["pedidos__paragrafo--pendente"]]:
-                              pedido.status === "Pendente" ? true : false,
-                            [styles["pedidos__paragrafo--vermelho"]]:
-                              pedido.status === "Cancelado" ? true : false,
-                            [styles["pedidos__paragrafo--verde"]]:
-                              pedido.status === "Aprovado" ? true : false,
-                          })}
-                        >
-                          {pedido.status}
-                        </p>
-                      </div>
-                      <p className={styles["pedidos__paragrafo"]}>
-                        Feito em {moment(pedido.data).format("DD/MM/YYYY")}
-                      </p>
-                    </div>
-                  </li></a> : 
-                  <li className={styles["pedidos__item"]}>
-                    <div
-                      className={classNames({
-                        [styles["pedidos__coluna"]]: true,
-                        [styles["pedidos__coluna--first"]]: true,
-                      })}
-                    >
-                      {pedido.status === "Cancelado" ? (
-                        <PedidoCancelado></PedidoCancelado>
-                      ) : (
-                        ""
-                      )}
-                      {pedido.status === "Aprovado" ? (
-                        <PedidoConcluido></PedidoConcluido>
-                      ) : (
-                        ""
-                      )}
-                      {pedido.status === "Pendente" ? (
-                        <PedidoPendente></PedidoPendente>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className={styles["pedidos__coluna"]}>
-                      <div>
-                        <h2 className={styles["pedidos__subtitulo"]}>
-                          Produtos
-                        </h2>
-                        <p
-                          className={classNames({
-                            [styles["pedidos__paragrafo"]]: true,
-                            [styles["pedidos__paragrafo--produto"]]: true,
-                          })}
-                        >
-                          {produtoSeparados.map((produto: any, index: any) => (
-                            <a
-                              className={styles["pedidos__produto--link"]}
-                              href={`${
-                                process.env.REACT_APP_WEB_URL
-                              }/produto/${String(produto).replace(" ", "")}`}
+                              {produtoSeparados.map(
+                                (produto: any, index: any) => (
+                                  <a
+                                    className={styles["pedidos__produto--link"]}
+                                    href={`${
+                                      process.env.REACT_APP_WEB_URL
+                                    }/produto/${String(produto).replace(
+                                      " ",
+                                      ""
+                                    )}`}
+                                  >
+                                    {produto}
+                                    {index === produtoSeparados.length - 1
+                                      ? ""
+                                      : ","}
+                                  </a>
+                                )
+                              )}
+                            </p>
+                          </div>
+                          {pedido.status !== "Cancelado" ? (
+                            <button
+                              className={styles["pedidos__botao"]}
+                              onClick={() => {
+                                setMostrarNotificacao(true);
+                                Axios.put(
+                                  `${process.env.REACT_APP_API_URL}/pedidos/${pedido.idpedidos}`
+                                ).then((res: any) => {
+                                  return;
+                                });
+                              }}
                             >
-                              {produto}
-                              {index === produtoSeparados.length - 1 ? "" : ","}
-                            </a>
-                          ))}
+                              Cancelar
+                            </button>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div className={styles["pedidos__coluna"]}>
+                          <div>
+                            <h3 className={styles["pedidos__subtitulo"]}>
+                              Status
+                            </h3>
+                            <p
+                              className={classNames({
+                                [styles["pedidos__paragrafo"]]: true,
+                                [styles["pedidos__paragrafo--pendente"]]:
+                                  pedido.status === "Pendente" ? true : false,
+                                [styles["pedidos__paragrafo--vermelho"]]:
+                                  pedido.status === "Cancelado" ? true : false,
+                                [styles["pedidos__paragrafo--verde"]]:
+                                  pedido.status === "Aprovado" ||
+                                  pedido.status === "Em transporte" ||
+                                  pedido.status === "Entregue"
+                                    ? true
+                                    : false,
+                              })}
+                            >
+                              {pedido.status}
+                            </p>
+                          </div>
+                          <p className={styles["pedidos__paragrafo"]}>
+                            Feito em {moment(pedido.data).format("DD/MM/YYYY")}
+                          </p>
+                        </div>
+                      </li>
+                    </a>
+                  ) : (
+                    <li className={styles["pedidos__item"]}>
+                      <div
+                        className={classNames({
+                          [styles["pedidos__coluna"]]: true,
+                          [styles["pedidos__coluna--first"]]: true,
+                        })}
+                      >
+                        {pedido.status === "Cancelado" ? (
+                          <PedidoCancelado></PedidoCancelado>
+                        ) : (
+                          ""
+                        )}
+                        {pedido.status === "Aprovado" ? (
+                          <PedidoConcluido></PedidoConcluido>
+                        ) : (
+                          ""
+                        )}
+                        {pedido.status === "Entregue" ? (
+                          <PedidoConcluido></PedidoConcluido>
+                        ) : (
+                          ""
+                        )}
+                        {pedido.status === "Pendente" ? (
+                          <PedidoPendente></PedidoPendente>
+                        ) : (
+                          ""
+                        )}
+                        {pedido.status === "Em transporte" ? (
+                          <PedidoTransporte></PedidoTransporte>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className={styles["pedidos__coluna"]}>
+                        <div>
+                          <h2 className={styles["pedidos__subtitulo"]}>
+                            Produtos
+                          </h2>
+                          <p
+                            className={classNames({
+                              [styles["pedidos__paragrafo"]]: true,
+                              [styles["pedidos__paragrafo--produto"]]: true,
+                            })}
+                          >
+                            {produtoSeparados.map(
+                              (produto: any, index: any) => (
+                                <a
+                                  className={styles["pedidos__produto--link"]}
+                                  href={`${
+                                    process.env.REACT_APP_WEB_URL
+                                  }/produto/${String(produto).replace(
+                                    " ",
+                                    ""
+                                  )}`}
+                                >
+                                  {produto}
+                                  {index === produtoSeparados.length - 1
+                                    ? ""
+                                    : ","}
+                                </a>
+                              )
+                            )}
+                          </p>
+                        </div>
+                        {pedido.status !== "Cancelado" ? (
+                          <button
+                            className={styles["pedidos__botao"]}
+                            onClick={() => {
+                              setMostrarNotificacao(true);
+                              Axios.put(
+                                `${process.env.REACT_APP_API_URL}/pedidos/${pedido.idpedidos}`
+                              ).then((res: any) => {
+                                return;
+                              });
+                            }}
+                          >
+                            Cancelar
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className={styles["pedidos__coluna"]}>
+                        <div>
+                          <h3 className={styles["pedidos__subtitulo"]}>
+                            Status
+                          </h3>
+                          <p
+                            className={classNames({
+                              [styles["pedidos__paragrafo"]]: true,
+                              [styles["pedidos__paragrafo--pendente"]]:
+                                pedido.status === "Pendente" ? true : false,
+                              [styles["pedidos__paragrafo--vermelho"]]:
+                                pedido.status === "Cancelado" ? true : false,
+                              [styles["pedidos__paragrafo--verde"]]:
+                                pedido.status === "Aprovado" ||
+                                pedido.status === "Em transporte" ||
+                                pedido.status === "Entregue"
+                                  ? true
+                                  : false,
+                            })}
+                          >
+                            {pedido.status}
+                          </p>
+                        </div>
+                        <p className={styles["pedidos__paragrafo"]}>
+                          Feito em {moment(pedido.data).format("DD/MM/YYYY")}
                         </p>
                       </div>
-                      {pedido.status !== "Cancelado" ? (
-                        <button
-                          className={styles["pedidos__botao"]}
-                          onClick={() => {
-                            setMostrarNotificacao(true);
-                            Axios.put(
-                              `${process.env.REACT_APP_API_URL}/pedidos/${pedido.idpedidos}`
-                            ).then((res: any) => {
-                              return;
-                            });
-                          }}
-                        >
-                          Cancelar
-                        </button>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className={styles["pedidos__coluna"]}>
-                      <div>
-                        <h3 className={styles["pedidos__subtitulo"]}>Status</h3>
-                        <p
-                          className={classNames({
-                            [styles["pedidos__paragrafo"]]: true,
-                            [styles["pedidos__paragrafo--pendente"]]:
-                              pedido.status === "Pendente" ? true : false,
-                            [styles["pedidos__paragrafo--vermelho"]]:
-                              pedido.status === "Cancelado" ? true : false,
-                            [styles["pedidos__paragrafo--verde"]]:
-                              pedido.status === "Aprovado" ? true : false,
-                          })}
-                        >
-                          {pedido.status}
-                        </p>
-                      </div>
-                      <p className={styles["pedidos__paragrafo"]}>
-                        Feito em {moment(pedido.data).format("DD/MM/YYYY")}
-                      </p>
-                    </div>
-                  </li>
-                  }
+                    </li>
+                  )}
                 </>
               );
             })
