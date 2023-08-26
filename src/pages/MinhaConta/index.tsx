@@ -12,6 +12,7 @@ import Endereco from "interfaces/Endereco";
 import  Axios  from "axios";
 import { atualiza } from "routes";
 import Notificacao from "components/Notificacao";
+import moment from "moment";
 interface Props {
   nome: any;
   tipoDeConta: any;
@@ -70,6 +71,14 @@ export default function MinhaConta({
     }
   }, [navigate, nome]);
   const [cnpj, setCnpj] = useState(tipoDeConta === "pj" ? true : false);
+  const maiorOuNao = () => {
+    const dataNascimentoDate = new Date(dataDeNascimentoInput);
+  const hoje = new Date();
+
+  const idade = hoje.getFullYear() - dataNascimentoDate.getFullYear(); 
+
+  return idade >= 18;
+  }
   return (
     <section className={styles["minhaconta"]}>
       <div className={styles["minhaconta__bemvindo"]}>
@@ -189,6 +198,7 @@ export default function MinhaConta({
               placeholder="Data de nascimento"
               defaultValue={dataDeNascimento}
               onChange={(event: any) => {
+                maiorOuNao()
                 setDataDeNascimentoInput(event?.target.value)
               }}
             />
@@ -253,9 +263,14 @@ export default function MinhaConta({
             </div>
           </form>
           <button className={styles["minhaconta__botao"]} onClick={() => {
-            handleEverything()
-            atualiza()
-            setMostrarNotificacao(true)
+            if(maiorOuNao()) {
+              handleEverything()
+              atualiza()
+              setMostrarNotificacao(true)
+
+            } else {
+              return
+            }
           }} >
             Salvar
           </button>

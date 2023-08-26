@@ -8,6 +8,7 @@ import classNames from "classnames";
 import InputCpf from "./InputCpf";
 import { Link, useNavigate } from "react-router-dom";
 import Notificacao from "components/Notificacao";
+import moment from "moment";
 const yup = require("yup");
 export default function Cadastrar() {
   const [mask, setMask] = useState("(99) 99999-9999");
@@ -58,7 +59,14 @@ export default function Cadastrar() {
 
   const validationCadastrar = yup.object().shape({
     name: yup.string().required("Este campo é obrigatório"),
-    date: yup.string().required("Este campo é obrigatório"),
+    date: yup.string().required("Este campo é obrigatório")
+    .test('is-adult', 'Você deve ser maior de idade', function(value: any) {
+      // Verificar se a data de nascimento é maior de idade (18 anos)
+      const currentDate = moment();
+      const birthDate = moment(value, 'YYYY-MM-DD');
+      const age = currentDate.diff(birthDate, 'years');
+      return age >= 18;
+    }),
     email: yup
       .string()
       .email("Email inválido")
