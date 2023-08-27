@@ -194,6 +194,12 @@
     &:hover {
       transform: scale(1.1);
     }
+    &:disabled {
+      opacity: .7;
+      &:hover {
+        transform: scale(1);
+      }
+    }
   }
 }
 

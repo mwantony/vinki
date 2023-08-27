@@ -27,8 +27,11 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import ScrollHorizontal from "components/ScrollHorizontal";
 import VideoPlayer from "components/VideoInstitucional";
+import Notificacao from "components/Notificacao";
 export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
+  const [newsEmail, setNewsEmail] = useState("");
+  const [newsNome, setNewsNome] = useState("");
   const [maisVendidos, setMaisVendidos] = useState([]);
   const [emalta, setEmAlta] = useState([]);
   const [produtosRecomendados, setProdutosRecomendados] = useState([]);
@@ -36,6 +39,8 @@ export default function Inicio() {
   const [set1, setSet1] = useState(0);
   const [set2, setSet2] = useState(0);
   const [set3, setSet3] = useState(0);
+  const [jaCadastrado, setJaCadastrado] = useState(false)
+  const [cadastrado, setCadastrado] = useState(false)
   if (set === 0) {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
       setEmDestaque(res.data);
@@ -154,7 +159,22 @@ export default function Inicio() {
       />
     );
   };
-
+  const validaEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return !emailRegex.test(newsEmail);
+  };
+  const handleNews = () => {
+    Axios.post(`${process.env.REACT_APP_API_URL}/cadastrarnews`, {
+      email: newsEmail,
+      nome: newsNome,
+    }).then((res: any) => {
+      if(res.data === "Email já cadastrado") {
+        setJaCadastrado(true)
+      } else {
+        setCadastrado(true)
+      }
+    })
+  };
   return (
     <>
       <section>
@@ -171,7 +191,7 @@ export default function Inicio() {
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-          <a
+            <a
               href="https://wa.me/5549991042777"
               target="_blank"
               rel="noreferrer"
@@ -199,7 +219,7 @@ export default function Inicio() {
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-            <Link to={'/emalta'}>
+            <Link to={"/emalta"}>
               <img
                 src={
                   width <= 568
@@ -212,7 +232,7 @@ export default function Inicio() {
             </Link>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-            <Link to={'/emalta'}>
+            <Link to={"/emalta"}>
               <img
                 src={
                   width <= 568
@@ -251,19 +271,34 @@ export default function Inicio() {
           type="text"
           name=""
           placeholder="Seu nome"
+          onChange={(event: any) => {
+            setNewsNome(event.target.value);
+          }}
           id=""
           className={styles["newsletter__nome"]}
         />
         <input
           type="email"
           name=""
+          onChange={(event: any) => {
+            setNewsEmail(event.target.value);
+          }}
           placeholder="Email"
           id=""
           className={styles["newsletter__email"]}
         />
-        <button type="submit" className={styles["newsletter__botao"]}>
+        <button
+          disabled={newsNome === "" || newsEmail === "" || validaEmail()}
+          type="submit"
+          className={styles["newsletter__botao"]}
+          onClick={() => {
+            handleNews()
+          }}
+        >
           Cadastrar
         </button>
+        <Notificacao mostrarNotificacao={jaCadastrado} setMostrarNotificacao={setJaCadastrado} msg={"Email já cadastrado"}></Notificacao>
+        <Notificacao mostrarNotificacao={cadastrado} setMostrarNotificacao={setCadastrado} msg={"Cadastrado com sucesso"}></Notificacao>
       </section>
       <section className={styles.maisvendidos}>
         <h2 className={styles["maisvendidos__titulo"]}>Mais vendidos</h2>
