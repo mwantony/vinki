@@ -6,33 +6,39 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Usuario from "interfaces/Usuario";
 import Notificacao from "components/Notificacao";
+import Esqueceu from "./Esqueceu";
 export default function Login() {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
+  const [esqueceuAparecer, setEsqueceuAparecer] = useState(false);
+  const [esqueceuNot, setEsqueceuNot] = useState(false);
   const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
   const handleClick = async (values: any) => {
     Axios.post(`${process.env.REACT_APP_API_URL}/login`, {
       email: values.email,
       password: values.password,
-    }).then((response) => {
-      const dados = response.data;
-      if(!dados.hasOwnProperty('msg')) {
-        localStorage.setItem("usuario", JSON.stringify(dados))
-        navigate("/");
-        setTimeout(function() {
-          window.location.reload()
-        }, 1000);
-      } else {
-        setMostrarNotificacao(true)
-      }
-      return dados
-    }).then((dados) => {
-      Axios.get(`${process.env.REACT_APP_API_URL}/endereco/${dados.idusuarios}`).then((res) => {
-        localStorage.setItem('endereco', JSON.stringify(res.data))
+    })
+      .then((response) => {
+        const dados = response.data;
+        if (!dados.hasOwnProperty("msg")) {
+          localStorage.setItem("usuario", JSON.stringify(dados));
+          navigate("/");
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else {
+          setMostrarNotificacao(true);
+        }
+        return dados;
       })
-    } )
-
+      .then((dados) => {
+        Axios.get(
+          `${process.env.REACT_APP_API_URL}/endereco/${dados.idusuarios}`
+        ).then((res) => {
+          localStorage.setItem("endereco", JSON.stringify(res.data));
+        });
+      });
 
     /*     return fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -100,12 +106,17 @@ export default function Login() {
                 name="password"
                 className={styles["login__error"]}
               ></ErrorMessage>
-              <button
-                className={styles["login__botao"]}
-                type="submit"
-              >
+              <button className={styles["login__botao"]} type="submit">
                 Login
               </button>
+              <p
+                onClick={() => {
+                  setEsqueceuAparecer(true);
+                }}
+                className={styles["login__paragraph--senha"]}
+              >
+                Esqueceu a senha?
+              </p>
               <p className={styles["login__paragraph"]}>
                 Novo na Vinki?{" "}
                 <Link to="/cadastrar" className={styles["login__link"]}>
@@ -115,7 +126,21 @@ export default function Login() {
             </div>
           </Form>
         </Formik>
-        <Notificacao mostrarNotificacao={mostrarNotificacao} setMostrarNotificacao={setMostrarNotificacao} msg={"Email ou senha inválidos"}></Notificacao>
+        <Esqueceu
+          setEsqueceuNot={setEsqueceuNot}
+          esqueceuAparecer={esqueceuAparecer}
+          setEsqueceuAparecer={setEsqueceuAparecer}
+        ></Esqueceu>
+        <Notificacao
+          mostrarNotificacao={mostrarNotificacao}
+          setMostrarNotificacao={setMostrarNotificacao}
+          msg={"Email ou senha inválidos"}
+        ></Notificacao>
+        <Notificacao
+          mostrarNotificacao={esqueceuNot}
+          setMostrarNotificacao={setEsqueceuNot}
+          msg={"Recuperação enviada"}
+        ></Notificacao>
       </div>
     </>
   );

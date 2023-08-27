@@ -1,0 +1,78 @@
+@import 'styles/_variables.scss';
+
+.esqueceu {
+    position: fixed;
+    z-index: 5;
+    background-color: $main-color;
+    padding: 1.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 120%);
+    border-radius: 20px;
+    box-shadow: 0px 4px 50px;
+    opacity: 0;
+    transition: 500ms;
+    visibility: hidden;
+    max-width: 800px;
+    width: 40vw;
+    &__titulo {
+        color: $cinza-escuro;
+        font-weight: bold;
+        margin-bottom: .5rem;
+    }
+    &__flex {
+        display: flex;
+        flex-direction: column;
+    }
+    &__input {
+        padding: .5rem;
+        border-radius: 10px;
+        box-shadow: 0px 4px 50px $text-shadow;
+        margin-bottom: .5rem;
+    }
+    &__botao {
+        background-color: $cinza-escuro;
+        box-shadow: 0px 4px 50px $text-shadow;
+        transition: 500ms;
+        color: $main-color;
+        height: 38px;
+        border-radius: 10px;
+        font-weight: bold;
+        &:hover {
+            background-color: $main-color;
+            color: $cinza-escuro;
+        }
+        &:disabled {
+            opacity: .8;
+            &:hover {
+                background-color: $cinza-escuro;
+                color: $main-color;
+
+            }
+        }
+    }
+}
+
+.esqueceu--aparecer {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+
+}
+
+.esqueceu--div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    opacity: 0;
+    background-color: $text-shadow;
+    z-index: 4;
+    visibility: hidden;
+    transition: 500ms;
+}
+.esqueceu--div--aparecer {
+    visibility: visible;
+    opacity: 1;
+}
