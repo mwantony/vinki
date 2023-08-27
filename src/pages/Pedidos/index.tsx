@@ -263,6 +263,7 @@ export default function Pedidos({ id }: Props) {
                       )}
                       {pedido.etiqueta ? (
                         <a
+                          className={styles["pedidos__botao--link"]}
                           href={`https://www.linkcorreios.com.br/?id=${pedidosNum[index].etiqueta}`}
                           target="_blank"
                           rel="noreferrer"
