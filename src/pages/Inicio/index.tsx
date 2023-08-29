@@ -328,7 +328,7 @@ export default function Inicio() {
             Fundada em 2023, a Vinki contém um extenso catálogo de produtos de
             alta qualidade. A empresa oferece uma experiência de compra
             descomplicada, garantindo a satisfação total dos clientes. Além
-            disso, a Vinki destaca-se por seu compromisso com o cliente. Com uma
+            disso, a Vinki destaca-se por seu compromisso com o cliente. Com 
             uma equipe dedicada, a Vinki continua a prosperar como uma loja
             online de referência, tornando-se a escolha ideal para todos aqueles
             que buscam uma nova e incrível maneira de comprar online.
