@@ -32,7 +32,7 @@ export default function Categorias() {
   const [aparecerLoading, setAparecerLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selecionado, setSelecionado] = useState("Ordenar");
-  const [quantidade, setQuantidade] = useState(6);
+  const [quantidade, setQuantidade] = useState(12);
   const [eh, setEh] = useState(1);
   const [parent, enableAnimations] = useAutoAnimate();
 
@@ -55,7 +55,7 @@ export default function Categorias() {
           ordenarDecrescente(moveis);
         }
         setMoveisEncontrados(moveis);
-        setQuantidade(quantidade + 6);
+        setQuantidade(quantidade + 12);
       });
 
     } else if(categoria === "Livros") {
@@ -71,7 +71,7 @@ export default function Categorias() {
           ordenarDecrescente(moveis);
         }
         setMoveisEncontrados(moveis);
-        setQuantidade(quantidade + 6);
+        setQuantidade(quantidade + 12);
       });
     }
   };
@@ -121,8 +121,8 @@ export default function Categorias() {
         setIsVisible(isElementVisible(element));
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
+/*     window.addEventListener("scroll", handleScroll);
+ */    return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -430,11 +430,8 @@ export default function Categorias() {
             })
           : ""}
         {hasMore === true ? (
-          <button
-            onClick={() => loadMore()}
-            ref={elementRef}
-            className={styles["lista__load"]}
-          ></button>
+            <button className={styles["carregar"]} onClick={() => loadMore()} ref={elementRef}>Ver mais</button>
+
         ) : (
           ""
         )}

@@ -151,9 +151,29 @@
       margin: 0;
     }
   }
+  .carregar {
+    grid-column: span 2;
+  }
 }
 @media (min-width: $large) {
   .moveis {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .carregar {
+    grid-column: span 3;
+  }
+}
+
+.carregar {
+  margin: 0 auto;
+  display: block;
+  background-color: $cinza-escuro;
+  color: $main-color;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 50px $text-shadow;
+  transition: 500ms;
+  &:hover {
+    opacity: .7;
   }
 }
