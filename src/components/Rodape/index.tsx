@@ -85,7 +85,7 @@ export default function Rodape() {
           <h2 className={styles["rodape__subtitulo"]}>Mídias socias</h2>
           <ul className={styles["rodape__lista"]}>
             <a
-              href="https://wa.me/5549991042777"
+              href="https://wa.me/49991586073"
               target="_blank"
               rel="noreferrer"
             >
@@ -146,7 +146,7 @@ export default function Rodape() {
           <h2 className={styles["rodape__subtitulo"]}>Institucional</h2>
           <ul className={styles["rodape__lista"]}>
             <a
-              href="https://wa.me/5549991042777"
+              href="https://wa.me/5549991586073"
               target="_blank"
               rel="noreferrer"
             >
@@ -156,7 +156,7 @@ export default function Rodape() {
                   [styles["rodape__item--sac"]]: true,
                 })}
               >
-                &nbsp;49 99104-2777
+                &nbsp;49 9158-6073
               </li>
             </a>
             <a href="mailto:atendimento@vinki.com.br">

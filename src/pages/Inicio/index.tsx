@@ -192,7 +192,7 @@ export default function Inicio() {
           </Carousel.Item>
           <Carousel.Item interval={5000}>
             <a
-              href="https://wa.me/5549991042777"
+              href="https://wa.me/5549991586073"
               target="_blank"
               rel="noreferrer"
             >
@@ -349,7 +349,7 @@ export default function Inicio() {
               <InstagramIcon></InstagramIcon>
             </a>
             <a
-              href="https://wa.me/5549991042777"
+              href="https://wa.me/5549991586073"
               target="_blank"
               rel="noreferrer"
             >
