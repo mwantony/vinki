@@ -110,7 +110,7 @@ export default function Carrinho({
     services: "1",
   };
   const apiUrl =
-    "https://sandbox.melhorenvio.com.br/api/v2/me/shipment/calculate";
+    "https://vinkiapi.vercel.app/calcularfrete";
   if(verFornecedor() !== cep) {
 
     fetch(apiUrl, {
