@@ -42,19 +42,19 @@ export default function Inicio() {
   const [jaCadastrado, setJaCadastrado] = useState(false)
   const [cadastrado, setCadastrado] = useState(false)
   if (set === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Eletrônicos`).then((res) => {
       setEmDestaque(res.data);
       setSet(1);
     });
   }
   if (set1 === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Acessórios`).then((res) => {
       setMaisVendidos(res.data);
       setSet1(1);
     });
   }
   if (set2 === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Móveis`).then((res) => {
       setEmAlta(res.data);
       setSet2(1);
     });
@@ -312,7 +312,7 @@ export default function Inicio() {
         <VideoPlayer></VideoPlayer>
       </section>
       <section className={styles.emalta}>
-        <h2 className={styles["maisvendidos__titulo"]}>Em alta</h2>
+        <h2 className={styles["maisvendidos__titulo"]}>Móveis</h2>
         <ScrollHorizontal produtos={emalta} id={"emalta"}></ScrollHorizontal>
       </section>
       <section className={styles.saibaquemsomos}>
