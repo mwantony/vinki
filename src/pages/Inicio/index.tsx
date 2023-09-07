@@ -80,21 +80,21 @@ export default function Inicio() {
   const handleDragStart = (e: any) => e.preventDefault();
 
   const items = [
-    <Link to={"/categorias/livros"}>
-      <img
-        src={livros}
-        onDragStart={handleDragStart}
-        role="presentation"
-        alt="Foto Livros"
-        className={styles["lista__foto--slicer"]}
-      />
-    </Link>,
     <Link to={"/categorias/eletronicos"}>
       <img
         src={eletronicos}
         onDragStart={handleDragStart}
         role="presentation"
         alt="Foto Eletrônicos"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
+    <Link to={"/categorias/livros"}>
+      <img
+        src={livros}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Livros"
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
@@ -257,7 +257,7 @@ export default function Inicio() {
         />
       </section>
       <section className={styles["emdestaque"]}>
-        <h2 className={styles["emdestaque__titulo"]}>Produtos em destaque</h2>
+        <h2 className={styles["emdestaque__titulo"]}>Eletrônicos</h2>
         <ScrollHorizontal
           produtos={emDestaque}
           id={"emdestaque"}
@@ -301,7 +301,7 @@ export default function Inicio() {
         <Notificacao mostrarNotificacao={cadastrado} setMostrarNotificacao={setCadastrado} msg={"Cadastrado com sucesso"}></Notificacao>
       </section>
       <section className={styles.maisvendidos}>
-        <h2 className={styles["maisvendidos__titulo"]}>Mais vendidos</h2>
+        <h2 className={styles["maisvendidos__titulo"]}>Acessórios</h2>
 
         <ScrollHorizontal
           produtos={maisVendidos}
