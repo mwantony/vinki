@@ -19,6 +19,8 @@ import { Carousel } from "react-bootstrap";
 import ReactImageMagnify from "react-image-magnify";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import MyReactImageMagnify from "./ProdutoZoom";
+import ImageMagnifier from "./ProdutoZoom";
 export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
@@ -50,6 +52,17 @@ export default function PaginaProduto({
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const valida = (valor: any) => {
     return valor.length === 9 ? false : true;
   };
@@ -88,6 +101,8 @@ export default function PaginaProduto({
   const navigate = useNavigate();
   const [abriFrete, setAbrirFrete] = useState(false);
   const [aparecerLoading, setAparecerLoading] = useState(true);
+  var Larg = window.innerWidth;
+
   if (titulo) {
     return (
       <>
@@ -96,52 +111,72 @@ export default function PaginaProduto({
             <div className={styles["produto__im"]}>
               <Carousel indicators={false} data-bs-theme="dark">
                 <Carousel.Item className={styles["produto__im1"]}>
+                  {Larg >= 650 ? (
+                    <ImageMagnifier src={link}></ImageMagnifier>
+                  ) : (
                     <img
-                    className={styles["produto__imagem"]}
-                    src={link}
-                    alt={"Foto"}
-                  />
+                      className={styles["produto__imagem"]}
+                      src={link}
+                      alt={"Foto"}
+                    />
+                  )}
                 </Carousel.Item>
                 {link2 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
+                    {Larg >= 650 ? (
+                    <ImageMagnifier src={link2}></ImageMagnifier>
+                  ) : (
                     <img
                       className={styles["produto__imagem"]}
                       src={link2}
                       alt={"Foto"}
                     />
+                  )}
                   </Carousel.Item>
                 ) : (
                   ""
                 )}
                 {link3 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
+                    {Larg >= 650 ? (
+                    <ImageMagnifier src={link3}></ImageMagnifier>
+                  ) : (
                     <img
                       className={styles["produto__imagem"]}
                       src={link3}
                       alt={"Foto"}
                     />
+                  )}
                   </Carousel.Item>
                 ) : (
                   ""
                 )}
                 {link4 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
+                    {Larg >= 650 ? (
+                    <ImageMagnifier src={link4}></ImageMagnifier>
+                  ) : (
                     <img
                       className={styles["produto__imagem"]}
                       src={link4}
                       alt={"Foto"}
                     />
+                  )}
                   </Carousel.Item>
                 ) : (
                   ""
                 )}
                 {link5 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
+                    {Larg >= 650 ? (
+                    <ImageMagnifier src={link5}></ImageMagnifier>
+                  ) : (
                     <img
                       className={styles["produto__imagem"]}
                       src={link5}
                       alt={"Foto"}
                     />
+                  )}
                   </Carousel.Item>
                 ) : (
                   ""
