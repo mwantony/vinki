@@ -16,6 +16,7 @@ import { Collapse, Button } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 import PopupFrete from "./PopupFrete";
 import { Carousel } from "react-bootstrap";
+import ReactImageMagnify from "react-image-magnify";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 export default function PaginaProduto({
@@ -61,10 +62,10 @@ export default function PaginaProduto({
         setPromocao(produto.promocao);
         setPrecoAnterior(produto.precoAnterior);
         setLink(produto.link);
-        setLink2(produto.link2)
-        setLink3(produto.link3)
-        setLink4(produto.link4)
-        setLink5(produto.link5)
+        setLink2(produto.link2);
+        setLink3(produto.link3);
+        setLink4(produto.link4);
+        setLink5(produto.link5);
         setId(produto.idprodutos);
         setPeso(produto.peso);
         setFornecedor(produto.fornecedor);
@@ -92,27 +93,59 @@ export default function PaginaProduto({
       <>
         <section className={styles["produto"]}>
           <div className={styles["produto__inf"]}>
-            <div className={styles['produto__im']}>
+            <div className={styles["produto__im"]}>
               <Carousel indicators={false} data-bs-theme="dark">
-                <Carousel.Item className={styles['produto__im1']}>
-                  <img className={styles['produto__imagem']} src={link} alt={"Foto"} />
+                <Carousel.Item className={styles["produto__im1"]}>
+                    <img
+                    className={styles["produto__imagem"]}
+                    src={link}
+                    alt={"Foto"}
+                  />
                 </Carousel.Item>
-                {link2 ? 
-                <Carousel.Item className={styles['produto__im1']}>
-                  <img className={styles['produto__imagem']} src={link2} alt={"Foto"} />
-                </Carousel.Item> : ''}
-                {link3 ? 
-                <Carousel.Item className={styles['produto__im1']}>
-                  <img className={styles['produto__imagem']} src={link3} alt={"Foto"} />
-                </Carousel.Item> : ''}
-                {link4 ? 
-                <Carousel.Item className={styles['produto__im1']}>
-                  <img className={styles['produto__imagem']} src={link4} alt={"Foto"} />
-                </Carousel.Item> : ''}
-                {link5 ? 
-                <Carousel.Item className={styles['produto__im1']}>
-                  <img className={styles['produto__imagem']} src={link5} alt={"Foto"} />
-                </Carousel.Item> : ''}
+                {link2 ? (
+                  <Carousel.Item className={styles["produto__im1"]}>
+                    <img
+                      className={styles["produto__imagem"]}
+                      src={link2}
+                      alt={"Foto"}
+                    />
+                  </Carousel.Item>
+                ) : (
+                  ""
+                )}
+                {link3 ? (
+                  <Carousel.Item className={styles["produto__im1"]}>
+                    <img
+                      className={styles["produto__imagem"]}
+                      src={link3}
+                      alt={"Foto"}
+                    />
+                  </Carousel.Item>
+                ) : (
+                  ""
+                )}
+                {link4 ? (
+                  <Carousel.Item className={styles["produto__im1"]}>
+                    <img
+                      className={styles["produto__imagem"]}
+                      src={link4}
+                      alt={"Foto"}
+                    />
+                  </Carousel.Item>
+                ) : (
+                  ""
+                )}
+                {link5 ? (
+                  <Carousel.Item className={styles["produto__im1"]}>
+                    <img
+                      className={styles["produto__imagem"]}
+                      src={link5}
+                      alt={"Foto"}
+                    />
+                  </Carousel.Item>
+                ) : (
+                  ""
+                )}
               </Carousel>
             </div>
             <div>
@@ -160,7 +193,7 @@ export default function PaginaProduto({
                       [styles["produto__paragrafo"]]: true,
                     })}
                   >
-                    Em até 12x de{" "} R$&nbsp;
+                    Em até 12x de R$&nbsp;
                     {Number(Number(promocao) / 12)
                       .toFixed(2)
                       .replace(".", ",")}
@@ -185,7 +218,7 @@ export default function PaginaProduto({
                           width: width,
                           length: length,
                           fornecedor: fornecedor,
-                          peso: peso
+                          peso: peso,
                         });
                         atualizaCarrinho();
                       } else {
@@ -214,7 +247,7 @@ export default function PaginaProduto({
                           width: width,
                           length: length,
                           fornecedor: fornecedor,
-                          peso: peso
+                          peso: peso,
                         });
                         navigate("/carrinho");
                         atualizaCarrinho();
@@ -294,13 +327,19 @@ export default function PaginaProduto({
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Dimensões:</h2>
-                  <p>Largura: {Number(width).toFixed(2).replace('.', ',')}cm</p>
-                  <p>Altura: {Number(height).toFixed(2).replace('.', ',')}cm</p>
-                  <p>Comprimento: {Number(length).toFixed(2).replace('.', ',')}cm</p>
+                  <p>Largura: {Number(width).toFixed(2).replace(".", ",")}cm</p>
+                  <p>Altura: {Number(height).toFixed(2).replace(".", ",")}cm</p>
+                  <p>
+                    Comprimento: {Number(length).toFixed(2).replace(".", ",")}cm
+                  </p>
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Peso:</h2>
-                  <p>{Number(peso) >= 1 ? `${Number(peso).toFixed(1).replace('.', ',')}kg` : `${String(peso).replace('0.', '')}g`}</p>
+                  <p>
+                    {Number(peso) >= 1
+                      ? `${Number(peso).toFixed(1).replace(".", ",")}kg`
+                      : `${String(peso).replace("0.", "")}g`}
+                  </p>
                 </div>
                 <div className={styles["produto__collapse--div"]}>
                   <h2>Garantia:</h2>
