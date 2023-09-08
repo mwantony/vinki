@@ -190,8 +190,8 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1109594939840532501/1131692732008628234/Banner_Meio_Mobile.jpg"
-                  : "https://cdn.discordapp.com/attachments/1109594939840532501/1130672887976701993/bannerzinho.png"
+                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149824124613570681/sorteio_mobile.png"
+                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1149823073911050300/sorteio_dekstop.png"
               }
               className="d-block w-100"
               alt={"Foto"}
@@ -206,8 +206,8 @@ export default function Inicio() {
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139992407388192859/anuncie_seu_produto_na_vinki.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139992678776451113/Inserir_um_titulo_3.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149839215526420551/anuncie_seu_produto_na_vinki_1.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1149838973687054447/anuncie_seu_produto.png"
                 }
                 className="d-block w-100"
                 alt={"Foto"}
@@ -218,20 +218,20 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1143975588995022878/frete-brasil.png"
-                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1143976394708242512/frete-brasil-desktop.png"
+                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149840141045731479/frete_rapido.png"
+                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1149840141435809892/frete-brasil-desktop_2.png"
               }
               className="d-block w-100"
               alt={"Foto"}
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-            <Link to={"/emalta"}>
+            <Link to={"/categorias/eletronicos"}>
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139990962844733610/Design_sem_nome_21.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139997662368772157/Ofertas_Imperdiveis_confira_nossos_produtos_1.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149841104796139690/eletronicosbarato--mobile.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1149841105110704148/eletronicosbarato.png"
                 }
                 className="d-block w-100"
                 alt={"Foto"}
