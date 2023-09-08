@@ -40,14 +40,14 @@ export default function Rodape() {
             >
               &nbsp;Eletrônicos
             </li></a>
-            <a href="/categorias/livros">
+            <a href="/categorias/acessorios">
             <li
               className={classNames({
                 [styles["rodape__item"]]: true,
-                [styles["rodape__item--livros"]]: true,
+                [styles["rodape__item--acessorios"]]: true,
               })}
             >
-              &nbsp;Livros
+              &nbsp;Acessórios
             </li></a>
       
           </ul>

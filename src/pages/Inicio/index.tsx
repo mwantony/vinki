@@ -6,6 +6,7 @@ import decoracoes from "../../assets/img/decoracoes.png";
 import calcados from "../../assets/img/calcados.png";
 import ortopedia from "../../assets/img/ortopedia.png";
 import livros from "../../assets/img/livros.png";
+import acessorios from "../../assets/img/acessorios.png";
 import jardim from "../../assets/img/jardim.png";
 import produtos from "../../db.json";
 import React, { useState } from "react";
@@ -89,12 +90,12 @@ export default function Inicio() {
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
-    <Link to={"/categorias/livros"}>
+    <Link to={"/categorias/acessorios"}>
       <img
-        src={livros}
+        src={acessorios}
         onDragStart={handleDragStart}
         role="presentation"
-        alt="Foto Livros"
+        alt="Foto Acessórios"
         className={styles["lista__foto--slicer"]}
       />
     </Link>,

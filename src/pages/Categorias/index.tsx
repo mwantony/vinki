@@ -6,6 +6,7 @@ import { ReactComponent as Ortopedia } from "../../assets/svg/ortopedia.svg";
 import { ReactComponent as Calcado } from "../../assets/svg/calcados.svg";
 import { ReactComponent as Livro } from "../../assets/svg/livros.svg";
 import { ReactComponent as Eletronico } from "../../assets/svg/eletronicos.svg";
+import { ReactComponent as Acessorios } from "../../assets/svg/acessorios.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import {
@@ -108,6 +109,9 @@ export default function Categorias() {
       case `${process.env.REACT_APP_WEB_URL}/categorias/livros`:
         categoria = "Livros";
         break;
+      case `${process.env.REACT_APP_WEB_URL}/categorias/acessorios`:
+        categoria = "Acessórios";
+        break;
     }
 
     if (eh === 1) {
@@ -151,6 +155,7 @@ export default function Categorias() {
         {categoria === "Ortopedia" ? <Ortopedia></Ortopedia> : ""}
         {categoria === "Livros" ? <Livro></Livro> : ""}
         {categoria === "Eletrônicos" ? <Eletronico></Eletronico> : ""}
+        {categoria === "Acessórios" ? <Acessorios></Acessorios> : ""}
         <p>{categoria}</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>
