@@ -46,6 +46,8 @@ export default function PopupFrete({
         return "89930-000";
       case "dallcell":
         return "89930-000";
+      case "aliexpress":
+        return "89940-000";
       default:
         return "85816-050";
     }
