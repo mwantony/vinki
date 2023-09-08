@@ -92,11 +92,13 @@ export default function PaginaProduto({
       }
     }
   );
-  if (set === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
-      setProdutos(res.data);
-      setSet(1);
-    });
+  if(categoria) {
+    if (set === 0) {
+      Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/${categoria}`).then((res) => {
+        setProdutos(res.data);
+        setSet(1);
+      });
+    }
   }
   const navigate = useNavigate();
   const [abriFrete, setAbrirFrete] = useState(false);
