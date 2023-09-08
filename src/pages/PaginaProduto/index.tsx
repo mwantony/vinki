@@ -103,7 +103,7 @@ export default function PaginaProduto({
   const navigate = useNavigate();
   const [abriFrete, setAbrirFrete] = useState(false);
   const [aparecerLoading, setAparecerLoading] = useState(true);
-  var Larg = 1
+  var Larg = window.innerWidth;
 
   if (titulo) {
     return (
@@ -113,7 +113,7 @@ export default function PaginaProduto({
             <div className={styles["produto__im"]}>
               <Carousel indicators={false} data-bs-theme="dark">
                 <Carousel.Item className={styles["produto__im1"]}>
-                  {Larg === 1 ? (
+                  {Larg >= 650 ? (
                     <ImageMagnifier src={link}></ImageMagnifier>
                   ) : (
                     <img
@@ -125,7 +125,7 @@ export default function PaginaProduto({
                 </Carousel.Item>
                 {link2 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
-                    {Larg === 1 ? (
+                    {Larg >= 650 ? (
                     <ImageMagnifier src={link2}></ImageMagnifier>
                   ) : (
                     <img
@@ -140,7 +140,7 @@ export default function PaginaProduto({
                 )}
                 {link3 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
-                    {Larg === 1 ? (
+                    {Larg >= 650 ? (
                     <ImageMagnifier src={link3}></ImageMagnifier>
                   ) : (
                     <img
@@ -155,7 +155,7 @@ export default function PaginaProduto({
                 )}
                 {link4 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
-                    {Larg === 1 ? (
+                    {Larg >= 650 ? (
                     <ImageMagnifier src={link4}></ImageMagnifier>
                   ) : (
                     <img
@@ -170,7 +170,7 @@ export default function PaginaProduto({
                 )}
                 {link5 ? (
                   <Carousel.Item className={styles["produto__im1"]}>
-                    {Larg === 1 ? (
+                    {Larg >= 650 ? (
                     <ImageMagnifier src={link5}></ImageMagnifier>
                   ) : (
                     <img
