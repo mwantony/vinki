@@ -45,6 +45,19 @@
   margin: 0 0 0 2rem;
 
 }
+.emdestaque__vertodos {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+.emdestaque__vertodos > a {
+  
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
 
 .emdestaque__lista {
   display: flex;
@@ -253,6 +266,9 @@
   .emdestaque {
     &__titulo {
       margin-left: 8vw;
+    }
+    &__vertodos {
+      margin-right: 8vw;
     }
   }
   .maisvendidos {

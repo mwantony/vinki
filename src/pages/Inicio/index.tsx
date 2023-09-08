@@ -40,25 +40,31 @@ export default function Inicio() {
   const [set1, setSet1] = useState(0);
   const [set2, setSet2] = useState(0);
   const [set3, setSet3] = useState(0);
-  const [jaCadastrado, setJaCadastrado] = useState(false)
-  const [cadastrado, setCadastrado] = useState(false)
+  const [jaCadastrado, setJaCadastrado] = useState(false);
+  const [cadastrado, setCadastrado] = useState(false);
   if (set === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Eletrônicos`).then((res) => {
+    Axios.get(
+      `${process.env.REACT_APP_API_URL}/produtosrandom/Eletrônicos`
+    ).then((res) => {
       setEmDestaque(res.data);
       setSet(1);
     });
   }
   if (set1 === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Acessórios`).then((res) => {
+    Axios.get(
+      `${process.env.REACT_APP_API_URL}/produtosrandom/Acessórios`
+    ).then((res) => {
       setMaisVendidos(res.data);
       setSet1(1);
     });
   }
   if (set2 === 0) {
-    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Móveis`).then((res) => {
-      setEmAlta(res.data);
-      setSet2(1);
-    });
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom/Móveis`).then(
+      (res) => {
+        setEmAlta(res.data);
+        setSet2(1);
+      }
+    );
   }
   if (set3 === 0) {
     Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then((res) => {
@@ -169,12 +175,12 @@ export default function Inicio() {
       email: newsEmail,
       nome: newsNome,
     }).then((res: any) => {
-      if(res.data === "Email já cadastrado") {
-        setJaCadastrado(true)
+      if (res.data === "Email já cadastrado") {
+        setJaCadastrado(true);
       } else {
-        setCadastrado(true)
+        setCadastrado(true);
       }
-    })
+    });
   };
   return (
     <>
@@ -263,6 +269,11 @@ export default function Inicio() {
           produtos={emDestaque}
           id={"emdestaque"}
         ></ScrollHorizontal>
+        <div className={styles["emdestaque__vertodos"]}>
+          <Link to={"/categorias/eletronicos"}>
+            <p>Ver todos</p>
+          </Link>
+        </div>
       </section>
       <section className={styles.newsletter}>
         <h2 className={styles["newsletter__titulo"]}>
@@ -293,13 +304,21 @@ export default function Inicio() {
           type="submit"
           className={styles["newsletter__botao"]}
           onClick={() => {
-            handleNews()
+            handleNews();
           }}
         >
           Cadastrar
         </button>
-        <Notificacao mostrarNotificacao={jaCadastrado} setMostrarNotificacao={setJaCadastrado} msg={"Email já cadastrado"}></Notificacao>
-        <Notificacao mostrarNotificacao={cadastrado} setMostrarNotificacao={setCadastrado} msg={"Cadastrado com sucesso"}></Notificacao>
+        <Notificacao
+          mostrarNotificacao={jaCadastrado}
+          setMostrarNotificacao={setJaCadastrado}
+          msg={"Email já cadastrado"}
+        ></Notificacao>
+        <Notificacao
+          mostrarNotificacao={cadastrado}
+          setMostrarNotificacao={setCadastrado}
+          msg={"Cadastrado com sucesso"}
+        ></Notificacao>
       </section>
       <section className={styles.maisvendidos}>
         <h2 className={styles["maisvendidos__titulo"]}>Acessórios</h2>
@@ -308,6 +327,11 @@ export default function Inicio() {
           produtos={maisVendidos}
           id={"maisvendidos"}
         ></ScrollHorizontal>
+        <div className={styles["emdestaque__vertodos"]}>
+          <Link to={"/categorias/acessorios"}>
+            <p>Ver todos</p>
+          </Link>
+        </div>
       </section>
       <section className={styles["videoinstitucional"]}>
         <VideoPlayer></VideoPlayer>
@@ -315,6 +339,11 @@ export default function Inicio() {
       <section className={styles.emalta}>
         <h2 className={styles["maisvendidos__titulo"]}>Móveis</h2>
         <ScrollHorizontal produtos={emalta} id={"emalta"}></ScrollHorizontal>
+        <div className={styles["emdestaque__vertodos"]}>
+          <Link to={"/categorias/moveis"}>
+            <p>Ver todos</p>
+          </Link>
+        </div>
       </section>
       <section className={styles.saibaquemsomos}>
         <div className={styles["saibaquemsomos__div--imagem"]}>
@@ -329,10 +358,10 @@ export default function Inicio() {
             Fundada em 2023, a Vinki contém um extenso catálogo de produtos de
             alta qualidade. A empresa oferece uma experiência de compra
             descomplicada, garantindo a satisfação total dos clientes. Além
-            disso, a Vinki destaca-se por seu compromisso com o cliente. Com 
-            uma equipe dedicada, a Vinki continua a prosperar como uma loja
-            online de referência, tornando-se a escolha ideal para todos aqueles
-            que buscam uma nova e incrível maneira de comprar online.
+            disso, a Vinki destaca-se por seu compromisso com o cliente. Com uma
+            equipe dedicada, a Vinki continua a prosperar como uma loja online
+            de referência, tornando-se a escolha ideal para todos aqueles que
+            buscam uma nova e incrível maneira de comprar online.
           </p>
           <div className={styles["saibaquemsomos__icons"]}>
             <a
