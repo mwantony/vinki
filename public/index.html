@@ -39,6 +39,7 @@
     -->
     <title>Vinki</title>
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
@@ -69,5 +70,65 @@
   <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
   <script>
     const player = new Plyr("#player");
+  </script>
+  <script>
+          const inaugurate =
+        "Thu Sep 31 2023 23:59:59 GMT-0300 (Horário Padrão de Brasília)";
+      const text = `Prepare-se para uma experiência revolucionária de compras online! A contagem regressiva começou e estamos animados para anunciar a estreia do nosso aguardado e-commerce. Em breve, você terá acesso a uma seleção cuidadosamente curada dos melhores produtos, com conveniência e facilidade de compra em apenas alguns cliques. Esteja pronto para explorar as últimas tendências, descobrir produtos exclusivos e desfrutar de ofertas especiais. Marque esta data em seu calendário e junte-se a nós na inauguração do nosso e-commerce. Sinta-se à vontade para compartilhar a notícia com seus amigos e familiares. Estamos ansiosos para oferecer a você uma experiência de compras online excepcional!`;
+      localStorage.setItem("inaugurationDate", inaugurate);
+
+      // Função para exibir o texto com efeito de escrita
+      /*     function showTextWithTypingEffect() {
+      const textContainer = document.getElementById('text-container');
+      let index = 0;
+
+      function type() {
+        if (index < text.length) {
+          textContainer.textContent += text.charAt(index);
+          index++;
+          setTimeout(type, 10); // Ajuste o valor do timeout para controlar a velocidade do efeito de escrita
+        }
+      }
+
+      type();
+    } */
+
+      // Chama a função para exibir o texto com efeito de escrita
+      /*     showTextWithTypingEffect();
+       */
+      // Define a data de inauguração do e-commerce (20 dias a partir da data atual)
+      let inaugurationDate = new Date();
+      const storedInaugurationDate = localStorage.getItem("inaugurationDate");
+
+      if (storedInaugurationDate) {
+        inaugurationDate = new Date(storedInaugurationDate);
+      } else {
+        inaugurationDate = new Date(storedInaugurationDate);
+        localStorage.setItem("inaugurationDate", inaugurate);
+      }
+
+      function updateCountdown() {
+        const now = new Date();
+        const timeLeft = inaugurationDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = formatTime(days);
+        document.getElementById("hours").textContent = formatTime(hours);
+        document.getElementById("minutes").textContent = formatTime(minutes);
+        document.getElementById("seconds").textContent = formatTime(seconds);
+      }
+
+      function formatTime(time) {
+        return time < 10 ? `0${time}` : time
+      }
+
+      // Atualiza o cronômetro a cada segundo
+      setInterval(updateCountdown, 1000);
   </script>
 </html>

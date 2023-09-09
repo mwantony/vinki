@@ -29,6 +29,7 @@ import Axios from "axios";
 import ScrollHorizontal from "components/ScrollHorizontal";
 import VideoPlayer from "components/VideoInstitucional";
 import Notificacao from "components/Notificacao";
+import Novidade from "./Novidade";
 export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
   const [newsEmail, setNewsEmail] = useState("");
@@ -185,6 +186,7 @@ export default function Inicio() {
   return (
     <>
       <section>
+        <Novidade></Novidade>
         <Carousel>
           <Carousel.Item interval={5000}>
             <img
