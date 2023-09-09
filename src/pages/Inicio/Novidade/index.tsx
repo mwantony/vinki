@@ -1,7 +1,10 @@
 import { ReactComponent as Clock } from "assets/svg/clock.svg";
 
 import styles from "./Novidade.module.scss";
+
+
 export default function Novidade() {
+    
   return (
     <a href="" target="_blank" >
         <div className={styles["novidade"]}>

@@ -9,7 +9,7 @@ import livros from "../../assets/img/livros.png";
 import acessorios from "../../assets/img/acessorios.png";
 import jardim from "../../assets/img/jardim.png";
 import produtos from "../../db.json";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
 
@@ -24,12 +24,13 @@ import { ReactComponent as InstagramIcon } from "../../assets/svg/instagramlogo.
 import { ReactComponent as FacebookIcon } from "../../assets/svg/facebooklogo.svg";
 import { ReactComponent as ThreadsIcon } from "../../assets/svg/threadslogo.svg";
 import { slideRight, slideLeft } from "../../func/sliders";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Axios from "axios";
 import ScrollHorizontal from "components/ScrollHorizontal";
 import VideoPlayer from "components/VideoInstitucional";
 import Notificacao from "components/Notificacao";
 import Novidade from "./Novidade";
+import { inicializarScript } from "func/func.js";
 export default function Inicio() {
   const [emDestaque, setEmDestaque] = useState([]);
   const [newsEmail, setNewsEmail] = useState("");
@@ -43,6 +44,11 @@ export default function Inicio() {
   const [set3, setSet3] = useState(0);
   const [jaCadastrado, setJaCadastrado] = useState(false);
   const [cadastrado, setCadastrado] = useState(false);
+  const [href, setHRef] = useState(useLocation());
+  console.log(href)
+  useEffect(() => {
+    inicializarScript(href);
+  }, []);
   if (set === 0) {
     Axios.get(
       `${process.env.REACT_APP_API_URL}/produtosrandom/Eletrônicos`
