@@ -190,7 +190,7 @@ export default function AppRouter() {
           setAgr(1);
         })
         .then(() => {
-          Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandom`).then(
+          Axios.get(`${process.env.REACT_APP_API_URL}/produtosrandommoveis`).then(
             (res) => {
               setProdutosRandom(res.data);
             }
