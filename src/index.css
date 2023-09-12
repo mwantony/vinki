@@ -189,6 +189,9 @@ code {
   overflow-y: unset;
   margin-bottom: -.5rem;
 }
+#player {
+  max-height: 350px;
+}
 
 
 @media (min-width: 768px) {
