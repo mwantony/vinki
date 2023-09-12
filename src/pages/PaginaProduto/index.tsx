@@ -21,6 +21,7 @@ import ReactImageMagnify from "react-image-magnify";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MyReactImageMagnify from "./ProdutoZoom";
 import ImageMagnifier from "./ProdutoZoom";
+import VideoProd from "./VideoProd";
 export default function PaginaProduto({
   setSelecionado,
   carrinhoLocalParsed,
@@ -45,6 +46,7 @@ export default function PaginaProduto({
   const [height, setHeight] = useState("");
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
+  const [video, setVideo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [fornecedor, setFornecedor] = useState("");
   const [garantia, setGarantia] = useState("");
@@ -87,6 +89,7 @@ export default function PaginaProduto({
         setWidth(produto.width);
         setDescricao(produto.descricao);
         setGarantia(produto.garantia);
+        setVideo(produto.video)
       } else {
         return;
       }
@@ -100,6 +103,7 @@ export default function PaginaProduto({
       });
     }
   }
+  console.log(video)
   const navigate = useNavigate();
   const [abriFrete, setAbrirFrete] = useState(false);
   const [aparecerLoading, setAparecerLoading] = useState(true);
@@ -385,6 +389,8 @@ export default function PaginaProduto({
               </div>
             </Collapse>
           </div>
+          {video ? 
+          <VideoProd video={video}></VideoProd> : ''}
           <h2 className={styles["produto__subtitulo"]}>Veja também</h2>
           <ScrollHorizontal
             produtos={produtos}
