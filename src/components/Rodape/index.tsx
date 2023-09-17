@@ -85,7 +85,7 @@ export default function Rodape() {
           <h2 className={styles["rodape__subtitulo"]}>Mídias socias</h2>
           <ul className={styles["rodape__lista"]}>
             <a
-              href="https://wa.me/49991586073"
+              href="https://wa.me/5549991586073"
               target="_blank"
               rel="noreferrer"
             >
