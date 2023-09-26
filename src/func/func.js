@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export function inicializarScript(href) {
   const inaugurate =
-  "Thu Sep 31 2023 23:59:59 GMT-0300 (Horário Padrão de Brasília)";
+  "Thu Oct 16 2023 21:59:59 GMT-0300 (Horário Padrão de Brasília)";
   localStorage.setItem("inaugurationDate", inaugurate);
   
   // Função para exibir o texto com efeito de escrita

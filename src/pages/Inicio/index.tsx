@@ -198,8 +198,8 @@ export default function Inicio() {
             <img
               src={
                 width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149824124613570681/sorteio_mobile.png"
-                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1149823073911050300/sorteio_dekstop.png"
+                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1156028993171116105/sorteio_mobile_1.png"
+                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1156027928782585866/sorteio_dekstop_1.png"
               }
               className="d-block w-100"
               alt={"Foto"}
