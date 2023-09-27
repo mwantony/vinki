@@ -112,15 +112,6 @@ export default function Inicio() {
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
-    <Link to={"/categorias/moveis"}>
-      <img
-        src={moveis}
-        onDragStart={handleDragStart}
-        role="presentation"
-        alt="Foto Móvel"
-        className={styles["lista__foto--slicer"]}
-      />
-    </Link>,
     <Link to={"/categorias/utilidades"}>
       <img
         src={utilidades}
@@ -136,6 +127,15 @@ export default function Inicio() {
         onDragStart={handleDragStart}
         role="presentation"
         alt="Foto Brinquedos"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
+    <Link to={"/categorias/moveis"}>
+      <img
+        src={moveis}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Móvel"
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
