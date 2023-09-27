@@ -206,21 +206,17 @@ export default function Inicio() {
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-            <a
-              href="https://wa.me/5549991586073"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Link to={"/emalta"}>
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149839215526420551/anuncie_seu_produto_na_vinki_1.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1149838973687054447/anuncie_seu_produto.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1156672309084557434/dia_das_criancas_mobile.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1156674462087909436/dia_das_criancas_desktop.png"
                 }
                 className="d-block w-100"
                 alt={"Foto"}
               />
-            </a>
+            </Link>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
             <img
@@ -247,17 +243,21 @@ export default function Inicio() {
             </Link>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-            <Link to={"/emalta"}>
+            <a
+              href="https://wa.me/5549991586073"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img
                 src={
                   width <= 568
-                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1139996982295920750/lojasvinki_1.png"
-                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1139996924905275505/LOJASVINKI.png"
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1149839215526420551/anuncie_seu_produto_na_vinki_1.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1149838973687054447/anuncie_seu_produto.png"
                 }
                 className="d-block w-100"
                 alt={"Foto"}
               />
-            </Link>
+            </a>
           </Carousel.Item>
         </Carousel>
 
