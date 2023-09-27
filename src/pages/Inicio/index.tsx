@@ -7,8 +7,8 @@ import calcados from "../../assets/img/calcados.png";
 import ortopedia from "../../assets/img/ortopedia.png";
 import livros from "../../assets/img/livros.png";
 import acessorios from "../../assets/img/acessorios.png";
-import jardim from "../../assets/img/jardim.png";
-import produtos from "../../db.json";
+import brinquedos from "../../assets/img/brinquedos.png";
+import utilidades from "../../assets/img/utilidades.png";
 import React, { useEffect, useState } from "react";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
@@ -121,12 +121,21 @@ export default function Inicio() {
         className={styles["lista__foto--slicer"]}
       />
     </Link>,
-    <Link to={"/categorias/calcados"}>
+    <Link to={"/categorias/utilidades"}>
       <img
-        src={calcados}
+        src={utilidades}
         onDragStart={handleDragStart}
         role="presentation"
-        alt="Foto Calçados"
+        alt="Foto Utilidades"
+        className={styles["lista__foto--slicer"]}
+      />
+    </Link>,
+    <Link to={"/categorias/brinquedos"}>
+      <img
+        src={brinquedos}
+        onDragStart={handleDragStart}
+        role="presentation"
+        alt="Foto Brinquedos"
         className={styles["lista__foto--slicer"]}
       />
     </Link>,

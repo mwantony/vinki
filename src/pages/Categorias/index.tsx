@@ -7,6 +7,8 @@ import { ReactComponent as Calcado } from "../../assets/svg/calcados.svg";
 import { ReactComponent as Livro } from "../../assets/svg/livros.svg";
 import { ReactComponent as Eletronico } from "../../assets/svg/eletronicos.svg";
 import { ReactComponent as Acessorios } from "../../assets/svg/acessorios.svg";
+import { ReactComponent as Utilidades } from "../../assets/svg/utilidades.svg";
+import { ReactComponent as Brinquedos } from "../../assets/svg/toy.svg";
 import { motion, Variants } from "framer-motion";
 import Loading from "components/Loading";
 import {
@@ -112,6 +114,12 @@ export default function Categorias() {
       case `${process.env.REACT_APP_WEB_URL}/categorias/acessorios`:
         categoria = "Acessórios";
         break;
+      case `${process.env.REACT_APP_WEB_URL}/categorias/brinquedos`:
+        categoria = "Brinquedos";
+        break;
+      case `${process.env.REACT_APP_WEB_URL}/categorias/utilidades`:
+        categoria = "Utilidades";
+        break;
     }
 
     if (eh === 1) {
@@ -156,6 +164,8 @@ export default function Categorias() {
         {categoria === "Livros" ? <Livro></Livro> : ""}
         {categoria === "Eletrônicos" ? <Eletronico></Eletronico> : ""}
         {categoria === "Acessórios" ? <Acessorios></Acessorios> : ""}
+        {categoria === "Utilidades" ? <Utilidades></Utilidades> : ""}
+        {categoria === "Brinquedos" ? <Brinquedos></Brinquedos> : ""}
         <p>{categoria}</p>
       </div>
       <h3 className={styles["moveis__produtos-encontrados"]}>

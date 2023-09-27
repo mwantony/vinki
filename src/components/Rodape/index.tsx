@@ -22,14 +22,23 @@ export default function Rodape() {
             >
               &nbsp;Móveis
             </li></a>
-            <a href="/categorias/calcados">
+            <a href="/categorias/brinquedos">
             <li
               className={classNames({
                 [styles["rodape__item"]]: true,
-                [styles["rodape__item--calcados"]]: true,
+                [styles["rodape__item--toy"]]: true,
               })}
             >
-              &nbsp;Calçados
+              &nbsp;Brinquedos
+            </li></a>
+            <a href="/categorias/utilidades">
+            <li
+              className={classNames({
+                [styles["rodape__item"]]: true,
+                [styles["rodape__item--utilidades"]]: true,
+              })}
+            >
+              &nbsp;Utilidades
             </li></a>
             <a href="/categorias/eletronicos">
             <li

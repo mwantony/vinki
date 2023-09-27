@@ -35,8 +35,11 @@
     &__item--moveis::before {
         content: url('../../assets/svg/moveis.svg');
     }
-    &__item--calcados::before {
-        content: url('../../assets/svg/calcados.svg');
+    &__item--toy::before {
+        content: url('../../assets/svg/toyz.svg');
+    }
+    &__item--utilidades::before {
+        content: url('../../assets/svg/utilidadesz.svg');
     }
     &__item--ortopedia::before {
         content: url('../../assets/svg/ortopedia.svg');
