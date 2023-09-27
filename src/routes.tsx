@@ -21,6 +21,7 @@ import Termos from "pages/Termos";
 import Trocas from "pages/Trocas";
 import Ofertas from "pages/Ofertas";
 import Politicas from "pages/Politicas";
+import ProdutosSazonais from "pages/ProdutosSazonais";
 const usuario = {
   idusuarios: "",
   nome: "",
@@ -240,6 +241,7 @@ export default function AppRouter() {
           }
         ></Route>
         <Route path="/categorias/:categoria" element={<Categorias></Categorias>}></Route>
+        <Route path="/produtossazonais/diadascriancas" element={<ProdutosSazonais></ProdutosSazonais>}></Route>
         <Route
           path="/produto/:idProduto"
           element={

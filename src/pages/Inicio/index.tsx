@@ -206,7 +206,7 @@ export default function Inicio() {
             />
           </Carousel.Item>
           <Carousel.Item interval={5000}>
-            <Link to={"/emalta"}>
+            <Link to={"/produtossazonais/diadascriancas"}>
               <img
                 src={
                   width <= 568
