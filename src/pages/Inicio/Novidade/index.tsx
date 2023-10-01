@@ -6,7 +6,7 @@ import styles from "./Novidade.module.scss";
 export default function Novidade() {
     
   return (
-    <a href="" target="_blank" >
+    <a href="https://www.instagram.com/p/Cx2lf6-g07q/" target="_blank" rel="noreferrer">
         <div className={styles["novidade"]}>
           <h3>SORTEIO LOJAS VINKI</h3>
           <div className={styles["novidade__cronometro"]}>

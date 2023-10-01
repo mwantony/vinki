@@ -204,15 +204,17 @@ export default function Inicio() {
         <Novidade></Novidade>
         <Carousel>
           <Carousel.Item interval={5000}>
-            <img
-              src={
-                width <= 568
-                  ? "https://cdn.discordapp.com/attachments/1067833193329344542/1156028993171116105/sorteio_mobile_1.png"
-                  : "https://cdn.discordapp.com/attachments/1067833193329344542/1156027928782585866/sorteio_dekstop_1.png"
-              }
-              className="d-block w-100"
-              alt={"Foto"}
-            />
+            <a href="https://www.instagram.com/p/Cx2lf6-g07q/" rel="noreferrer" target="_blank">
+              <img
+                src={
+                  width <= 568
+                    ? "https://cdn.discordapp.com/attachments/1067833193329344542/1156028993171116105/sorteio_mobile_1.png"
+                    : "https://cdn.discordapp.com/attachments/1067833193329344542/1156027928782585866/sorteio_dekstop_1.png"
+                }
+                className="d-block w-100"
+                alt={"Foto"}
+              />
+            </a>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
             <Link to={"/produtossazonais/diadascriancas"}>
