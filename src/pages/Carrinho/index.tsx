@@ -128,7 +128,12 @@ export default function Carrinho({
       }
       return response.json();
     }).then((data) => {
-      setFreteValor(Number(data.price) * itensUnicos.size)
+      console.log(cep)
+      if(cep === '89940-000' || cep === "89930-000") {
+        return
+      } else {
+        setFreteValor(Number(data.price) * itensUnicos.size)
+      }
     })
   }
   useEffect(() => {
