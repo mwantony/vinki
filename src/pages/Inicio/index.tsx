@@ -201,8 +201,8 @@ export default function Inicio() {
   return (
     <>
       <section>
-        <Novidade></Novidade>
-        <Carousel>
+{/*         <Novidade></Novidade>
+ */}        <Carousel>
           <Carousel.Item interval={5000}>
             <a href="https://www.instagram.com/p/Cx2lf6-g07q/" rel="noreferrer" target="_blank">
               <img
