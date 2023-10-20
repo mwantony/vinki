@@ -4,6 +4,7 @@ import { ReactComponent as RightArrow } from "assets/svg/rightarrow.svg";
 import Axios from "axios";
 import { ReactComponent as Cadeado } from "assets/svg/cadeado.svg";
 import { useEffect, useState } from "react";
+import Notificacao from "components/Notificacao";
 interface Props {
   finalizar: boolean;
   setFinalizar: any;
@@ -30,6 +31,7 @@ export default function FinalizarCompra({
 }: Props) {
   let titleprodutos = "";
   total += frete;
+  const [mostrarMSG, setMostrarMSG] = useState(false)
   const handleFinalizar = () => {
     Axios.post(`${process.env.REACT_APP_API_URL}/pedidos`, {
       usuariopedido: id,
@@ -99,7 +101,7 @@ export default function FinalizarCompra({
             <Cadeado></Cadeado>
           </div>
           {Number(total) ? (
-            <a
+          /*   <a
               href={redirecionar}
               target="_blank"
               rel="noreferrer"
@@ -108,8 +110,10 @@ export default function FinalizarCompra({
                 setFinalizar(false);
                 setMostrarNotificacao(true);
               }}
-            >
-              <button className={styles["finalizarcompra__finalizar"]}>
+            > */
+              <button onClick={() => {
+                setMostrarMSG(true)
+              }} className={styles["finalizarcompra__finalizar"]}>
                 <p className={styles["finalizarcompra__botao"]}>
                   Finalizar compra
                 </p>
@@ -117,8 +121,8 @@ export default function FinalizarCompra({
                   className={styles["finalizarcompra__rightarrow"]}
                 ></RightArrow>
               </button>
-            </a>
-          ) : (
+/*             </a>
+ */          ) : (
             <p className={styles["finalizarcompra__erro"]}>Tamanho máximo da encomenda excedido! Remova produtos.</p>
           )}
         </div>
@@ -132,6 +136,7 @@ export default function FinalizarCompra({
           [styles["finalizarcompra--div--aparecer"]]: finalizar,
         })}
       ></div>
+      <Notificacao setMostrarNotificacao={setMostrarMSG} mostrarNotificacao={mostrarMSG} msg={"A Vinki está desativada por tempo indeterminado"}></Notificacao>
     </>
   );
 }
