@@ -98,7 +98,7 @@ export default function Cabecalho({
             setAparecer(true);
           }}
         ></MenuItem>
-        <a href="https://www.vinki.com.br">
+        <a href="https://vinki.vercel.app">
           <Vinki className={classNames({
             [styles["navegacao__logo"]]: true,
             [styles["navegacao__logo--desaparecer"]]: aparecerInput,

@@ -212,7 +212,7 @@ export default function Rodape() {
         </div>
       </div>
       <div className={styles["rodape__marca"]}>
-        <a href="https://www.vinki.com.br/">
+        <a href="https://vinki.vercel.app">
           <img
             src={vinkiFooterMobile}
             alt=""
