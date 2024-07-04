@@ -101,7 +101,7 @@ export default function FinalizarCompra({
             <Cadeado></Cadeado>
           </div>
           {Number(total) ? (
-          /*   <a
+            <a
               href={redirecionar}
               target="_blank"
               rel="noreferrer"
@@ -110,10 +110,10 @@ export default function FinalizarCompra({
                 setFinalizar(false);
                 setMostrarNotificacao(true);
               }}
-            > */
-              <button onClick={() => {
+            >
+              <button /* onClick={() => {
                 setMostrarMSG(true)
-              }} className={styles["finalizarcompra__finalizar"]}>
+              }} */ className={styles["finalizarcompra__finalizar"]}>
                 <p className={styles["finalizarcompra__botao"]}>
                   Finalizar compra
                 </p>
@@ -121,8 +121,8 @@ export default function FinalizarCompra({
                   className={styles["finalizarcompra__rightarrow"]}
                 ></RightArrow>
               </button>
-/*             </a>
- */          ) : (
+             </a>
+           ) : (
             <p className={styles["finalizarcompra__erro"]}>Tamanho máximo da encomenda excedido! Remova produtos.</p>
           )}
         </div>

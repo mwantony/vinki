@@ -5,7 +5,7 @@ import { ReactComponent as Trash } from "../../assets/svg/trash.svg";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import Axios from "axios";
@@ -15,7 +15,7 @@ import { isTemplateSpan } from "typescript";
 import Loading from "components/Loading";
 initMercadoPago("YOUR_PUBLIC_KEY");
 Axios.defaults.headers.common["Authorization"] =
-  "Bearer APP_USR-5257004078028291-071317-32f7663e901c0dfc178122e42e6d8a3a-1184731359";
+  "Bearer APP_USR-6397940339096110-070320-896997d4d7bbe57fa72354b3326c4965-66744336";
 interface Props {
   produtos: any;
   nome: any;
@@ -49,7 +49,7 @@ export default function Carrinho({
   const [pode, setPode] = useState(true);
   const [mostrarNotificacao, setMostrarNotificacao] = useState(false);
   const [idReferencia, setIdReferencia] = useState(uuidv4());
-  const [aparecerLoading, setAparecerLoading] = useState(true)
+  const [aparecerLoading, setAparecerLoading] = useState(true);
   const [items, setItems] = produtos.map((item: any) => {
     return item.titulo;
   });
@@ -59,10 +59,10 @@ export default function Carrinho({
   let length = 0;
   let peso = 0;
   let fornecedor = "";
-  const [freteValor, setFreteValor] = useState(0)
+  const [freteValor, setFreteValor] = useState(0);
   const accessToken = `eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NTYiLCJqdGkiOiIzNGQ3ZmJkZjdiOGQ2MjU2ZDU2YzIxODhmOGYwODEzMTM1YmY4ZDYyMWE4NzNlYmRlMWFhNjg2MDk0ZDU5NDYyODJiNDViNTk5ZGJjODYzOCIsImlhdCI6MTY5MDQyNTk1Ny4wODE2NTcsIm5iZiI6MTY5MDQyNTk1Ny4wODE2NiwiZXhwIjoxNzIyMDQ4MzU3LjA2ODQxNCwic3ViIjoiOTliZTRiNjItNWZmYy00Y2FhLTk5NGQtYTc1YWViOTVlYzM3Iiwic2NvcGVzIjpbImNhcnQtcmVhZCIsImNhcnQtd3JpdGUiLCJjb21wYW5pZXMtcmVhZCIsImNvbXBhbmllcy13cml0ZSIsImNvdXBvbnMtcmVhZCIsImNvdXBvbnMtd3JpdGUiLCJub3RpZmljYXRpb25zLXJlYWQiLCJvcmRlcnMtcmVhZCIsInByb2R1Y3RzLXJlYWQiLCJwcm9kdWN0cy1kZXN0cm95IiwicHJvZHVjdHMtd3JpdGUiLCJwdXJjaGFzZXMtcmVhZCIsInNoaXBwaW5nLWNhbGN1bGF0ZSIsInNoaXBwaW5nLWNhbmNlbCIsInNoaXBwaW5nLWNoZWNrb3V0Iiwic2hpcHBpbmctY29tcGFuaWVzIiwic2hpcHBpbmctZ2VuZXJhdGUiLCJzaGlwcGluZy1wcmV2aWV3Iiwic2hpcHBpbmctcHJpbnQiLCJzaGlwcGluZy1zaGFyZSIsInNoaXBwaW5nLXRyYWNraW5nIiwiZWNvbW1lcmNlLXNoaXBwaW5nIiwidHJhbnNhY3Rpb25zLXJlYWQiLCJ1c2Vycy1yZWFkIiwidXNlcnMtd3JpdGUiLCJ3ZWJob29rcy1yZWFkIiwid2ViaG9va3Mtd3JpdGUiLCJ3ZWJob29rcy11cGRhdGUiLCJ3ZWJob29rcy1kZWxldGUiLCJ0ZGVhbGVyLXdlYmhvb2siXX0.it0wbEAPHa3wezpRsuWX4W4ejebDzsSIxSf0iGKwZvAR36Q5oETV-3luongKWf-_3wWuqbOxFLMmZrdIBXmb0vh-KrbLEN09EWwIiDgU0RNFEG3a4CjCnbBVoTVi-fftXcwVXXxO3xLCz3H-HxZQ2xQSA-q-WAtk0tyX7o-Rf1wPhAY23xyoOoECkHBXnQr_JCCvfq5jIPIo3j_32TXbYA2aT1Rbj7aoenmn161YMN168G49cHTN88x6B1riOk7cTXboEXKkCNGmLDXLfysQr1wtW3aEyx-4RSiEewnFD7WXlk4zvSulFxDyUs4re12XlH2TKjhWF1cji4KBB9lcKLlNtiw9BwQj61NXZAOWYDsd2YmsufZRd8bvdVS54xe7EOYbhQZNZPu4vfgYpMnxVAuOoBdAyFaWtSP1UqeBmUPOvXtldx--jgounJ4-4a9bvSlONkoODXcl77hnxC1YeCe2Hi9UbB9LVlHH8XRNBNgUeqt88C7ESHA7uD2J5uM4h3tO0Buh9eEDVOlqqiMb3VBGY4NKGm0Tv_5Dt0bF_ryDM9lLBr1uDMsclMq3HjCZYu1H8s15iSzGCDQxNGxBuvrZAxCA8P2H6jdMbxUCFyW2aYjdImpw8XeaIx9WZDTx3LiO6Z84b9s6y1bAno0eMY03TLfYonZ6UwCTz7XryO4`; // Replace with your actual access token
-  let fornecedores: any = []
-  let itensUnicos = new Set(fornecedores)
+  let fornecedores: any = [];
+  let itensUnicos = new Set(fornecedores);
   const verFornecedor = () => {
     switch (fornecedor) {
       case "protear":
@@ -83,8 +83,8 @@ export default function Carrinho({
     length = length + Number(item.length);
     peso = peso + Number(item.peso);
     fornecedor = item.fornecedor;
-    fornecedores = [...fornecedores, item.fornecedor]
-    itensUnicos = new Set(fornecedores)
+    fornecedores = [...fornecedores, item.fornecedor];
+    itensUnicos = new Set(fornecedores);
     return (itemsValor = itemsValor += Number(item.promocao));
   });
   const data = {
@@ -111,10 +111,8 @@ export default function Carrinho({
     },
     services: "1",
   };
-  const apiUrl =
-    "https://vinkiapi.vercel.app/calcularfrete";
-  if(verFornecedor() !== cep) {
-
+  const apiUrl = "https://vinkiapi.vercel.app/calcularfrete";
+  if (verFornecedor() !== cep) {
     fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -122,26 +120,27 @@ export default function Carrinho({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    }).then((data) => {
-      console.log(cep)
-      if(cep === '89940-000' || cep === "89930-000") {
-        return
-      } else {
-        setFreteValor(Number(data.price) * itensUnicos.size)
-      }
     })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(cep);
+        if (cep === "89940-000" || cep === "89930-000") {
+          return;
+        } else {
+          setFreteValor(Number(data.price) * itensUnicos.size);
+        }
+      });
   }
   useEffect(() => {
     if (nome === "") {
       navigate("/login");
     }
     setTimeout(() => {
-
       if (pode) {
         if (produtos.length !== 0) {
           Axios.post("https://api.mercadopago.com/checkout/preferences", {
@@ -154,18 +153,26 @@ export default function Carrinho({
                 id: "12345678",
               },
             ],
-        
           }).then((resposta: any) => {
             setRedirecionar(resposta.data.init_point);
           });
         }
         setPode(false);
       }
-    }, 2000)
-  }, [freteValor, idReferencia, items, itemsValor, navigate, nome, pode, produtos.length]);
+    }, 2000);
+  }, [
+    freteValor,
+    idReferencia,
+    items,
+    itemsValor,
+    navigate,
+    nome,
+    pode,
+    produtos.length,
+  ]);
   const [finalizar, setFinalizar] = useState(false);
-  
-  if(!aparecerLoading) {
+
+  if (!aparecerLoading) {
     return (
       <>
         <section className={styles["carrinho"]}>
@@ -242,7 +249,8 @@ export default function Carrinho({
                         {produto.categoria}
                       </p>
                       <h3 className={styles["lista__promo"]}>
-                        R$ {Number(produto.promocao).toFixed(2).replace(".", ",")}
+                        R${" "}
+                        {Number(produto.promocao).toFixed(2).replace(".", ",")}
                       </h3>
                     </div>
                     <Trash
@@ -281,9 +289,13 @@ export default function Carrinho({
         ></Notificacao>
       </>
     );
-
   } else {
-    return <Loading aparecerLoading={aparecerLoading} ehLogin={false} setAparecerLoading={setAparecerLoading}></Loading>
-
+    return (
+      <Loading
+        aparecerLoading={aparecerLoading}
+        ehLogin={false}
+        setAparecerLoading={setAparecerLoading}
+      ></Loading>
+    );
   }
 }
